@@ -47,6 +47,7 @@ public class Pantalla_principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jBtn_FacturarCabinas = new javax.swing.JButton();
         jTxtFHora = new javax.swing.JTextField();
         fondo = new javax.swing.JLabel();
@@ -65,6 +66,9 @@ public class Pantalla_principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Panel de Control"));
+
         jBtn_FacturarCabinas.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jBtn_FacturarCabinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Home-50.png"))); // NOI18N
         jBtn_FacturarCabinas.setText("Facturar Cabinas");
@@ -74,7 +78,9 @@ public class Pantalla_principal extends javax.swing.JFrame {
                 jBtn_FacturarCabinasActionPerformed(evt);
             }
         });
-        getContentPane().add(jBtn_FacturarCabinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 1142, 181, 72));
+        jPanel1.add(jBtn_FacturarCabinas);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 790));
 
         jTxtFHora.setFont(new java.awt.Font("FreeSans", 1, 18)); // NOI18N
         jTxtFHora.setForeground(new java.awt.Color(255, 255, 255));
@@ -234,6 +240,7 @@ public class Pantalla_principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTxtFHora;
     private javax.swing.JMenu mnUsuario;
     private javax.swing.JMenu mnuSalir;
