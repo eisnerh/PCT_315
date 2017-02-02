@@ -7,6 +7,7 @@ package model;
 
 import controller.conexionDB;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +28,6 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -36,9 +36,9 @@ public class Login extends javax.swing.JFrame {
 
     int xMouse;
     int yMouse;
-    
+
     public Login() {
-        
+
         initComponents();
 
         //inicializar la conexión
@@ -72,7 +72,19 @@ public class Login extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        user.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                userKeyPressed(evt);
+            }
+        });
         getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 270, 40));
+
+        pass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passKeyPressed(evt);
+            }
+        });
         getContentPane().add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 270, 40));
 
         Logo.setIcon(new javax.swing.ImageIcon("/home/ace/project/Proyecto_Cabinas_Eltropico/src/Icons/eagle14.png")); // NOI18N
@@ -153,7 +165,7 @@ public class Login extends javax.swing.JFrame {
     private void w2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_w2MouseEntered
         // TODO add your handling code here:
         w2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/m2.png")));
-        
+
     }//GEN-LAST:event_w2MouseEntered
 
     private void mainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainMouseClicked
@@ -166,6 +178,23 @@ public class Login extends javax.swing.JFrame {
         executeLogin();
     }//GEN-LAST:event_signInMouseClicked
 
+    private void passKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            // Enter was pressed. Your code goes here.
+            executeLogin();
+        }
+
+    }//GEN-LAST:event_passKeyPressed
+
+    private void userKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            // Enter was pressed. Your code goes here.
+            executeLogin();
+        }
+    }//GEN-LAST:event_userKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -173,7 +202,7 @@ public class Login extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -214,16 +243,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel w2;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
-
     private void executeLogin() {
         String a = user.getText();
         String b = pass.getText();
 
         if (a.length() == 0 && b.length() == 0) {
-            Telegraph tele = new Telegraph("Mensaje", 
+            Telegraph tele = new Telegraph("Mensaje",
                     "<html><body style='color:red;font-size:13px'><b> Agregar usuario y contraseña!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 500);
             TelegraphQueue q = new TelegraphQueue();
             TelegraphEnvelope qa = new TelegraphEnvelope();
@@ -254,7 +279,7 @@ public class Login extends javax.swing.JFrame {
                     Pantalla_principal principal = new Pantalla_principal();
                     principal.setVisible(true);
                     q.add(tele);
-                    
+
                 } else {
                     Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:red;font-size:13px'><b> Access Denied!</b></body></html>", TelegraphType.NOTIFICATION_ERROR, WindowPosition.TOPRIGHT, 1500);
                     TelegraphQueue q = new TelegraphQueue();

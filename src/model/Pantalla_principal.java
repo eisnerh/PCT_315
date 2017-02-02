@@ -2,6 +2,7 @@ package model;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.ImageIcon;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,6 +20,8 @@ public class Pantalla_principal extends javax.swing.JFrame {
      */
     public Pantalla_principal() {
         initComponents();
+        
+        //setIconImage(new ImageIcon(getClass().getResource("/home/ace/PCT_315/src/Icons/cabina.png")).getImage());
         setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
 
