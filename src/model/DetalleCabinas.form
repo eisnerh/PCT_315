@@ -58,9 +58,9 @@
         <Component class="javax.swing.JTable" name="Users_table">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="2" rowCount="4">
-                <Column editable="false" title="Usuario" type="java.lang.Object"/>
-                <Column editable="false" title="Contrase&#xf1;a" type="java.lang.Object"/>
+              <Table columnCount="2" rowCount="10">
+                <Column editable="false" title="Cabina" type="java.lang.Object"/>
+                <Column editable="false" title="Estado" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

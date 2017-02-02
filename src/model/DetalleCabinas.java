@@ -17,15 +17,15 @@ import net.proteanit.sql.DbUtils;
  *
  * @author ace
  */
-public class DetalleLogin extends javax.swing.JFrame {
+public class DetalleCabinas extends javax.swing.JFrame {
 
     /**
-     * Creates new form DetalleLogin
+     * Creates new form DetalleCabinas
      */
     Connection con=null;
 ResultSet rs=null;
 PreparedStatement pst=null;
-    public DetalleLogin() {
+    public DetalleCabinas() {
         initComponents();
         con= conexionDB.conexionDB();
         Get_Data();
@@ -33,7 +33,7 @@ PreparedStatement pst=null;
     }
     
     private void Get_Data(){
-        String sql="select usuario as 'Usuario',Password as 'Contraseña' from tbl_usuario order by usuario";
+        String sql="select Descripcion as 'Cabina',Estado as 'Estado' FROM `cabinas` WHERE `Estado` = 1 ORDER BY Descripcion";
           try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -68,10 +68,16 @@ PreparedStatement pst=null;
                 {null, null},
                 {null, null},
                 {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
                 {null, null}
             },
             new String [] {
-                "Usuario", "Contraseña"
+                "Cabina", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -118,20 +124,21 @@ PreparedStatement pst=null;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DetalleLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleCabinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DetalleLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleCabinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DetalleLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleCabinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DetalleLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleCabinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DetalleLogin().setVisible(true);
+                new DetalleCabinas().setVisible(true);
             }
         });
     }

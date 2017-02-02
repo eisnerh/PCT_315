@@ -169,13 +169,13 @@ public class Pantalla_principal extends javax.swing.JFrame {
 
     private void mnUsuarioMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_mnUsuarioMenuKeyPressed
         // TODO add your handling code here:
-        DetalleLogin detalleLogin = new DetalleLogin();
+        DetalleCabinas detalleLogin = new DetalleCabinas();
         detalleLogin.setVisible(true);
     }//GEN-LAST:event_mnUsuarioMenuKeyPressed
 
     private void mnUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnUsuarioMouseClicked
         // TODO add your handling code here:
-        DetalleLogin detalleLogin = new DetalleLogin();
+        DetalleCabinas detalleLogin = new DetalleCabinas();
         detalleLogin.setVisible(true);
     }//GEN-LAST:event_mnUsuarioMouseClicked
 
