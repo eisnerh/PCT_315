@@ -15,25 +15,21 @@ import javax.swing.JOptionPane;
  * @author Cesar Gonzalez Salas, Eisner Lopez Acevedo
  */
 public class conexionDB {
-    
+
     Connection con = null;
-    
-    public static Connection conexionDB(){
-        try
-        {
+
+    public static Connection conexionDB() {
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pct2?zeroDateTimeBehavior=convertToNull", "root","surfing");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/PCT2?zeroDateTimeBehavior=convertToNull", "root", "surfing");
             return con;
-        }
-        catch (ClassNotFoundException | SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, "Cannot process request,Database disconnected!","",JOptionPane.ERROR_MESSAGE);
-           
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Cannot process request,Database disconnected!", "", JOptionPane.ERROR_MESSAGE);
+
             return null;
-            
+
         }
-        
-        
+
     }
-    
+
 }

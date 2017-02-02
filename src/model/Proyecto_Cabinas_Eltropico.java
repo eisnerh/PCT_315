@@ -5,10 +5,7 @@
  */
 package model;
 
-import Conexion.Conexion;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import controller.conexionDB;
 
 /**
  *
@@ -26,7 +23,7 @@ public class Proyecto_Cabinas_Eltropico {
         Pantalla_principal Pant_Prin = new Pantalla_principal();
         Pant_Prin.setVisible(true);
 
-        Conexion Conec = new Conexion();
+        conexionDB Conec = new conexionDB();
         
         if (Conec != null) {
             System.out.println("HELL YEAH!!!");
