@@ -14,6 +14,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import net.sf.jcarrierpigeon.WindowPosition;
+import net.sf.jtelegraph.Telegraph;
+import net.sf.jtelegraph.TelegraphEnvelope;
+import net.sf.jtelegraph.TelegraphQueue;
+import net.sf.jtelegraph.TelegraphType;
 
 /**
  *
@@ -24,13 +29,14 @@ public class Precios extends javax.swing.JFrame {
     /**
      * Creates new form Precios
      */
-    Connection con=null;
-ResultSet rs=null;
-PreparedStatement pst=null;
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+
     public Precios() {
         initComponents();
-        
-        
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -88,37 +94,46 @@ PreparedStatement pst=null;
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        try{
-            con=conexionDB.conexionDB();
+        try {
+            con = conexionDB.conexionDB();
             if (txtDesc_Precio.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Escriba una detalle para tipo de precio","Error", JOptionPane.ERROR_MESSAGE);
+
+                Telegraph tele = new Telegraph("Mensaje Error", "<html><body style='color:red;font-size:13px'><b> Escriba una detalle para tipo de precio!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 1000);
+                TelegraphQueue q = new TelegraphQueue();
+                q.add(tele);
                 return;
 
             }
             if (txtMontoPrecio.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Escriba un monto","Error", JOptionPane.ERROR_MESSAGE);
+                Telegraph tele = new Telegraph("Mensaje Error", "<html><body style='color:red;font-size:13px'><b> Escriba un monto!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 1000);
+                TelegraphQueue q = new TelegraphQueue();
+                q.add(tele);
                 return;
 
             }
-   Statement stmt;
-       stmt= con.createStatement();
-       String sql1="Select precio_id from precios where Desc_Precio= '" + txtDesc_Precio.getText() + "'";
-      rs=stmt.executeQuery(sql1);
-      if(rs.next()){
-        JOptionPane.showMessageDialog( this, "Esta descripción ya existe. Cambie el dato","Error", JOptionPane.ERROR_MESSAGE);
-        txtDesc_Precio.setText("");
-        txtDesc_Precio.requestDefaultFocus();
-       return;
-      }
-            String sql= "insert into precios (Desc_Precio,Precio)values('"+ txtDesc_Precio.getText() + "','"+ txtMontoPrecio.getText()  + "')";
+            Statement stmt;
+            stmt = con.createStatement();
+            String sql1 = "Select precio_id from precios where Desc_Precio= '" + txtDesc_Precio.getText() + "'";
+            rs = stmt.executeQuery(sql1);
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Esta descripción ya existe. Cambie el dato", "Error", JOptionPane.ERROR_MESSAGE);
+                txtDesc_Precio.setText("");
+                txtDesc_Precio.requestDefaultFocus();
+                return;
+            }
+            String sql = "insert into precios (Desc_Precio,Precio)values('" + txtDesc_Precio.getText() + "','" + txtMontoPrecio.getText() + "')";
 
-            pst=con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(this,"Guardado con Exito","Precio Record",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(this,"Guardado con Exito","Precio Record",JOptionPane.INFORMATION_MESSAGE);
+            Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:green;font-size:13px'><b>Nuevo descripción de precio guardado con exito!!</b></body></html>", TelegraphType.NOTIFICATION_DONE, WindowPosition.TOPRIGHT, 1500);
+            TelegraphQueue q = new TelegraphQueue();
+            TelegraphEnvelope qa = new TelegraphEnvelope();
+            q.add(tele);
             btnGuardar.setEnabled(false);
 
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
