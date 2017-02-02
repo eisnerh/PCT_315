@@ -5,6 +5,8 @@
         <group>
             <file>file:/home/ace/PCT_315/src/model/Login.java</file>
             <file>file:/home/ace/PCT_315/src/controller/conexionDB.java</file>
+            <file>file:/home/ace/PCT_315/src/model/About.java</file>
+            <file>file:/home/ace/PCT_315/src/model/Precios.java</file>
             <file>file:/home/ace/PCT_315/src/model/Proyecto_Cabinas_Eltropico.java</file>
         </group>
     </open-files>
