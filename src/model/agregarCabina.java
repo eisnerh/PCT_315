@@ -6,10 +6,12 @@
 package model;
 
 import controller.conexionDB;
-import static controller.conexionDB.conexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -17,28 +19,52 @@ import net.proteanit.sql.DbUtils;
  *
  * @author ace
  */
-public class DetalleCabinas extends javax.swing.JFrame {
+public class agregarCabina extends javax.swing.JFrame {
 
     /**
-     * Creates new form DetalleCabinas
+     * Creates new form agregarCabina
      */
+    // Se crea un array de botones
+    private List<JButton> botones;
+    // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
+
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
 
-    public DetalleCabinas() {
+    JButton b[];
+    String cambiarFuncion[] = new String[6];
+
+    private int indice;
+
+    public agregarCabina() {
         initComponents();
         con = conexionDB.conexionDB();
         Get_Data();
         setLocationRelativeTo(null);
+
+        botones = new ArrayList<JButton>();
+
+        indice = 0;
     }
 
     private void Get_Data() {
-        String sql = "select Descripcion as 'Cabina',Estado as 'Estado' FROM `cabinas` WHERE `Estado` = 1 ORDER BY Descripcion";
+        String sql = "SELECT Count(*) FROM `cabinas` WHERE `Estado` = '0'";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
-            Users_table.setModel(DbUtils.resultSetToTableModel(rs));
+            rs.next();
+            System.out.println("numero de renglones: " + rs.getString(1));
+            cantCabinas.setText(rs.getString(1));
+            int valor = Integer.parseInt(rs.getString(1));
+            b = new JButton[valor];
+            for (int i = 0; i < valor; i++) {
+                b[i] = new JButton("Cabina " + (i+1));
+
+                jPanel1.add(b[i]);
+
+            }
+            jPanel1.updateUI();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
 
@@ -55,54 +81,35 @@ public class DetalleCabinas extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        Users_table = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        cantCabinas = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setFocusableWindowState(false);
-        setMaximumSize(new java.awt.Dimension(248, 130));
-        setMinimumSize(new java.awt.Dimension(248, 130));
-        setPreferredSize(new java.awt.Dimension(248, 130));
-        setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Users_table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Cabina", "Estado"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(Users_table);
+        jPanel1.setLayout(new java.awt.GridLayout(0, 3));
+        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cantCabinas)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cantCabinas)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -125,27 +132,27 @@ public class DetalleCabinas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DetalleCabinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(agregarCabina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DetalleCabinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(agregarCabina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DetalleCabinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(agregarCabina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DetalleCabinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(agregarCabina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DetalleCabinas().setVisible(true);
+                new agregarCabina().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Users_table;
+    private javax.swing.JLabel cantCabinas;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
