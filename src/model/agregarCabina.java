@@ -49,7 +49,7 @@ public class agregarCabina extends javax.swing.JFrame {
     }
 
     private void Get_Data() {
-        String sql = "SELECT Count(*) FROM `cabinas` WHERE `Estado` = '0'";
+        String sql = "SELECT Count(*) FROM `cabinas` WHERE `Estado` = '1'";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();

@@ -1,0 +1,2 @@
+define(["require","exports"],function(r,e){"use strict";e.FRAMEWORK_ARGS=["country_override","cProfile","public_mode_override","stormcrow_override","stormcrow_override_data_field","stormcrow_override_population","stormcrow_override_ttl","stormcrow_panel","uncompressed_js","use_packages"]});
+//# sourceMappingURL=framework_args.min.js-vflk_dEkx.map
