@@ -21,7 +21,7 @@ public class conexionDB {
     public static Connection conexionDB() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/PCT2?zeroDateTimeBehavior=convertToNull", "root", "surfing");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pct3?zeroDateTimeBehavior=convertToNull", "root", "surfing");
             return con;
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Cannot process request,Database disconnected!", "", JOptionPane.ERROR_MESSAGE);

@@ -21,7 +21,7 @@ import net.sf.jtelegraph.TelegraphType;
 
 /**
  *
- * @author Cesar Gonzalez Salas, Eisner Lopez Acevedo
+ * @author Eisner Lopez Acevedo
  */
 public class Login extends javax.swing.JFrame {
 
