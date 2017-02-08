@@ -6,12 +6,14 @@
 package model;
 
 import controller.conexionDB;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -24,6 +26,7 @@ public class agregarCabina extends javax.swing.JFrame {
     /**
      * Creates new form agregarCabina
      */
+    private static JFrame application;
     // Se crea un array de botones
     private List<JButton> botones;
     // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
@@ -31,25 +34,19 @@ public class agregarCabina extends javax.swing.JFrame {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-
     JButton b[];
     String cambiarFuncion[] = new String[6];
-
-    private int indice;
 
     public agregarCabina() {
         initComponents();
         con = conexionDB.conexionDB();
         Get_Data();
         setLocationRelativeTo(null);
-
         botones = new ArrayList<JButton>();
-
-        indice = 0;
     }
 
     private void Get_Data() {
-        String sql = "SELECT Count(*) FROM `cabinas` WHERE `Estado` = '1'";
+        String sql = "SELECT Count(*) FROM `cabina`";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -58,11 +55,57 @@ public class agregarCabina extends javax.swing.JFrame {
             cantCabinas.setText(rs.getString(1));
             int valor = Integer.parseInt(rs.getString(1));
             b = new JButton[valor];
+
             for (int i = 0; i < valor; i++) {
-                b[i] = new JButton("Cabina " + (i+1));
-
+                b[i] = new JButton("Cabina " + (i + 1));
+                b[i].setBackground(Color.red);
                 jPanel1.add(b[i]);
+            }
+            jPanel1.updateUI();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
 
+        }
+    }
+
+    private void Get_Data_Ocupado() {
+        String sql = "SELECT Count(*) FROM `cabina` WHERE estado_cabina_idestado_cabina = '1'";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            rs.next();
+            System.out.println("numero de renglones: " + rs.getString(1));
+            cantCabinas.setText(rs.getString(1));
+            int valor = Integer.parseInt(rs.getString(1));
+            b = new JButton[valor];
+
+            for (int i = 0; i < valor; i++) {
+                b[i] = new JButton("Cabina " + (i + 1));
+                b[i].setBackground(Color.red);
+                jPanel1.add(b[i]);
+            }
+            jPanel1.updateUI();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }
+
+    private void Get_Data_Vacio() {
+        String sql = "SELECT Count(*) FROM `cabina` WHERE estado_cabina_idestado_cabina = '2'";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            rs.next();
+            System.out.println("numero de renglones: " + rs.getString(1));
+            cantCabinas.setText(rs.getString(1));
+            int valor = Integer.parseInt(rs.getString(1));
+            b = new JButton[valor];
+
+            for (int i = 0; i < valor; i++) {
+                b[i] = new JButton("Cabina " + (i + 1));
+                b[i].setBackground(Color.red);
+                jPanel1.add(b[i]);
             }
             jPanel1.updateUI();
         } catch (Exception e) {
@@ -80,14 +123,56 @@ public class agregarCabina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        cantCabinas = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        cantCabinas = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.GridLayout(0, 3));
         jScrollPane1.setViewportView(jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jRadioButton1.setText("jRadioButton1");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton1)
+                .addContainerGap(274, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jRadioButton1)
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,24 +181,36 @@ public class agregarCabina extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cantCabinas)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cantCabinas)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cantCabinas)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        Get_Data_Vacio();
+        buttonGroup1.clearSelection();
+        jPanel1.removeAll();
+//add your elements
+        revalidate();
+        repaint();
+
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,8 +248,12 @@ public class agregarCabina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel cantCabinas;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

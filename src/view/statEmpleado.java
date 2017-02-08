@@ -32,9 +32,11 @@ public class statEmpleado extends javax.swing.JFrame {
     ResultSet rs = null;
     PreparedStatement pst = null;
     
+    
     public statEmpleado() {
         initComponents();
         id_empleado.setText(text);
+        id_empleado.setVisible(false);
         //inicialización de las variables de la coneccion a la base de datos
         con = conexionDB.conexionDB();
         //llama al procedimiento de obtener la información.
