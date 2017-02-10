@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.cabinas;
 
 import controller.conexionDB;
 import java.awt.Color;
@@ -19,6 +19,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import model.Pantalla_principal;
 
 /**
  *
@@ -294,6 +295,7 @@ opciones.setOpaque(false);
             for (int i = 0; i < valor; i++) {
                 b[i] = new JButton("Cabina " + (i + 1));
                 agregarCabinas.add(b[i]);
+                b[i].setSize(60, 60);
             }
             agregarCabinas.updateUI();
         } catch (SQLException | NumberFormatException e) {
@@ -317,12 +319,12 @@ opciones.setOpaque(false);
                 b[i] = new JButton("Cabina " + (i + 1));
                 agregarCabinas.add(b[i]);
                 b[i].setBackground(Color.red);
-                b[i].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Juana");
-            }
-        });
+                
+                b[i].addActionListener((ActionEvent e) -> {
+                    Pantalla_principal principal = new Pantalla_principal();
+                    principal.setVisible(true);
+                    System.out.println("Juana");
+                });
             }
             agregarCabinas.updateUI();
         } catch (SQLException | NumberFormatException e) {

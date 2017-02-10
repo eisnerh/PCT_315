@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.planilla;
 
 import controller.conexionDB;
 import java.awt.HeadlessException;
@@ -88,8 +88,10 @@ public class statEmpleado extends javax.swing.JFrame {
         id_empleado = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_stat_emp = new javax.swing.JTextField();
+        fondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbl_estadoEmpleado.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         tbl_estadoEmpleado.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,80 +112,58 @@ public class statEmpleado extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_estadoEmpleado);
 
-        btnGuardar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 600, 100));
+
+        btnGuardar.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/diskette.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setMaximumSize(new java.awt.Dimension(99, 32));
+        btnGuardar.setPreferredSize(new java.awt.Dimension(99, 32));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 120, -1));
 
-        btnActualizar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnActualizar.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/rotate.png"))); // NOI18N
         btnActualizar.setText("Editar");
+        btnActualizar.setMaximumSize(new java.awt.Dimension(99, 32));
+        btnActualizar.setMinimumSize(new java.awt.Dimension(99, 32));
+        btnActualizar.setPreferredSize(new java.awt.Dimension(99, 32));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 120, -1));
 
+        btnDelete.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/office-material.png"))); // NOI18N
         btnDelete.setText("Borrar");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 120, -1));
 
         id_empleado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         id_empleado.setAutoscrolls(true);
         id_empleado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(id_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 60, 46));
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel2.setText("Status del Empleado");
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 80));
 
         txt_stat_emp.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        getContentPane().add(txt_stat_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 60));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_stat_emp)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(id_empleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addGap(127, 127, 127)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                        .addComponent(btnActualizar)
-                        .addGap(74, 74, 74)
-                        .addComponent(btnDelete)
-                        .addGap(20, 20, 20))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(id_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_stat_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnActualizar)
-                    .addComponent(btnDelete))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -318,6 +298,7 @@ public class statEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JLabel fondo;
     private javax.swing.JLabel id_empleado;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

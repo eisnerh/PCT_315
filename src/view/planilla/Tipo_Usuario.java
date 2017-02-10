@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.planilla;
 
 import controller.conexionDB;
+import java.awt.HeadlessException;
 import static java.awt.SystemColor.text;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -17,44 +20,63 @@ import net.proteanit.sql.DbUtils;
  *
  * @author ace
  */
-public class estadoEmpleado extends javax.swing.JFrame {
+public class Tipo_Usuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form estadoEmpleado
+     * Creates new form Tipo_Usuario
      */
-    
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    
-    
-    public estadoEmpleado() {
-        
-        
+
+    public Tipo_Usuario() {
+
         initComponents();
-        
-        id_empleado.setVisible(false);
+
         //inicialización de las variables de la coneccion a la base de datos
         con = conexionDB.conexionDB();
         //llama al procedimiento de obtener la información.
         Get_Data();
         //centra la ventana para que se inicie en el centro del escritorio
         setLocationRelativeTo(null);
-        
+        initState();
+
     }
-    
+
+    private void initState() {
+
+        txt_tipoUsuario.setText("");
+        btnGuardar.setEnabled(true);
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        id_empleado.setText("");
+        Get_Data();
+
+    }
+
+    private void Reset() {
+
+        txt_tipoUsuario.setText("");
+        btnGuardar.setEnabled(false);
+        btnActualizar.setEnabled(true);
+        btnEliminar.setEnabled(false);
+        id_empleado.setText("");
+        Get_Data();
+
+    }
+
     private void Get_Data() {
 
         //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
-        String sql = "SELECT `id_tipo_usuario`, `descripcion_tipo_usuario` FROM `tipo_usuario`";
-        
+        String sql = "SELECT `descripcion_tipo_usuario` as Tipo_Usuario FROM `tipo_usuario`";
+
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             tbl_tipo_usuario.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-            
+
         }
     }
 
@@ -71,11 +93,11 @@ public class estadoEmpleado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_tipo_usuario = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_tipoUsuario = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         id_empleado = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -87,7 +109,6 @@ public class estadoEmpleado extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 51, 51));
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setForeground(new java.awt.Color(51, 51, 51));
-        setMaximumSize(new java.awt.Dimension(553, 300));
         setMinimumSize(new java.awt.Dimension(553, 300));
         setName("frmEstadoEmpleado"); // NOI18N
         setType(java.awt.Window.Type.UTILITY);
@@ -104,24 +125,50 @@ public class estadoEmpleado extends javax.swing.JFrame {
                 {null}
             },
             new String [] {
-                "Tipo Usuario"
+                "Tipo_Usuario"
             }
         ));
+        tbl_tipo_usuario.setEditingColumn(1);
+        tbl_tipo_usuario.setEditingRow(1);
+        tbl_tipo_usuario.setGridColor(new java.awt.Color(0, 51, 51));
+        tbl_tipo_usuario.setMaximumSize(new java.awt.Dimension(15, 64));
+        tbl_tipo_usuario.setName(""); // NOI18N
+        tbl_tipo_usuario.setSelectionBackground(new java.awt.Color(0, 51, 51));
+        tbl_tipo_usuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_tipo_usuarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_tipo_usuario);
 
-        jTextField1.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        txt_tipoUsuario.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("/home/ace/PCT_315/src/view/icons/diskette.png")); // NOI18N
-        jButton1.setText("Guardar");
+        btnGuardar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon("/home/ace/PCT_315/src/view/icons/diskette.png")); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon("/home/ace/PCT_315/src/view/icons/rotate.png")); // NOI18N
-        jButton2.setText("Actualizar");
+        btnActualizar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon("/home/ace/PCT_315/src/view/icons/rotate.png")); // NOI18N
+        btnActualizar.setText("Editar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon("/home/ace/PCT_315/src/view/icons/office-material.png")); // NOI18N
-        jButton3.setText("Eliminar");
+        btnEliminar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon("/home/ace/PCT_315/src/view/icons/office-material.png")); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -129,34 +176,29 @@ public class estadoEmpleado extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(id_empleado)
-                    .addComponent(jButton2))
+                    .addComponent(id_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {id_empleado, jButton1, jButton2, jButton3});
-
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(id_empleado))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(id_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {id_empleado, jButton1, jButton2, jButton3});
-
-        jButton3.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
 
         jLabel1.setText("Tipo Usuario");
 
@@ -164,7 +206,7 @@ public class estadoEmpleado extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField1)
+            .addComponent(txt_tipoUsuario)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
@@ -173,7 +215,7 @@ public class estadoEmpleado extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_tipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
@@ -224,6 +266,105 @@ public class estadoEmpleado extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenu2MouseClicked
 
+    private void tbl_tipo_usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_tipo_usuarioMouseClicked
+        // TODO add your handling code here:
+        try {
+            con = conexionDB.conexionDB();
+            int row = tbl_tipo_usuario.getSelectedRow();
+            String tabla_click = tbl_tipo_usuario.getModel().getValueAt(row, 0).toString();
+            //SELECT `estado_empleado` FROM `estatus_empleado` WHERE `estado_empleado` = 'Activo'
+            String sql = "SELECT `id_tipo_usuario`, `descripcion_tipo_usuario` FROM `tipo_usuario` WHERE `descripcion_tipo_usuario` = '" + tabla_click + "'";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String add1 = rs.getString("id_tipo_usuario");
+                id_empleado.setText(add1);
+                String add2 = rs.getString("descripcion_tipo_usuario");
+                txt_tipoUsuario.setText(add2);
+                btnGuardar.setEnabled(false);
+                btnActualizar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }//GEN-LAST:event_tbl_tipo_usuarioMouseClicked
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (P == 0) {
+                con = conexionDB.conexionDB();
+                if (txt_tipoUsuario.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Favor ingresa el nuevo estado del empleado", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                Statement stmt;
+                stmt = con.createStatement();
+                //SELECT estado_empleado as 'Estado Empleado' FROM estatus_empleado WHERE 1 ORDER BY estado_empleado
+                String sql1 = "SELECT `id_tipo_usuario`, `descripcion_tipo_usuario` FROM `tipo_usuario` WHERE `descripcion_tipo_usuario` = '" + txt_tipoUsuario.getText() + "'";
+                rs = stmt.executeQuery(sql1);
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(this, "Tipo de Usuario existente.", "Error", JOptionPane.ERROR_MESSAGE);
+                    txt_tipoUsuario.setText("");
+                    txt_tipoUsuario.requestDefaultFocus();
+                    return;
+                }
+                String sql = "INSERT INTO tipo_usuario(descripcion_tipo_usuario) VALUES ('" + txt_tipoUsuario.getText() + "')";
+
+                pst = con.prepareStatement(sql);
+                pst.execute();
+                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
+
+            }else
+            {
+            Reset();
+            }
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+
+        try {
+            con = conexionDB.conexionDB();
+
+            //SELECT `id_tipo_usuario`, `descripcion_tipo_usuario` FROM `tipo_usuario` WHERE
+            String sql = "UPDATE `tipo_usuario` SET `descripcion_tipo_usuario`='" + txt_tipoUsuario.getText() + "' WHERE `id_tipo_usuario` = '" + id_empleado.getText() + "'";
+
+            pst = con.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(this, "Guardado con exito", "Estado Empleado Record", JOptionPane.INFORMATION_MESSAGE);
+            Reset();
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        //SELECT `id_tipo_usuario`, `descripcion_tipo_usuario` FROM `tipo_usuario` WHERE
+        try {
+            int P = JOptionPane.showConfirmDialog(null, " Are you sure want to delete ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (P == 0) {
+                con = conexionDB.conexionDB();
+                String sql = "DELETE FROM `tipo_usuario` WHERE `id_tipo_usuario` =  '" + id_empleado.getText() + "'";
+                pst = con.prepareStatement(sql);
+                pst.execute();
+                JOptionPane.showMessageDialog(this, "Successfully deleted", "Record", JOptionPane.INFORMATION_MESSAGE);
+
+                Reset();
+            }
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,29 +382,32 @@ public class estadoEmpleado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(estadoEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tipo_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(estadoEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tipo_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(estadoEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tipo_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(estadoEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tipo_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new estadoEmpleado().setVisible(true);
+                new Tipo_Usuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel id_empleado;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -272,7 +416,7 @@ public class estadoEmpleado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbl_tipo_usuario;
+    private javax.swing.JTextField txt_tipoUsuario;
     // End of variables declaration//GEN-END:variables
 }
