@@ -64,8 +64,8 @@ public class Login extends javax.swing.JFrame {
         Logo = new javax.swing.JLabel();
         w1 = new javax.swing.JLabel();
         w2 = new javax.swing.JLabel();
-        main = new javax.swing.JLabel();
         signIn = new javax.swing.JLabel();
+        main = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(620, 350));
@@ -90,7 +90,8 @@ public class Login extends javax.swing.JFrame {
         Logo.setIcon(new javax.swing.ImageIcon("/home/ace/project/Proyecto_Cabinas_Eltropico/src/Icons/eagle14.png")); // NOI18N
         getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 300, 70));
 
-        w1.setIcon(new javax.swing.ImageIcon("/home/ace/project/Proyecto_Cabinas_Eltropico/src/Icons/c1.png")); // NOI18N
+        //w2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/m1.png"))); // NOI18N
+        w1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/c1.png"))); // NOI18N
         w1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 w1MouseClicked(evt);
@@ -104,7 +105,7 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(w1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
 
-        w2.setIcon(new javax.swing.ImageIcon("/home/ace/project/Proyecto_Cabinas_Eltropico/src/Icons/m1.png")); // NOI18N
+        w2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/m1.png"))); // NOI18N
         w2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 w2MouseClicked(evt);
@@ -118,6 +119,13 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(w2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
+        signIn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signInMouseClicked(evt);
+            }
+        });
+        getContentPane().add(signIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 80, 30));
+
         main.setIcon(new javax.swing.ImageIcon("/home/ace/project/Proyecto_Cabinas_Eltropico/src/Icons/admin-login.png")); // NOI18N
         main.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -125,13 +133,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(main, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        signIn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                signInMouseClicked(evt);
-            }
-        });
-        getContentPane().add(signIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 80, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,28 +144,28 @@ public class Login extends javax.swing.JFrame {
 
     private void w1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_w1MouseExited
         // TODO add your handling code here:
-        w1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/c1.png")));
+        w1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/c1.png")));
     }//GEN-LAST:event_w1MouseExited
 
     private void w1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_w1MouseEntered
         // TODO add your handling code here:
-        w1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/c2.png")));
+        w1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/c2.png")));
     }//GEN-LAST:event_w1MouseEntered
 
     private void w2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_w2MouseClicked
         // TODO add your handling code here:
         this.setState(Login.ICONIFIED);
-        w2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/m1.png")));
+        w1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/c1.png")));
     }//GEN-LAST:event_w2MouseClicked
 
     private void w2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_w2MouseExited
         // TODO add your handling code here:
-        w2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/m1.png")));
+        w2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/m1.png")));
     }//GEN-LAST:event_w2MouseExited
 
     private void w2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_w2MouseEntered
         // TODO add your handling code here:
-        w2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/m2.png")));
+        w2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/m2.png")));
 
     }//GEN-LAST:event_w2MouseEntered
 
@@ -263,12 +264,11 @@ public class Login extends javax.swing.JFrame {
             q.add(tele);
         } else {
 
-            String str = "select * from tbl_usuario where usuario=? and password=?";
+            String str = "SELECT * FROM `empleado` WHERE `usuario` = " + user.getText() + " and `password` = " + pass.getText() + "" ;
             try {
 
                 pst = (PreparedStatement) conn.prepareStatement(str);
                 pst.setString(1, user.getText());
-
                 pst.setString(2, pass.getText());
                 rs = pst.executeQuery();
                 if (rs.next()) {

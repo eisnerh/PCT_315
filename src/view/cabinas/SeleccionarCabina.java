@@ -319,7 +319,7 @@ opciones.setOpaque(false);
                 b[i] = new JButton("Cabina " + (i + 1));
                 agregarCabinas.add(b[i]);
                 b[i].setBackground(Color.red);
-                
+                b[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/edit.png"))); // NOI18N
                 b[i].addActionListener((ActionEvent e) -> {
                     Pantalla_principal principal = new Pantalla_principal();
                     principal.setVisible(true);

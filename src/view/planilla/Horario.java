@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import org.jfree.data.time.Hour;
 
 /**
  *
@@ -48,6 +49,7 @@ public class Horario extends javax.swing.JFrame {
         lbl_Entrada = new javax.swing.JLabel();
         txt_Descanso = new javax.swing.JFormattedTextField();
         txt_Salida = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
         txt_Entrada2 = new javax.swing.JFormattedTextField();
         lbl_Entrada1 = new javax.swing.JLabel();
         txt_Turno = new javax.swing.JFormattedTextField();
@@ -57,6 +59,7 @@ public class Horario extends javax.swing.JFrame {
         mtn_hora_sencilla = new javax.swing.JLabel();
         txt_HS = new javax.swing.JFormattedTextField();
         txt_HE1 = new javax.swing.JFormattedTextField();
+        jSpinner2 = new javax.swing.JSpinner();
         lbl_Entrada5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -83,9 +86,12 @@ public class Horario extends javax.swing.JFrame {
         txt_Salida.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         getContentPane().add(txt_Salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 140, 50));
 
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 40));
+
         txt_Entrada2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("hh:mm:ss"))));
         txt_Entrada2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        getContentPane().add(txt_Entrada2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 48, 140, 50));
+        getContentPane().add(txt_Entrada2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 140, 50));
 
         lbl_Entrada1.setBackground(new java.awt.Color(0, 0, 153));
         lbl_Entrada1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -103,6 +109,7 @@ public class Horario extends javax.swing.JFrame {
         getContentPane().add(lbl_Entrada4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Montos de Pago por TIempos"));
+        jPanel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         mtn_hora_doble.setBackground(new java.awt.Color(0, 0, 153));
         mtn_hora_doble.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -120,30 +127,42 @@ public class Horario extends javax.swing.JFrame {
         txt_HE1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         txt_HE1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
+        jSpinner2.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1486837459403L), null, null, java.util.Calendar.HOUR_OF_DAY));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(mtn_hora_sencilla)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mtn_hora_doble)
-                .addGap(51, 51, 51))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(txt_HE1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                .addGap(240, 240, 240)
-                .addComponent(txt_HS, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                .addGap(31, 31, 31))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(mtn_hora_sencilla))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(txt_HE1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                        .addGap(26, 26, 26)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt_HS)
+                        .addGap(31, 31, 31))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(mtn_hora_doble)
+                        .addGap(51, 51, 51))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mtn_hora_sencilla)
-                    .addComponent(mtn_hora_doble))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(mtn_hora_sencilla)
+                            .addComponent(mtn_hora_doble)))
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_HS, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,11 +208,11 @@ public class Horario extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jButton1)
-                .addGap(76, 76, 76)
+                .addGap(73, 73, 73)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(39, 39, 39))
         );
@@ -273,7 +292,7 @@ public class Horario extends javax.swing.JFrame {
 //                    txt_Entrada2.getText() + "', '" + txt_Salida.getText() + 
 //                    "', '" + txt_Descanso.getText() + "', '" + txt_Turno.getText()
 //                    + "', '" + txt_HS.getText() + "', '" + txt_HE1.getText() + "')";
-String sql= "insert into horario(`entrada`, `salida`, `descanso`, `descripcion_horario`, `monto_hora_sencilla`, `monto_hora_extra`)values('"+ txt_Entrada2.getText() + "','"+ txt_Salida.getText() + "','"+ txt_Descanso.getText() + "','" + txt_Turno.getText() + "','"+ txt_HS.getText() + "','"+ txt_HE1.getText() + "')";
+            String sql = "insert into horario(`entrada`, `salida`, `descanso`, `descripcion_horario`, `monto_hora_sencilla`, `monto_hora_extra`)values('" + txt_Entrada2.getText() + "','" + txt_Salida.getText() + "','" + txt_Descanso.getText() + "','" + txt_Turno.getText() + "','" + txt_HS.getText() + "','" + txt_HE1.getText() + "')";
 
             pst = con.prepareStatement(sql);
             pst.execute();
@@ -327,8 +346,10 @@ String sql= "insert into horario(`entrada`, `salida`, `descanso`, `descripcion_h
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JLabel lbl_Entrada;
     private javax.swing.JLabel lbl_Entrada1;
     private javax.swing.JLabel lbl_Entrada4;
