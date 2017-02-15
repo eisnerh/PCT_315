@@ -110,7 +110,7 @@ public class Horario_frm extends javax.swing.JFrame {
         mnuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Puesto Disponibles");
+        setTitle("Horario");
         setUndecorated(true);
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
