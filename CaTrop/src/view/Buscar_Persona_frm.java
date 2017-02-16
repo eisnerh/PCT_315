@@ -180,31 +180,9 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
 
         cmbTipoPersona.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         cmbTipoPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbTipoPersona.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMouseReleased(evt);
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMouseEntered(evt);
-            }
-        });
         cmbTipoPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTipoPersonaActionPerformed(evt);
-            }
-        });
-        cmbTipoPersona.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cmbTipoPersonaKeyTyped(evt);
             }
         });
         getContentPane().add(cmbTipoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 200, 40));
@@ -608,133 +586,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
-
-    private void cmbTipoPersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMouseClicked
-        // TODO add your handling code here:
-
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaMouseClicked
-
-    private void cmbTipoPersonaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMousePressed
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaMousePressed
-
-    private void cmbTipoPersonaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMouseEntered
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaMouseEntered
-
-    private void cmbTipoPersonaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMouseReleased
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaMouseReleased
-
-    private void cmbTipoPersonaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbTipoPersonaKeyTyped
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaKeyTyped
-
-    private void cmbTipoPersonaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMouseExited
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaMouseExited
 
     private void cmbTipoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPersonaActionPerformed
         // TODO add your handling code here:

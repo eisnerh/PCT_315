@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,6 +38,25 @@ public final class Persona_frm extends javax.swing.JFrame {
     String sqlSelect_Valor;
     String sqlInsert;
     String sqlDelete;
+
+    private String id_Persona;
+
+    public JLabel getLbl_Gasto_Operativo_id() {
+        return lbl_Gasto_Operativo_id;
+    }
+
+    public void setLbl_Gasto_Operativo_id(JLabel lbl_Gasto_Operativo_id) {
+        this.lbl_Gasto_Operativo_id = lbl_Gasto_Operativo_id;
+    }
+
+    public JLabel getLbl_id_persona() {
+        return lbl_id_persona;
+    }
+
+    public void setLbl_id_persona(JLabel lbl_id_persona) {
+        this.lbl_id_persona = lbl_id_persona;
+    }
+
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modelo;
 
@@ -56,9 +76,9 @@ public final class Persona_frm extends javax.swing.JFrame {
         sqlDelete = "DELETE FROM `persona` WHERE `idpersona` = ";
 
         modelo = new DefaultComboBoxModel();
+
         llena_combo(); // llenar los datos al ejecutar el programa
     }
-
 
     public void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
 
@@ -125,10 +145,10 @@ public final class Persona_frm extends javax.swing.JFrame {
         editar = new javax.swing.JButton();
         borrar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        volver = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
-        lbl_id_persona = new javax.swing.JLabel();
         lbl_Gasto_Operativo_id = new javax.swing.JLabel();
+        lbl_id_persona = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuSalir = new javax.swing.JMenu();
@@ -169,51 +189,16 @@ public final class Persona_frm extends javax.swing.JFrame {
         txtDireccion.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 440, 40));
 
-        cmbTipoPersona.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        cmbTipoPersona.setFont(new java.awt.Font("Dialog", 1, 16));
         cmbTipoPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbTipoPersona.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMouseReleased(evt);
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cmbTipoPersonaMouseEntered(evt);
-            }
-        });
         cmbTipoPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTipoPersonaActionPerformed(evt);
             }
         });
-        cmbTipoPersona.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cmbTipoPersonaKeyTyped(evt);
-            }
-        });
         getContentPane().add(cmbTipoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 200, 40));
 
         txtClasificación.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtClasificación.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtClasificaciónActionPerformed(evt);
-            }
-        });
-        txtClasificación.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtClasificaciónKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtClasificaciónKeyPressed(evt);
-            }
-        });
         getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 200, 40));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -225,15 +210,10 @@ public final class Persona_frm extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
 
         txtPhone.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtPhone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 200, 40));
 
-        Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Market-Research.png"))); // NOI18N
-        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 260, 200));
+        Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/usuario.png"))); // NOI18N
+        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 150, 150));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/store-new-badges.png"))); // NOI18N
@@ -275,10 +255,10 @@ public final class Persona_frm extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/volver.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/volver.png"))); // NOI18N
+        volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                volverActionPerformed(evt);
             }
         });
 
@@ -294,14 +274,14 @@ public final class Persona_frm extends javax.swing.JFrame {
                     .addComponent(editar)
                     .addComponent(buscar)
                     .addComponent(borrar)
-                    .addComponent(jButton1))
+                    .addComponent(volver))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
+                .addComponent(volver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nuevo)
                 .addGap(18, 18, 18)
@@ -320,11 +300,11 @@ public final class Persona_frm extends javax.swing.JFrame {
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 380));
 
+        lbl_Gasto_Operativo_id.setText("jLabel1");
+        getContentPane().add(lbl_Gasto_Operativo_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, -1, -1));
+
         lbl_id_persona.setText("jLabel1");
         getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
-
-        lbl_Gasto_Operativo_id.setText("jLabel1");
-        getContentPane().add(lbl_Gasto_Operativo_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
 
         jMenu1.setText("File");
 
@@ -391,67 +371,8 @@ public final class Persona_frm extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        // TODO add your handling code here:
-        try {
-            int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
-            if (P == 0) {
-                con = ConexionDB.conexionDB();
 
-                if (txtNombre_Apellidos.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (txtDireccion.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa la Direccion", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (txtPhone.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa el número de Teléfono o Celular ", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (txtClasificación.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa la clasificación de la persona ", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (txtCedula.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa el número de cédula!", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                Statement stmt;
-                stmt = con.createStatement();
-                
-                String sql1 = sqlSelect_Valor + txtNombre_Apellidos.getText() + "'";
-                rs = stmt.executeQuery(sql1);
-                if (rs.next()) {
-                    JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                    txtNombre_Apellidos.setText("");
-                    txtNombre_Apellidos.requestDefaultFocus();
-                    return;
-                }
-                //                      `nombre`,                               `cedula`,                       `telefono`, `direccion`, `tipo_persona_idtipo_persona`
-                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
-                pst = con.prepareStatement(sql);
-                pst.execute();
-                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                txtNombre_Apellidos.setText("");
-            }
-            if (P == 1) {
-                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
-                pst = con.prepareStatement(sql);
-                pst.execute();
-                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                txtNombre_Apellidos.setText("");
-                initState();
-            }
-
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-
-        } catch (IOException ex) {
-            Logger.getLogger(Persona_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
+        agregarPersona();
 
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -464,7 +385,7 @@ public final class Persona_frm extends javax.swing.JFrame {
                 con = ConexionDB.conexionDB();
                 Statement stmt;
                 stmt = con.createStatement();
-                
+
                 String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtPhone.getText() + "',`direccion`='" + txtPhone.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_Gasto_Operativo_id.getText() + "'";
                 pst = con.prepareStatement(Pru);
                 pst.execute();
@@ -487,15 +408,14 @@ public final class Persona_frm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_editarActionPerformed
 
-    public void accion_buscar()
-    {
+    public void accion_buscar() {
         txtNombre_Apellidos.setEnabled(true);
         txtDireccion.setEnabled(true);
         txtPhone.setEnabled(true);
         txtClasificación.setEnabled(true);
         txtCedula.setEnabled(true);
         cmbTipoPersona.setEnabled(true);
-        
+
         txtNombre_Apellidos.setText("");
         txtDireccion.setText("");
         txtPhone.setText("");
@@ -517,9 +437,8 @@ public final class Persona_frm extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Persona_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_buscarActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
@@ -548,21 +467,7 @@ public final class Persona_frm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_borrarActionPerformed
 
-    private void txtClasificaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClasificaciónActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtClasificaciónActionPerformed
-
-    private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneActionPerformed
-
-    private void txtClasificaciónKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClasificaciónKeyPressed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_txtClasificaciónKeyPressed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
         txtNombre_Apellidos.setEnabled(false);
 
@@ -583,165 +488,138 @@ public final class Persona_frm extends javax.swing.JFrame {
         buscar.setEnabled(false);
         editar.setEnabled(false);
         borrar.setEnabled(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtClasificaciónKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClasificaciónKeyTyped
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sql_persona = "SELECT `persona`.`nombre` AS 'Nombre', `colaborador`.`empleado_id` AS 'EMPLEADO_ID' FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE '%" + txtClasificación.getText() + "%'";
-            pst = con.prepareStatement(sql_persona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("EMPLEADO_ID");
-                lbl_id_persona.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_txtClasificaciónKeyTyped
+    }//GEN-LAST:event_volverActionPerformed
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
 
-    private void cmbTipoPersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMouseClicked
-        // TODO add your handling code here:
-        
+    private void agregarPersona() {
         try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() +"'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
+            int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (P == 0) {
+                con = ConexionDB.conexionDB();
 
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
+                if (txtNombre_Apellidos.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (txtDireccion.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Favor ingresa la Direccion", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (txtPhone.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Favor ingresa el número de Teléfono o Celular ", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (txtClasificación.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Favor ingresa la clasificación de la persona ", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (txtCedula.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Favor ingresa el número de cédula!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
-                System.out.println(add1);
+                Statement stmt;
+                stmt = con.createStatement();
+
+                String sql1 = sqlSelect_Valor + txtNombre_Apellidos.getText() + "'";
+                rs = stmt.executeQuery(sql1);
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                    txtNombre_Apellidos.setText("");
+                    txtNombre_Apellidos.requestDefaultFocus();
+                    return;
+                }
+                //                      `nombre`,                               `cedula`,                       `telefono`, `direccion`, `tipo_persona_idtipo_persona`
+                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
+                pst = con.prepareStatement(sql);
+                pst.execute();
+                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
+
+                try {
+                    //SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE 1
+                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
+                    pst = con.prepareStatement(sql_persona);
+                    rs = pst.executeQuery();
+                    if (rs.next()) {
+                        String sel1 = rs.getString("idpersona");
+
+                        String sel2 = rs.getString("nombre");
+                        String sel3 = rs.getString("cedula");
+                        String sel4 = rs.getString("telefono");
+                        String sel5 = rs.getString("direccion");
+                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
+
+                        lbl_id_persona.setText(sel1);
+                        txtNombre_Apellidos.setText(sel2);
+                        txtCedula.setText(sel3);
+                        txtDireccion.setText(sel4);
+                        txtPhone.setText(sel5);
+                        lbl_Gasto_Operativo_id.setText(sel6);
+                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
+
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+
+                }
+
+            }
+            if (P == 1) {
+                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
+                pst = con.prepareStatement(sql);
+                pst.execute();
+                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
+
+                try {
+                    //SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE 1
+                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
+                    pst = con.prepareStatement(sql_persona);
+                    rs = pst.executeQuery();
+                    if (rs.next()) {
+                        String sel1 = rs.getString("idpersona");
+
+                        String sel2 = rs.getString("nombre");
+                        String sel3 = rs.getString("cedula");
+                        String sel4 = rs.getString("telefono");
+                        String sel5 = rs.getString("direccion");
+                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
+
+                        lbl_id_persona.setText(sel1);
+                        txtNombre_Apellidos.setText(sel2);
+                        txtCedula.setText(sel3);
+                        txtDireccion.setText(sel4);
+                        txtPhone.setText(sel5);
+                        lbl_Gasto_Operativo_id.setText(sel6);
+                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
+
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+
+                }
+
             }
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
 
+        } catch (IOException ex) {
+            Logger.getLogger(Persona_frm.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_cmbTipoPersonaMouseClicked
 
-    private void cmbTipoPersonaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMousePressed
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() +"'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaMousePressed
-
-    private void cmbTipoPersonaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMouseEntered
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() +"'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaMouseEntered
-
-    private void cmbTipoPersonaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMouseReleased
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() +"'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaMouseReleased
-
-    private void cmbTipoPersonaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbTipoPersonaKeyTyped
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() +"'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaKeyTyped
-
-    private void cmbTipoPersonaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoPersonaMouseExited
-        // TODO add your handling code here:
-        try {
-            //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() +"'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-
-                System.out.println(add1);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }//GEN-LAST:event_cmbTipoPersonaMouseExited
-
+    }
     private void cmbTipoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPersonaActionPerformed
         // TODO add your handling code here:
+
         try {
             //SELECT `persona`.`nombre`, `colaborador`.`empleado_id` FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `persona`.`nombre` LIKE "%Thom
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() +"'";
+            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
             pst = con.prepareStatement(sqlConsulta_TPersona);
 
             rs = pst.executeQuery();
@@ -749,7 +627,28 @@ public final class Persona_frm extends javax.swing.JFrame {
                 String add1 = rs.getString("idtipo_persona");
                 txtClasificación.setText(add1);
 
-                System.out.println(add1);
+                String tipoPersonaSeleccionada;
+                tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
+
+                if (tipoPersonaSeleccionada.equals("Cliente")) {
+                    JOptionPane.showMessageDialog(Persona, "Bienvenido", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
+
+                }
+                if (tipoPersonaSeleccionada.equals("Colaborador")) {
+
+                    agregarPersona();
+
+                    JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
+                    Colaborador_frm colaborador = new Colaborador_frm();
+                    colaborador.setVisible(true);
+
+                    Colaborador_frm.id_persona.setText(lbl_id_persona.getText());
+
+                }
+                if (tipoPersonaSeleccionada.equals("Proveedor")) {
+                    JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
+                }
+
             }
 
         } catch (Exception e) {
@@ -835,7 +734,6 @@ public final class Persona_frm extends javax.swing.JFrame {
     private javax.swing.JButton editar;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton guardar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -853,5 +751,6 @@ public final class Persona_frm extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre_Apellidos;
     private javax.swing.JTextField txtPhone;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
