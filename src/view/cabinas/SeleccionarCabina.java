@@ -42,8 +42,8 @@ public class SeleccionarCabina extends javax.swing.JFrame {
 
     public SeleccionarCabina() {
         initComponents();
-agregarCabinas.setOpaque(false);
-opciones.setOpaque(false);
+        agregarCabinas.setOpaque(false);
+        opciones.setOpaque(false);
         initComponents();
         con = conexionDB.conexionDB();
 
@@ -304,13 +304,13 @@ opciones.setOpaque(false);
     }
 
     private void Get_Data_Ocupado() {
-        String sql = "SELECT Count(*) FROM `cabina` WHERE estado_cabina_idestado_cabina = '1'";
+        String sql = "SELECT Count(*) FROM `cabina` WHERE estado_cabina = 'Ocupado'";
         try {
 
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             rs.next();
-       
+
             System.out.println("numero de renglones: " + rs.getString(1));
 
             int valor = Integer.parseInt(rs.getString(1));
@@ -332,7 +332,7 @@ opciones.setOpaque(false);
 
         }
     }
-    
+
     private void Get_Data_Vacio() {
         String sql = "SELECT Count(*) FROM `cabina` WHERE estado_cabina_idestado_cabina = '2'";
         try {
@@ -340,7 +340,7 @@ opciones.setOpaque(false);
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             rs.next();
-            
+
             System.out.println("numero de renglones: " + rs.getString(1));
 
             int valor = Integer.parseInt(rs.getString(1));
@@ -351,11 +351,11 @@ opciones.setOpaque(false);
                 agregarCabinas.add(b[i]);
                 b[i].setBackground(Color.GREEN);
                 b[i].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Hellen");
-            }
-        });
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println("Hellen");
+                    }
+                });
             }
             agregarCabinas.updateUI();
         } catch (SQLException | NumberFormatException e) {
@@ -363,7 +363,7 @@ opciones.setOpaque(false);
 
         }
     }
-    
+
     private void Get_Data_Limpieza() {
         String sql = "SELECT Count(*) FROM `cabina` WHERE estado_cabina_idestado_cabina = '3'";
         try {
@@ -371,7 +371,7 @@ opciones.setOpaque(false);
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             rs.next();
- 
+
             System.out.println("numero de renglones: " + rs.getString(1));
 
             int valor = Integer.parseInt(rs.getString(1));
@@ -379,13 +379,14 @@ opciones.setOpaque(false);
 
             for (int i = 0; i < valor; i++) {
                 b[i] = new JButton("Cabina " + (i + 1));
-                agregarCabinas.add(b[i]);b[i].setBackground(Color.YELLOW);
+                agregarCabinas.add(b[i]);
+                b[i].setBackground(Color.YELLOW);
                 b[i].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Juana");
-            }
-        });
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println("Juana");
+                    }
+                });
             }
             agregarCabinas.updateUI();
         } catch (SQLException | NumberFormatException e) {
@@ -393,7 +394,7 @@ opciones.setOpaque(false);
 
         }
     }
-    
+
     private void Get_Data_Bloqueada() {
         String sql = "SELECT Count(*) FROM `cabina` WHERE estado_cabina_idestado_cabina = '4'";
         try {
@@ -426,7 +427,7 @@ opciones.setOpaque(false);
 
         }
     }
-    
+
     private void Get_Data_Sencilla() {
         String sql = "SELECT Count(*) FROM `cabina` WHERE `precio_precio_id` = '1'";
         try {
@@ -444,17 +445,16 @@ opciones.setOpaque(false);
 
             for (int i = 0; i < valor; i++) {
                 b[i] = new JButton("Cabina " + (i + 1));
-                ImageIcon icon= new ImageIcon("/view/icons/one-bed-for-two.png");
+                ImageIcon icon = new ImageIcon("/view/icons/one-bed-for-two.png");
                 b[i].setIcon(icon);
                 agregarCabinas.add(b[i]);
                 b[i].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Juana");
-            }
-        });
-            
-                
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println("Juana");
+                    }
+                });
+
             }
             agregarCabinas.updateUI();
         } catch (SQLException | NumberFormatException e) {
@@ -462,7 +462,7 @@ opciones.setOpaque(false);
 
         }
     }
-    
+
     private void Get_Data_Doble() {
         String sql = "SELECT Count(*) FROM `cabina` WHERE `precio_precio_id` = '2'";
         try {
@@ -480,8 +480,8 @@ opciones.setOpaque(false);
 
             for (int i = 0; i < valor; i++) {
                 b[i] = new JButton("Cabina " + (i + 1));
-                
-                ImageIcon icon= new ImageIcon("/view/icons/one-bed-for-two.png");
+
+                ImageIcon icon = new ImageIcon("/view/icons/one-bed-for-two.png");
                 b[i].setIcon(icon);
                 agregarCabinas.add(b[i]);
                 for (Iterator<JButton> it = botones.iterator(); it.hasNext();) {

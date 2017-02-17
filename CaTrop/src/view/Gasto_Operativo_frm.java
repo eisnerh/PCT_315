@@ -14,15 +14,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.text.MaskFormatter;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -447,8 +444,6 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Gasto_Operativo_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -486,8 +481,6 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Gasto_Operativo_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_editarActionPerformed
@@ -576,9 +569,7 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Gasto_Operativo_frm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      }
     }//GEN-LAST:event_borrarActionPerformed
 
     private void txtPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPersonaActionPerformed

@@ -46,7 +46,7 @@ public class Puesto_frm extends javax.swing.JFrame {
         //llama al procedimiento de obtener la información.
         Get_Data();
         //centra la ventana para que se inicie en el centro del escritorio
-        setLocationRelativeTo(null);
+
         initState();
     }
 
@@ -369,8 +369,6 @@ public class Puesto_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Puesto_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -416,13 +414,10 @@ public class Puesto_frm extends javax.swing.JFrame {
 
                 initComponents();
                 Get_Data();
-                return;
             }
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Puesto_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_editarActionPerformed
@@ -485,8 +480,6 @@ public class Puesto_frm extends javax.swing.JFrame {
             }
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Puesto_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_borrarActionPerformed
 
@@ -506,26 +499,21 @@ public class Puesto_frm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Puesto_frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Puesto_frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Puesto_frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Puesto_frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new Puesto_frm().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(Puesto_frm.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new Puesto_frm().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(Puesto_frm.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

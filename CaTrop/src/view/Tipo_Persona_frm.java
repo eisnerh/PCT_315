@@ -322,8 +322,6 @@ public class Tipo_Persona_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Tipo_Persona_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -361,8 +359,6 @@ public class Tipo_Persona_frm extends javax.swing.JFrame {
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Tipo_Persona_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_editarActionPerformed
@@ -425,8 +421,6 @@ public class Tipo_Persona_frm extends javax.swing.JFrame {
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Tipo_Persona_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_borrarActionPerformed
 

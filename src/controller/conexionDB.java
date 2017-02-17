@@ -38,7 +38,7 @@ public class conexionDB {
     }
     
     public static ArrayList<String> llenar_combo(){
-        ArrayList<String> lista = new ArrayList<String>();
+        ArrayList<String> lista = new ArrayList<>();
         String q = "SELECT * FROM `puesto`";
         try {
             resultado = sentencia.executeQuery(q);

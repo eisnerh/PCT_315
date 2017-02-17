@@ -8,16 +8,12 @@ package view;
 import com.sun.glass.events.KeyEvent;
 import controller.ConexionDB;
 import java.awt.HeadlessException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -36,7 +32,7 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
     String sqlInsert;
     String sqlDelete;
 
-    public Agregar_Usuario_frm() throws IOException {
+    public Agregar_Usuario_frm() {
         initComponents();
         
 
@@ -294,7 +290,7 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el usuario ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                if (txt_Usuario.getText().equals("")) {
+                if (txt_Contrasena.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa la Contraseña ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -331,8 +327,7 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Agregar_Usuario_frm.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -370,8 +365,6 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Agregar_Usuario_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_editarActionPerformed
@@ -409,8 +402,6 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Agregar_Usuario_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_borrarActionPerformed
 
@@ -455,11 +446,7 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            try {
-                new Agregar_Usuario_frm().setVisible(true);
-            } catch (IOException ex) {
-                Logger.getLogger(Agregar_Usuario_frm.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            new Agregar_Usuario_frm().setVisible(true);
         });
     }
 

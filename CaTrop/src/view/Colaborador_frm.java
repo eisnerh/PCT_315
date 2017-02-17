@@ -439,9 +439,6 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Colaborador_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -471,9 +468,6 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Colaborador_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_editarActionPerformed
@@ -530,10 +524,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Colaborador_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
+       }
     }//GEN-LAST:event_borrarActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed

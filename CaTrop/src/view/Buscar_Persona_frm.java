@@ -435,9 +435,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Buscar_Persona_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -472,9 +469,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Buscar_Persona_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_editarActionPerformed
@@ -521,9 +515,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Buscar_Persona_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_borrarActionPerformed
 

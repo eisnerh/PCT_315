@@ -5,13 +5,9 @@
  */
 package controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,9 +19,9 @@ public class ConexionDB {
     
     Connection con = null;
     
-    public static Connection conexionDB() throws IOException {
+    public static Connection conexionDB() {
         try {
-            Properties properties = new Properties();
+           
             
             
             Class.forName("com.mysql.jdbc.Driver");

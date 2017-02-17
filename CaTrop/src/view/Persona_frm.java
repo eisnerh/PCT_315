@@ -401,9 +401,6 @@ public final class Persona_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Persona_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_editarActionPerformed
@@ -461,9 +458,6 @@ public final class Persona_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Persona_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_borrarActionPerformed
 
@@ -562,7 +556,7 @@ public final class Persona_frm extends javax.swing.JFrame {
 
                     }
 
-                } catch (Exception e) {
+                } catch (SQLException | NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, e);
 
                 }
@@ -598,7 +592,7 @@ public final class Persona_frm extends javax.swing.JFrame {
 
                     }
 
-                } catch (Exception e) {
+                } catch (SQLException | NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, e);
 
                 }
@@ -608,9 +602,6 @@ public final class Persona_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-        } catch (IOException ex) {
-            Logger.getLogger(Persona_frm.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -651,7 +642,7 @@ public final class Persona_frm extends javax.swing.JFrame {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException | HeadlessException | IOException e) {
             JOptionPane.showMessageDialog(null, e);
 
         }
