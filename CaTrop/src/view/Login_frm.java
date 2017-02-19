@@ -5,14 +5,26 @@
  */
 package view;
 
+import com.sun.glass.events.KeyEvent;
 import controller.ConexionDB;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import net.sf.jcarrierpigeon.WindowPosition;
+import net.sf.jtelegraph.Telegraph;
+import net.sf.jtelegraph.TelegraphEnvelope;
+import net.sf.jtelegraph.TelegraphQueue;
+import net.sf.jtelegraph.TelegraphType;
 
 /**
  *
@@ -31,47 +43,25 @@ public class Login_frm extends javax.swing.JFrame {
     String sqlInsert;
     String sqlDelete;
 
+    BufferedImage img = null;
+
+    int xMouse;
+    int yMouse;
+
     public Login_frm() throws IOException {
         initComponents();
-        
 
         //inicialización de las variables de la coneccion a la base de datos
         con = ConexionDB.conexionDB();
-        //llama al procedimiento de obtener la información.
-        Get_Data();
         //centra la ventana para que se inicie en el centro del escritorio
         this.setLocationRelativeTo(null);
-        initState();
+
         sqlSelect = "SELECT `idusuario`, `usuario`, `password`, `colaborador_empleado_id` FROM `usuario` ORDER BY `desc_persona`";
         sqlSelect_Valor = "SELECT `idusuario`, `usuario`, `password`, `colaborador_empleado_id` FROM `usuario` WHERE `usuario` = '";
 
         ////INSERT INTO `Horario_frm`(`descripcion_horario`) VALUES (" ")
         sqlInsert = "INSERT INTO `usuario`(`usuario`, `password`, `colaborador_empleado_id`) VALUES ('";
         sqlDelete = "DELETE FROM `usuario` WHERE `idusuario` = ";
-    }
-
-    private void initState() {
-        txt_User.setEnabled(false);
-        lbl_idUsuario.setText("");
-        txt_User.setText("");
-        
-        Get_Data();
-
-    }
-
-    private void Get_Data() {
-        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
-        String sql = "SELECT `desc_persona` as 'Descripción de Persona' FROM `tipo_persona` ORDER BY `desc_persona`";
-
-        try {
-            pst = con.prepareStatement(sql);
-
-            rs = pst.executeQuery();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
     }
 
     /**
@@ -85,7 +75,8 @@ public class Login_frm extends javax.swing.JFrame {
 
         txt_User = new javax.swing.JTextField();
         txt_Pass = new javax.swing.JPasswordField();
-        fondo1 = new javax.swing.JLabel();
+        c1 = new javax.swing.JLabel();
+        login = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
         lbl_idUsuario = new javax.swing.JLabel();
         lbl_colaborador_empleado_id = new javax.swing.JLabel();
@@ -96,30 +87,59 @@ public class Login_frm extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_User.setBackground(new java.awt.Color(255, 255, 255));
         txt_User.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txt_User.setForeground(new java.awt.Color(0, 0, 0));
         txt_User.setBorder(null);
-        getContentPane().add(txt_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 220, 40));
+        txt_User.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_UserKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txt_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 220, 40));
 
         txt_Pass.setBackground(new java.awt.Color(255, 255, 255));
         txt_Pass.setForeground(new java.awt.Color(0, 0, 0));
         txt_Pass.setBorder(null);
-        getContentPane().add(txt_Pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 220, 40));
-
-        fondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/CustomLoginForms_01.jpg"))); // NOI18N
-        fondo1.setOpaque(true);
-        fondo1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                fondo1MouseClicked(evt);
+        txt_Pass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_PassKeyPressed(evt);
             }
         });
-        getContentPane().add(fondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 260));
+        getContentPane().add(txt_Pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 220, 40));
+
+        c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/c1.png"))); // NOI18N
+        c1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                c1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                c1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                c1MouseEntered(evt);
+            }
+        });
+        getContentPane().add(c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
+
+        login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/CustomLoginForms_01.jpg"))); // NOI18N
+        login.setOpaque(true);
+        login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginMouseClicked(evt);
+            }
+        });
+        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 220));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 260));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 610, 260));
 
         lbl_idUsuario.setText("jLabel1");
         getContentPane().add(lbl_idUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
@@ -133,12 +153,45 @@ public class Login_frm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fondo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fondo1MouseClicked
+    private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
+
+        executeLogin();
+    }//GEN-LAST:event_loginMouseClicked
+
+    private void c1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c1MouseClicked
         // TODO add your handling code here:
-        Principal principal = new Principal();
-        this.hide();
-        principal.setVisible(true);
-    }//GEN-LAST:event_fondo1MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_c1MouseClicked
+
+    private void c1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c1MouseEntered
+        // TODO add your handling code here:
+        c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/c2.png")));
+    }//GEN-LAST:event_c1MouseEntered
+
+    private void c1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c1MouseExited
+        // TODO add your handling code here:
+        c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/c1.png")));
+    }//GEN-LAST:event_c1MouseExited
+
+    private void txt_PassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PassKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            // Enter was pressed. Your code goes here.
+            executeLogin();
+        }
+    }//GEN-LAST:event_txt_PassKeyPressed
+
+    private void txt_UserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_UserKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            // Enter was pressed. Your code goes here.
+            executeLogin();
+        }
+    }//GEN-LAST:event_txt_UserKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -191,7 +244,7 @@ public class Login_frm extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 
@@ -206,12 +259,72 @@ public class Login_frm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel c1;
     private javax.swing.JLabel fondo;
-    private javax.swing.JLabel fondo1;
     private javax.swing.JLabel lbl_Entrar;
     private javax.swing.JLabel lbl_colaborador_empleado_id;
     private javax.swing.JLabel lbl_idUsuario;
+    private javax.swing.JLabel login;
     private javax.swing.JPasswordField txt_Pass;
     private javax.swing.JTextField txt_User;
     // End of variables declaration//GEN-END:variables
+
+    private void executeLogin() {
+        String a = txt_User.getText();
+        String b = txt_Pass.getText();
+
+        if (a.length() == 0 && b.length() == 0) {
+            Telegraph tele = new Telegraph("Mensaje",
+                    "<html><body style='color:red;font-size:13px'><b> Agregar usuario y contraseña!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 500);
+            TelegraphQueue q = new TelegraphQueue();
+            TelegraphEnvelope qa = new TelegraphEnvelope();
+            q.add(tele);
+        } else if (a.length() == 0) {
+            Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:red;font-size:13px'><b> Favor escribir el nombre del usuario!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 500);
+            TelegraphQueue q = new TelegraphQueue();
+            q.add(tele);
+        } else if (b.length() == 0) {
+            Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:red;font-size:13px'><b> Favor escribir una contraseña valida!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 500);
+            TelegraphQueue q = new TelegraphQueue();
+            q.add(tele);
+        } else {
+
+            //SELECT `idusuario`, `usuario`, `password`, `colaborador_empleado_id` FROM `usuario` WHERE `usuario` = 'admin' and `password`= 'admin'
+            String str = "SELECT `persona`.`nombre` FROM `pct3`.`usuario` AS `usuario`, `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `usuario`.`colaborador_empleado_id` = `colaborador`.`empleado_id` AND `colaborador`.`persona_idpersona` = `persona`.`idpersona`";
+            try {
+
+                pst = (PreparedStatement) con.prepareStatement(str);
+
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+
+                    Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:green;font-size:13px'><b>Login Exitoso!</b></body></html>", TelegraphType.NOTIFICATION_DONE, WindowPosition.TOPRIGHT, 1500);
+                    TelegraphQueue q = new TelegraphQueue();
+                    TelegraphEnvelope qa = new TelegraphEnvelope();
+                    
+                        String nombre_Cabina = rs.getString(1);
+
+                        Principal_frm p = new Principal_frm();
+
+                        p.setVisible(true);
+                        this.hide();
+                        q.add(tele);
+                        Principal_frm.Nombre_Empleado.setText(nombre_Cabina);
+
+                    
+
+                } else {
+                    Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:red;font-size:13px'><b> Access Denied!</b></body></html>", TelegraphType.NOTIFICATION_ERROR, WindowPosition.TOPRIGHT, 1500);
+                    TelegraphQueue q = new TelegraphQueue();
+                    TelegraphEnvelope qa = new TelegraphEnvelope();
+                    q.add(tele);
+                    txt_User.setText("");
+                    txt_Pass.setText("");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
 }

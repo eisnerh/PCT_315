@@ -8,12 +8,15 @@ package view;
 import controller.ConexionDB;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -66,11 +69,17 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
         Bloqueado = new javax.swing.JRadioButton();
         Doble = new javax.swing.JRadioButton();
         agregarCabinas = new javax.swing.JPanel();
+        Nombre_Usuari_S = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Selección de Cábinas");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        opciones.setBackground(new java.awt.Color(0, 51, 51));
+        opciones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        Ocupado.setBackground(new java.awt.Color(0, 51, 51));
         bgOpciones.add(Ocupado);
         Ocupado.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Ocupado.setForeground(new java.awt.Color(251, 251, 251));
@@ -81,7 +90,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             }
         });
 
-        Todos.setBackground(new java.awt.Color(0, 0, 51));
+        Todos.setBackground(new java.awt.Color(0, 51, 51));
         bgOpciones.add(Todos);
         Todos.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Todos.setForeground(new java.awt.Color(251, 251, 251));
@@ -92,6 +101,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             }
         });
 
+        Sencilla.setBackground(new java.awt.Color(0, 51, 51));
         bgOpciones.add(Sencilla);
         Sencilla.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Sencilla.setForeground(new java.awt.Color(251, 251, 251));
@@ -102,6 +112,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             }
         });
 
+        Vacio.setBackground(new java.awt.Color(0, 51, 51));
         bgOpciones.add(Vacio);
         Vacio.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Vacio.setForeground(new java.awt.Color(251, 251, 251));
@@ -112,6 +123,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             }
         });
 
+        Limpieza.setBackground(new java.awt.Color(0, 51, 51));
         bgOpciones.add(Limpieza);
         Limpieza.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Limpieza.setForeground(new java.awt.Color(251, 251, 251));
@@ -122,6 +134,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             }
         });
 
+        Bloqueado.setBackground(new java.awt.Color(0, 51, 51));
         bgOpciones.add(Bloqueado);
         Bloqueado.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Bloqueado.setForeground(new java.awt.Color(251, 251, 251));
@@ -132,6 +145,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             }
         });
 
+        Doble.setBackground(new java.awt.Color(0, 51, 51));
         bgOpciones.add(Doble);
         Doble.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Doble.setForeground(new java.awt.Color(251, 251, 251));
@@ -142,31 +156,34 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             }
         });
 
+        agregarCabinas.setLayout(new java.awt.GridLayout(0, 3));
+
         javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
         opciones.setLayout(opcionesLayout);
         opcionesLayout.setHorizontalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(23, 23, 23)
                 .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(opcionesLayout.createSequentialGroup()
-                        .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Sencilla)
-                            .addComponent(Doble)
-                            .addComponent(Ocupado)
-                            .addComponent(Vacio)
-                            .addComponent(Todos))
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addGroup(opcionesLayout.createSequentialGroup()
-                        .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Limpieza)
-                            .addComponent(Bloqueado))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(Sencilla)
+                    .addComponent(Doble)
+                    .addComponent(Ocupado)
+                    .addComponent(Vacio)
+                    .addComponent(Todos)
+                    .addComponent(Limpieza)
+                    .addComponent(Bloqueado))
+                .addGap(42, 42, 42)
+                .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         opcionesLayout.setVerticalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
             .addGroup(opcionesLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addComponent(Todos)
                 .addGap(18, 18, 18)
                 .addComponent(Ocupado)
@@ -180,13 +197,13 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 .addComponent(Doble)
                 .addGap(18, 18, 18)
                 .addComponent(Sencilla)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        getContentPane().add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 370));
+        getContentPane().add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 700, 350));
 
-        agregarCabinas.setLayout(new java.awt.GridLayout(0, 3));
-        getContentPane().add(agregarCabinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 580, 370));
+        Nombre_Usuari_S.setText("jLabel1");
+        getContentPane().add(Nombre_Usuari_S, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 742, 367));
@@ -272,6 +289,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private javax.swing.JRadioButton Bloqueado;
     private javax.swing.JRadioButton Doble;
     private javax.swing.JRadioButton Limpieza;
+    public static javax.swing.JLabel Nombre_Usuari_S;
     private javax.swing.JRadioButton Ocupado;
     private javax.swing.JRadioButton Sencilla;
     private javax.swing.JRadioButton Todos;
@@ -326,7 +344,6 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private void Get_Data_Ocupado() {
         String sql = "SELECT `descripcion_cabina` FROM `cabina` WHERE `estado_cabina` = 'Ocupada'";
         try {
-
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -336,10 +353,12 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 btn.setBackground(Color.red);
                 btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
                 btn.addActionListener(new ActionListener() {
+                    @Override
                     public void actionPerformed(ActionEvent e) {
                         Prueba_frm p = new Prueba_frm();
                         p.setVisible(true);
-                        Prueba_frm.jLabel1.setText(btn.getText());
+                        
+                        Factura_frm.NombreCabina.setText(btn.getText());
                         
                     }
                 });
@@ -365,9 +384,16 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
                 btn.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        Prueba_frm p = new Prueba_frm();
-                        p.setVisible(true);
-                        Prueba_frm.jLabel1.setText(btn.getText());
+                        Factura_frm factura_frm;
+                        try {
+                            factura_frm = new Factura_frm();
+                            factura_frm.setVisible(true);
+                            
+                        } catch (IOException ex) {
+                            Logger.getLogger(SeleccionarCabina_frm.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        Factura_frm.NombreCabina.setText(btn.getText());
                         
                     }
                 });

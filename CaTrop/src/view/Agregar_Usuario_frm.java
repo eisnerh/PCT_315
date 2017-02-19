@@ -23,7 +23,9 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
 
     /**
      * Creates new form puesto
+     * Eisner López Acevedo
      */
+    //Se crea una conexion y se asigna un valor nulo.
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;

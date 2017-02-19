@@ -448,7 +448,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
                 con = ConexionDB.conexionDB();
                 Statement stmt;
                 stmt = con.createStatement();
-                //UPDATE `persona` SET             `nombre`= '   txtNombre_Apellidos.getText(),`cedula`=[value-3],`telefono`=[value-4],`direccion`=[value-5],`tipo_persona_idtipo_persona`=[value-6] WHERE `idpersona` = 1
+                
                 String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtPhone.getText() + "',`direccion`='" + txtPhone.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_Gasto_Operativo_id.getText() + "'";
                 pst = con.prepareStatement(Pru);
                 pst.execute();
@@ -589,7 +589,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
             if (rs.next()) {
                 String add1 = rs.getString("idtipo_persona");
                 txtClasificación.setText(add1);
-
                 System.out.println(add1);
             }
 
@@ -618,7 +617,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
             rs = pst.executeQuery();
             if (rs.next()) {
                 String add1 = rs.getString("idpersona");
-
                 String add2 = rs.getString("nombre");
                 String add3 = rs.getString("cedula");
                 String add4 = rs.getString("telefono");

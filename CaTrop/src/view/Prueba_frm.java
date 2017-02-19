@@ -5,6 +5,16 @@
  */
 package view;
 
+import controller.ConexionDB;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ace
@@ -14,9 +24,84 @@ public class Prueba_frm extends javax.swing.JFrame {
     /**
      * Creates new form prueba
      */
+    
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    ResultSet rs2 = null;
+    PreparedStatement pst2 = null;
+    String sqlSelect;
+    String sqlSelect_Valor;
+    String sqlInsert;
+    String sqlDelete;
+    //declarar static e instanciarla en tu contructor`
+    static DefaultComboBoxModel modelo;
+
     public Prueba_frm() {
         initComponents();
+        //inicialización de las variables de la coneccion a la base de datos
+        con = ConexionDB.conexionDB();
+        //llama al procedimiento de obtener la información.
+        //centra la ventana para que se inicie en el centro del escritorio
+        
+        //initState();
+        sqlSelect = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` order BY `nombre`";
+        sqlSelect_Valor = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE `nombre` = '";
+        sqlInsert = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES ('";
+        sqlDelete = "DELETE FROM `persona` WHERE `idpersona` = ";
+
+        modelo = new DefaultComboBoxModel();
+        Buscar();
+
     }
+    
+    public void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
+
+        try {
+            modelo.removeAllElements(); // eliminamos lo elementos
+
+            Statement stmt;
+            stmt = con.createStatement();
+
+            String sql1 = "SELECT `desc_persona` FROM `tipo_persona`";
+            rs = stmt.executeQuery(sql1);
+
+            while (rs.next()) {
+                modelo.addElement(rs.getString("desc_persona"));
+            }
+            cmbTipoPerosna.setModel(modelo); // seteamos el modelo y se cargan los datos
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }
+    
+    public void Buscar(){ 
+            try {
+            
+            String sql_persona = "SELECT `cabina_id`, `descripcion_cabina`, `estado_cabina`, `precio_precio_id` FROM `cabina` WHERE `descripcion_cabina` = '" + jLabel1.getText() + "'";
+            pst = con.prepareStatement(sql_persona);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String add1 = rs.getString("cabina_id");
+                String add2 = rs.getString("descripcion_cabina");
+                String add3 = rs.getString("estado_cabina");
+                String add4 = rs.getString("precio_precio_id");
+                
+
+                jLabel2.setText(add1);
+                jLabel3.setText(add3);
+                
+                jLabel4.setText(add4);
+                
+
+            }
+
+        } catch (SQLException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }                                                  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,26 +113,60 @@ public class Prueba_frm extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cmbTipoPerosna = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("jLabel1");
+
+        jLabel2.setText("jLabel2");
+
+        jLabel3.setText("jLabel3");
+
+        cmbTipoPerosna.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(jLabel1)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(cmbTipoPerosna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(149, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
+                .addComponent(jLabel4)
+                .addGap(130, 130, 130)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(cmbTipoPerosna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
 
         pack();
@@ -69,27 +188,26 @@ public class Prueba_frm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Prueba_frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Prueba_frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Prueba_frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Prueba_frm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Prueba_frm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Prueba_frm().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbTipoPerosna;
     public static javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
