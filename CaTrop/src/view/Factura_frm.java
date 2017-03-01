@@ -21,7 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import static view.Prueba_frm.jLabel1;
+
 
 /**
  *
@@ -54,11 +54,6 @@ public final class Factura_frm extends javax.swing.JFrame {
         //centra la ventana para que se inicie en el centro del escritorio
         setLocationRelativeTo(null);
 
-        sqlSelect = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` order BY `nombre`";
-        sqlSelect_Valor = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE `nombre` = '";
-        sqlInsert = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES ('";
-        sqlDelete = "DELETE FROM `persona` WHERE `idpersona` = ";
-
         modeloPuesto = new DefaultComboBoxModel();
         modeloHorario = new DefaultComboBoxModel();
 
@@ -89,7 +84,7 @@ public final class Factura_frm extends javax.swing.JFrame {
 
     public void LlenaCabina() {
         try {
-            //thane'
+            
             String sql_persona = "SELECT `cabina`.`cabina_id` as 'id', `cabina`.`descripcion_cabina` as 'Cabina', `cabina`.`estado_cabina` as 'Estado', `cabina`.`precio_precio_id`, `precio`.`descripcion_precio`, `precio`.`monto_precio` as 'Monto' FROM `pct3`.`cabina` AS `cabina`, `pct3`.`precio` AS `precio` WHERE `cabina`.`precio_precio_id` = `precio`.`precio_id` AND `cabina`.`descripcion_cabina` = '" + NombreCabina.getText() + "'";
             pst = con.prepareStatement(sql_persona);
             rs = pst.executeQuery();
@@ -155,20 +150,6 @@ public final class Factura_frm extends javax.swing.JFrame {
     private void initComponents() {
 
         grupo_clientes = new javax.swing.ButtonGroup();
-        jPanel3 = new javax.swing.JPanel();
-        empleado_id = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        rb_Cliente = new javax.swing.JRadioButton();
-        rb_Empresa = new javax.swing.JRadioButton();
-        rb_Gobierno = new javax.swing.JRadioButton();
-        cmbPersona = new javax.swing.JComboBox<>();
-        cmbTipoPuesto = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
-        lblCabina = new javax.swing.JLabel();
-        NombreCabina = new javax.swing.JLabel();
-        Nombre_Empleado = new javax.swing.JLabel();
         txSubTotal = new javax.swing.JTextField();
         txtImpuesto = new javax.swing.JTextField();
         txTotal = new javax.swing.JTextField();
@@ -186,7 +167,20 @@ public final class Factura_frm extends javax.swing.JFrame {
         borrar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         volver = new javax.swing.JButton();
-        fondo = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        empleado_id = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        rb_Cliente = new javax.swing.JRadioButton();
+        rb_Empresa = new javax.swing.JRadioButton();
+        rb_Gobierno = new javax.swing.JRadioButton();
+        cmbPersona = new javax.swing.JComboBox<>();
+        cmbTipoPuesto = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
+        lblCabina = new javax.swing.JLabel();
+        NombreCabina = new javax.swing.JLabel();
+        Nombre_Empleado = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuSalir = new javax.swing.JMenu();
@@ -209,14 +203,147 @@ public final class Factura_frm extends javax.swing.JFrame {
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txSubTotal.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txSubTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txSubTotalActionPerformed(evt);
+            }
+        });
+
+        txtImpuesto.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txtImpuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImpuestoActionPerformed(evt);
+            }
+        });
+
+        txTotal.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txTotalActionPerformed(evt);
+            }
+        });
+
+        jSpinner1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+        jSpinner1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jSpinner1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        PrecioCabina2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        PrecioCabina2.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina2.setText("Sub Total: ");
+
+        PrecioCabina5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        PrecioCabina5.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina5.setText("Cantidad de Días:");
+
+        PrecioCabina6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        PrecioCabina6.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina6.setText("Total:");
+
+        EstadoCabina.setForeground(new java.awt.Color(255, 255, 255));
+        EstadoCabina.setText("jLabel1");
+
+        PrecioCabina.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        PrecioCabina.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina.setText("Impuesto:");
+
+        PrecioCabina4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        PrecioCabina4.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina4.setText("jLabel1");
+
+        IdCabina.setForeground(new java.awt.Color(255, 255, 255));
+        IdCabina.setText("jLabel1");
+
+        guardar.setBackground(new java.awt.Color(204, 204, 204));
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
+
+        editar.setBackground(new java.awt.Color(204, 204, 204));
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/edit.png"))); // NOI18N
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
+
+        borrar.setBackground(new java.awt.Color(204, 204, 204));
+        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/dustbin.png"))); // NOI18N
+        borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarActionPerformed(evt);
+            }
+        });
+
+        buscar.setBackground(new java.awt.Color(204, 204, 204));
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+
+        volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/volver.png"))); // NOI18N
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(editar)
+                .addGap(18, 18, 18)
+                .addComponent(buscar)
+                .addGap(18, 18, 18)
+                .addComponent(borrar)
+                .addGap(18, 18, 18)
+                .addComponent(guardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(volver)
+                .addContainerGap(382, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(volver)
+                    .addComponent(editar)
+                    .addComponent(buscar)
+                    .addComponent(borrar)
+                    .addComponent(guardar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jPanel3.setOpaque(false);
 
         empleado_id.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        empleado_id.setForeground(new java.awt.Color(255, 255, 255));
         empleado_id.setText("Nombre Cliente");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Tipo Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 16))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Tipo Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setOpaque(false);
 
         grupo_clientes.add(rb_Cliente);
@@ -282,9 +409,11 @@ public final class Factura_frm extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Empleado:");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Fecha Factura");
 
         txtFecha.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -295,12 +424,15 @@ public final class Factura_frm extends javax.swing.JFrame {
         });
 
         lblCabina.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblCabina.setForeground(new java.awt.Color(255, 255, 255));
         lblCabina.setText("N° Cabina");
 
         NombreCabina.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        NombreCabina.setForeground(new java.awt.Color(255, 255, 255));
         NombreCabina.setText("jLabel1");
 
         Nombre_Empleado.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        Nombre_Empleado.setForeground(new java.awt.Color(255, 255, 255));
         Nombre_Empleado.setText("Nombre Empleado");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -331,7 +463,7 @@ public final class Factura_frm extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(Nombre_Empleado)))
                             .addComponent(empleado_id, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 190, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -366,148 +498,6 @@ public final class Factura_frm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 750, 280));
-
-        txSubTotal.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txSubTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txSubTotalActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 210, 40));
-
-        txtImpuesto.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtImpuesto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtImpuestoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtImpuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 210, 40));
-
-        txTotal.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txTotalActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 210, 40));
-
-        jSpinner1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
-        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
-        getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
-
-        PrecioCabina2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina2.setForeground(new java.awt.Color(255, 255, 255));
-        PrecioCabina2.setText("Sub Total: ");
-        getContentPane().add(PrecioCabina2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
-
-        PrecioCabina5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina5.setText("Cantidad de Días:");
-        getContentPane().add(PrecioCabina5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
-
-        PrecioCabina6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina6.setText("Total:");
-        getContentPane().add(PrecioCabina6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, -1, -1));
-
-        EstadoCabina.setText("jLabel1");
-        getContentPane().add(EstadoCabina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
-
-        PrecioCabina.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina.setText("Impuesto:");
-        getContentPane().add(PrecioCabina, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, -1));
-
-        PrecioCabina4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina4.setText("jLabel1");
-        getContentPane().add(PrecioCabina4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
-
-        IdCabina.setText("jLabel1");
-        getContentPane().add(IdCabina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
-
-        guardar.setBackground(new java.awt.Color(204, 204, 204));
-        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
-        guardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarActionPerformed(evt);
-            }
-        });
-
-        editar.setBackground(new java.awt.Color(204, 204, 204));
-        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/edit.png"))); // NOI18N
-        editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarActionPerformed(evt);
-            }
-        });
-
-        borrar.setBackground(new java.awt.Color(204, 204, 204));
-        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/dustbin.png"))); // NOI18N
-        borrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borrarActionPerformed(evt);
-            }
-        });
-
-        buscar.setBackground(new java.awt.Color(204, 204, 204));
-        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
-        buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
-            }
-        });
-
-        volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/volver.png"))); // NOI18N
-        volver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(editar)
-                            .addComponent(volver))
-                        .addGap(0, 1, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(guardar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buscar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(borrar, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(volver)
-                .addGap(18, 18, 18)
-                .addComponent(guardar)
-                .addGap(18, 18, 18)
-                .addComponent(editar)
-                .addGap(18, 18, 18)
-                .addComponent(buscar)
-                .addGap(18, 18, 18)
-                .addComponent(borrar)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 330));
-
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 500));
-
         jMenu1.setText("File");
 
         mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/exit-sign.png"))); // NOI18N
@@ -535,6 +525,90 @@ public final class Factura_frm extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(320, 320, 320)
+                                .addComponent(txSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(PrecioCabina5))
+                            .addComponent(PrecioCabina4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(PrecioCabina2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(320, 320, 320)
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IdCabina)
+                            .addComponent(EstadoCabina))
+                        .addGap(79, 79, 79)
+                        .addComponent(PrecioCabina)
+                        .addGap(88, 88, 88)
+                        .addComponent(txtImpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(PrecioCabina6)
+                        .addGap(132, 132, 132)
+                        .addComponent(txTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(txSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(PrecioCabina5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(PrecioCabina4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(PrecioCabina2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(IdCabina)
+                        .addGap(5, 5, 5)
+                        .addComponent(EstadoCabina))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(PrecioCabina))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(txtImpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(PrecioCabina6))
+                    .addComponent(txTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -726,6 +800,10 @@ public final class Factura_frm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTipoPuestoActionPerformed
 
+    private void jSpinner1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jSpinner1AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinner1AncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -907,7 +985,6 @@ public final class Factura_frm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbTipoPuesto;
     private javax.swing.JButton editar;
     private javax.swing.JLabel empleado_id;
-    private javax.swing.JLabel fondo;
     private javax.swing.ButtonGroup grupo_clientes;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel7;

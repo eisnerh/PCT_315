@@ -7,18 +7,18 @@ package view;
 
 import controller.ConexionDB;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -32,23 +32,296 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     // Se crea un array de botones
     private final List<JButton> botones;
     // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
-
+    JButton b[];
+    String cambiarFuncion[] = new String[6];
+    
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    JButton b[];
-    String cambiarFuncion[] = new String[6];
 
     public SeleccionarCabina_frm() {
         initComponents();
         agregarCabinas.setOpaque(false);
         opciones.setOpaque(false);
         initComponents();
-        con = ConexionDB.conexionDB();
-
         setLocationRelativeTo(null);
         botones = new ArrayList<>();
+    con = ConexionDB.conexionDB();
+    Get_Data();
+    
     }
+    
+    private void Get_Data() {
+        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
+        
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `cabina` ORDER BY `estado_cabina` ";
+        int totalRegistros;
+        agregarCabinas.removeAll();
+        try {
+            pst = con.prepareStatement(sqlQuery);
+
+            rs = pst.executeQuery();
+            totalRegistros = 0;
+            while (rs.next()) {
+                String nombreCabina = rs.getString(1);
+                JButton btn = new JButton(nombreCabina);
+                agregarCabinas.add(btn);
+                
+                if (rs.getString(2).equals("Ocupado")) {
+                    btn.setBackground(Color.red);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Libre")) {
+                    btn.setBackground(Color.green);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Limpieza")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Bloqueo")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
+                }
+                btn.addActionListener(new ActionListener() {
+                    
+
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        try {
+                            Principal_frm p = new Principal_frm();
+                            p.setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(SeleccionarCabina_frm.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+                totalRegistros++;
+                
+            }
+            
+            agregarCabinas.updateUI();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }
+    
+    private void Get_Bloqueo() {
+        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
+        
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `cabina` ORDER BY `estado_cabina` ";
+        int totalRegistros;
+        agregarCabinas.removeAll();
+        try {
+            pst = con.prepareStatement(sqlQuery);
+
+            rs = pst.executeQuery();
+            totalRegistros = 0;
+            while (rs.next()) {
+                String nombreCabina = rs.getString(1);
+                JButton btn = new JButton(nombreCabina);
+                agregarCabinas.add(btn);
+                
+                if (rs.getString(2).equals("Ocupado")) {
+                    btn.setBackground(Color.red);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Libre")) {
+                    btn.setBackground(Color.green);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Limpieza")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Bloqueo")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
+                }
+                btn.addActionListener(new ActionListener() {
+
+
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+                });
+                totalRegistros++;
+                
+            }
+            
+            agregarCabinas.updateUI();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }
+    
+    private void Get_Libre() {
+        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
+        
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `cabina` WHERE `estado_cabina` = 'Libre' order by `descripcion_cabina` ";
+        int totalRegistros;
+        agregarCabinas.removeAll();
+        try {
+            pst = con.prepareStatement(sqlQuery);
+
+            rs = pst.executeQuery();
+            totalRegistros = 0;
+            while (rs.next()) {
+                String nombreCabina = rs.getString(1);
+                JButton btn = new JButton(nombreCabina);
+                agregarCabinas.add(btn);
+                
+                if (rs.getString(2).equals("Ocupado")) {
+                    btn.setBackground(Color.red);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Libre")) {
+                    btn.setBackground(Color.green);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Limpieza")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Bloqueo")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
+                }
+                btn.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+                });
+                totalRegistros++;
+                
+            }
+            
+            agregarCabinas.updateUI();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }
+    
+    private void Get_Ocupado() {
+        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
+        
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `pct3`.`cabina` AS `cabina` WHERE `estado_cabina` = 'Ocupado' ORDER BY `descripcion_cabina` ASC";
+        int totalRegistros;
+        agregarCabinas.removeAll();
+        try {
+            pst = con.prepareStatement(sqlQuery);
+
+            rs = pst.executeQuery();
+            totalRegistros = 0;
+            while (rs.next()) {
+                String nombreCabina = rs.getString(1);
+                JButton btn = new JButton(nombreCabina);
+                agregarCabinas.add(btn);
+                
+                if (rs.getString(2).equals("Ocupado")) {
+                    btn.setBackground(Color.red);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Libre")) {
+                    btn.setBackground(Color.green);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Limpieza")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Bloqueo")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
+                }
+                btn.addActionListener(new ActionListener() {
+                   
+
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        System.out.println("Ocupado");
+                    }
+                });
+                
+                totalRegistros++;
+                
+            }
+            
+            agregarCabinas.updateUI();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }
+    
+    private void Get_Limpieza() {
+        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
+        
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `pct3`.`cabina` AS `cabina` WHERE `estado_cabina` = 'Limpieza' ORDER BY `descripcion_cabina` ASC";
+        int totalRegistros;
+        agregarCabinas.removeAll();
+        try {
+            pst = con.prepareStatement(sqlQuery);
+
+            rs = pst.executeQuery();
+            totalRegistros = 0;
+            while (rs.next()) {
+                String nombreCabina = rs.getString(1);
+                JButton btn = new JButton(nombreCabina);
+                agregarCabinas.add(btn);
+                
+                if (rs.getString(2).equals("Ocupado")) {
+                    btn.setBackground(Color.red);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Libre")) {
+                    btn.setBackground(Color.green);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Limpieza")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
+                }
+                if (rs.getString(2).equals("Bloqueo")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
+                }
+                btn.addActionListener(new ActionListener() {
+                   
+
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        try {
+                            Principal_frm p = new Principal_frm();
+                            p.setVisible(true);
+                        } catch (IOException ex) {
+                            Logger.getLogger(SeleccionarCabina_frm.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+                
+                totalRegistros++;
+                
+            }
+            
+            agregarCabinas.updateUI();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,8 +342,6 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
         Bloqueado = new javax.swing.JRadioButton();
         Doble = new javax.swing.JRadioButton();
         agregarCabinas = new javax.swing.JPanel();
-        Nombre_Usuari_S = new javax.swing.JLabel();
-        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Selección de Cábinas");
@@ -172,16 +443,15 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                     .addComponent(Todos)
                     .addComponent(Limpieza)
                     .addComponent(Bloqueado))
-                .addGap(42, 42, 42)
-                .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(595, Short.MAX_VALUE))
+            .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(opcionesLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         opcionesLayout.setVerticalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
             .addGroup(opcionesLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(Todos)
@@ -197,16 +467,15 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 .addComponent(Doble)
                 .addGap(18, 18, 18)
                 .addComponent(Sencilla)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 55, Short.MAX_VALUE))
+            .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(opcionesLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 700, 350));
-
-        Nombre_Usuari_S.setText("jLabel1");
-        getContentPane().add(Nombre_Usuari_S, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 742, 367));
+        getContentPane().add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 700, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,7 +483,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private void OcupadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OcupadoActionPerformed
         // TODO add your handling code here:
         agregarCabinas.removeAll();
-        Get_Data_Ocupado();
+        Get_Ocupado();
     }//GEN-LAST:event_OcupadoActionPerformed
 
     private void TodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TodosActionPerformed
@@ -226,31 +495,27 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private void VacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VacioActionPerformed
         // TODO add your handling code here:
         agregarCabinas.removeAll();
-        Get_Data_Vacio();
+        Get_Libre();
     }//GEN-LAST:event_VacioActionPerformed
 
     private void LimpiezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiezaActionPerformed
         // TODO add your handling code here:
         agregarCabinas.removeAll();
-        Get_Data_Limpieza();
+        Get_Limpieza();
     }//GEN-LAST:event_LimpiezaActionPerformed
 
     private void BloqueadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BloqueadoActionPerformed
         // TODO add your handling code here:
         agregarCabinas.removeAll();
-        Get_Data_Bloqueada();
     }//GEN-LAST:event_BloqueadoActionPerformed
 
     private void DobleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DobleActionPerformed
         // TODO add your handling code here:
         agregarCabinas.removeAll();
-        Get_Data_Sencilla();
     }//GEN-LAST:event_DobleActionPerformed
 
     private void SencillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SencillaActionPerformed
         // TODO add your handling code here:
-        agregarCabinas.removeAll();
-        Get_Data_Doble();
     }//GEN-LAST:event_SencillaActionPerformed
 
     /**
@@ -289,246 +554,22 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private javax.swing.JRadioButton Bloqueado;
     private javax.swing.JRadioButton Doble;
     private javax.swing.JRadioButton Limpieza;
-    public static javax.swing.JLabel Nombre_Usuari_S;
     private javax.swing.JRadioButton Ocupado;
     private javax.swing.JRadioButton Sencilla;
     private javax.swing.JRadioButton Todos;
     private javax.swing.JRadioButton Vacio;
     private javax.swing.JPanel agregarCabinas;
     private javax.swing.ButtonGroup bgOpciones;
-    private javax.swing.JLabel fondo;
     private javax.swing.JPanel opciones;
     // End of variables declaration//GEN-END:variables
 
-    private void Get_Data() {
-        String sql = "SELECT `descripcion_cabina`, `estado_cabina` FROM `cabina` ORDER BY `estado_cabina`";
-        try {
+    private static abstract class ActionListener implements java.awt.event.ActionListener {
 
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                String nombre_Cabina = rs.getString(1);
-                JButton btn = new JButton(nombre_Cabina);
-                agregarCabinas.add(btn);
-                if (rs.getString(2).equals("Ocupada")) {
-                    btn.setBackground(Color.red);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
-                }
-                if (rs.getString(2).equals("Libre")) {
-                    btn.setBackground(Color.green);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
-                }
-                if (rs.getString(2).equals("Limpieza")) {
-                    btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
-                }
-                if (rs.getString(2).equals("Bloqueada")) {
-                    btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
-                }
-                btn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Prueba_frm p = new Prueba_frm();
-                        p.setVisible(true);
-                        Prueba_frm.jLabel1.setText(btn.getText());
-                        
-                    }
-                });
-            }
-            agregarCabinas.updateUI();
-        } catch (SQLException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e);
+        public ActionListener() {
         }
     }
 
-    private void Get_Data_Ocupado() {
-        String sql = "SELECT `descripcion_cabina` FROM `cabina` WHERE `estado_cabina` = 'Ocupada'";
-        try {
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                String nombre_Cabina = rs.getString(1);
-                JButton btn = new JButton(nombre_Cabina);
-                agregarCabinas.add(btn);
-                btn.setBackground(Color.red);
-                btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
-                btn.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Prueba_frm p = new Prueba_frm();
-                        p.setVisible(true);
-                        
-                        Factura_frm.NombreCabina.setText(btn.getText());
-                        
-                    }
-                });
-            }
-            agregarCabinas.updateUI();
-        } catch (SQLException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e);
+    
 
-        }
-    }
-
-    private void Get_Data_Vacio() {
-        String sql = "SELECT `descripcion_cabina` FROM `cabina` WHERE `estado_cabina` = 'Libre'";
-        try {
-
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                String nombre_Cabina = rs.getString(1);
-                JButton btn = new JButton(nombre_Cabina);
-                agregarCabinas.add(btn);
-                btn.setBackground(Color.green);
-                btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
-                btn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Factura_frm factura_frm;
-                        try {
-                            factura_frm = new Factura_frm();
-                            factura_frm.setVisible(true);
-                            
-                        } catch (IOException ex) {
-                            Logger.getLogger(SeleccionarCabina_frm.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        
-                        Factura_frm.NombreCabina.setText(btn.getText());
-                        
-                    }
-                });
-            }
-            agregarCabinas.updateUI();
-        } catch (SQLException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }
-
-    private void Get_Data_Limpieza() {
-        String sql = "SELECT `descripcion_cabina` FROM `cabina` WHERE `estado_cabina` = 'Limpieza'";
-        try {
-
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                String nombre_Cabina = rs.getString(1);
-                JButton btn = new JButton(nombre_Cabina);
-                agregarCabinas.add(btn);
-                btn.setBackground(Color.yellow);
-                btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
-                btn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Prueba_frm p = new Prueba_frm();
-                        p.setVisible(true);
-                        Prueba_frm.jLabel1.setText(btn.getText());
-                        
-                    }
-                });
-            }
-            
-            agregarCabinas.updateUI();
-        } catch (SQLException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }
-
-    private void Get_Data_Bloqueada() {
-        String sql = "SELECT `descripcion_cabina` FROM `cabina` WHERE `estado_cabina` = 'Bloqueada'";
-        try {
-
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                String nombre_Cabina = rs.getString(1);
-                JButton btn = new JButton(nombre_Cabina);
-                agregarCabinas.add(btn);
-                btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
-                btn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Prueba_frm p = new Prueba_frm();
-                        p.setVisible(true);
-                        Prueba_frm.jLabel1.setText(btn.getText());
-                        
-                    }
-                });
-
-            }
-            agregarCabinas.updateUI();
-        } catch (SQLException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }
-
-    private void Get_Data_Sencilla() {
-        String sql = "SELECT `descripcion_cabina`, `estado_cabina` FROM `cabina` WHERE `precio_precio_id` = 1 ORDER by `estado_cabina`";
-        try {
-
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                String nombre_Cabina = rs.getString(1);
-                JButton btn = new JButton(nombre_Cabina);
-                agregarCabinas.add(btn);
-                if (rs.getString(2).equals("Ocupada")) {
-                    btn.setBackground(Color.red);
-                }
-                if (rs.getString(2).equals("Libre")) {
-                    btn.setBackground(Color.green);
-                }
-                if (rs.getString(2).equals("Limpieza")) {
-                    btn.setBackground(Color.yellow);
-                }
-                btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/single.png"))); // NOI18N
-                btn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Prueba_frm p = new Prueba_frm();
-                        p.setVisible(true);
-                        Prueba_frm.jLabel1.setText(btn.getText());
-                        
-                    }
-                });
-            }
-            agregarCabinas.updateUI();
-        } catch (SQLException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-
-    private void Get_Data_Doble() {
-        String sql = "SELECT `descripcion_cabina`, `estado_cabina` FROM `cabina` WHERE `precio_precio_id` = 2 ORDER by `estado_cabina`";
-        try {
-
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                String nombre_Cabina = rs.getString(1);
-                JButton btn = new JButton(nombre_Cabina);
-                agregarCabinas.add(btn);
-                if (rs.getString(2).equals("Ocupada")) {
-                    btn.setBackground(Color.red);
-                }
-                if (rs.getString(2).equals("Libre")) {
-                    btn.setBackground(Color.green);
-                }
-                if (rs.getString(2).equals("Limpieza")) {
-                    btn.setBackground(Color.yellow);
-                }
-                btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/queen.png"))); // NOI18N
-                btn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Prueba_frm p = new Prueba_frm();
-                        p.setVisible(true);
-                        Prueba_frm.jLabel1.setText(btn.getText());
-                        
-                    }
-                });
-            }
-            agregarCabinas.updateUI();
-        } catch (SQLException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
+    
 }

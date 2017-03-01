@@ -21,7 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import static view.Prueba_frm.jLabel1;
+
 
 /**
  *
@@ -41,8 +41,8 @@ public final class Principal_frm extends javax.swing.JFrame {
     String sqlSelect_Valor;
     String sqlInsert;
     String sqlDelete;
-    //declarar static e instanciarla en tu contructor`
-    static DefaultComboBoxModel modeloPuesto, modeloHorario;
+    
+    String nombreUsuario;
 
     public Principal_frm() throws IOException {
         initComponents();
@@ -59,76 +59,12 @@ public final class Principal_frm extends javax.swing.JFrame {
         sqlInsert = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES ('";
         sqlDelete = "DELETE FROM `persona` WHERE `idpersona` = ";
 
-        modeloPuesto = new DefaultComboBoxModel();
-        modeloHorario = new DefaultComboBoxModel();
-
-        llena_ComboHorario(); // llenar los datos al ejecutar el programa
-        llena_ComboPuesto();
-        LlenaCabina();
+        fechas();
+        
     }
 
-    public void llena_ComboPuesto() {
-        try {
-            modeloPuesto.removeAllElements(); // eliminamos lo elementos
 
-            Statement stmt;
-            stmt = con.createStatement();
-
-            String sql1 = "SELECT `nombre` FROM `persona` ";
-            rs = stmt.executeQuery(sql1);
-
-            while (rs.next()) {
-                modeloPuesto.addElement(rs.getString("nombre"));
-            }
-
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-        }
-    }
-
-    public void LlenaCabina() {
-        try {
-            //thane'
-            String sql_persona = "SELECT `cabina`.`cabina_id` as 'id', `cabina`.`descripcion_cabina` as 'Cabina', `cabina`.`estado_cabina` as 'Estado', `cabina`.`precio_precio_id`, `precio`.`descripcion_precio`, `precio`.`monto_precio` as 'Monto' FROM `pct3`.`cabina` AS `cabina`, `pct3`.`precio` AS `precio` WHERE `cabina`.`precio_precio_id` = `precio`.`precio_id` AND `cabina`.`descripcion_cabina` = '" + NombreCabina.getText() + "'";
-            pst = con.prepareStatement(sql_persona);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("id");
-                String add2 = rs.getString("Cabina");
-                String add3 = rs.getString("Estado");
-                String add4 = rs.getString("Monto");
-
-                EstadoCabina.setText(add3);
-
-                IdCabina.setText(add1);
-
-            }
-
-        } catch (SQLException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }
-
-    public void llena_ComboHorario() { // static para poder llamarlo desde el otro frame o JDialog
-
-        try {
-            modeloHorario.removeAllElements(); // eliminamos lo elementos
-
-            Statement stmt;
-            stmt = con.createStatement();
-
-            String sql1 = "SELECT `descripcion_horario` FROM `horario`";
-            rs = stmt.executeQuery(sql1);
-
-            while (rs.next()) {
-                modeloHorario.addElement(rs.getString("descripcion_horario"));
-            }
-
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-        }
-    }
+    
 
     public void fechas() {
         Date h = new Date();
@@ -170,6 +106,11 @@ public final class Principal_frm extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         Cabinas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Factura");
@@ -324,6 +265,27 @@ public final class Principal_frm extends javax.swing.JFrame {
 
         jMenuBar1.add(Cabinas);
 
+        jMenu3.setText("Agregar");
+
+        jMenuItem2.setText("Empleado");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("Cliente");
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setText("Proveedor");
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setText("Cabina");
+        jMenu3.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -342,12 +304,12 @@ public final class Principal_frm extends javax.swing.JFrame {
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         // TODO add your handling code here:
-        LlenaCabina();
+
     }//GEN-LAST:event_formFocusGained
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
-        LlenaCabina();
+        
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -356,6 +318,37 @@ public final class Principal_frm extends javax.swing.JFrame {
         f = new SeleccionarCabina_frm();
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        Persona_frm persona_frm;
+        try {
+            persona_frm = new Persona_frm();
+            persona_frm.setVisible(true);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Principal_frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            
+
+            Statement stmt;
+            stmt = con.createStatement();
+
+            String sql1 = "SELECT `nombre` FROM `persona` WHERE `nombre` LIKE '%"+Nombre_Empleado.getText()+"%'";
+            rs = stmt.executeQuery(sql1);
+
+            while (rs.next()) {
+                nombreUsuario = rs.getString("nombre");
+                Persona_frm.nombreUsuario.setText(nombreUsuario);
+            }
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -920,8 +913,13 @@ public final class Principal_frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblCabina;
     private javax.swing.JLabel lbl_fecha;

@@ -41,22 +41,6 @@ public final class Persona_frm extends javax.swing.JFrame {
 
     private String id_Persona;
 
-    public JLabel getLbl_Gasto_Operativo_id() {
-        return lbl_Gasto_Operativo_id;
-    }
-
-    public void setLbl_Gasto_Operativo_id(JLabel lbl_Gasto_Operativo_id) {
-        this.lbl_Gasto_Operativo_id = lbl_Gasto_Operativo_id;
-    }
-
-    public JLabel getLbl_id_persona() {
-        return lbl_id_persona;
-    }
-
-    public void setLbl_id_persona(JLabel lbl_id_persona) {
-        this.lbl_id_persona = lbl_id_persona;
-    }
-
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modelo;
 
@@ -131,6 +115,8 @@ public final class Persona_frm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        nombreUsuario = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         cmbTipoPersona = new javax.swing.JComboBox<>();
@@ -155,65 +141,86 @@ public final class Persona_frm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Nueva Persona");
-        setMaximumSize(new java.awt.Dimension(818, 401));
-        setMinimumSize(new java.awt.Dimension(818, 401));
+        setMaximumSize(new java.awt.Dimension(713, 380));
+        setMinimumSize(new java.awt.Dimension(713, 380));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(818, 401));
+        setPreferredSize(new java.awt.Dimension(713, 380));
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 360, 40));
+        txtNombre_Apellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 360, 40));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        jLabel3.setForeground(java.awt.Color.white);
         jLabel3.setText("Cedula");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
 
         txtCedula.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txtCedula.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 270, 40));
+        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 270, 40));
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel4.setText("Direccion");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.white);
+        jLabel4.setText("Colaborador:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        nombreUsuario.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        nombreUsuario.setForeground(java.awt.Color.white);
+        nombreUsuario.setText("Direccion");
+        getContentPane().add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        jLabel9.setForeground(java.awt.Color.white);
+        jLabel9.setText("Direccion");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        jLabel6.setForeground(java.awt.Color.white);
         jLabel6.setText("Télefono o Celular");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         txtDireccion.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 440, 40));
+        txtDireccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 440, 40));
 
         cmbTipoPersona.setFont(new java.awt.Font("Dialog", 1, 16));
         cmbTipoPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTipoPersona.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         cmbTipoPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTipoPersonaActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbTipoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 200, 40));
+        getContentPane().add(cmbTipoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 200, 40));
 
         txtClasificación.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 200, 40));
+        txtClasificación.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, 40));
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setText("Nombre y Apellidos");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        jLabel8.setForeground(java.awt.Color.white);
         jLabel8.setText("Clasificación");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
         txtPhone.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 200, 40));
+        txtPhone.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, 40));
 
         Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/usuario.png"))); // NOI18N
-        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 150, 150));
+        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 150, 150));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/store-new-badges.png"))); // NOI18N
@@ -268,37 +275,37 @@ public final class Persona_frm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nuevo)
-                    .addComponent(guardar)
-                    .addComponent(editar)
-                    .addComponent(buscar)
-                    .addComponent(borrar)
-                    .addComponent(volver))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addComponent(volver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(nuevo)
                 .addGap(18, 18, 18)
                 .addComponent(guardar)
                 .addGap(18, 18, 18)
-                .addComponent(editar)
-                .addGap(18, 18, 18)
-                .addComponent(buscar)
-                .addGap(18, 18, 18)
                 .addComponent(borrar)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(editar)
+                .addGap(24, 24, 24)
+                .addComponent(buscar)
+                .addContainerGap(222, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buscar)
+                    .addComponent(volver)
+                    .addComponent(nuevo)
+                    .addComponent(guardar)
+                    .addComponent(borrar)
+                    .addComponent(editar))
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 420));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 70));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 380));
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/fondos/celeste.png"))); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 380));
 
         lbl_Gasto_Operativo_id.setText("jLabel1");
         getContentPane().add(lbl_Gasto_Operativo_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, -1, -1));
@@ -311,7 +318,6 @@ public final class Persona_frm extends javax.swing.JFrame {
         mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/exit-sign.png"))); // NOI18N
         mnuSalir.setMnemonic(KeyEvent.VK_X);
         mnuSalir.setText("Salir");
-        mnuSalir.setBorderPainted(false);
         mnuSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mnuSalir.setName(""); // NOI18N
         mnuSalir.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
@@ -539,7 +545,6 @@ public final class Persona_frm extends javax.swing.JFrame {
                     rs = pst.executeQuery();
                     if (rs.next()) {
                         String sel1 = rs.getString("idpersona");
-
                         String sel2 = rs.getString("nombre");
                         String sel3 = rs.getString("cedula");
                         String sel4 = rs.getString("telefono");
@@ -626,9 +631,7 @@ public final class Persona_frm extends javax.swing.JFrame {
 
                 }
                 if (tipoPersonaSeleccionada.equals("Colaborador")) {
-
                     agregarPersona();
-
                     JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
                     Colaborador_frm colaborador = new Colaborador_frm();
                     colaborador.setVisible(true);
@@ -730,12 +733,14 @@ public final class Persona_frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_Gasto_Operativo_id;
     private javax.swing.JLabel lbl_id_persona;
     private javax.swing.JMenu mnuSalir;
+    public static javax.swing.JLabel nombreUsuario;
     private javax.swing.JButton nuevo;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtClasificación;

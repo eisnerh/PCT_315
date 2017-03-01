@@ -14,6 +14,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -42,7 +46,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
 
     public Colaborador_frm() throws IOException {
         initComponents();
-
+        Date sumarRestarDiasFecha = sumarRestarDiasFecha(dcFechaContrato.getDate(),3);
         //inicialización de las variables de la coneccion a la base de datos
         con = ConexionDB.conexionDB();
         //llama al procedimiento de obtener la información.
@@ -81,6 +85,18 @@ public final class Colaborador_frm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
+    // Suma los días recibidos a la fecha  
+ public Date sumarRestarDiasFecha(Date fecha, int dias){
+ 
+      Calendar calendar = Calendar.getInstance();
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      calendar.add(Calendar.DAY_OF_YEAR, dias);  // numero de días a añadir, o restar en caso de días<0
+ System.out.println(calendar.getTime().toString());
+        
+      return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
+      
+ }
+
 
     public void llena_ComboHorario() { // static para poder llamarlo desde el otro frame o JDialog
 
@@ -118,6 +134,8 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         buscar.setEnabled(true);
         editar.setEnabled(false);
         borrar.setEnabled(false);
+        Date d = new Date();
+        dcFechaContrato.setDate(d);
 
     }
 
@@ -134,11 +152,13 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtFechaContrato = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        dcFechaContrato = new com.toedter.calendar.JDateChooser();
         id_persona = new javax.swing.JLabel();
         chk_Activo = new javax.swing.JCheckBox();
         cmbHorario = new javax.swing.JComboBox<>();
         txtClasificación = new javax.swing.JTextField();
         cmbTipoPuesto = new javax.swing.JComboBox<>();
+        dcFechaContrato1 = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -169,6 +189,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         getContentPane().add(txtFechaDespido, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 230, 40));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Fecha Despido");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
 
@@ -181,8 +202,28 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         getContentPane().add(txtFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 230, 40));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Observaciones");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
+
+        dcFechaContrato.setDateFormatString("yyyy/MM/dd");
+        dcFechaContrato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                dcFechaContratoMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dcFechaContratoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dcFechaContratoMouseEntered(evt);
+            }
+        });
+        dcFechaContrato.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dcFechaContratoPropertyChange(evt);
+            }
+        });
+        getContentPane().add(dcFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 160, 40));
 
         id_persona.setText("jLabel1");
         getContentPane().add(id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 100, 30));
@@ -212,15 +253,37 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         });
         getContentPane().add(cmbTipoPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 200, 40));
 
+        dcFechaContrato1.setDateFormatString("yyyy/MM/dd");
+        dcFechaContrato1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                dcFechaContrato1MousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dcFechaContrato1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dcFechaContrato1MouseEntered(evt);
+            }
+        });
+        dcFechaContrato1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dcFechaContrato1PropertyChange(evt);
+            }
+        });
+        getContentPane().add(dcFechaContrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 160, 40));
+
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Puesto");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Fecha Contrato");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Horario");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
 
@@ -290,7 +353,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
                     .addComponent(buscar)
                     .addComponent(borrar)
                     .addComponent(volver))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,7 +587,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
-       }
+        }
     }//GEN-LAST:event_borrarActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
@@ -550,6 +613,68 @@ public final class Colaborador_frm extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_chk_ActivoActionPerformed
+
+    private void dcFechaContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcFechaContratoMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_dcFechaContratoMouseClicked
+
+    private void dcFechaContratoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dcFechaContratoPropertyChange
+        try {
+            String formato = dcFechaContrato.getDateFormatString();
+            //Formato
+            Date date = dcFechaContrato.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            txtFechaContrato.setText(sdf.format(date));
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Al menos selecciona una fecha válida!", "Error!", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_dcFechaContratoPropertyChange
+
+    private void dcFechaContratoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcFechaContratoMousePressed
+        // TODO add your handling code here:
+        try {
+            String formato = dcFechaContrato.getDateFormatString();
+            //Formato
+            Date date = dcFechaContrato.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            txtFechaContrato.setText(sdf.format(date));
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Al menos selecciona una fecha válida!", "Error!", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+
+    }//GEN-LAST:event_dcFechaContratoMousePressed
+
+    private void dcFechaContratoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcFechaContratoMouseEntered
+        // TODO add your handling code here:
+        try {
+            String formato = dcFechaContrato.getDateFormatString();
+            //Formato
+            Date date = dcFechaContrato.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            txtFechaContrato.setText(sdf.format(date));
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Al menos selecciona una fecha válida!", "Error!", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }//GEN-LAST:event_dcFechaContratoMouseEntered
+
+    private void dcFechaContrato1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcFechaContrato1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dcFechaContrato1MousePressed
+
+    private void dcFechaContrato1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcFechaContrato1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dcFechaContrato1MouseClicked
+
+    private void dcFechaContrato1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcFechaContrato1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dcFechaContrato1MouseEntered
+
+    private void dcFechaContrato1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dcFechaContrato1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dcFechaContrato1PropertyChange
 
     /**
      * @param args the command line arguments
@@ -659,6 +784,8 @@ public final class Colaborador_frm extends javax.swing.JFrame {
     private javax.swing.JCheckBox chk_Activo;
     private javax.swing.JComboBox<String> cmbHorario;
     private javax.swing.JComboBox<String> cmbTipoPuesto;
+    private com.toedter.calendar.JDateChooser dcFechaContrato;
+    private com.toedter.calendar.JDateChooser dcFechaContrato1;
     private javax.swing.JButton editar;
     private javax.swing.JLabel empleado_id;
     private javax.swing.JLabel fondo;

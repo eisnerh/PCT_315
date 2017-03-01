@@ -412,7 +412,7 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
 
                 Statement stmt;
                 stmt = con.createStatement();
-                //SELECT `gasto_id`, `descripcion_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id` FROM `gasto_operativo` WHERE descripcion_gasto = "Cine"
+                
                 String sql1 = sqlSelect_Valor + txtN_Factura.getText() + "'";
                 rs = stmt.executeQuery(sql1);
                 if (rs.next()) {
@@ -421,8 +421,6 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
                     txtDetalle_Gasto.requestDefaultFocus();
                     return;
                 }
-                //INSERT INTO `gasto_operativo`(`gasto_id`, `descripcion_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES (`descripcion_gasto`,                     `monto_gasto`,                    `fecha_gasto`,                    `factura_gasto`,                   `colaborador_empleado_id`)
-                //            INSERT INTO `gasto_operativo`(`descripcion_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES (`descripcion_gasto`,                     `monto_gasto`,                    `fecha_gasto`,                    `factura_gasto`,                   `colaborador_empleado_id`)
                 String sql = "INSERT INTO `gasto_operativo`(`descripcion_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES ('" + txtDetalle_Gasto.getText() + "','" + txt_MontoGasto.getText() + "','" + txtFecha_Gasto.getText() + "','" + txtN_Factura.getText() + "','" +lbl_id_persona.getText() + "')";
                 pst = con.prepareStatement(sql);
                 pst.execute();

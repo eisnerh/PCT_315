@@ -7,18 +7,14 @@ package view;
 
 import com.sun.glass.events.KeyEvent;
 import controller.ConexionDB;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import net.sf.jcarrierpigeon.WindowPosition;
 import net.sf.jtelegraph.Telegraph;
@@ -55,13 +51,6 @@ public class Login_frm extends javax.swing.JFrame {
         con = ConexionDB.conexionDB();
         //centra la ventana para que se inicie en el centro del escritorio
         this.setLocationRelativeTo(null);
-
-        sqlSelect = "SELECT `idusuario`, `usuario`, `password`, `colaborador_empleado_id` FROM `usuario` ORDER BY `desc_persona`";
-        sqlSelect_Valor = "SELECT `idusuario`, `usuario`, `password`, `colaborador_empleado_id` FROM `usuario` WHERE `usuario` = '";
-
-        ////INSERT INTO `Horario_frm`(`descripcion_horario`) VALUES (" ")
-        sqlInsert = "INSERT INTO `usuario`(`usuario`, `password`, `colaborador_empleado_id`) VALUES ('";
-        sqlDelete = "DELETE FROM `usuario` WHERE `idusuario` = ";
     }
 
     /**
@@ -76,11 +65,10 @@ public class Login_frm extends javax.swing.JFrame {
         txt_User = new javax.swing.JTextField();
         txt_Pass = new javax.swing.JPasswordField();
         c1 = new javax.swing.JLabel();
-        login = new javax.swing.JLabel();
-        fondo = new javax.swing.JLabel();
         lbl_idUsuario = new javax.swing.JLabel();
         lbl_colaborador_empleado_id = new javax.swing.JLabel();
         lbl_Entrar = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
@@ -94,8 +82,7 @@ public class Login_frm extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_User.setBackground(new java.awt.Color(255, 255, 255));
-        txt_User.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txt_User.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
         txt_User.setForeground(new java.awt.Color(0, 0, 0));
         txt_User.setBorder(null);
         txt_User.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -103,9 +90,9 @@ public class Login_frm extends javax.swing.JFrame {
                 txt_UserKeyPressed(evt);
             }
         });
-        getContentPane().add(txt_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 220, 40));
+        getContentPane().add(txt_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 220, 40));
 
-        txt_Pass.setBackground(new java.awt.Color(255, 255, 255));
+        txt_Pass.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
         txt_Pass.setForeground(new java.awt.Color(0, 0, 0));
         txt_Pass.setBorder(null);
         txt_Pass.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -113,7 +100,7 @@ public class Login_frm extends javax.swing.JFrame {
                 txt_PassKeyPressed(evt);
             }
         });
-        getContentPane().add(txt_Pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 220, 40));
+        getContentPane().add(txt_Pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 220, 40));
 
         c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/c1.png"))); // NOI18N
         c1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -129,34 +116,29 @@ public class Login_frm extends javax.swing.JFrame {
         });
         getContentPane().add(c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
 
-        login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/CustomLoginForms_01.jpg"))); // NOI18N
-        login.setOpaque(true);
-        login.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loginMouseClicked(evt);
-            }
-        });
-        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 220));
-
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 610, 260));
-
-        lbl_idUsuario.setText("jLabel1");
-        getContentPane().add(lbl_idUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+        lbl_idUsuario.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
+        lbl_idUsuario.setText("Usuario:");
+        getContentPane().add(lbl_idUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 120, -1));
 
         lbl_colaborador_empleado_id.setText("jLabel1");
-        getContentPane().add(lbl_colaborador_empleado_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+        getContentPane().add(lbl_colaborador_empleado_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, -1, -1));
 
-        lbl_Entrar.setText("jLabel1");
-        getContentPane().add(lbl_Entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 60, 60));
+        lbl_Entrar.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
+        lbl_Entrar.setText("Contraseña:");
+        getContentPane().add(lbl_Entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, 60));
+
+        jButton1.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/login.png"))); // NOI18N
+        jButton1.setText("Entrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
-
-        executeLogin();
-    }//GEN-LAST:event_loginMouseClicked
 
     private void c1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c1MouseClicked
         // TODO add your handling code here:
@@ -192,6 +174,11 @@ public class Login_frm extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        executeLogin();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,11 +247,10 @@ public class Login_frm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel c1;
-    private javax.swing.JLabel fondo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lbl_Entrar;
     private javax.swing.JLabel lbl_colaborador_empleado_id;
     private javax.swing.JLabel lbl_idUsuario;
-    private javax.swing.JLabel login;
     private javax.swing.JPasswordField txt_Pass;
     private javax.swing.JTextField txt_User;
     // End of variables declaration//GEN-END:variables
@@ -302,17 +288,15 @@ public class Login_frm extends javax.swing.JFrame {
                     Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:green;font-size:13px'><b>Login Exitoso!</b></body></html>", TelegraphType.NOTIFICATION_DONE, WindowPosition.TOPRIGHT, 1500);
                     TelegraphQueue q = new TelegraphQueue();
                     TelegraphEnvelope qa = new TelegraphEnvelope();
-                    
-                        String nombre_Cabina = rs.getString(1);
 
-                        Principal_frm p = new Principal_frm();
+                    String nombre_Cabina = rs.getString(1);
 
-                        p.setVisible(true);
-                        this.hide();
-                        q.add(tele);
-                        Principal_frm.Nombre_Empleado.setText(nombre_Cabina);
+                    Principal_frm p = new Principal_frm();
 
-                    
+                    p.setVisible(true);
+                    this.hide();
+                    q.add(tele);
+                    Principal_frm.Nombre_Empleado.setText(nombre_Cabina);
 
                 } else {
                     Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:red;font-size:13px'><b> Access Denied!</b></body></html>", TelegraphType.NOTIFICATION_ERROR, WindowPosition.TOPRIGHT, 1500);
