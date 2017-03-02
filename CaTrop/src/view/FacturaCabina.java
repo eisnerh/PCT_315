@@ -5,6 +5,7 @@
  */
 package view;
 
+import view.Cabinas.Cabina;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;

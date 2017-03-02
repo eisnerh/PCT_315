@@ -243,29 +243,29 @@ public final class Factura_frm extends javax.swing.JFrame {
         });
 
         PrecioCabina2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina2.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina2.setForeground(new java.awt.Color(0, 0, 0));
         PrecioCabina2.setText("Sub Total: ");
 
         PrecioCabina5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina5.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina5.setForeground(new java.awt.Color(0, 0, 0));
         PrecioCabina5.setText("Cantidad de Días:");
 
         PrecioCabina6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina6.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina6.setForeground(new java.awt.Color(0, 0, 0));
         PrecioCabina6.setText("Total:");
 
-        EstadoCabina.setForeground(new java.awt.Color(255, 255, 255));
+        EstadoCabina.setForeground(new java.awt.Color(0, 0, 0));
         EstadoCabina.setText("jLabel1");
 
         PrecioCabina.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina.setForeground(new java.awt.Color(0, 0, 0));
         PrecioCabina.setText("Impuesto:");
 
         PrecioCabina4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        PrecioCabina4.setForeground(new java.awt.Color(255, 255, 255));
+        PrecioCabina4.setForeground(new java.awt.Color(0, 0, 0));
         PrecioCabina4.setText("jLabel1");
 
-        IdCabina.setForeground(new java.awt.Color(255, 255, 255));
+        IdCabina.setForeground(new java.awt.Color(0, 0, 0));
         IdCabina.setText("jLabel1");
 
         guardar.setBackground(new java.awt.Color(204, 204, 204));
@@ -342,25 +342,25 @@ public final class Factura_frm extends javax.swing.JFrame {
         empleado_id.setForeground(new java.awt.Color(255, 255, 255));
         empleado_id.setText("Nombre Cliente");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Tipo Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Tipo Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 16))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setOpaque(false);
 
         grupo_clientes.add(rb_Cliente);
         rb_Cliente.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        rb_Cliente.setForeground(new java.awt.Color(255, 255, 255));
+        rb_Cliente.setForeground(new java.awt.Color(0, 0, 0));
         rb_Cliente.setText("Empresarial");
         rb_Cliente.setOpaque(false);
 
         grupo_clientes.add(rb_Empresa);
         rb_Empresa.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        rb_Empresa.setForeground(new java.awt.Color(255, 255, 255));
+        rb_Empresa.setForeground(new java.awt.Color(0, 0, 0));
         rb_Empresa.setText("Gubernamental");
         rb_Empresa.setOpaque(false);
 
         grupo_clientes.add(rb_Gobierno);
         rb_Gobierno.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        rb_Gobierno.setForeground(new java.awt.Color(255, 255, 255));
+        rb_Gobierno.setForeground(new java.awt.Color(0, 0, 0));
         rb_Gobierno.setText("Normal");
         rb_Gobierno.setOpaque(false);
         rb_Gobierno.addActionListener(new java.awt.event.ActionListener() {
@@ -409,11 +409,11 @@ public final class Factura_frm extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Empleado:");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Fecha Factura");
 
         txtFecha.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -424,15 +424,15 @@ public final class Factura_frm extends javax.swing.JFrame {
         });
 
         lblCabina.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblCabina.setForeground(new java.awt.Color(255, 255, 255));
+        lblCabina.setForeground(new java.awt.Color(0, 0, 0));
         lblCabina.setText("N° Cabina");
 
         NombreCabina.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        NombreCabina.setForeground(new java.awt.Color(255, 255, 255));
+        NombreCabina.setForeground(new java.awt.Color(0, 0, 0));
         NombreCabina.setText("jLabel1");
 
         Nombre_Empleado.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        Nombre_Empleado.setForeground(new java.awt.Color(255, 255, 255));
+        Nombre_Empleado.setForeground(new java.awt.Color(0, 0, 0));
         Nombre_Empleado.setText("Nombre Empleado");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -463,7 +463,7 @@ public final class Factura_frm extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(Nombre_Empleado)))
                             .addComponent(empleado_id, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 328, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(

@@ -7,20 +7,17 @@ package view;
 
 import com.sun.glass.events.KeyEvent;
 import controller.ConexionDB;
+import java.awt.HeadlessException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import net.sf.jcarrierpigeon.WindowPosition;
-import net.sf.jtelegraph.Telegraph;
-import net.sf.jtelegraph.TelegraphEnvelope;
-import net.sf.jtelegraph.TelegraphQueue;
-import net.sf.jtelegraph.TelegraphType;
 
 /**
  *
@@ -39,6 +36,8 @@ public class Login_frm extends javax.swing.JFrame {
     String sqlInsert;
     String sqlDelete;
 
+    public static String ps_NombreEmpleado;
+    public static String ps_idEmpleado;
     BufferedImage img = null;
 
     int xMouse;
@@ -114,7 +113,7 @@ public class Login_frm extends javax.swing.JFrame {
                 c1MouseEntered(evt);
             }
         });
-        getContentPane().add(c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
+        getContentPane().add(c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
         lbl_idUsuario.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
         lbl_idUsuario.setText("Usuario:");
@@ -135,7 +134,7 @@ public class Login_frm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 220, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,58 +256,64 @@ public class Login_frm extends javax.swing.JFrame {
 
     private void executeLogin() {
         String a = txt_User.getText();
-        String b = txt_Pass.getText();
-
+        String b = String.valueOf(txt_Pass.getPassword());
         if (a.length() == 0 && b.length() == 0) {
-            Telegraph tele = new Telegraph("Mensaje",
-                    "<html><body style='color:red;font-size:13px'><b> Agregar usuario y contraseña!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 500);
-            TelegraphQueue q = new TelegraphQueue();
-            TelegraphEnvelope qa = new TelegraphEnvelope();
-            q.add(tele);
-        } else if (a.length() == 0) {
-            Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:red;font-size:13px'><b> Favor escribir el nombre del usuario!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 500);
-            TelegraphQueue q = new TelegraphQueue();
-            q.add(tele);
-        } else if (b.length() == 0) {
-            Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:red;font-size:13px'><b> Favor escribir una contraseña valida!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 500);
-            TelegraphQueue q = new TelegraphQueue();
-            q.add(tele);
-        } else {
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario y Contraseña");
+            txt_User.requestFocus();
+        }
+        if (a.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario");
+            txt_User.requestFocus();
+        }
+        if (b.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Contraseña");
+            txt_Pass.requestFocus();
+        }
+        try {
 
-            //SELECT `idusuario`, `usuario`, `password`, `colaborador_empleado_id` FROM `usuario` WHERE `usuario` = 'admin' and `password`= 'admin'
-            String str = "SELECT `persona`.`nombre` FROM `pct3`.`usuario` AS `usuario`, `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `usuario`.`colaborador_empleado_id` = `colaborador`.`empleado_id` AND `colaborador`.`persona_idpersona` = `persona`.`idpersona`";
-            try {
+            String str = "SELECT `usuario`.`usuario`, `usuario`.`password`, "
+                    + "`usuario`.`colaborador_empleado_id` as 'empleado_id' , "
+                    + "`persona`.`nombre` as `nombre` "
+                    + "FROM `pct3`.`usuario` AS `usuario`, "
+                    + "`pct3`.`colaborador` AS `colaborador`, "
+                    + "`pct3`.`persona` AS `persona` "
+                    + "WHERE `usuario`.`colaborador_empleado_id` = "
+                    + "`colaborador`.`empleado_id` AND "
+                    + "`colaborador`.`persona_idpersona` = "
+                    + "`persona`.`idpersona` AND "
+                    + "`usuario`.`usuario` = '" + a
+                    + "' AND `usuario`.`password` = '" + b + "'";
+            pst = con.prepareStatement(str);
+            rs = pst.executeQuery();
 
-                pst = (PreparedStatement) con.prepareStatement(str);
+            if (rs.next()) {
+                String nombre_persona = rs.getString("nombre");
+                String id_colaborador = rs.getString("empleado_id");
+                ps_NombreEmpleado = rs.getString("nombre");
+                ps_idEmpleado = rs.getString("empleado_id");
+                System.out.println(nombre_persona);
+                System.out.println(id_colaborador);
 
-                rs = pst.executeQuery();
+                Principal_frm p = new Principal_frm();
 
-                if (rs.next()) {
+                p.setVisible(true);
+                this.hide();
 
-                    Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:green;font-size:13px'><b>Login Exitoso!</b></body></html>", TelegraphType.NOTIFICATION_DONE, WindowPosition.TOPRIGHT, 1500);
-                    TelegraphQueue q = new TelegraphQueue();
-                    TelegraphEnvelope qa = new TelegraphEnvelope();
-
-                    String nombre_Cabina = rs.getString(1);
-
-                    Principal_frm p = new Principal_frm();
-
-                    p.setVisible(true);
-                    this.hide();
-                    q.add(tele);
-                    Principal_frm.Nombre_Empleado.setText(nombre_Cabina);
-
+                Principal_frm.Nombre_Empleado.setText(nombre_persona);
+                Principal_frm.IdEmpleado.setText(id_colaborador);
+            } else {
+                int opcion = JOptionPane.showConfirmDialog(this, "Usuario o Contraseña Incorrecta", "Desea Salir", JOptionPane.YES_NO_OPTION);
+                if (opcion == 0) { //The ISSUE is here
+                    System.exit(0);
                 } else {
-                    Telegraph tele = new Telegraph("Mensaje", "<html><body style='color:red;font-size:13px'><b> Access Denied!</b></body></html>", TelegraphType.NOTIFICATION_ERROR, WindowPosition.TOPRIGHT, 1500);
-                    TelegraphQueue q = new TelegraphQueue();
-                    TelegraphEnvelope qa = new TelegraphEnvelope();
-                    q.add(tele);
+                    System.out.print("no");
+
                     txt_User.setText("");
                     txt_Pass.setText("");
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
             }
+
+        } catch (SQLException | IOException | HeadlessException e) {
         }
     }
 }

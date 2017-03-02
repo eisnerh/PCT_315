@@ -166,13 +166,13 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         Persona = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         nuevo = new javax.swing.JButton();
-        guardar = new javax.swing.JButton();
         editar = new javax.swing.JButton();
         borrar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         volver = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
         empleado_id = new javax.swing.JLabel();
+        guardar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuSalir = new javax.swing.JMenu();
@@ -186,12 +186,12 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtFechaDespido.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        getContentPane().add(txtFechaDespido, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 230, 40));
+        getContentPane().add(txtFechaDespido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 230, 40));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Fecha Despido");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, -1));
 
         txtFechaContrato.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtFechaContrato.addActionListener(new java.awt.event.ActionListener() {
@@ -199,12 +199,12 @@ public final class Colaborador_frm extends javax.swing.JFrame {
                 txtFechaContratoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 230, 40));
+        getContentPane().add(txtFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 230, 40));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Observaciones");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
 
         dcFechaContrato.setDateFormatString("yyyy/MM/dd");
         dcFechaContrato.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -223,10 +223,10 @@ public final class Colaborador_frm extends javax.swing.JFrame {
                 dcFechaContratoPropertyChange(evt);
             }
         });
-        getContentPane().add(dcFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 160, 40));
+        getContentPane().add(dcFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 160, 40));
 
         id_persona.setText("jLabel1");
-        getContentPane().add(id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 100, 30));
+        getContentPane().add(id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, 100, 30));
 
         chk_Activo.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         chk_Activo.setText("Activo");
@@ -235,14 +235,14 @@ public final class Colaborador_frm extends javax.swing.JFrame {
                 chk_ActivoActionPerformed(evt);
             }
         });
-        getContentPane().add(chk_Activo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+        getContentPane().add(chk_Activo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, -1, -1));
 
         cmbHorario.setFont(new java.awt.Font("Dialog", 1, 16));
         cmbHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cmbHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 200, 40));
+        getContentPane().add(cmbHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 200, 40));
 
         txtClasificación.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 200, 40));
+        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 200, 40));
 
         cmbTipoPuesto.setFont(new java.awt.Font("Dialog", 1, 16));
         cmbTipoPuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -251,7 +251,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
                 cmbTipoPuestoActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbTipoPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 200, 40));
+        getContentPane().add(cmbTipoPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 200, 40));
 
         dcFechaContrato1.setDateFormatString("yyyy/MM/dd");
         dcFechaContrato1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -270,42 +270,34 @@ public final class Colaborador_frm extends javax.swing.JFrame {
                 dcFechaContrato1PropertyChange(evt);
             }
         });
-        getContentPane().add(dcFechaContrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 160, 40));
+        getContentPane().add(dcFechaContrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 160, 40));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Puesto");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Fecha Contrato");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Horario");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
 
         txtPhone.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 690, 40));
+        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 690, 40));
 
         Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/usuario.png"))); // NOI18N
-        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 150, 150));
+        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, 150, 150));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/store-new-badges.png"))); // NOI18N
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoActionPerformed(evt);
-            }
-        });
-
-        guardar.setBackground(new java.awt.Color(204, 204, 204));
-        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
-        guardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarActionPerformed(evt);
             }
         });
 
@@ -345,41 +337,47 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nuevo)
-                    .addComponent(guardar)
-                    .addComponent(editar)
-                    .addComponent(buscar)
-                    .addComponent(borrar)
-                    .addComponent(volver))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(volver)
+                .addGap(71, 71, 71)
+                .addComponent(nuevo)
+                .addGap(79, 79, 79)
+                .addComponent(editar)
+                .addGap(72, 72, 72)
+                .addComponent(buscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(borrar)
+                .addGap(42, 42, 42))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(volver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nuevo)
-                .addGap(18, 18, 18)
-                .addComponent(guardar)
-                .addGap(18, 18, 18)
-                .addComponent(editar)
-                .addGap(18, 18, 18)
-                .addComponent(buscar)
-                .addGap(18, 18, 18)
-                .addComponent(borrar)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(borrar)
+                    .addComponent(buscar)
+                    .addComponent(editar)
+                    .addComponent(nuevo)
+                    .addComponent(volver))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 420));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 100));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 380));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 510));
 
         empleado_id.setText("jLabel1");
         getContentPane().add(empleado_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 100, -1));
+
+        guardar.setBackground(new java.awt.Color(204, 204, 204));
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         jMenu1.setText("File");
 

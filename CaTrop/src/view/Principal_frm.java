@@ -5,6 +5,8 @@
  */
 package view;
 
+import view.persona.Persona_frm;
+import view.Cabinas.SeleccionarCabina_frm;
 import com.sun.glass.events.KeyEvent;
 import controller.ConexionDB;
 import java.awt.HeadlessException;
@@ -37,10 +39,9 @@ public final class Principal_frm extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs2 = null;
     PreparedStatement pst2 = null;
-    String sqlSelect;
-    String sqlSelect_Valor;
-    String sqlInsert;
-    String sqlDelete;
+
+    
+    public String nmEmpleado;
     
     String nombreUsuario;
 
@@ -54,13 +55,11 @@ public final class Principal_frm extends javax.swing.JFrame {
         //centra la ventana para que se inicie en el centro del escritorio
         setLocationRelativeTo(null);
 
-        sqlSelect = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` order BY `nombre`";
-        sqlSelect_Valor = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE `nombre` = '";
-        sqlInsert = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES ('";
-        sqlDelete = "DELETE FROM `persona` WHERE `idpersona` = ";
-
-        fechas();
         
+        fechas();
+        nmEmpleado = Login_frm.ps_NombreEmpleado;
+        System.out.println("Obtenido del Label Nombre_Empleado " + nmEmpleado);
+        System.out.println("Obtenido del Label Nombre_Empleado " + Login_frm.ps_NombreEmpleado);
     }
 
 
@@ -88,6 +87,13 @@ public final class Principal_frm extends javax.swing.JFrame {
     private void initComponents() {
 
         grupo_clientes = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         empleado_id = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -96,9 +102,9 @@ public final class Principal_frm extends javax.swing.JFrame {
         NombreCabina = new javax.swing.JLabel();
         Nombre_Empleado = new javax.swing.JLabel();
         lbl_fecha = new javax.swing.JLabel();
+        IdEmpleado = new javax.swing.JLabel();
         EstadoCabina = new javax.swing.JLabel();
         PrecioCabina4 = new javax.swing.JLabel();
-        IdCabina = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -132,6 +138,33 @@ public final class Principal_frm extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setLayout(new java.awt.GridLayout(1, 6));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/room-key.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+
+        jButton5.setText("jButton5");
+        jPanel1.add(jButton5);
+
+        jButton4.setText("jButton4");
+        jPanel1.add(jButton4);
+
+        jButton6.setText("jButton6");
+        jPanel1.add(jButton6);
+
+        jButton3.setText("jButton3");
+        jPanel1.add(jButton3);
+
+        jButton2.setText("jButton2");
+        jPanel1.add(jButton2);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 840, 70));
+
         jPanel3.setOpaque(false);
 
         empleado_id.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -162,6 +195,8 @@ public final class Principal_frm extends javax.swing.JFrame {
         lbl_fecha.setForeground(new java.awt.Color(255, 255, 255));
         lbl_fecha.setText("Fecha Factura");
 
+        IdEmpleado.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -170,7 +205,7 @@ public final class Principal_frm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
+                        .addGap(195, 195, 195)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,9 +216,10 @@ public final class Principal_frm extends javax.swing.JFrame {
                                     .addComponent(lblCabina)
                                     .addComponent(NombreCabina)))
                             .addComponent(jLabel9)
-                            .addComponent(Nombre_Empleado)))
+                            .addComponent(Nombre_Empleado)
+                            .addComponent(IdEmpleado)))
                     .addComponent(empleado_id, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,22 +239,21 @@ public final class Principal_frm extends javax.swing.JFrame {
                         .addComponent(jLabel9)))
                 .addGap(18, 18, 18)
                 .addComponent(Nombre_Empleado)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(IdEmpleado)
+                .addGap(23, 23, 23)
                 .addComponent(empleado_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 830, 280));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 830, 230));
 
         EstadoCabina.setText("jLabel1");
-        getContentPane().add(EstadoCabina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
+        getContentPane().add(EstadoCabina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
 
         PrecioCabina4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         PrecioCabina4.setText("jLabel1");
-        getContentPane().add(PrecioCabina4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
-
-        IdCabina.setText("jLabel1");
-        getContentPane().add(IdCabina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        getContentPane().add(PrecioCabina4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 500));
@@ -335,7 +370,9 @@ public final class Principal_frm extends javax.swing.JFrame {
             Statement stmt;
             stmt = con.createStatement();
 
-            String sql1 = "SELECT `nombre` FROM `persona` WHERE `nombre` LIKE '%"+Nombre_Empleado.getText()+"%'";
+            String sql1 = "SELECT `nombre` "
+                    + "FROM `persona` WHERE "
+                    + "`nombre` LIKE '%"+Nombre_Empleado.getText()+"%'";
             rs = stmt.executeQuery(sql1);
 
             while (rs.next()) {
@@ -349,6 +386,43 @@ public final class Principal_frm extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try {
+            
+            
+            String str = "SELECT `persona`.`nombre`, `colaborador`.`empleado_id` "
+                    + "FROM `pct3`.`colaborador` AS `colaborador`, "
+                    + "`pct3`.`persona` AS `persona` WHERE "
+                    + "`colaborador`.`persona_idpersona` = "
+                    + "`persona`.`idpersona` AND "
+                    + "`persona`.`nombre` LIKE '%" + Login_frm.ps_NombreEmpleado + "%'";
+            pst = con.prepareStatement(str);
+            rs = pst.executeQuery();
+            
+
+            if (rs.next()) {
+                String nombre_persona = rs.getString("nombre");
+                String id_colaborador = rs.getString("empleado_id");
+                System.out.println(nombre_persona);
+                System.out.println(id_colaborador);
+
+                SeleccionarCabina_frm p = new SeleccionarCabina_frm();
+
+                p.setVisible(true);
+                this.hide();
+
+                SeleccionarCabina_frm.NombreEmpleado.setText(nombre_persona);
+                SeleccionarCabina_frm.IdEmpleado.setText(id_colaborador);
+            }
+            
+
+        } catch (Exception e) {
+        }
+
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -902,13 +976,19 @@ public final class Principal_frm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Cabinas;
     public static javax.swing.JLabel EstadoCabina;
-    private javax.swing.JLabel IdCabina;
+    public static javax.swing.JLabel IdEmpleado;
     public static javax.swing.JLabel NombreCabina;
     public static javax.swing.JLabel Nombre_Empleado;
     public static javax.swing.JLabel PrecioCabina4;
     private javax.swing.JLabel empleado_id;
     private javax.swing.JLabel fondo;
     private javax.swing.ButtonGroup grupo_clientes;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
@@ -920,6 +1000,7 @@ public final class Principal_frm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblCabina;
     private javax.swing.JLabel lbl_fecha;
