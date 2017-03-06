@@ -9,6 +9,7 @@ import view.persona.Persona_frm;
 import view.Cabinas.SeleccionarCabina_frm;
 import com.sun.glass.events.KeyEvent;
 import controller.ConexionDB;
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,13 +18,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -40,9 +42,14 @@ public final class Principal_frm extends javax.swing.JFrame {
     ResultSet rs2 = null;
     PreparedStatement pst2 = null;
 
-    
+    // Se crea un array de botones
+    private final List<JButton> botones;
+    // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
+    JButton b[];
+    String cambiarFuncion[] = new String[6];
+
     public String nmEmpleado;
-    
+
     String nombreUsuario;
 
     public Principal_frm() throws IOException {
@@ -55,15 +62,118 @@ public final class Principal_frm extends javax.swing.JFrame {
         //centra la ventana para que se inicie en el centro del escritorio
         setLocationRelativeTo(null);
 
-        
+        botones = new ArrayList<>();
+        con = ConexionDB.conexionDB();
+        Get_Data();
+
         fechas();
         nmEmpleado = Login_frm.ps_NombreEmpleado;
         System.out.println("Obtenido del Label Nombre_Empleado " + nmEmpleado);
         System.out.println("Obtenido del Label Nombre_Empleado " + Login_frm.ps_NombreEmpleado);
     }
 
+    private void Get_Data() {
+        /*1*/
+        String sqlQuery = "Select `cabina`.`cabina_id`, "
+                /*2*/ + "`cabina`.`descripcion_cabina`, "
+                /*3*/ + "`cabina`.`estado_cabina`, "
+                /*4*/ + "`factura_cabina`.`fecha`, "
+                /*5*/ + "`factura_cabina`.`cant_dia`, "
+                /*6*/+ "date(@fecha := ((fecha) + (cant_dia))), "
+                + "if (date(@fecha := ((fecha) + (cant_dia)))<now(), "
+                + "-1*DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()), "
+                + "(DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()))) "
+                /*7*/ + "as cantidad "
+                + "from "
+                + "`pct3`.`factura_cabina` AS `factura_cabina`, "
+                + "`pct3`.`cabina` AS `cabina` "
+                + "WHERE "
+                + "`factura_cabina`.`cabina_cabina_id` = `cabina`.`cabina_id` "
+                + "and if (date(@fecha := ((fecha) + (cant_dia)))<now(), "
+                + "-1*DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()), "
+                + "DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now())) > 0 "
+                + "and `cabina`.`estado_cabina` = 'Ocupado' ";
+        int totalRegistros;
+        agregarCabinas.removeAll();
+        try {
+            pst = con.prepareStatement(sqlQuery);
 
-    
+            rs = pst.executeQuery();
+            totalRegistros = 0;
+            while (rs.next()) {
+                String nombreCabina = rs.getString(2);
+                JButton btn = new JButton(nombreCabina);
+                agregarCabinas.add(btn);
+                String fechaCaduca = rs.getString(6);
+                String diasVencidos = rs.getString(7);
+                if (rs.getString(3).equals("Ocupado")) {
+
+                    btn.setBackground(Color.red);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
+
+                    btn.addActionListener(new Principal_frm.ActionListener() {
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            int seleccion = JOptionPane.showOptionDialog(
+                                    null,
+                                    "Seleccione opcion",
+                                    "Selector de opciones",
+                                    JOptionPane.YES_NO_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    null, // null para icono por defecto.
+                                    new Object[]{"Liberar Cabina", "Fecha Disponible"}, // null para YES, NO y CANCEL
+                                    "Fecha Disponible");
+                            if (seleccion == 1) {
+                                JOptionPane.showMessageDialog(null, "Fecha Disponible " + fechaCaduca + " - Dias Disponibles = " + diasVencidos);
+                            }
+                            if (seleccion == 0) {
+                                try {
+                                    int P = JOptionPane.showConfirmDialog(null, " Ordenar Liberar la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                                    if (P == 0) {
+                                        con = ConexionDB.conexionDB();
+                                        Statement stmt;
+                                        stmt = con.createStatement();
+
+                                        String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Libre' WHERE `descripcion_cabina` = '" + nombreCabina + "' ";
+                                        pst = con.prepareStatement(Pru);
+                                        pst.execute();
+                                        JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Estado de Cabina", JOptionPane.INFORMATION_MESSAGE);
+                                        agregarCabinas.removeAll();
+                                        agregarCabinas.updateUI();
+                                    }
+
+                                } catch (HeadlessException | SQLException ex) {
+                                    JOptionPane.showMessageDialog(null, ex);
+                                }
+                            }
+
+                        }
+                    });
+                    totalRegistros++;
+                }
+                if (rs.getString(3).equals("Libre")) {
+                    btn.setBackground(Color.green);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
+                
+                }
+                if (rs.getString(3).equals("Limpieza")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
+                }
+                if (rs.getString(3).equals("Bloqueo")) {
+                    btn.setBackground(Color.yellow);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
+                }
+
+            }
+
+            agregarCabinas.updateUI();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }
 
     public void fechas() {
         Date h = new Date();
@@ -94,12 +204,10 @@ public final class Principal_frm extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        agregarCabinas = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        empleado_id = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lblCabina = new javax.swing.JLabel();
-        NombreCabina = new javax.swing.JLabel();
         Nombre_Empleado = new javax.swing.JLabel();
         lbl_fecha = new javax.swing.JLabel();
         IdEmpleado = new javax.swing.JLabel();
@@ -109,7 +217,6 @@ public final class Principal_frm extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuSalir = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         Cabinas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -165,11 +272,11 @@ public final class Principal_frm extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 840, 70));
 
-        jPanel3.setOpaque(false);
+        agregarCabinas.setMaximumSize(new java.awt.Dimension(0, 0));
+        agregarCabinas.setLayout(new java.awt.GridLayout(0, 3));
+        getContentPane().add(agregarCabinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 570, 290));
 
-        empleado_id.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        empleado_id.setForeground(new java.awt.Color(255, 255, 255));
-        empleado_id.setText("Nombre Cliente");
+        jPanel3.setOpaque(false);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,14 +285,6 @@ public final class Principal_frm extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Fecha Factura");
-
-        lblCabina.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblCabina.setForeground(new java.awt.Color(255, 255, 255));
-        lblCabina.setText("N° Cabina");
-
-        NombreCabina.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        NombreCabina.setForeground(new java.awt.Color(255, 255, 255));
-        NombreCabina.setText("jLabel1");
 
         Nombre_Empleado.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         Nombre_Empleado.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,50 +302,31 @@ public final class Principal_frm extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(195, 195, 195)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(lbl_fecha))
-                                .addGap(111, 111, 111)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCabina)
-                                    .addComponent(NombreCabina)))
-                            .addComponent(jLabel9)
-                            .addComponent(Nombre_Empleado)
-                            .addComponent(IdEmpleado)))
-                    .addComponent(empleado_id, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel7)
+                    .addComponent(lbl_fecha)
+                    .addComponent(jLabel9)
+                    .addComponent(Nombre_Empleado)
+                    .addComponent(IdEmpleado))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblCabina)
-                        .addGap(8, 8, 8)
-                        .addComponent(NombreCabina)
-                        .addGap(55, 55, 55))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbl_fecha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9)))
-                .addGap(18, 18, 18)
-                .addComponent(Nombre_Empleado)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(IdEmpleado)
-                .addGap(23, 23, 23)
-                .addComponent(empleado_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addComponent(lbl_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Nombre_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(IdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 830, 230));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 200, 160));
 
         EstadoCabina.setText("jLabel1");
         getContentPane().add(EstadoCabina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
@@ -281,9 +361,6 @@ public final class Principal_frm extends javax.swing.JFrame {
             }
         });
         jMenu1.add(mnuSalir);
-
-        jMenu2.setText("jMenu2");
-        jMenu1.add(jMenu2);
 
         jMenuBar1.add(jMenu1);
 
@@ -344,7 +421,7 @@ public final class Principal_frm extends javax.swing.JFrame {
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -360,19 +437,18 @@ public final class Principal_frm extends javax.swing.JFrame {
         try {
             persona_frm = new Persona_frm();
             persona_frm.setVisible(true);
-            
+
         } catch (IOException ex) {
             Logger.getLogger(Principal_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            
 
             Statement stmt;
             stmt = con.createStatement();
 
             String sql1 = "SELECT `nombre` "
                     + "FROM `persona` WHERE "
-                    + "`nombre` LIKE '%"+Nombre_Empleado.getText()+"%'";
+                    + "`nombre` LIKE '%" + Nombre_Empleado.getText() + "%'";
             rs = stmt.executeQuery(sql1);
 
             while (rs.next()) {
@@ -383,15 +459,12 @@ public final class Principal_frm extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         try {
-            
-            
             String str = "SELECT `persona`.`nombre`, `colaborador`.`empleado_id` "
                     + "FROM `pct3`.`colaborador` AS `colaborador`, "
                     + "`pct3`.`persona` AS `persona` WHERE "
@@ -400,28 +473,19 @@ public final class Principal_frm extends javax.swing.JFrame {
                     + "`persona`.`nombre` LIKE '%" + Login_frm.ps_NombreEmpleado + "%'";
             pst = con.prepareStatement(str);
             rs = pst.executeQuery();
-            
-
             if (rs.next()) {
                 String nombre_persona = rs.getString("nombre");
                 String id_colaborador = rs.getString("empleado_id");
                 System.out.println(nombre_persona);
                 System.out.println(id_colaborador);
-
                 SeleccionarCabina_frm p = new SeleccionarCabina_frm();
-
                 p.setVisible(true);
                 this.hide();
-
                 SeleccionarCabina_frm.NombreEmpleado.setText(nombre_persona);
                 SeleccionarCabina_frm.IdEmpleado.setText(id_colaborador);
             }
-            
-
         } catch (Exception e) {
         }
-
-    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -977,10 +1041,9 @@ public final class Principal_frm extends javax.swing.JFrame {
     private javax.swing.JMenu Cabinas;
     public static javax.swing.JLabel EstadoCabina;
     public static javax.swing.JLabel IdEmpleado;
-    public static javax.swing.JLabel NombreCabina;
     public static javax.swing.JLabel Nombre_Empleado;
     public static javax.swing.JLabel PrecioCabina4;
-    private javax.swing.JLabel empleado_id;
+    private javax.swing.JPanel agregarCabinas;
     private javax.swing.JLabel fondo;
     private javax.swing.ButtonGroup grupo_clientes;
     private javax.swing.JButton jButton1;
@@ -992,7 +1055,6 @@ public final class Principal_frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -1002,12 +1064,17 @@ public final class Principal_frm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblCabina;
     private javax.swing.JLabel lbl_fecha;
     private javax.swing.JMenu mnuSalir;
     // End of variables declaration//GEN-END:variables
 
     void setLbl_id_persona() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static abstract class ActionListener implements java.awt.event.ActionListener {
+
+        public ActionListener() {
+        }
     }
 }

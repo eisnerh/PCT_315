@@ -66,7 +66,6 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
         agregarCabinas.removeAll();
         try {
             pst = con.prepareStatement(sqlQuery);
-
             rs = pst.executeQuery();
             totalRegistros = 0;
             while (rs.next()) {
@@ -209,9 +208,19 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                                     String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Libre' WHERE `descripcion_cabina` = '" + nombreCabina + "' ";
                                     pst = con.prepareStatement(Pru);
                                     pst.execute();
-                                
-                                    agregarCabinas.removeAll();
-                                    agregarCabinas.updateUI();
+                                btn.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            Form_Factura factura_frm = new Form_Factura();
+                            hide();
+                            factura_frm.setVisible(true);
+                            Form_Factura.nCabina.setText(nombreCabina);
+                            ps_Precio = precioCabina;
+                            ps_idCabina = idCabina;
+                            ps_nombreCabina = nombreCabina;
+                        }
+                    });
                                 
 
                             } catch (HeadlessException | SQLException ex) {
@@ -239,6 +248,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
         String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina`, `cabina_id`, `precio` FROM "
                 + "`pct3`.`cabina` AS `cabina` WHERE `estado_cabina` = 'Libre' "
                 + "ORDER BY `descripcion_cabina` ASC";
+        String sqlQueryFactura = "";
         int totalRegistros;
         agregarCabinas.removeAll();
         try {
@@ -271,6 +281,8 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                             hide();
                             factura_frm.setVisible(true);
                             Form_Factura.nCabina.setText(nombreCabina);
+                            Form_Factura.idCabina.setText(idCabina);
+                            Form_Factura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -336,6 +348,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                                     pst = con.prepareStatement(Pru);
                                     pst.execute();
                                     JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
+                                    agregarCabinas.updateUI();
 
                                 }
 
@@ -369,7 +382,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 totalRegistros++;
 
             }
-
+            
             agregarCabinas.updateUI();
 
         } catch (Exception e) {
@@ -443,7 +456,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 totalRegistros++;
 
             }
-
+            
             agregarCabinas.updateUI();
 
         } catch (Exception e) {
@@ -453,7 +466,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     }
 
     private void Get_Sencilla() {
-        
+        agregarCabinas.updateUI();
         String sqlQuery = "SELECT `descripcion_cabina`, `tipo_cabina`, `estado_cabina`, `cabina_id`, `precio` FROM `pct3`.`cabina` AS `cabina` WHERE `tipo_cabina` = 'Sencilla' ORDER BY `descripcion_cabina` ASC";
         int totalRegistros;
         agregarCabinas.removeAll();
@@ -478,6 +491,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 if (rs.getString(2).equals("Doble")) {
                     btn.setBackground(Color.BLUE);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/queen.png"))); // NOI18N
+                    
                 }
                 if (rs.getString(2).equals("Sencilla")) {
                     btn.setBackground(Color.green);
@@ -490,6 +504,8 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                             hide();
                             factura_frm.setVisible(true);
                             Form_Factura.nCabina.setText(nombreCabina);
+                            Form_Factura.idCabina.setText(idCabina);
+                            Form_Factura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -514,7 +530,6 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                                     pst = con.prepareStatement(Pru);
                                     pst.execute();
                                     JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
-
                                 }
 
                             } catch (HeadlessException | SQLException ex) {
@@ -545,8 +560,8 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
 
             }
 
+            
             agregarCabinas.updateUI();
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
 
@@ -554,6 +569,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     }
 
     private void Get_Doble() {
+        agregarCabinas.updateUI();
         String sqlQuery = "SELECT `descripcion_cabina`, `tipo_cabina`, `estado_cabina`, `cabina_id`, `precio` FROM `pct3`.`cabina` AS `cabina` WHERE `tipo_cabina` = 'Doble' ORDER BY `descripcion_cabina` ASC";
         int totalRegistros;
         agregarCabinas.removeAll();
@@ -586,6 +602,8 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                             hide();
                             factura_frm.setVisible(true);
                             Form_Factura.nCabina.setText(nombreCabina);
+                            Form_Factura.idCabina.setText(idCabina);
+                            Form_Factura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -615,7 +633,6 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                                     pst = con.prepareStatement(Pru);
                                     pst.execute();
                                     JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
-
                                 }
 
                             } catch (HeadlessException | SQLException ex) {
@@ -646,8 +663,8 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
 
             }
 
+            
             agregarCabinas.updateUI();
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
 
@@ -857,6 +874,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private void TodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TodosActionPerformed
         // TODO add your handling code here:
         agregarCabinas.removeAll();
+        agregarCabinas.updateUI();
         Get_Data();
     }//GEN-LAST:event_TodosActionPerformed
 

@@ -6,8 +6,8 @@ Select
     `factura_cabina`.`cant_dia`, 
     date(@fecha := ((fecha) + (cant_dia))),
     if (date(@fecha := ((fecha) + (cant_dia)))<now(),
-		-1*DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()),
-        (DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()))) as cantidad
+		DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()),
+        -1*(DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()))) as cantidad
     from 
     `pct3`.`factura_cabina` AS `factura_cabina`, 
     `pct3`.`cabina` AS `cabina` 
@@ -17,4 +17,5 @@ Select
 		-1*DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()),
         DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now())) > 0
         and
-        `cabina`.`estado_cabina` LIKE '%%';
+        `cabina`.`estado_cabina` = 'Ocupado'
+        ;

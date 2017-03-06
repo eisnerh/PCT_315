@@ -37,33 +37,31 @@
               <EmptySpace min="112" pref="112" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="jPanel4" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel16" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                              <Component id="nombreEmpleado" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel15" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                              <Component id="borrar" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel14" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                              <Component id="nCabina" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel13" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                              <Component id="guardar" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="volver" min="-2" pref="165" max="-2" attributes="0"/>
-                              <Component id="jLabel12" min="-2" pref="165" max="-2" attributes="0"/>
-                          </Group>
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel16" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Component id="nombreEmpleado" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel15" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Component id="borrar" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel14" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Component id="nCabina" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel13" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Component id="guardar" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="volver" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Component id="jLabel12" min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -92,9 +90,9 @@
               </Group>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -262,6 +260,9 @@
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="PrecioFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="PrecioFocusLost"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -286,8 +287,31 @@
                           <Component id="AgregarCliente" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                          <Component id="nombreCliente" min="-2" max="-2" attributes="0"/>
+                          <Component id="idCliente" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="idCabina" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="idEmpresa" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="idEmpleado" min="-2" pref="104" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="nombreCliente1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="idCliente1" min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="idCabina1" min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="idEmpresa1" min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="idEmpleado1" min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace pref="281" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -301,7 +325,28 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="nombreCliente" min="-2" max="-2" attributes="0"/>
+                      <Component id="idCliente" min="-2" max="-2" attributes="0"/>
+                      <Component id="idCabina" min="-2" max="-2" attributes="0"/>
+                      <Component id="idEmpresa" min="-2" max="-2" attributes="0"/>
+                      <Component id="idEmpleado" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="25" max="32767" attributes="0"/>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="219" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="nombreCliente1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="idCliente1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="idCabina1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="idEmpresa1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="idEmpleado1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -432,37 +477,66 @@
             <Property name="columns" type="int" value="0"/>
             <Property name="rows" type="int" value="1"/>
           </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="nombreCliente">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="nombreCliente"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="idCliente">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="idCliente"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="idCabina">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="idCabina"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="idEmpresa">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="idEmpresa"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="idEmpleado">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="idEmpleado"/>
-              </Properties>
-            </Component>
-          </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="nombreCliente">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="nombreCliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="idCliente">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="idCliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="idCabina">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="idCabina"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="idEmpresa">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="idEmpresa"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="idEmpleado">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="idEmpleado"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="idCliente1">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="idCliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="idCabina1">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="idCabina"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="nombreCliente1">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="nombreCliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="idEmpleado1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="idEmpleado"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="idEmpresa1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="idEmpresa"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="nombreEmpleado">
