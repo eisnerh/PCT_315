@@ -5,6 +5,11 @@
  */
 package view;
 
+import controller.ConexionDB;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author ace
@@ -14,8 +19,13 @@ public class Base extends javax.swing.JFrame {
     /**
      * Creates new form Base
      */
+    
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
     public Base() {
         initComponents();
+        con = ConexionDB.conexionDB();
     }
 
     /**
@@ -44,6 +54,11 @@ public class Base extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/save.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/MM/dd"))));
@@ -58,6 +73,12 @@ public class Base extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -43,6 +43,10 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     ResultSet rs = null;
     PreparedStatement pst = null;
 
+    public static String ps_idCabina;
+    public static String ps_nombreCabina;
+    public static String ps_Precio;
+
     public SeleccionarCabina_frm() {
         initComponents();
         agregarCabinas.setOpaque(false);
@@ -57,9 +61,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     }
 
     private void Get_Data() {
-        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
-
-        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `cabina` ORDER BY `estado_cabina` asc ";
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `pct3`.`cabina` AS `cabina` ORDER BY `estado_cabina` ASC";
         int totalRegistros;
         agregarCabinas.removeAll();
         try {
@@ -79,6 +81,62 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 if (rs.getString(2).equals("Libre")) {
                     btn.setBackground(Color.green);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
+                    btn.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            int seleccion = JOptionPane.showOptionDialog(
+                                    null,
+                                    "Seleccione opcion",
+                                    "Selector de opciones",
+                                    JOptionPane.YES_NO_CANCEL_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    null, // null para icono por defecto.
+                                    new Object[]{"Bloquear Cabina", "Limpiar Cabina", "Cancelar"}, // null para YES, NO y CANCEL
+                                    "Cancelar");
+                            if (seleccion == 1) {
+                                try {
+                                    int P = JOptionPane.showConfirmDialog(null, " Ordenar limpieza a la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                                    if (P == 0) {
+                                        con = ConexionDB.conexionDB();
+                                        Statement stmt;
+                                        stmt = con.createStatement();
+
+                                        String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Limpieza' WHERE `descripcion_cabina` = '" + nombreCabina + "' ";
+                                        pst = con.prepareStatement(Pru);
+                                        pst.execute();
+                                        JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Estado de Cabina", JOptionPane.INFORMATION_MESSAGE);
+                                        agregarCabinas.removeAll();
+                                        agregarCabinas.updateUI();
+                                    }
+
+                                } catch (HeadlessException | SQLException ex) {
+                                    JOptionPane.showMessageDialog(null, ex);
+                                }
+                            }
+                            if (seleccion == 0) {
+                                try {
+                                    int P = JOptionPane.showConfirmDialog(null, " Ordenar bloquear la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                                    if (P == 0) {
+                                        con = ConexionDB.conexionDB();
+                                        Statement stmt;
+                                        stmt = con.createStatement();
+
+                                        String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Bloqueo' WHERE `descripcion_cabina` = '" + nombreCabina + "' ";
+                                        pst = con.prepareStatement(Pru);
+                                        pst.execute();
+                                        JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Estado de Cabina", JOptionPane.INFORMATION_MESSAGE);
+                                        agregarCabinas.removeAll();
+                                        agregarCabinas.updateUI();
+                                    }
+
+                                } catch (HeadlessException | SQLException ex) {
+                                    JOptionPane.showMessageDialog(null, ex);
+                                }
+                            }
+
+                        }
+                    });
+                    totalRegistros++;
                 }
                 if (rs.getString(2).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
@@ -88,18 +146,6 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                     btn.setBackground(Color.yellow);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
                 }
-                btn.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(java.awt.event.ActionEvent e) {
-                        try {
-                            Principal_frm p = new Principal_frm();
-                            p.setVisible(true);
-                        } catch (IOException ex) {
-                            Logger.getLogger(SeleccionarCabina_frm.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                });
-                totalRegistros++;
 
             }
 
@@ -114,7 +160,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private void Get_Bloqueo() {
         //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
 
-        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM "
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina`, `cabina_id`, `precio` FROM "
                 + "`pct3`.`cabina` AS `cabina` WHERE `estado_cabina` "
                 + "Like '%Bloque%' ORDER BY `descripcion_cabina` ASC";
         int totalRegistros;
@@ -127,6 +173,12 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             while (rs.next()) {
                 String nombreCabina = rs.getString(1);
                 JButton btn = new JButton(nombreCabina);
+
+                String idCabina = rs.getString(3);
+                String precioCabina = rs.getString(4);
+                ps_Precio = precioCabina;
+                ps_idCabina = idCabina;
+                ps_nombreCabina = nombreCabina;
                 agregarCabinas.add(btn);
 
                 if (rs.getString(2).equals("Ocupado")) {
@@ -148,8 +200,8 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
                             try {
-                                int P = JOptionPane.showConfirmDialog(null, " Quiere liberar la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
-                                if (P == 0) {
+                                
+                                
                                     con = ConexionDB.conexionDB();
                                     Statement stmt;
                                     stmt = con.createStatement();
@@ -157,10 +209,10 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                                     String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Libre' WHERE `descripcion_cabina` = '" + nombreCabina + "' ";
                                     pst = con.prepareStatement(Pru);
                                     pst.execute();
-                                    JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
+                                
                                     agregarCabinas.removeAll();
                                     agregarCabinas.updateUI();
-                                }
+                                
 
                             } catch (HeadlessException | SQLException ex) {
                                 JOptionPane.showMessageDialog(null, ex);
@@ -184,7 +236,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private void Get_Libre() {
         //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
 
-        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM "
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina`, `cabina_id`, `precio` FROM "
                 + "`pct3`.`cabina` AS `cabina` WHERE `estado_cabina` = 'Libre' "
                 + "ORDER BY `descripcion_cabina` ASC";
         int totalRegistros;
@@ -197,6 +249,11 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             while (rs.next()) {
                 String nombreCabina = rs.getString(1);
                 JButton btn = new JButton(nombreCabina);
+                String idCabina = rs.getString(3);
+                String precioCabina = rs.getString(4);
+                ps_Precio = precioCabina;
+                ps_idCabina = idCabina;
+                ps_nombreCabina = nombreCabina;
                 agregarCabinas.add(btn);
 
                 if (rs.getString(2).equals("Ocupado")) {
@@ -213,7 +270,10 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                             Form_Factura factura_frm = new Form_Factura();
                             hide();
                             factura_frm.setVisible(true);
-                            Form_Factura.FacturarCabina.setText(nombreCabina);
+                            Form_Factura.nCabina.setText(nombreCabina);
+                            ps_Precio = precioCabina;
+                            ps_idCabina = idCabina;
+                            ps_nombreCabina = nombreCabina;
                         }
                     });
                 }
@@ -241,7 +301,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private void Get_Ocupado() {
         //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
 
-        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `pct3`.`cabina` AS `cabina` WHERE `estado_cabina` = 'Ocupado' ORDER BY `descripcion_cabina` ASC";
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina`, `cabina_id`, `precio` FROM `pct3`.`cabina` AS `cabina` WHERE `estado_cabina` = 'Ocupado' ORDER BY `descripcion_cabina` ASC";
         int totalRegistros;
         agregarCabinas.removeAll();
         try {
@@ -251,6 +311,11 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             totalRegistros = 0;
             while (rs.next()) {
                 String nombreCabina = rs.getString(1);
+                String idCabina = rs.getString(3);
+                String precioCabina = rs.getString(4);
+                ps_Precio = precioCabina;
+                ps_idCabina = idCabina;
+                ps_nombreCabina = nombreCabina;
                 JButton btn = new JButton(nombreCabina);
                 agregarCabinas.add(btn);
 
@@ -316,7 +381,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private void Get_Limpieza() {
         //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
 
-        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `pct3`.`cabina` AS `cabina` WHERE `estado_cabina` = 'Limpieza' ORDER BY `descripcion_cabina` ASC";
+        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina`, `cabina_id`, `precio` FROM `pct3`.`cabina` AS `cabina` WHERE `estado_cabina` = 'Limpieza' ORDER BY `descripcion_cabina` ASC";
         int totalRegistros;
         agregarCabinas.removeAll();
         try {
@@ -327,7 +392,13 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
             while (rs.next()) {
                 String nombreCabina = rs.getString(1);
                 JButton btn = new JButton(nombreCabina);
+                String idCabina = rs.getString(3);
+                String precioCabina = rs.getString(4);
+//                ps_Precio = precioCabina;
+                ps_idCabina = idCabina;
+                ps_nombreCabina = nombreCabina;
                 agregarCabinas.add(btn);
+                System.out.println(ps_Precio);
 
                 if (rs.getString(2).equals("Ocupado")) {
                     btn.setBackground(Color.red);
@@ -382,9 +453,8 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     }
 
     private void Get_Sencilla() {
-        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
-
-        String sqlQuery = "SELECT `descripcion_cabina`, `tipo_cabina` FROM `pct3`.`cabina` AS `cabina` WHERE `tipo_cabina` = 'Sencilla' ORDER BY `descripcion_cabina` ASC";
+        
+        String sqlQuery = "SELECT `descripcion_cabina`, `tipo_cabina`, `estado_cabina`, `cabina_id`, `precio` FROM `pct3`.`cabina` AS `cabina` WHERE `tipo_cabina` = 'Sencilla' ORDER BY `descripcion_cabina` ASC";
         int totalRegistros;
         agregarCabinas.removeAll();
         try {
@@ -396,6 +466,14 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 String nombreCabina = rs.getString(1);
                 JButton btn = new JButton(nombreCabina);
                 agregarCabinas.add(btn);
+                
+                
+                String idCabina = rs.getString(4);
+                String precioCabina = rs.getString(5);
+                ps_Precio = precioCabina;
+                ps_idCabina = idCabina;
+                ps_nombreCabina = nombreCabina;
+                agregarCabinas.add(btn);
 
                 if (rs.getString(2).equals("Doble")) {
                     btn.setBackground(Color.BLUE);
@@ -404,16 +482,64 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 if (rs.getString(2).equals("Sencilla")) {
                     btn.setBackground(Color.green);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/single.png"))); // NOI18N
+                    btn.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            Form_Factura factura_frm = new Form_Factura();
+                            hide();
+                            factura_frm.setVisible(true);
+                            Form_Factura.nCabina.setText(nombreCabina);
+                            ps_Precio = precioCabina;
+                            ps_idCabina = idCabina;
+                            ps_nombreCabina = nombreCabina;
+                        }
+                    });
                 }
-                if (rs.getString(2).equals("Limpieza")) {
+
+                if (rs.getString(3).equals("Ocupado")) {
+                    btn.setBackground(Color.red);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
+                    btn.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            try {
+                                int P = JOptionPane.showConfirmDialog(null, " Quiere liberar la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                                if (P == 0) {
+                                    con = ConexionDB.conexionDB();
+                                    Statement stmt;
+                                    stmt = con.createStatement();
+
+                                    String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Libre' WHERE `descripcion_cabina` = '" + nombreCabina + "' ";
+                                    pst = con.prepareStatement(Pru);
+                                    pst.execute();
+                                    JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
+
+                                }
+
+                            } catch (HeadlessException | SQLException ex) {
+                                JOptionPane.showMessageDialog(null, ex);
+
+                            }
+                        }
+                    });
+                }
+
+                if (rs.getString(3).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
-
                 }
-                if (rs.getString(2).equals("Bloqueo")) {
+                if (rs.getString(3).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
                 }
+                btn.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        System.out.println("Ocupado");
+                    }
+                });
 
                 totalRegistros++;
 
@@ -428,9 +554,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     }
 
     private void Get_Doble() {
-        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
-
-        String sqlQuery = "SELECT `descripcion_cabina`, `tipo_cabina` FROM `pct3`.`cabina` AS `cabina` WHERE `tipo_cabina` = 'Doble' ORDER BY `descripcion_cabina` ASC";
+        String sqlQuery = "SELECT `descripcion_cabina`, `tipo_cabina`, `estado_cabina`, `cabina_id`, `precio` FROM `pct3`.`cabina` AS `cabina` WHERE `tipo_cabina` = 'Doble' ORDER BY `descripcion_cabina` ASC";
         int totalRegistros;
         agregarCabinas.removeAll();
         try {
@@ -442,24 +566,81 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
                 String nombreCabina = rs.getString(1);
                 JButton btn = new JButton(nombreCabina);
                 agregarCabinas.add(btn);
+                
+                
+                String idCabina = rs.getString(4);
+                String precioCabina = rs.getString(5);
+                ps_Precio = precioCabina;
+                ps_idCabina = idCabina;
+                ps_nombreCabina = nombreCabina;
+                agregarCabinas.add(btn);
 
                 if (rs.getString(2).equals("Doble")) {
                     btn.setBackground(Color.BLUE);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/queen.png"))); // NOI18N
+                    btn.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            Form_Factura factura_frm = new Form_Factura();
+                            hide();
+                            factura_frm.setVisible(true);
+                            Form_Factura.nCabina.setText(nombreCabina);
+                            ps_Precio = precioCabina;
+                            ps_idCabina = idCabina;
+                            ps_nombreCabina = nombreCabina;
+                        }
+                    });
                 }
                 if (rs.getString(2).equals("Sencilla")) {
                     btn.setBackground(Color.green);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/single.png"))); // NOI18N
+                    
                 }
-                if (rs.getString(2).equals("Limpieza")) {
+
+                if (rs.getString(3).equals("Ocupado")) {
+                    btn.setBackground(Color.red);
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/racing.png"))); // NOI18N
+                    btn.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            try {
+                                int P = JOptionPane.showConfirmDialog(null, " Quiere liberar la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                                if (P == 0) {
+                                    con = ConexionDB.conexionDB();
+                                    Statement stmt;
+                                    stmt = con.createStatement();
+
+                                    String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Libre' WHERE `descripcion_cabina` = '" + nombreCabina + "' ";
+                                    pst = con.prepareStatement(Pru);
+                                    pst.execute();
+                                    JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
+
+                                }
+
+                            } catch (HeadlessException | SQLException ex) {
+                                JOptionPane.showMessageDialog(null, ex);
+
+                            }
+                        }
+                    });
+                }
+
+                if (rs.getString(3).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/wiping.png"))); // NOI18N
-
                 }
-                if (rs.getString(2).equals("Bloqueo")) {
+                if (rs.getString(3).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/blocked.png"))); // NOI18N
                 }
+                btn.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        System.out.println("Ocupado");
+                    }
+                });
 
                 totalRegistros++;
 
@@ -483,6 +664,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private void initComponents() {
 
         bgOpciones = new javax.swing.ButtonGroup();
+        jScrollPane1 = new javax.swing.JScrollPane();
         opciones = new javax.swing.JPanel();
         Ocupado = new javax.swing.JRadioButton();
         Todos = new javax.swing.JRadioButton();
@@ -653,7 +835,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
         });
         jPanel1.add(AgregarCabina);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 170, 70));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 250, 70));
 
         jLabel1.setText("Volver");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -774,6 +956,7 @@ public class SeleccionarCabina_frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel opciones;
     private javax.swing.JButton volverPrincipal;
     // End of variables declaration//GEN-END:variables
