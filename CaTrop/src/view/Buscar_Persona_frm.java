@@ -346,7 +346,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
 
     private void mnuSalirMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_mnuSalirMenuKeyPressed
 
-
     }//GEN-LAST:event_mnuSalirMenuKeyPressed
 
     private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked
@@ -448,7 +447,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
                 con = ConexionDB.conexionDB();
                 Statement stmt;
                 stmt = con.createStatement();
-                
+
                 String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtPhone.getText() + "',`direccion`='" + txtPhone.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_Gasto_Operativo_id.getText() + "'";
                 pst = con.prepareStatement(Pru);
                 pst.execute();
@@ -501,7 +500,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
             int P = JOptionPane.showConfirmDialog(null, " Seguro que quiere eliminar ?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
                 con = ConexionDB.conexionDB();
-                
+
                 String sql = sqlDelete + lbl_id_persona.getText() + "";
                 //DELETE FROM `persona` WHERE 1
                 pst = con.prepareStatement(sql);
@@ -528,7 +527,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
 
     private void txtClasificaciónKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClasificaciónKeyPressed
         // TODO add your handling code here:
-
 
     }//GEN-LAST:event_txtClasificaciónKeyPressed
 
@@ -599,7 +597,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbTipoPersonaActionPerformed
 
     private void txtNombre_ApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre_ApellidosKeyTyped
-
 
     }//GEN-LAST:event_txtNombre_ApellidosKeyTyped
 

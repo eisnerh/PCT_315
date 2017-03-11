@@ -23,7 +23,7 @@ public final class frmCabina extends javax.swing.JFrame {
         initComponents();
         mostrar("");
     }
-    
+
     void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
@@ -37,7 +37,6 @@ public final class frmCabina extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,7 +120,7 @@ public final class frmCabina extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             mostrar(txtBuscarCabina.getText());
         }
-        
+
     }//GEN-LAST:event_txtBuscarCabinaKeyPressed
 
     /**

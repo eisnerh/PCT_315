@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="485f3987-6998-4072-9731-99c2e223645b">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<queryString language="SQL">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+    <style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+    <style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+    <style name="Detail" fontName="Arial" fontSize="12"/>
+    <queryString language="SQL">
 		<![CDATA[SELECT
      `factura_cabina`.`factura_id`,
      `factura_cabina`.`cant_dia`,
@@ -28,244 +28,244 @@ FROM
      INNER JOIN `pct3`.`cabina` `cabina` ON `factura_cabina`.`cabina_cabina_id` = `cabina`.`cabina_id`
      INNER JOIN `pct3`.`cliente_empresa` `cliente_empresa` ON `factura_cabina`.`cliente_empresa_empresa_id` = `cliente_empresa`.`empresa_id`
      INNER JOIN `pct3`.`dato_empresa` `dato_empresa` ON `factura_cabina`.`dato_empresa_iddato_empresa` = `dato_empresa`.`iddato_empresa`]]>
-	</queryString>
-	<field name="factura_id" class="java.lang.Long">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="cant_dia" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="fecha" class="java.sql.Date">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="impuesto_cabina" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="precio_total_cabina" class="java.lang.Long">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="empresa_nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="empresa_cedula_juridica" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="empresa_telefono1" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="empresa_direccion" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="descripcion_cabina" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="precio" class="java.lang.Float">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="colaborador_empleado_id" class="java.lang.Long">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nombre_empresa" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<group name="factura_id">
-		<groupExpression><![CDATA[$F{factura_id}]]></groupExpression>
-		<groupHeader>
-			<band height="40">
-				<textField>
-					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#CC0000" uuid="db0c0090-8a0f-46e7-9051-21c737256530"/>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{factura_id}]]></textFieldExpression>
-				</textField>
-				<rectangle>
-					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="eacb9800-aeb9-4a8e-b71e-4ce3f4451d9e"/>
-				</rectangle>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band height="6"/>
-		</groupFooter>
-	</group>
-	<group name="fecha">
-		<groupExpression><![CDATA[$F{fecha}]]></groupExpression>
-		<groupHeader>
-			<band height="30">
-				<textField>
-					<reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="9c5900e9-6fd0-4a47-90ec-ac81fad4ab03"/>
-					<textElement>
-						<font size="16" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
-	</group>
-	<group name="descripcion_cabina">
-		<groupExpression><![CDATA[$F{descripcion_cabina}]]></groupExpression>
-	</group>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band height="70" splitType="Stretch">
-			<image>
-				<reportElement x="275" y="0" width="300" height="64" uuid="45840f5d-aea9-4659-a22c-ab0812f74612"/>
-				<imageExpression><![CDATA["leaf_banner_red.png"]]></imageExpression>
-			</image>
-			<textField>
-				<reportElement style="Detail" x="0" y="13" width="250" height="15" uuid="977bbea5-8d94-4290-aefd-78cbddfa2b74"/>
-				<textFieldExpression><![CDATA[$F{empresa_nombre}]]></textFieldExpression>
-			</textField>
-		</band>
-	</title>
-	<pageHeader>
-		<band splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="36" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="e3ed87ab-7ca6-4442-bb81-d2366fbde212"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-			<staticText>
-				<reportElement style="Column header" x="0" y="19" width="50" height="15" uuid="293ae6f0-a394-47b9-8ef6-35d629705663"/>
-				<text><![CDATA[cant_dia]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="50" y="19" width="50" height="15" uuid="3542dc0d-645c-4aa2-9cd4-05e64321806b"/>
-				<text><![CDATA[impuesto_cabina]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="100" y="19" width="50" height="15" uuid="6d9d34c8-08e6-47cf-93b8-c5457278e395"/>
-				<text><![CDATA[precio_total_cabina]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="150" y="19" width="50" height="15" uuid="42a13e68-d117-488f-9205-4de8a8850426"/>
-				<text><![CDATA[empresa_nombre]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="200" y="19" width="50" height="15" uuid="aa9abe3f-9767-4394-a4d8-482ed4eea393"/>
-				<text><![CDATA[empresa_cedula_juridica]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="250" y="19" width="50" height="15" uuid="78cb1a27-46f3-43d5-b202-f70c1b8d9201"/>
-				<text><![CDATA[empresa_telefono1]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="300" y="19" width="50" height="15" uuid="dc1117a3-029f-4587-b2f7-f5f6a3bb3794"/>
-				<text><![CDATA[empresa_direccion]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="350" y="19" width="50" height="15" uuid="9ce9b366-b461-4ffa-8d6e-ae2b6cce6fd8"/>
-				<text><![CDATA[nombre]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="400" y="19" width="50" height="15" uuid="688bec7a-5840-44a8-bd32-05aa90627235"/>
-				<text><![CDATA[precio]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="450" y="19" width="50" height="15" uuid="2d294166-cb0c-4556-b519-7b06ff37be9c"/>
-				<text><![CDATA[colaborador_empleado_id]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="500" y="19" width="50" height="15" uuid="948eec44-af29-4eff-a965-5a0169ae62ba"/>
-				<text><![CDATA[nombre_empresa]]></text>
-			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="16" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="d617703d-137c-47e6-bbfd-a5098d3eaec9"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-			<textField>
-				<reportElement style="Detail" x="0" y="0" width="50" height="15" uuid="28849f75-39c4-4aaa-b27f-0c5b26f44aa4"/>
-				<textFieldExpression><![CDATA[$F{cant_dia}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="50" y="0" width="50" height="15" uuid="22717cfb-f8cc-421a-bac6-91be726c2b43"/>
-				<textFieldExpression><![CDATA[$F{impuesto_cabina}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="100" y="0" width="50" height="15" uuid="14727436-309e-4d2e-816b-02923e5b6beb"/>
-				<textFieldExpression><![CDATA[$F{precio_total_cabina}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="200" y="0" width="50" height="15" uuid="536fc573-3eea-46d2-b05c-5005d8c49cfa"/>
-				<textFieldExpression><![CDATA[$F{empresa_cedula_juridica}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="250" y="0" width="50" height="15" uuid="fba35d24-4a1a-4655-8b71-3339f61ccc6c"/>
-				<textFieldExpression><![CDATA[$F{empresa_telefono1}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="300" y="0" width="50" height="15" uuid="8e29dfaf-024c-4b4a-a7de-9296f0c4aaa5"/>
-				<textFieldExpression><![CDATA[$F{empresa_direccion}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="350" y="0" width="50" height="15" uuid="410f4cfe-4a95-4bf3-a6dd-e8b89e5f07c2"/>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="400" y="0" width="50" height="15" uuid="964ebafa-5227-465b-93d6-330242b8a948"/>
-				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="450" y="0" width="50" height="15" uuid="46c3a89b-1d57-4199-a350-ef9a2196838d"/>
-				<textFieldExpression><![CDATA[$F{colaborador_empleado_id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="500" y="0" width="50" height="15" uuid="e69ae6b4-d16d-429a-81db-17588ad6775e"/>
-				<textFieldExpression><![CDATA[$F{nombre_empresa}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="3068937e-7d4c-41ee-b0f1-fccc134bdbf1"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-		</band>
-	</columnFooter>
-	<pageFooter>
-		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="b68e53e0-d8ba-4772-a051-d5ff286aa811"/>
-				<textElement textAlignment="Right">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="e0ff9db4-55fa-40af-b265-2f2e74d169d3"/>
-				<textElement>
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="78bc16da-5019-42bf-b3a2-e69169ee978f"/>
-				<textElement>
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
-	</summary>
+    </queryString>
+    <field name="factura_id" class="java.lang.Long">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="cant_dia" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="fecha" class="java.sql.Date">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="impuesto_cabina" class="java.lang.Float">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="precio_total_cabina" class="java.lang.Long">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="empresa_nombre" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="empresa_cedula_juridica" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="empresa_telefono1" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="empresa_direccion" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="nombre" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="descripcion_cabina" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="precio" class="java.lang.Float">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="colaborador_empleado_id" class="java.lang.Long">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="nombre_empresa" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <group name="factura_id">
+        <groupExpression><![CDATA[$F{factura_id}]]></groupExpression>
+        <groupHeader>
+            <band height="40">
+                <textField>
+                    <reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#CC0000" uuid="db0c0090-8a0f-46e7-9051-21c737256530"/>
+                    <textElement>
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{factura_id}]]></textFieldExpression>
+                </textField>
+                <rectangle>
+                    <reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="eacb9800-aeb9-4a8e-b71e-4ce3f4451d9e"/>
+                </rectangle>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band height="6"/>
+        </groupFooter>
+    </group>
+    <group name="fecha">
+        <groupExpression><![CDATA[$F{fecha}]]></groupExpression>
+        <groupHeader>
+            <band height="30">
+                <textField>
+                    <reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="9c5900e9-6fd0-4a47-90ec-ac81fad4ab03"/>
+                    <textElement>
+                        <font size="16" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+                </textField>
+            </band>
+        </groupHeader>
+    </group>
+    <group name="descripcion_cabina">
+        <groupExpression><![CDATA[$F{descripcion_cabina}]]></groupExpression>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="70" splitType="Stretch">
+            <image>
+                <reportElement x="275" y="0" width="300" height="64" uuid="45840f5d-aea9-4659-a22c-ab0812f74612"/>
+                <imageExpression><![CDATA["leaf_banner_red.png"]]></imageExpression>
+            </image>
+            <textField>
+                <reportElement style="Detail" x="0" y="13" width="250" height="15" uuid="977bbea5-8d94-4290-aefd-78cbddfa2b74"/>
+                <textFieldExpression><![CDATA[$F{empresa_nombre}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <pageHeader>
+        <band splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="36" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="e3ed87ab-7ca6-4442-bb81-d2366fbde212"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+            <staticText>
+                <reportElement style="Column header" x="0" y="19" width="50" height="15" uuid="293ae6f0-a394-47b9-8ef6-35d629705663"/>
+                <text><![CDATA[cant_dia]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="50" y="19" width="50" height="15" uuid="3542dc0d-645c-4aa2-9cd4-05e64321806b"/>
+                <text><![CDATA[impuesto_cabina]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="100" y="19" width="50" height="15" uuid="6d9d34c8-08e6-47cf-93b8-c5457278e395"/>
+                <text><![CDATA[precio_total_cabina]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="150" y="19" width="50" height="15" uuid="42a13e68-d117-488f-9205-4de8a8850426"/>
+                <text><![CDATA[empresa_nombre]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="200" y="19" width="50" height="15" uuid="aa9abe3f-9767-4394-a4d8-482ed4eea393"/>
+                <text><![CDATA[empresa_cedula_juridica]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="250" y="19" width="50" height="15" uuid="78cb1a27-46f3-43d5-b202-f70c1b8d9201"/>
+                <text><![CDATA[empresa_telefono1]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="300" y="19" width="50" height="15" uuid="dc1117a3-029f-4587-b2f7-f5f6a3bb3794"/>
+                <text><![CDATA[empresa_direccion]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="350" y="19" width="50" height="15" uuid="9ce9b366-b461-4ffa-8d6e-ae2b6cce6fd8"/>
+                <text><![CDATA[nombre]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="400" y="19" width="50" height="15" uuid="688bec7a-5840-44a8-bd32-05aa90627235"/>
+                <text><![CDATA[precio]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="450" y="19" width="50" height="15" uuid="2d294166-cb0c-4556-b519-7b06ff37be9c"/>
+                <text><![CDATA[colaborador_empleado_id]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="500" y="19" width="50" height="15" uuid="948eec44-af29-4eff-a965-5a0169ae62ba"/>
+                <text><![CDATA[nombre_empresa]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="16" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="d617703d-137c-47e6-bbfd-a5098d3eaec9"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+            <textField>
+                <reportElement style="Detail" x="0" y="0" width="50" height="15" uuid="28849f75-39c4-4aaa-b27f-0c5b26f44aa4"/>
+                <textFieldExpression><![CDATA[$F{cant_dia}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="50" y="0" width="50" height="15" uuid="22717cfb-f8cc-421a-bac6-91be726c2b43"/>
+                <textFieldExpression><![CDATA[$F{impuesto_cabina}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="100" y="0" width="50" height="15" uuid="14727436-309e-4d2e-816b-02923e5b6beb"/>
+                <textFieldExpression><![CDATA[$F{precio_total_cabina}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="200" y="0" width="50" height="15" uuid="536fc573-3eea-46d2-b05c-5005d8c49cfa"/>
+                <textFieldExpression><![CDATA[$F{empresa_cedula_juridica}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="250" y="0" width="50" height="15" uuid="fba35d24-4a1a-4655-8b71-3339f61ccc6c"/>
+                <textFieldExpression><![CDATA[$F{empresa_telefono1}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="300" y="0" width="50" height="15" uuid="8e29dfaf-024c-4b4a-a7de-9296f0c4aaa5"/>
+                <textFieldExpression><![CDATA[$F{empresa_direccion}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="350" y="0" width="50" height="15" uuid="410f4cfe-4a95-4bf3-a6dd-e8b89e5f07c2"/>
+                <textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="400" y="0" width="50" height="15" uuid="964ebafa-5227-465b-93d6-330242b8a948"/>
+                <textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="450" y="0" width="50" height="15" uuid="46c3a89b-1d57-4199-a350-ef9a2196838d"/>
+                <textFieldExpression><![CDATA[$F{colaborador_empleado_id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="500" y="0" width="50" height="15" uuid="e69ae6b4-d16d-429a-81db-17588ad6775e"/>
+                <textFieldExpression><![CDATA[$F{nombre_empresa}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="3068937e-7d4c-41ee-b0f1-fccc134bdbf1"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+        </band>
+    </columnFooter>
+    <pageFooter>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="b68e53e0-d8ba-4772-a051-d5ff286aa811"/>
+                <textElement textAlignment="Right">
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="e0ff9db4-55fa-40af-b265-2f2e74d169d3"/>
+                <textElement>
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="78bc16da-5019-42bf-b3a2-e69169ee978f"/>
+                <textElement>
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band splitType="Stretch"/>
+    </summary>
 </jasperReport>

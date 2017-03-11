@@ -46,7 +46,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
 
     public Colaborador_frm() throws IOException {
         initComponents();
-        Date sumarRestarDiasFecha = sumarRestarDiasFecha(dcFechaContrato.getDate(),3);
+        Date sumarRestarDiasFecha = sumarRestarDiasFecha(dcFechaContrato.getDate(), 3);
         //inicialización de las variables de la coneccion a la base de datos
         con = ConexionDB.conexionDB();
         //llama al procedimiento de obtener la información.
@@ -85,18 +85,18 @@ public final class Colaborador_frm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
-    // Suma los días recibidos a la fecha  
- public Date sumarRestarDiasFecha(Date fecha, int dias){
- 
-      Calendar calendar = Calendar.getInstance();
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-      calendar.add(Calendar.DAY_OF_YEAR, dias);  // numero de días a añadir, o restar en caso de días<0
- System.out.println(calendar.getTime().toString());
-        
-      return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
-      
- }
 
+    // Suma los días recibidos a la fecha  
+    public Date sumarRestarDiasFecha(Date fecha, int dias) {
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        calendar.add(Calendar.DAY_OF_YEAR, dias);  // numero de días a añadir, o restar en caso de días<0
+        System.out.println(calendar.getTime().toString());
+
+        return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
+
+    }
 
     public void llena_ComboHorario() { // static para poder llamarlo desde el otro frame o JDialog
 
@@ -412,7 +412,6 @@ public final class Colaborador_frm extends javax.swing.JFrame {
 
     private void mnuSalirMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_mnuSalirMenuKeyPressed
 
-
     }//GEN-LAST:event_mnuSalirMenuKeyPressed
 
     private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked
@@ -562,7 +561,6 @@ public final class Colaborador_frm extends javax.swing.JFrame {
             Logger.getLogger(Colaborador_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
     }//GEN-LAST:event_buscarActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
@@ -608,7 +606,6 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         } else {
             txtFechaDespido.setEnabled(false);
         }
-
 
     }//GEN-LAST:event_chk_ActivoActionPerformed
 

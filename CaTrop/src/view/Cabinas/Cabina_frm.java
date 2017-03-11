@@ -662,7 +662,7 @@ public final class Cabina_frm extends javax.swing.JFrame {
 
     private void Buscar_NombreCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_NombreCabinaActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_Buscar_NombreCabinaActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -673,8 +673,7 @@ public final class Cabina_frm extends javax.swing.JFrame {
     private void Buscar_NombreCabinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Buscar_NombreCabinaKeyReleased
         // TODO add your handling code here:
         try {
-            
-            
+
             String sql_persona = "SELECT * FROM `cabina` WHERE `descripcion_cabina` LIKE '%" + Buscar_NombreCabina.getText() + "%'";
             pst = connection.prepareStatement(sql_persona);
             rs = pst.executeQuery();
@@ -691,7 +690,6 @@ public final class Cabina_frm extends javax.swing.JFrame {
                 String registro5 = rs.getString("tipo_cabina");
                 TipoCabina.setText(registro5);
                 tipoCabina.getModel().setSelectedItem(registro5);
-                
 
             }
 

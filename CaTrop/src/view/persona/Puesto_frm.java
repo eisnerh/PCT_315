@@ -67,7 +67,7 @@ public class Puesto_frm extends javax.swing.JFrame {
     }
 
     private void Get_Data() {
-        //Select sobre el estatus_empleado y se le asigna el valor a la columna de la tabla del formulario.
+        
         String sql = "SELECT `descripcion_puesto` as 'Puesto', `pago_hora_sencilla` as 'Hora Sencilla', `pago_hora_extra` as 'Hora Extra' FROM `puesto` ORDER BY `descripcion_puesto` ";
         String sql2 = "SELECT `puesto_id`, `descripcion_puesto`, `pago_hora_sencilla`, `pago_hora_extra` FROM `puesto`";
         try {
@@ -235,7 +235,7 @@ public class Puesto_frm extends javax.swing.JFrame {
                     .addComponent(editar)
                     .addComponent(buscar)
                     .addComponent(borrar))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +250,7 @@ public class Puesto_frm extends javax.swing.JFrame {
                 .addComponent(buscar)
                 .addGap(18, 18, 18)
                 .addComponent(borrar)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 350));
@@ -374,7 +374,6 @@ public class Puesto_frm extends javax.swing.JFrame {
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         // TODO add your handling code here:
-
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere editar este dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
@@ -503,7 +502,7 @@ public class Puesto_frm extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 

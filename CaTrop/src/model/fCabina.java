@@ -60,11 +60,6 @@ public class fCabina {
             }
             return tableModel;
         } catch (SQLException sqle) {
-            Telegraph tele = new Telegraph("Mensaje",
-                    "<html><body style='color:red;font-size:13px'><b> ERRO!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 500);
-            TelegraphQueue q = new TelegraphQueue();
-            TelegraphEnvelope qa = new TelegraphEnvelope();
-            q.add(tele);
             JOptionPane.showConfirmDialog(null, sqle);
             return null;
         }
@@ -74,7 +69,7 @@ public class fCabina {
     public DefaultTableModel mostrarvista(String buscar) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
-        String[] columnas = {"id","descripcion_cabina", "estado_cabina", "precio", "tipo_cabina"};
+        String[] columnas = {"id", "descripcion_cabina", "estado_cabina", "precio", "tipo_cabina"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
         String[] registro = new String[5];
 

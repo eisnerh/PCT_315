@@ -10,6 +10,7 @@ package model.form;
  * @author ace
  */
 public class mUsuario {
+
     //Declaración de los campos de la tabla Usuarios.
     private String usuario;
     private String password;
@@ -44,5 +45,5 @@ public class mUsuario {
     public void setColaborador_empleado_id(double colaborador_empleado_id) {
         this.colaborador_empleado_id = colaborador_empleado_id;
     }
-    
+
 }

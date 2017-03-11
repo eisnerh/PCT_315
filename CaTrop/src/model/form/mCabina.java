@@ -10,6 +10,7 @@ package model.form;
  * @author ace
  */
 public class mCabina {
+
     private String id_cabina;
     private String descripcionCabina;
     private String estado_cabina;
@@ -23,10 +24,9 @@ public class mCabina {
         this.precio = precio;
         this.tipo_cabina = tipo_cabina;
     }
-    
-    public mCabina()
-    {
-        
+
+    public mCabina() {
+
     }
 
     public String getId_cabina() {

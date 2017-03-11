@@ -22,7 +22,6 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author ace
@@ -84,7 +83,7 @@ public final class Factura_frm extends javax.swing.JFrame {
 
     public void LlenaCabina() {
         try {
-            
+
             String sql_persona = "SELECT `cabina`.`cabina_id` as 'id', `cabina`.`descripcion_cabina` as 'Cabina', `cabina`.`estado_cabina` as 'Estado', `cabina`.`precio_precio_id`, `precio`.`descripcion_precio`, `precio`.`monto_precio` as 'Monto' FROM `pct3`.`cabina` AS `cabina`, `pct3`.`precio` AS `precio` WHERE `cabina`.`precio_precio_id` = `precio`.`precio_id` AND `cabina`.`descripcion_cabina` = '" + NombreCabina.getText() + "'";
             pst = con.prepareStatement(sql_persona);
             rs = pst.executeQuery();
@@ -615,7 +614,6 @@ public final class Factura_frm extends javax.swing.JFrame {
 
     private void mnuSalirMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_mnuSalirMenuKeyPressed
 
-
     }//GEN-LAST:event_mnuSalirMenuKeyPressed
 
     private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked
@@ -717,7 +715,6 @@ public final class Factura_frm extends javax.swing.JFrame {
             Logger.getLogger(Factura_frm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
     }//GEN-LAST:event_buscarActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
@@ -778,8 +775,8 @@ public final class Factura_frm extends javax.swing.JFrame {
 
         Calculo = monto * dias;
 
-        impuesto = Calculo/13;
-        
+        impuesto = Calculo / 13;
+
         subtotal = Calculo - impuesto;
 
         txtImpuesto.setText(String.valueOf(impuesto));

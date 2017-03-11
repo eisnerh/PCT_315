@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 28, 2017 at 07:13 PM
+-- Generation Time: Mar 08, 2017 at 07:10 PM
 -- Server version: 5.7.17-0ubuntu0.16.04.1
--- PHP Version: 7.0.15-0ubuntu0.16.04.2
+-- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -77,35 +77,35 @@ CREATE TABLE `cabina` (
 
 INSERT INTO `cabina` (`cabina_id`, `descripcion_cabina`, `estado_cabina`, `precio`, `tipo_cabina`) VALUES
 (1, 'MalBicho', 'Libre', 10000, 'Sencilla'),
-(2, 'Johns', 'Limpieza', 15000, 'Doble'),
-(3, 'Thomas', 'Bloqueo', 10000, 'Sencilla'),
+(2, 'Johns', 'Libre', 15000, 'Doble'),
+(3, 'Thomas', 'Libre', 10000, 'Sencilla'),
 (4, 'Compton', 'Libre', 10000, 'Sencilla'),
-(5, 'Evans', 'Bloqueo', 15000, 'Doble'),
-(6, 'Hogan', 'Limpieza', 10000, 'Sencilla'),
-(7, 'Moses', 'Ocupado', 15000, 'Doble'),
+(5, 'Evans', 'Libre', 15000, 'Doble'),
+(6, 'Hogan', 'Libre', 10000, 'Sencilla'),
+(7, 'Moses', 'Libre', 15000, 'Doble'),
 (8, 'Jacobs', 'Libre', 10000, 'Sencilla'),
 (9, 'Kerr', 'Libre', 10000, 'Sencilla'),
 (10, 'Obrien', 'Libre', 15000, 'Doble'),
-(11, 'Duke', 'Ocupado', 15000, 'Doble'),
-(12, 'Cain', 'Limpieza', 10000, 'Sencilla'),
+(11, 'Duke', 'Libre', 15000, 'Doble'),
+(12, 'Cain', 'Libre', 10000, 'Sencilla'),
 (13, 'Neal', 'Libre', 15000, 'Doble'),
 (14, 'Mcdonald', 'Libre', 15000, 'Doble'),
 (15, 'Chandler', 'Libre', 15000, 'Doble'),
-(16, 'Hull', 'Bloqueo', 15000, 'Doble'),
+(16, 'Hull', 'Libre', 15000, 'Doble'),
 (17, 'Garner', 'Libre', 15000, 'Doble'),
-(18, 'Buckner', 'Bloqueo', 15000, 'Doble'),
-(19, 'Holden', 'Libre', 15000, 'Doble'),
-(20, 'Adkins', 'Ocupado', 10000, 'Sencilla'),
+(18, 'Buckner', 'Libre', 15000, 'Doble'),
+(19, 'Holden', 'Bloqueo', 15000, 'Doble'),
+(20, 'Adkins', 'Libre', 10000, 'Sencilla'),
 (21, 'Mcgowan', 'Libre', 10000, 'Sencilla'),
 (22, 'Campos', 'Libre', 10000, 'Sencilla'),
 (23, 'Phillips', 'Libre', 10000, 'Sencilla'),
-(24, 'Adams', 'Limpieza', 10000, 'Sencilla'),
-(25, 'Stark', 'Limpieza', 10000, 'Sencilla'),
-(26, 'Hurst', 'Limpieza', 15000, 'Doble'),
-(27, 'Gay', 'Libre', 15000, 'Doble'),
+(24, 'Adams', 'Libre', 10000, 'Sencilla'),
+(25, 'Stark', 'Libre', 10000, 'Sencilla'),
+(26, 'Hurst', 'Libre', 15000, 'Doble'),
+(27, 'Gay', 'Limpieza', 15000, 'Doble'),
 (28, 'Watkins', 'Libre', 10000, 'Sencilla'),
-(29, 'Middleton', 'Bloqueo', 10000, 'Sencilla'),
-(30, 'Vincent', 'Bloqueo', 15000, 'Doble'),
+(29, 'Middleton', 'Libre', 10000, 'Sencilla'),
+(30, 'Vincent', 'Libre', 15000, 'Doble'),
 (31, 'Santa', 'Libre', 10000, 'Sencilla'),
 (32, 'Maria', 'Libre', 10000, 'Sencilla'),
 (33, 'Marca', 'Libre', 10000, 'Sencilla'),
@@ -170,7 +170,18 @@ INSERT INTO `cliente_empresa` (`empresa_id`, `nombre_empresa`) VALUES
 (40, 'Eli'),
 (41, 'Hellen Maria'),
 (42, 'Eisner Lopez'),
-(43, 'Eisner Lopez');
+(43, 'Eisner Lopez'),
+(44, 'Jason Momoa'),
+(45, 'Marcos'),
+(46, 'Mark'),
+(47, 'Mark'),
+(48, 'Edell'),
+(49, 'Luis'),
+(50, 'Luis'),
+(51, 'Marco'),
+(52, 'Eisner'),
+(53, 'MalParido'),
+(54, 'MalParido');
 
 -- --------------------------------------------------------
 
@@ -183,15 +194,17 @@ CREATE TABLE `colaborador` (
   `fecha_contrato` date NOT NULL,
   `fecha_despido` date DEFAULT NULL,
   `observaciones` varchar(45) DEFAULT NULL,
-  `persona_idpersona` int(11) NOT NULL
+  `persona_idpersona` int(11) NOT NULL,
+  `puesto_puesto_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `colaborador`
 --
 
-INSERT INTO `colaborador` (`empleado_id`, `fecha_contrato`, `fecha_despido`, `observaciones`, `persona_idpersona`) VALUES
-(1, '2017-02-23', NULL, NULL, 1);
+INSERT INTO `colaborador` (`empleado_id`, `fecha_contrato`, `fecha_despido`, `observaciones`, `persona_idpersona`, `puesto_puesto_id`) VALUES
+(1, '2017-02-23', NULL, NULL, 1, 0),
+(2, '2007-02-08', NULL, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -229,7 +242,6 @@ CREATE TABLE `factura_cabina` (
   `impuesto_cabina` float NOT NULL,
   `precio_total_cabina` bigint(20) NOT NULL,
   `cabina_cabina_id` smallint(6) NOT NULL,
-  `persona_idpersona` int(11) NOT NULL,
   `dato_empresa_iddato_empresa` int(11) NOT NULL,
   `cliente_empresa_empresa_id` bigint(20) NOT NULL,
   `colaborador_empleado_id` bigint(20) NOT NULL
@@ -239,8 +251,23 @@ CREATE TABLE `factura_cabina` (
 -- Dumping data for table `factura_cabina`
 --
 
-INSERT INTO `factura_cabina` (`factura_id`, `cant_dia`, `fecha`, `impuesto_cabina`, `precio_total_cabina`, `cabina_cabina_id`, `persona_idpersona`, `dato_empresa_iddato_empresa`, `cliente_empresa_empresa_id`, `colaborador_empleado_id`) VALUES
-(1, 1, '2017-02-01', 1300, 10000, 9, 1, 1, 1, 1);
+INSERT INTO `factura_cabina` (`factura_id`, `cant_dia`, `fecha`, `impuesto_cabina`, `precio_total_cabina`, `cabina_cabina_id`, `dato_empresa_iddato_empresa`, `cliente_empresa_empresa_id`, `colaborador_empleado_id`) VALUES
+(1, 1, '2017-02-01', 1300, 10000, 9, 1, 1, 1),
+(2, 2, '2017-03-01', 1300, 10000, 9, 1, 2, 1),
+(3, 3, '2017-03-04', 3900, 30000, 28, 1, 46, 1),
+(4, 2, '2017-03-04', 2600, 20000, 28, 1, 46, 1),
+(5, 3, '2017-03-04', 3900, 30000, 28, 1, 46, 1),
+(6, 3, '2017-03-04', 3900, 30000, 3, 1, 46, 1),
+(7, 3, '2017-03-04', 3900, 30000, 3, 1, 46, 1),
+(8, 30, '2017-03-04', 195000, 1500000, 3, 1, 46, 1),
+(9, 2, '2017-03-04', 2600, 20000, 3, 1, 46, 1),
+(10, 1, '2017-03-05', 1300, 10000, 3, 1, 48, 1),
+(11, 1, '2017-03-05', 2015, 15500, 30, 1, 49, 1),
+(12, 15, '2017-03-06', 19500, 150000, 28, 1, 42, 1),
+(13, 2, '2017-03-06', 2600, 20000, 28, 1, 48, 1),
+(14, 2, '2017-03-06', 2600, 20000, 28, 1, 49, 1),
+(15, 15, '2017-03-06', 19500, 150000, 28, 1, 45, 1),
+(16, 10, '2017-03-06', 13000, 100000, 24, 1, 53, 1);
 
 -- --------------------------------------------------------
 
@@ -328,7 +355,8 @@ INSERT INTO `persona` (`idpersona`, `nombre`, `cedula`, `telefono`, `direccion`,
 (1, 'Eisner Lopez', '84484', '84484', '84484', 3),
 (2, 'Edell Madrigal', '8448484', '84484121', '844842121', 1),
 (3, 'Jessica Gonzalez', '748484', '84484212', '84484121', 2),
-(4, 'Marcos', '212121', '89564976', '5454545', 3);
+(4, 'Marcos', '212121', '89564976', '5454545', 3),
+(5, 'Edell Madrigal', '200250021', '', 'San Carlos', 3);
 
 -- --------------------------------------------------------
 
@@ -1466,7 +1494,8 @@ ALTER TABLE `cliente_empresa`
 --
 ALTER TABLE `colaborador`
   ADD PRIMARY KEY (`empleado_id`),
-  ADD KEY `fk_colaborador_persona_idx` (`persona_idpersona`);
+  ADD KEY `fk_colaborador_persona_idx` (`persona_idpersona`),
+  ADD KEY `fk_colaborador_puesto1_idx` (`puesto_puesto_id`);
 
 --
 -- Indexes for table `dato_empresa`
@@ -1480,7 +1509,6 @@ ALTER TABLE `dato_empresa`
 ALTER TABLE `factura_cabina`
   ADD PRIMARY KEY (`factura_id`),
   ADD KEY `fk_factura_cabina_cabina1_idx` (`cabina_cabina_id`),
-  ADD KEY `fk_factura_cabina_persona2_idx` (`persona_idpersona`),
   ADD KEY `fk_factura_cabina_dato_empresa1_idx` (`dato_empresa_iddato_empresa`),
   ADD KEY `fk_factura_cabina_cliente_empresa1_idx` (`cliente_empresa_empresa_id`),
   ADD KEY `fk_factura_cabina_colaborador1_idx` (`colaborador_empleado_id`);
@@ -1580,12 +1608,12 @@ ALTER TABLE `cabina`
 -- AUTO_INCREMENT for table `cliente_empresa`
 --
 ALTER TABLE `cliente_empresa`
-  MODIFY `empresa_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `empresa_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `colaborador`
 --
 ALTER TABLE `colaborador`
-  MODIFY `empleado_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `empleado_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `dato_empresa`
 --
@@ -1595,7 +1623,7 @@ ALTER TABLE `dato_empresa`
 -- AUTO_INCREMENT for table `factura_cabina`
 --
 ALTER TABLE `factura_cabina`
-  MODIFY `factura_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `factura_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `gasto_operativo`
 --
@@ -1620,7 +1648,7 @@ ALTER TABLE `marcas`
 -- AUTO_INCREMENT for table `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `planilla`
 --
@@ -1668,8 +1696,7 @@ ALTER TABLE `factura_cabina`
   ADD CONSTRAINT `fk_factura_cabina_cabina1` FOREIGN KEY (`cabina_cabina_id`) REFERENCES `cabina` (`cabina_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_factura_cabina_cliente_empresa1` FOREIGN KEY (`cliente_empresa_empresa_id`) REFERENCES `cliente_empresa` (`empresa_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_factura_cabina_colaborador1` FOREIGN KEY (`colaborador_empleado_id`) REFERENCES `colaborador` (`empleado_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_factura_cabina_dato_empresa1` FOREIGN KEY (`dato_empresa_iddato_empresa`) REFERENCES `dato_empresa` (`iddato_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_factura_cabina_persona2` FOREIGN KEY (`persona_idpersona`) REFERENCES `persona` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_factura_cabina_dato_empresa1` FOREIGN KEY (`dato_empresa_iddato_empresa`) REFERENCES `dato_empresa` (`iddato_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `gasto_operativo`
@@ -1723,7 +1750,7 @@ ALTER TABLE `proveedor`
 -- Constraints for table `puesto`
 --
 ALTER TABLE `puesto`
-  ADD CONSTRAINT `fk_puesto_colaborador1` FOREIGN KEY (`colaborador_empleado_id`) REFERENCES `colaborador` (`empleado_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `puesto_ibfk_1` FOREIGN KEY (`puesto_id`) REFERENCES `colaborador` (`puesto_puesto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `usuario`

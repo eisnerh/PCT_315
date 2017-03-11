@@ -13,19 +13,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.form.mCabina;
 import model.form.mPersona;
-import net.sf.jcarrierpigeon.WindowPosition;
-import net.sf.jtelegraph.Telegraph;
-import net.sf.jtelegraph.TelegraphEnvelope;
-import net.sf.jtelegraph.TelegraphQueue;
-import net.sf.jtelegraph.TelegraphType;
 
 /**
  *
  * @author ace
  */
 public class fPersona {
+
     private final ConexionDB myLink;
     private final Connection conexion = ConexionDB.conexionDB();
     private String querySQL = "";
@@ -68,7 +63,6 @@ public class fPersona {
         }
 
     }
-
 
     public boolean insertar(mPersona dts) {
         querySQL = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES (?, ?, ?, ?, ?)";
@@ -113,8 +107,6 @@ public class fPersona {
         }
     }
 
-    
-
     public boolean eliminar(mPersona dts) {
         querySQL = "DELETE FROM `persona` WHERE `idpersona` = ?";
 
@@ -135,4 +127,3 @@ public class fPersona {
     }
 
 }
-

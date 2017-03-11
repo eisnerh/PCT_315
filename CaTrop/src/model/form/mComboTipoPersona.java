@@ -10,7 +10,7 @@ package model.form;
  * @author ace
  */
 public class mComboTipoPersona {
-    
+
     Double idtipo_persona;
 
     public Double getIdtipo_persona() {
@@ -34,7 +34,5 @@ public class mComboTipoPersona {
         this.idtipo_persona = idtipo_persona;
         this.desc_persona = desc_persona;
     }
-    
-    
-    
+
 }

@@ -22,8 +22,7 @@ import javax.swing.JOptionPane;
 public class Agregar_Usuario_frm extends javax.swing.JFrame {
 
     /**
-     * Creates new form puesto
-     * Eisner López Acevedo
+     * Creates new form puesto Eisner López Acevedo
      */
     //Se crea una conexion y se asigna un valor nulo.
     Connection con = null;
@@ -36,7 +35,6 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
 
     public Agregar_Usuario_frm() {
         initComponents();
-        
 
         //inicialización de las variables de la coneccion a la base de datos
         con = ConexionDB.conexionDB();
@@ -118,25 +116,25 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_Usuario.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        getContentPane().add(txt_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 270, 40));
+        getContentPane().add(txt_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 270, 40));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel3.setText("Usuario");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel4.setText("Contraseña");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         txt_Contrasena.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        getContentPane().add(txt_Contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 270, 40));
+        getContentPane().add(txt_Contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 270, 40));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel5.setText("Contraseña");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 270, 40));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 270, 40));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/store-new-badges.png"))); // NOI18N
@@ -183,39 +181,32 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(nuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(guardar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(borrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(buscar)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(nuevo)
+                .addGap(33, 33, 33)
+                .addComponent(guardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(buscar)
+                .addGap(46, 46, 46)
+                .addComponent(editar)
+                .addGap(54, 54, 54)
+                .addComponent(borrar)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(borrar)
                     .addComponent(nuevo)
-                    .addComponent(guardar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(buscar)
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(borrar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(editar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                    .addComponent(guardar)
+                    .addComponent(buscar)
+                    .addComponent(editar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 250));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 90));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 260));
@@ -259,13 +250,12 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
 
     private void mnuSalirMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_mnuSalirMenuKeyPressed
 
-        
     }//GEN-LAST:event_mnuSalirMenuKeyPressed
 
     private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked
         // TODO add your handling code here:
         dispose();
-        
+
     }//GEN-LAST:event_mnuSalirMouseClicked
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
@@ -303,7 +293,7 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
                 if (rs.next()) {
                     JOptionPane.showMessageDialog(this, "Usuario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
                     txt_Usuario.setText("");
-                    txt_Usuario.requestDefaultFocus();
+                    txt_Usuario.setFocusable(true);
                     return;
                 }
                 //INSERT INTO `usuario`(`usuario`, `password`, `colaborador_empleado_id`) VALUES ('admin','12345', 1)
@@ -328,7 +318,6 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-
 
         }
 
@@ -442,7 +431,7 @@ public class Agregar_Usuario_frm extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 

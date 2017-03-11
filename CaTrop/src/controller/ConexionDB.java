@@ -16,16 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class ConexionDB {
 
-    
     Connection con = null;
-    
+
     public static Connection conexionDB() {
         try {
-           
-            
-            
+
             Class.forName("com.mysql.jdbc.Driver");
-            
+
             String urlDriver = "jdbc:mysql://localhost:3306/pct3?zeroDateTimeBehavior=convertToNull";
             String user = "root";
             String pass = "surfing";

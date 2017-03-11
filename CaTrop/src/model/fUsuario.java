@@ -14,15 +14,14 @@ import javax.swing.table.DefaultTableModel;
  * @author ace
  */
 public class fUsuario {
-    
+
     private final ConexionDB myLink = new ConexionDB();
     private Connection conexion = ConexionDB.conexionDB();
     private String querySQL = "";
     private String querySQL2 = "";
     public Integer totalregistros;
-    
-    public DefaultTableModel mostrarUsuario(String Buscar)
-    {
+
+    public DefaultTableModel mostrarUsuario(String Buscar) {
         DefaultTableModel tableModel;
         String[] columnas = {"usuario", "password", "colaborador_empleado_id"};
         String[] registro = new String[4];

@@ -51,6 +51,69 @@ public class Login_frm extends javax.swing.JFrame {
         //centra la ventana para que se inicie en el centro del escritorio
         this.setLocationRelativeTo(null);
     }
+    
+    private void executeLogin() {
+        String a = txt_User.getText();
+        String b = String.valueOf(txt_Pass.getPassword());
+        if (a.length() == 0 && b.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario y Contraseña");
+            txt_User.requestFocus();
+        }
+        if (a.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario");
+            txt_User.requestFocus();
+        }
+        if (b.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Contraseña");
+            txt_Pass.requestFocus();
+        }
+        try {
+
+            String str = "SELECT `usuario`.`usuario`, `usuario`.`password`, "
+                    + "`usuario`.`colaborador_empleado_id` as 'empleado_id' , "
+                    + "`persona`.`nombre` as `nombre` "
+                    + "FROM `pct3`.`usuario` AS `usuario`, "
+                    + "`pct3`.`colaborador` AS `colaborador`, "
+                    + "`pct3`.`persona` AS `persona` "
+                    + "WHERE `usuario`.`colaborador_empleado_id` = "
+                    + "`colaborador`.`empleado_id` AND "
+                    + "`colaborador`.`persona_idpersona` = "
+                    + "`persona`.`idpersona` AND "
+                    + "`usuario`.`usuario` = '" + a
+                    + "' AND `usuario`.`password` = '" + b + "'";
+            pst = con.prepareStatement(str);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                String nombre_persona = rs.getString("nombre");
+                String id_colaborador = rs.getString("empleado_id");
+                ps_NombreEmpleado = rs.getString("nombre");
+                ps_idEmpleado = rs.getString("empleado_id");
+                System.out.println(nombre_persona);
+                System.out.println(id_colaborador);
+
+                Principal_frm p = new Principal_frm();
+
+                p.setVisible(true);
+                this.hide();
+
+                Principal_frm.Nombre_Empleado.setText(nombre_persona);
+                Principal_frm.IdEmpleado.setText(id_colaborador);
+            } else {
+                int opcion = JOptionPane.showConfirmDialog(this, "Usuario o Contraseña Incorrecta", "Desea Salir", JOptionPane.YES_NO_OPTION);
+                if (opcion == 0) { //The ISSUE is here
+                    System.exit(0);
+                } else {
+                    System.out.print("no");
+
+                    txt_User.setText("");
+                    txt_Pass.setText("");
+                }
+            }
+
+        } catch (SQLException | IOException | HeadlessException e) {
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -254,66 +317,5 @@ public class Login_frm extends javax.swing.JFrame {
     private javax.swing.JTextField txt_User;
     // End of variables declaration//GEN-END:variables
 
-    private void executeLogin() {
-        String a = txt_User.getText();
-        String b = String.valueOf(txt_Pass.getPassword());
-        if (a.length() == 0 && b.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario y Contraseña");
-            txt_User.requestFocus();
-        }
-        if (a.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario");
-            txt_User.requestFocus();
-        }
-        if (b.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Ingresar Contraseña");
-            txt_Pass.requestFocus();
-        }
-        try {
-
-            String str = "SELECT `usuario`.`usuario`, `usuario`.`password`, "
-                    + "`usuario`.`colaborador_empleado_id` as 'empleado_id' , "
-                    + "`persona`.`nombre` as `nombre` "
-                    + "FROM `pct3`.`usuario` AS `usuario`, "
-                    + "`pct3`.`colaborador` AS `colaborador`, "
-                    + "`pct3`.`persona` AS `persona` "
-                    + "WHERE `usuario`.`colaborador_empleado_id` = "
-                    + "`colaborador`.`empleado_id` AND "
-                    + "`colaborador`.`persona_idpersona` = "
-                    + "`persona`.`idpersona` AND "
-                    + "`usuario`.`usuario` = '" + a
-                    + "' AND `usuario`.`password` = '" + b + "'";
-            pst = con.prepareStatement(str);
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                String nombre_persona = rs.getString("nombre");
-                String id_colaborador = rs.getString("empleado_id");
-                ps_NombreEmpleado = rs.getString("nombre");
-                ps_idEmpleado = rs.getString("empleado_id");
-                System.out.println(nombre_persona);
-                System.out.println(id_colaborador);
-
-                Principal_frm p = new Principal_frm();
-
-                p.setVisible(true);
-                this.hide();
-
-                Principal_frm.Nombre_Empleado.setText(nombre_persona);
-                Principal_frm.IdEmpleado.setText(id_colaborador);
-            } else {
-                int opcion = JOptionPane.showConfirmDialog(this, "Usuario o Contraseña Incorrecta", "Desea Salir", JOptionPane.YES_NO_OPTION);
-                if (opcion == 0) { //The ISSUE is here
-                    System.exit(0);
-                } else {
-                    System.out.print("no");
-
-                    txt_User.setText("");
-                    txt_Pass.setText("");
-                }
-            }
-
-        } catch (SQLException | IOException | HeadlessException e) {
-        }
-    }
+    
 }

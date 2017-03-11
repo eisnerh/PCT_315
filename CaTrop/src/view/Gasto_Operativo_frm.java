@@ -350,7 +350,6 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
 
     private void mnuSalirMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_mnuSalirMenuKeyPressed
 
-
     }//GEN-LAST:event_mnuSalirMenuKeyPressed
 
     private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked
@@ -412,7 +411,7 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
 
                 Statement stmt;
                 stmt = con.createStatement();
-                
+
                 String sql1 = sqlSelect_Valor + txtN_Factura.getText() + "'";
                 rs = stmt.executeQuery(sql1);
                 if (rs.next()) {
@@ -421,7 +420,7 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
                     txtDetalle_Gasto.requestDefaultFocus();
                     return;
                 }
-                String sql = "INSERT INTO `gasto_operativo`(`descripcion_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES ('" + txtDetalle_Gasto.getText() + "','" + txt_MontoGasto.getText() + "','" + txtFecha_Gasto.getText() + "','" + txtN_Factura.getText() + "','" +lbl_id_persona.getText() + "')";
+                String sql = "INSERT INTO `gasto_operativo`(`descripcion_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES ('" + txtDetalle_Gasto.getText() + "','" + txt_MontoGasto.getText() + "','" + txtFecha_Gasto.getText() + "','" + txtN_Factura.getText() + "','" + lbl_id_persona.getText() + "')";
                 pst = con.prepareStatement(sql);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
@@ -430,7 +429,7 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
 
             }
             if (P == 1) {
-                String sql = "INSERT INTO `gasto_operativo`(`descripcion_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES ('" + txtDetalle_Gasto.getText() + "','" + txt_MontoGasto.getText() + "','" + txtFecha_Gasto.getText() + "','" + txtN_Factura.getText() + "','" +lbl_id_persona.getText() + "')";
+                String sql = "INSERT INTO `gasto_operativo`(`descripcion_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES ('" + txtDetalle_Gasto.getText() + "','" + txt_MontoGasto.getText() + "','" + txtFecha_Gasto.getText() + "','" + txtN_Factura.getText() + "','" + lbl_id_persona.getText() + "')";
                 pst = con.prepareStatement(sql);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
@@ -464,8 +463,8 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
 //
 //                    return;
 //                }
-                String Pru = "UPDATE `gasto_operativo` SET `descripcion_gasto` = '" + txtDetalle_Gasto.getText() + "',`monto_gasto` = '" + txt_MontoGasto.getText() + "', `fecha_gasto` = '"+ txtFecha_Gasto.getText() + "',`factura_gasto`='" + txtN_Factura.getText() +"',`colaborador_empleado_id`='" + lbl_id_persona.getText() +  "' WHERE `gasto_id`='" + lbl_Gasto_Operativo_id.getText() + "'";
-                
+                String Pru = "UPDATE `gasto_operativo` SET `descripcion_gasto` = '" + txtDetalle_Gasto.getText() + "',`monto_gasto` = '" + txt_MontoGasto.getText() + "', `fecha_gasto` = '" + txtFecha_Gasto.getText() + "',`factura_gasto`='" + txtN_Factura.getText() + "',`colaborador_empleado_id`='" + lbl_id_persona.getText() + "' WHERE `gasto_id`='" + lbl_Gasto_Operativo_id.getText() + "'";
+
                 pst = con.prepareStatement(Pru);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
@@ -491,7 +490,7 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
         txtPersona.setEnabled(true);
         txt_MontoGasto.setEnabled(true);
         txtDetalle_Gasto.setText("");
-        
+
         txtFecha_Gasto.setText("");
         txtN_Factura.setText("");
         txtPersona.setText("");
@@ -527,13 +526,11 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
                 txtN_Factura.setText(add5);
                 String add6 = rs.getString("colaborador_empleado_id");
                 lbl_id_persona.setText(add6);
-                if (lbl_id_persona.getText().length()!=0)
-                {
-                    String sql2 = "SELECT `colaborador`.`empleado_id` as 'idEmpleado', `persona`.`nombre` as 'Nombre' FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `colaborador`.`empleado_id` = '"+ lbl_id_persona.getText() +"'";
+                if (lbl_id_persona.getText().length() != 0) {
+                    String sql2 = "SELECT `colaborador`.`empleado_id` as 'idEmpleado', `persona`.`nombre` as 'Nombre' FROM `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona` WHERE `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `colaborador`.`empleado_id` = '" + lbl_id_persona.getText() + "'";
                     pst2 = con.prepareStatement(sql2);
                     rs2 = pst.executeQuery();
-                    if (rs2.next())
-                    {
+                    if (rs2.next()) {
                         String add7 = rs2.getString(6);
                         txtPersona.setText(add7);
                     }
@@ -567,7 +564,7 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-      }
+        }
     }//GEN-LAST:event_borrarActionPerformed
 
     private void txtPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPersonaActionPerformed
@@ -581,7 +578,6 @@ public class Gasto_Operativo_frm extends javax.swing.JFrame {
     private void txtPersonaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPersonaKeyPressed
         // TODO add your handling code here:
 
-        
     }//GEN-LAST:event_txtPersonaKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -9,9 +9,8 @@ package model.form;
  *
  * @author ace
  */
-
-
 public class mPersona {
+
     private String idPersona;
     private String nombre;
     private String cedula;
@@ -75,9 +74,8 @@ public class mPersona {
         this.direccion = direccion;
         this.tipoPersona = tipoPersona;
     }
-    
-    public mPersona()
-    {
-        
+
+    public mPersona() {
+
     }
 }

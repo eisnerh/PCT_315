@@ -258,13 +258,12 @@ public class Horario_frm extends javax.swing.JFrame {
 
     private void mnuSalirMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_mnuSalirMenuKeyPressed
 
-        
     }//GEN-LAST:event_mnuSalirMenuKeyPressed
 
     private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked
         // TODO add your handling code here:
         dispose();
-        
+
     }//GEN-LAST:event_mnuSalirMouseClicked
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
@@ -445,7 +444,7 @@ public class Horario_frm extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 

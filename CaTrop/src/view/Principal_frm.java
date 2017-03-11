@@ -74,12 +74,12 @@ public final class Principal_frm extends javax.swing.JFrame {
 
     private void Get_Data() {
         /*1*/
-        String sqlQuery = "Select `cabina`.`cabina_id`, "
+        String sqlQuery = "Select DISTINCT `cabina`.`cabina_id`, "
                 /*2*/ + "`cabina`.`descripcion_cabina`, "
                 /*3*/ + "`cabina`.`estado_cabina`, "
                 /*4*/ + "`factura_cabina`.`fecha`, "
                 /*5*/ + "`factura_cabina`.`cant_dia`, "
-                /*6*/+ "date(@fecha := ((fecha) + (cant_dia))), "
+                /*6*/ + "date(@fecha := ((fecha) + (cant_dia))), "
                 + "if (date(@fecha := ((fecha) + (cant_dia)))<now(), "
                 + "-1*DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()), "
                 + "(DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()))) "
@@ -89,9 +89,6 @@ public final class Principal_frm extends javax.swing.JFrame {
                 + "`pct3`.`cabina` AS `cabina` "
                 + "WHERE "
                 + "`factura_cabina`.`cabina_cabina_id` = `cabina`.`cabina_id` "
-                + "and if (date(@fecha := ((fecha) + (cant_dia)))<now(), "
-                + "-1*DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now()), "
-                + "DATEDIFF(date(@fecha := ((fecha) + (cant_dia))),now())) > 0 "
                 + "and `cabina`.`estado_cabina` = 'Ocupado' ";
         int totalRegistros;
         agregarCabinas.removeAll();
@@ -154,7 +151,7 @@ public final class Principal_frm extends javax.swing.JFrame {
                 if (rs.getString(3).equals("Libre")) {
                     btn.setBackground(Color.green);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/Cabina/house.png"))); // NOI18N
-                
+
                 }
                 if (rs.getString(3).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
@@ -453,13 +450,12 @@ public final class Principal_frm extends javax.swing.JFrame {
 
             while (rs.next()) {
                 nombreUsuario = rs.getString("nombre");
-                Persona_frm.nombreUsuario.setText(nombreUsuario);
+                Persona_frm.Clasificacion.setText(nombreUsuario);
             }
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
