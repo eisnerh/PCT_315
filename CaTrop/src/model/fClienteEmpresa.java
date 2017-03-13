@@ -38,11 +38,7 @@ public class fClienteEmpresa {
         totalRegistros = 0;
 
         tableModel = new DefaultTableModel(null, columnas);
-        querySQL = "SELECT empresa_id, "
-                + "nombre_empresa "
-                + "FROM pct3.cliente_empresa "
-                + "where nombre_empresa "
-                + "LIKE '%" + buscar + "%' order by nombre_empresa;";
+        querySQL = "SELECT `empresa_id`, `nombre_empresa` FROM `cliente_empresa` WHERE `nombre_empresa` like '%" + buscar + "%'"; 
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);

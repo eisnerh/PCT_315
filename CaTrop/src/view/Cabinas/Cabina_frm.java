@@ -505,24 +505,24 @@ public final class Cabina_frm extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (txtNombreCabina.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un Número de Habitación");
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un N\u00FAmero de Habitaci\u00F3n");
             txtNombreCabina.requestFocus();
             return;
         }
         if (EstadoCabina.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripci\u00F3n para la Habitaci\u00F3n Habitaci\u00F3n");
             estadoCabina.requestFocus();
             return;
         }
 
         if (TipoCabina.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un precio diario para la Habitación Habitación");
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un precio diario para la Habitaci\u00F3n Habitaci\u00F3n");
             tipoCabina.requestFocus();
             return;
         }
 
         if (txtPrecio.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una Precio para la Habitación Habitación");
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una Precio para la Habitaci\u00F3n Habitaci\u00F3n");
             txtPrecio.requestFocus();
             return;
         }
@@ -540,7 +540,7 @@ public final class Cabina_frm extends javax.swing.JFrame {
         dts.setTipo_cabina(TipoCabina.getText());
 
         if (func.insertar(dts)) {
-            JOptionPane.showMessageDialog(rootPane, "La habitación fue registrada satisfactoriamente");
+            JOptionPane.showMessageDialog(rootPane, "La habitaci\u00F3n fue registrada satisfactoriamente");
             mostrar("");
         }
 
