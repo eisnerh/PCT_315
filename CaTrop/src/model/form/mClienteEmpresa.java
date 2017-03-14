@@ -13,14 +13,25 @@ public class mClienteEmpresa {
 
     private String empresaId;
     private String nombreEmpresa;
+    private String estadoCliente;
+
+    public mClienteEmpresa(String empresaId, String nombreEmpresa, String estadoCliente) {
+        this.empresaId = empresaId;
+        this.nombreEmpresa = nombreEmpresa;
+        this.estadoCliente = estadoCliente;
+    }
 
     public mClienteEmpresa() {
 
     }
 
-    public mClienteEmpresa(String empresaId, String nombreEmpresa) {
-        this.empresaId = empresaId;
-        this.nombreEmpresa = nombreEmpresa;
+
+    public String getEstadoCliente() {
+        return estadoCliente;
+    }
+
+    public void setEstadoCliente(String estadoCliente) {
+        this.estadoCliente = estadoCliente;
     }
 
     public String getEmpresaId() {

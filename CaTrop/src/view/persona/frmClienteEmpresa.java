@@ -23,39 +23,59 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
     /**
      * Creates new form frmClienteEmpresa
      */
+    private int valorEstado;
+
     public frmClienteEmpresa() {
         initComponents();
         mostrar("");
         inhabilitar();
+        valorEstado = 1;
         //this.setSize(676, 235);
+
     }
-    
+
     void ocultar_columnas() {
         tablaListado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablaListado.getColumnModel().getColumn(0).setMinWidth(0);
         tablaListado.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
-    
+
     void inhabilitar() {
         txtNombreCliente.setEnabled(false);
         txtBuscarCliente.setEnabled(false);
+        estadoCliente.setEnabled(true);
         btnGuardar.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnVolver.setEnabled(false);
         btnEditar.setEnabled(false);
-        
+
     }
-    
+
     void habilitar() {
-        txtNombreCliente.setEnabled(false);
+        txtNombreCliente.setEnabled(true);
         txtBuscarCliente.setEnabled(true);
+        estadoCliente.setEnabled(true);
         btnGuardar.setEnabled(true);
         btnEliminar.setEnabled(true);
         btnVolver.setEnabled(true);
         btnEditar.setEnabled(false);
-        
+
     }
-    
+
+    public void detalleCliente() {
+
+        valorEstado = 1;
+        if (estadoCliente.isSelected()) {
+            estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/xmark.png"))); // NOI18N
+            valorEstado = 0;
+            System.out.println(valorEstado);
+        } else {
+            estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/check.png"))); // NOI18N
+            valorEstado = 1;
+            System.out.println(valorEstado);
+        }
+    }
+
     void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
@@ -162,6 +182,11 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
         });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/dustbin.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -261,8 +286,7 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
 
         txtNombreCliente.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        buttonGroup1.add(estadoCliente);
-        estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/checked-checkbox-64.png"))); // NOI18N
+        estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/check.png"))); // NOI18N
         estadoCliente.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 estadoClienteStateChanged(evt);
@@ -370,6 +394,8 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        habilitar();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -388,6 +414,8 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
 
         dts.setNombreEmpresa(txtNombreCliente.getText());
 
+        dts.setEstadoCliente(String.valueOf(valorEstado));
+
         if (func.insertar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "El Cliente fue registrado satisfactoriamente");
             mostrar("");
@@ -402,26 +430,27 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarClienteActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
         if (txtNombreCliente.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes Ingresar el Nombre Completo del Cliente!!! ");
-            txtNombreCliente.setFocusable(true);
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un Nombre para el cliente");
+            txtNombreCliente.requestFocus();
             return;
         }
+
         mClienteEmpresa dts = new mClienteEmpresa();
         fClienteEmpresa func = new fClienteEmpresa();
 
-        dts.setEmpresaId("");
         dts.setNombreEmpresa(txtNombreCliente.getText());
-        
-            dts.setEmpresaId(IdClienteEmpresa.getText());
+        dts.setEstadoCliente(String.valueOf(valorEstado));
+        dts.setEmpresaId(IdClienteEmpresa.getText());
 
-            if (func.editar(dts)) {
-                JOptionPane.showMessageDialog(rootPane, "El Cliente fue Editado satisfactoriamente");
-                mostrar("");
-                inhabilitar();
-            }
-        
+        if (func.editar(dts)) {
+            dts.setEmpresaId(IdClienteEmpresa.getText());
+            JOptionPane.showMessageDialog(rootPane, "El Cliente fue Editado satisfactoriamente");
+            mostrar("");
+            inhabilitar();
+
+        }
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -430,12 +459,24 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void tablaListadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListadoMouseClicked
-        
+
         habilitar();
+
         btnEliminar.setEnabled(true);
+        btnEditar.setEnabled(true);
+        btnGuardar.setEnabled(false);
         int fila = tablaListado.rowAtPoint(evt.getPoint());
         IdClienteEmpresa.setText(tablaListado.getValueAt(fila, 0).toString());
         txtNombreCliente.setText(tablaListado.getValueAt(fila, 1).toString());
+        valorEstado = (Integer.parseInt(tablaListado.getValueAt(fila, 2).toString()));
+        String s = (String) tablaListado.getValueAt(fila, 2);
+        System.err.println(s);
+        if ("1".equals(s)) {
+            estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/check.png"))); // NOI18N
+
+        } else {
+            estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/xmark.png"))); // NOI18N
+        }
     }//GEN-LAST:event_tablaListadoMouseClicked
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -450,21 +491,32 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void estadoClienteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_estadoClienteStateChanged
-        if (estadoCliente.isSelected()) {
-    estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/checked-checkbox-64.png"))); // NOI18N
-  } else {
-    estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/x-mark-4-64.png"))); // NOI18N
-  }
+
     }//GEN-LAST:event_estadoClienteStateChanged
 
     private void estadoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoClienteActionPerformed
         // TODO add your handling code here:
-        if (estadoCliente.isSelected()) {
-    estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/checked-checkbox-64.png"))); // NOI18N
-  } else {
-    estadoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/x-mark-4-64.png"))); // NOI18N
-  }
+        detalleCliente();
+        
     }//GEN-LAST:event_estadoClienteActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if (!IdClienteEmpresa.getText().equals("")) {
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el Cliente?", "Confirmar", 2);
+
+            if (confirmacion == 0) {
+                fClienteEmpresa func = new fClienteEmpresa();
+                mClienteEmpresa dts = new mClienteEmpresa();
+
+                dts.setEmpresaId(IdClienteEmpresa.getText());
+                func.eliminar(dts);
+                mostrar("");
+                inhabilitar();
+
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,7 +538,7 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmClienteEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

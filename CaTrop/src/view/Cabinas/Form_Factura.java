@@ -8,6 +8,7 @@ package view.Cabinas;
 import com.sun.glass.events.KeyEvent;
 import controller.ConexionDB;
 import java.awt.HeadlessException;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,8 +19,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import view.Login_frm;
 
 /**
@@ -38,6 +49,7 @@ public final class Form_Factura extends javax.swing.JFrame {
     PreparedStatement pst2 = null;
     DateFormat df = DateFormat.getDateInstance();
     public String Valor;
+    public String nFactura;
 
     public Form_Factura() {
         initComponents();
@@ -51,6 +63,31 @@ public final class Form_Factura extends javax.swing.JFrame {
         fechas();
         setLocationRelativeTo(null);
         nuevaHora();
+        Get_Data();
+    }
+    
+    private void Get_Data() {
+        
+        String sql = "select max(factura_cabina.factura_id) as 'ultimaFactura' from pct3.factura_cabina";
+        String sql2 = "SELECT `puesto_id`, `descripcion_puesto`, `pago_hora_sencilla`, `pago_hora_extra` FROM `puesto`";
+        try {
+            pst = con.prepareStatement(sql);
+            PreparedStatement pst2s = con.prepareStatement(sql);
+            rs = pst2s.executeQuery();
+            ResultSet ts2 = pst2s.executeQuery();
+            
+            boolean lleno = ts2.next();
+            while (lleno) {
+                nFactura = ts2.getString(1);
+                
+                System.out.println("" + nFactura + "....");
+                lleno = ts2.next(); //se verifica si hay otro registro
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
     }
 
     /**
@@ -158,7 +195,7 @@ public final class Form_Factura extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Imprimir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -378,7 +415,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                     .addComponent(idCabina)
                     .addComponent(idEmpresa)
                     .addComponent(idEmpleado))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                     .addContainerGap(219, Short.MAX_VALUE)
@@ -777,7 +814,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                             idCliente.setText(add1);
 
                         }
-                        txtNombreCliente.requestDefaultFocus();
+                        txtNombreCliente.setFocusable(true);
                         return;
 
                     }
@@ -814,6 +851,20 @@ public final class Form_Factura extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, e);
 
                     }
+                    if (P == 0) {
+                        String sqlSelect = "select max(factura_cabina.factura_id) as 'ultimaFactura' from pct3.factura_cabina";
+                        pst = con.prepareStatement(sqlIns);
+                        pst.execute();
+                        if (rs.next()) {
+                            String add1 = rs.getString("ultimaFactura");
+
+                            boolean equals = nFactura.equals(add1);
+
+                        }
+                        JOptionPane.showMessageDialog(this, "Desea imprimir factura", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
+                        AgregarCliente.setEnabled(false);
+
+                    }
                 }
 
             } catch (HeadlessException | SQLException ex) {
@@ -834,6 +885,24 @@ public final class Form_Factura extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+            Map p = new HashMap();
+            
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/view/reportes/nuevaFactura.jrxml");
+                print = JasperFillManager.fillReport(report, p, con);
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Comprobante");
+                view.setVisible(true);
+
+            } catch (Exception e) {
+            }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

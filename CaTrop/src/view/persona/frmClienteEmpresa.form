@@ -224,6 +224,9 @@
               <Image iconType="3" name="/view/icons/CRUD/dustbin.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -400,11 +403,8 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="estadoCliente">
               <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup1"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/view/icons/CRUD/checked-checkbox-64.png"/>
+                  <Image iconType="3" name="/view/icons/CRUD/check.png"/>
                 </Property>
               </Properties>
               <Events>
