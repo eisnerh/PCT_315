@@ -30,7 +30,7 @@ public class frmClienteEmpresa extends javax.swing.JFrame {
         mostrar("");
         inhabilitar();
         valorEstado = 1;
-        //this.setSize(676, 235);
+        this.setSize(676, 235);
 
     }
 

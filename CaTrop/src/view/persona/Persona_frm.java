@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import view.Buscar_Persona_frm;
 import view.Colaborador_frm;
 
 /**

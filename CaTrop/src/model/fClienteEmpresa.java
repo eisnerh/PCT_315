@@ -38,14 +38,14 @@ public class fClienteEmpresa {
         totalRegistros = 0;
 
         tableModel = new DefaultTableModel(null, columnas);
-        querySQL = "SELECT `empresa_id`, `nombre_empresa`, `estadoCliente` FROM `cliente_empresa` WHERE `nombre_empresa` like '%" + buscar + "%'"; 
+        querySQL = "SELECT `empresa_id`, `codigo_cliente`, `estadoCliente` FROM `cliente_empresa` WHERE `codigo_cliente` like '%" + buscar + "%'"; 
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
 
             while (rs.next()) {
                 registro[0] = rs.getString("empresa_id");
-                registro[1] = rs.getString("nombre_empresa");
+                registro[1] = rs.getString("codigo_cliente");
                 registro[2] = rs.getString("estadoCliente");
                 totalRegistros++;
                 tableModel.addRow(registro);
@@ -61,7 +61,7 @@ public class fClienteEmpresa {
     public DefaultTableModel mostrarVista(String buscar) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
-        String[] columnas = {"empresa_id", "nombre_empresa"};
+        String[] columnas = {"empresa_id", "codigo_cliente"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
         String[] registro = new String[3];
 
@@ -69,11 +69,11 @@ public class fClienteEmpresa {
         tableModel = new DefaultTableModel(null, columnas);
 
         querySQL = "SELECT empresa_id, "
-                + "nombre_empresa, "
+                + "codigo_cliente, "
                 + "`estadoCliente` "
                 + "FROM pct3.cliente_empresa "
-                + "where nombre_empresa Like '"
-                + buscar + "%' order by nombre_empresa;";
+                + "where codigo_cliente Like '"
+                + buscar + "%' order by codigo_cliente;";
 
         try {
             Statement st = conexion.createStatement();
@@ -81,7 +81,7 @@ public class fClienteEmpresa {
 
             while (resultS.next()) {
                 registro[0] = rs.getString("empresa_id");
-                registro[1] = rs.getString("nombre_empresa");
+                registro[1] = rs.getString("codigo_cliente");
                 totalRegistros++;
                 tableModel.addRow(registro);
 
@@ -96,7 +96,7 @@ public class fClienteEmpresa {
     
     public boolean seleccionar(mClienteEmpresa dts)
     {
-        querySQL = "SELECT * FROM pct3.cliente_empresa where nombre_empresa like '%?%" ;
+        querySQL = "SELECT * FROM pct3.cliente_empresa where codigo_cliente like '%?%" ;
         try {
 
             PreparedStatement preparedst = conexion.prepareStatement(querySQL);
@@ -114,7 +114,7 @@ public class fClienteEmpresa {
     public boolean insertar(mClienteEmpresa dts) {
         querySQL = "INSERT INTO `pct3`.`cliente_empresa`"
                 + "(`empresa_id`,"
-                + "`nombre_empresa`, "
+                + "`codigo_cliente`, "
                 + "`estadoCliente`)"
                 + "VALUES"
                 + "(?,"
@@ -135,7 +135,7 @@ public class fClienteEmpresa {
     }
 
     public boolean editar(mClienteEmpresa dts) {
-        String sSQL = "UPDATE `cliente_empresa` SET `nombre_empresa`= '? ,`estadoCliente`= ? WHERE `empresa_id` = ? ";
+        String sSQL = "UPDATE `cliente_empresa` SET `empresa_id`= ?, `codigo_cliente`= ? ,`estadoCliente`= ? WHERE `empresa_id` = ? ";
         
         String sSQL2 = "UPDATE `cliente_empresa` SET `estadoCliente`= ? WHERE `empresa_id` = ?";
         try {
@@ -143,9 +143,10 @@ public class fClienteEmpresa {
             PreparedStatement pst = conexion.prepareStatement(sSQL);
             PreparedStatement pst2 = conexion.prepareStatement(sSQL2);
 
-            pst.setString(1, dts.getNombreEmpresa());
-            pst.setString(2, dts.getEstadoCliente());
-            //pst.setString(3, dts.getEmpresaId());
+            pst.setString(1, dts.getEmpresaId());
+            pst.setString(2, dts.getNombreEmpresa());
+            pst.setString(3, dts.getEstadoCliente());
+            
             
 
             pst2.setString(1, dts.getEstadoCliente());

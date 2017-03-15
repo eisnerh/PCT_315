@@ -650,7 +650,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                 Statement stmt;
                 stmt = con.createStatement();
 
-                String sql1 = "SELECT * FROM `cliente_empresa` WHERE `nombre_empresa` LIKE '%" + txtNombreCliente.getText() + "%'";
+                String sql1 = "SELECT * FROM `cliente_empresa` WHERE `codigo_cliente` LIKE '%" + txtNombreCliente.getText() + "%'";
                 rs = stmt.executeQuery(sql1);
                 if (rs.next()) {
                     JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -658,7 +658,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                     rs = pst.executeQuery();
                     if (rs.next()) {
                         String add1 = rs.getString("empresa_id");
-                        String add2 = rs.getString("nombre_empresa");
+                        String add2 = rs.getString("codigo_cliente");
 
                         nombreCliente.setText(add2);
 
@@ -669,7 +669,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                     return;
 
                 }
-                String sqlIns = "INSERT INTO `cliente_empresa`(`nombre_empresa`) VALUES ('" + txtNombreCliente.getText() + "')";
+                String sqlIns = "INSERT INTO `cliente_empresa`(`codigo_cliente`) VALUES ('" + txtNombreCliente.getText() + "')";
                 pst = con.prepareStatement(sqlIns);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
@@ -799,7 +799,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                     Statement stmt;
                     stmt = con.createStatement();
 
-                    String sql1 = "SELECT * FROM `cliente_empresa` WHERE `nombre_empresa` LIKE '%" + txtNombreCliente.getText() + "%'";
+                    String sql1 = "SELECT * FROM `cliente_empresa` WHERE `codigo_cliente` LIKE '%" + txtNombreCliente.getText() + "%'";
                     rs = stmt.executeQuery(sql1);
                     if (rs.next()) {
                         JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -807,7 +807,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                         rs = pst.executeQuery();
                         if (rs.next()) {
                             String add1 = rs.getString("empresa_id");
-                            String add2 = rs.getString("nombre_empresa");
+                            String add2 = rs.getString("codigo_cliente");
 
                             nombreCliente.setText(add2);
 
@@ -819,7 +819,7 @@ public final class Form_Factura extends javax.swing.JFrame {
 
                     }
                     //                      `nombre`,                               `cedula`,                       `telefono`, `direccion`, `tipo_persona_idtipo_persona`
-                    String sqlIns = "INSERT INTO `cliente_empresa`(`nombre_empresa`) VALUES ('" + txtNombreCliente.getText() + "')";
+                    String sqlIns = "INSERT INTO `cliente_empresa`(`codigo_cliente`) VALUES ('" + txtNombreCliente.getText() + "')";
                     pst = con.prepareStatement(sqlIns);
                     pst.execute();
                     JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
@@ -827,19 +827,19 @@ public final class Form_Factura extends javax.swing.JFrame {
 
                 }
                 if (P == 1) {
-                    String sqlIns = "INSERT INTO `cliente_empresa`(`nombre_empresa`) VALUES ('" + txtNombreCliente.getText() + "')";
+                    String sqlIns = "INSERT INTO `cliente_empresa`(`codigo_cliente`) VALUES ('" + txtNombreCliente.getText() + "')";
                     pst = con.prepareStatement(sqlIns);
                     pst.execute();
                     JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
                     AgregarCliente.setEnabled(false);
                     try {
 
-                        String sql_persona = "SELECT `empresa_id`, `nombre_empresa` FROM `cliente_empresa` WHERE `nombre_empresa` LIKE '%" + txtNombreCliente.getText() + "%'";
+                        String sql_persona = "SELECT `empresa_id`, `codigo_cliente` FROM `cliente_empresa` WHERE `codigo_cliente` LIKE '%" + txtNombreCliente.getText() + "%'";
                         pst = con.prepareStatement(sql_persona);
                         rs = pst.executeQuery();
                         if (rs.next()) {
                             String add1 = rs.getString("empresa_id");
-                            String add2 = rs.getString("nombre_empresa");
+                            String add2 = rs.getString("codigo_cliente");
 
                             nombreCliente.setText(add2);
 

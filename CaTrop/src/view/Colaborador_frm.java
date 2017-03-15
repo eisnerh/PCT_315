@@ -5,6 +5,7 @@
  */
 package view;
 
+import view.persona.Buscar_Persona_frm;
 import com.sun.glass.events.KeyEvent;
 import controller.ConexionDB;
 import java.awt.HeadlessException;
