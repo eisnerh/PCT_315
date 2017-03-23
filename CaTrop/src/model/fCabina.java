@@ -14,11 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jcarrierpigeon.WindowPosition;
-import net.sf.jtelegraph.Telegraph;
-import net.sf.jtelegraph.TelegraphEnvelope;
-import net.sf.jtelegraph.TelegraphQueue;
-import net.sf.jtelegraph.TelegraphType;
 
 /**
  *
@@ -60,11 +55,6 @@ public class fCabina {
             }
             return tableModel;
         } catch (SQLException sqle) {
-            Telegraph tele = new Telegraph("Mensaje",
-                    "<html><body style='color:red;font-size:13px'><b> ERRO!</b></body></html>", TelegraphType.APPLICATION_WARNING, WindowPosition.TOPRIGHT, 500);
-            TelegraphQueue q = new TelegraphQueue();
-            TelegraphEnvelope qa = new TelegraphEnvelope();
-            q.add(tele);
             JOptionPane.showConfirmDialog(null, sqle);
             return null;
         }

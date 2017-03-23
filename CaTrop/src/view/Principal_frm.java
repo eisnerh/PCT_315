@@ -11,6 +11,7 @@ import com.sun.glass.events.KeyEvent;
 import controller.ConexionDB;
 import java.awt.Color;
 import java.awt.HeadlessException;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,6 +27,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -224,6 +231,8 @@ public final class Principal_frm extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Factura");
@@ -256,6 +265,11 @@ public final class Principal_frm extends javax.swing.JFrame {
         jPanel1.add(jButton1);
 
         jButton5.setText("jButton5");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5);
 
         jButton4.setText("jButton4");
@@ -398,6 +412,19 @@ public final class Principal_frm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu2.setText("Reportes");
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem6.setText("Listado de Cabinas Libres");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -487,6 +514,42 @@ public final class Principal_frm extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/view/reportes/ReporteCabinas.jrxml");
+                print = JasperFillManager.fillReport(report, null, con);
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Lista de Habitaciones");
+                view.setVisible(true);
+
+            } catch (JRException e) {
+                e.printStackTrace();
+            }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+         JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/view/reportes/ReporteCabinas.jrxml");
+                print = JasperFillManager.fillReport(report, null, con);
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Lista de Habitaciones");
+                view.setVisible(true);
+
+            } catch (JRException e) {
+                e.printStackTrace();
+            }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1055,6 +1118,7 @@ public final class Principal_frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -1062,6 +1126,7 @@ public final class Principal_frm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbl_fecha;

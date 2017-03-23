@@ -235,7 +235,7 @@ public class Puesto_frm extends javax.swing.JFrame {
                     .addComponent(editar)
                     .addComponent(buscar)
                     .addComponent(borrar))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +250,7 @@ public class Puesto_frm extends javax.swing.JFrame {
                 .addComponent(buscar)
                 .addGap(18, 18, 18)
                 .addComponent(borrar)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 350));

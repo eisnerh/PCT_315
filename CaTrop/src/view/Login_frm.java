@@ -50,6 +50,9 @@ public class Login_frm extends javax.swing.JFrame {
         con = ConexionDB.conexionDB();
         //centra la ventana para que se inicie en el centro del escritorio
         this.setLocationRelativeTo(null);
+        
+       this.setTitle("Acceso al Sistema");
+       
     }
 
     /**
@@ -254,6 +257,50 @@ public class Login_frm extends javax.swing.JFrame {
     private javax.swing.JTextField txt_User;
     // End of variables declaration//GEN-END:variables
 
+//    private void execLogin()
+//    {
+//        try {
+//            DefaultTableModel modelo;
+//            ftrabajador func =new ftrabajador();
+//            vtrabajador dts=new vtrabajador();
+//            
+//            
+//            dts.setLogin(txtusuario.getText());
+//            dts.setPassword(txtpassword.getText());
+//            
+//            
+//            modelo=func.login(dts.getLogin(),dts.getPassword());
+//            
+//            tablalistado.setModel(modelo);
+//            
+//            if (func.totalregistros >0) {
+//                this.dispose();
+//                frminicio form = new frminicio();
+//                form.toFront();
+//                form.setVisible(true);
+//                frminicio.lblidpersona.setText(tablalistado.getValueAt(0, 0).toString());
+//                frminicio.lblnombre.setText(tablalistado.getValueAt(0, 1).toString());
+//                frminicio.lblapaterno.setText(tablalistado.getValueAt(0, 2).toString());
+//                frminicio.lblamaterno.setText(tablalistado.getValueAt(0, 3).toString());
+//                frminicio.lblacceso.setText(tablalistado.getValueAt(0, 4).toString());
+//                if (!frminicio.lblacceso.getText().equals("Administrador")) {
+//                    frminicio.mnuarchivo.setEnabled(false);
+//                    frminicio.mnuconfiguraciones.setEnabled(false);
+//                }
+//                
+//                
+//                
+//            }
+//            
+//            else {
+//                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
+//            }
+//            
+//            
+//            
+//        } catch (Exception e) {
+//        }
+//    }
     private void executeLogin() {
         String a = txt_User.getText();
         String b = String.valueOf(txt_Pass.getPassword());
