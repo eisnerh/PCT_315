@@ -331,7 +331,20 @@ public class Login_frm extends javax.swing.JFrame {
         }
         try {
 
-            String str = "SELECT `usuario`.`usuario`, `usuario`.`password`, `usuario`.`colaborador_empleado_id` as 'empleado_id' , `persona`.`nombre` as `nombre`, `puesto`.`puesto_id` as `acceso` FROM `pct3`.`usuario` AS `usuario`, `pct3`.`colaborador` AS `colaborador`, `pct3`.`persona` AS `persona`, `pct3`.`puesto` AS `puesto` WHERE `usuario`.`colaborador_empleado_id` = `colaborador`.`empleado_id` AND `colaborador`.`persona_idpersona` = `persona`.`idpersona` AND `usuario`.`usuario` = '"+ a +"' AND `usuario`.`password` = '"+ b +"' and `puesto`.`puesto_id` = 3 ";
+            String str = "SELECT `usuario`.`usuario`, `usuario`.`password`, "
+                    + "`usuario`.`colaborador_empleado_id` as 'empleado_id' , "
+                    + "`persona`.`nombre` as `nombre`, "
+                    + "`puesto`.`puesto_id` as `acceso` "
+                    + "FROM `pct3`.`usuario` AS `usuario`, "
+                    + "`pct3`.`colaborador` AS `colaborador`, "
+                    + "`pct3`.`persona` AS `persona`, "
+                    + "`pct3`.`puesto` AS `puesto` "
+                    + "WHERE `usuario`.`colaborador_empleado_id` = "
+                    + "`colaborador`.`empleado_id` AND "
+                    + "`colaborador`.`persona_idpersona` = "
+                    + "`persona`.`idpersona` AND `usuario`.`usuario` = "
+                    + "binary '"+ a +"' AND `usuario`.`password` = '"+ b +"' "
+                    + "and `puesto`.`puesto_id` = 3 ";
             pst = con.prepareStatement(str);
             rs = pst.executeQuery();
             if (rs.next()) {

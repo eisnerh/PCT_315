@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package vista;
 
 import controlador.ConexionDB;
@@ -28,6 +27,7 @@ public class Inicio_form extends javax.swing.JFrame {
      * Creates new form frminicio
      */
     Connection con = null;
+
     public Inicio_form() {
         //inicialización de las variables de la coneccion a la base de datos
         con = ConexionDB.conexionDB();
@@ -255,8 +255,8 @@ public class Inicio_form extends javax.swing.JFrame {
     }//GEN-LAST:event_itemAyudaActionPerformed
 
     private void itemAgregarCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAgregarCabinaActionPerformed
-         
-        Agregar_Cabina form =new Agregar_Cabina();
+
+        Agregar_Cabina form = new Agregar_Cabina();
         Component add;
         add = escritorio.add(form);
         form.toFront();
@@ -264,12 +264,12 @@ public class Inicio_form extends javax.swing.JFrame {
     }//GEN-LAST:event_itemAgregarCabinaActionPerformed
 
     private void itemDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDisponiblesActionPerformed
-         
-        Seleccionar_Cabina_frm form =new Seleccionar_Cabina_frm();
+
+        Seleccionar_Cabina_frm form = new Seleccionar_Cabina_frm();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-        
+
     }//GEN-LAST:event_itemDisponiblesActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
@@ -307,19 +307,19 @@ public class Inicio_form extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         JasperReport report;
-            JasperPrint print;
+        JasperPrint print;
 
-            try {
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/vista/reportes/ListaCabinas.jrxml");
-                print = JasperFillManager.fillReport(report, null, con);
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Lista de Habitaciones");
-                view.setVisible(true);
+        try {
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/vista/reportes/ListaCabinas.jrxml");
+            print = JasperFillManager.fillReport(report, null, con);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Lista de Habitaciones");
+            view.setVisible(true);
 
-            } catch (JRException e) {
-                e.printStackTrace();
-            }
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void lista_x_cabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_x_cabinaActionPerformed

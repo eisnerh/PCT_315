@@ -55,7 +55,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = connection.createStatement();
-            String queryComboEstado = "SELECT COUNT( * ), `cabina`.`tipo_cabina` as tipoCabina, `cabina`.`precio` as precio FROM `pct3`.`cabina` AS `cabina` GROUP BY `tipo_cabina`, `precio`";
+            String queryComboEstado = "SELECT DISTINCT(tipo_cabina) as tipoCabina, `cabina`.`precio` as precio FROM `pct3`.`cabina` AS `cabina` GROUP BY `tipo_cabina`, `precio`";
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloTipo.addElement(rs.getString("tipoCabina"));
@@ -529,8 +529,6 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SalirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-
         if (txtNombreCabina.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Debes ingresar un Número de Habitación");
             txtNombreCabina.requestFocus();
