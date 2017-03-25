@@ -1,0 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package modelo.contructor;
+
+/**
+ * 
+ * @author Sammy Guergachi <sguergachi at gmail.com>
+ */
+public class TipoPersona_constructor {
+    
+    private int idtipo_persona;
+
+    private String desc_persona;
+    
+    public TipoPersona_constructor()
+    {
+        
+    }
+    
+        public TipoPersona_constructor(int idtipo_persona, String desc_persona) {
+        this.idtipo_persona = idtipo_persona;
+        this.desc_persona = desc_persona;
+    }
+
+    public int getIdtipo_persona() {
+        return idtipo_persona;
+    }
+
+    public void setIdtipo_persona(int idtipo_persona) {
+        this.idtipo_persona = idtipo_persona;
+    }
+
+    public String getDesc_persona() {
+        return desc_persona;
+    }
+
+    public void setDesc_persona(String desc_persona) {
+        this.desc_persona = desc_persona;
+    }
+        
+
+}
