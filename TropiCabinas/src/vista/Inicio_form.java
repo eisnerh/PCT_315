@@ -6,6 +6,18 @@
 
 package vista;
 
+import controlador.ConexionDB;
+import java.awt.Component;
+import java.io.File;
+import java.sql.Connection;
+import javax.swing.ImageIcon;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author CARLOS
@@ -15,10 +27,14 @@ public class Inicio_form extends javax.swing.JFrame {
     /**
      * Creates new form frminicio
      */
+    Connection con = null;
     public Inicio_form() {
+        //inicialización de las variables de la coneccion a la base de datos
+        con = ConexionDB.conexionDB();
         initComponents();
         this.setExtendedState(Inicio_form.MAXIMIZED_BOTH);
         this.setTitle("Sistema de Reserva de Cábinas y Gestión - Cábinas el Trópico");
+        setIconImage(new ImageIcon(getClass().getResource("../Files/Home.png")).getImage());
     }
 
     /**
@@ -31,24 +47,26 @@ public class Inicio_form extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
-        lblidpersona = new javax.swing.JLabel();
-        lblnombre = new javax.swing.JLabel();
+        IdEmpleado = new javax.swing.JLabel();
+        Nombre_Empleado = new javax.swing.JLabel();
         lblapaterno = new javax.swing.JLabel();
         lblamaterno = new javax.swing.JLabel();
         lblacceso = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mnusisreserva = new javax.swing.JMenu();
         mnuarchivo = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
+        itemAgregarCabina = new javax.swing.JMenuItem();
+        itemDisponibles = new javax.swing.JMenuItem();
         mnureservas = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         mnuconsultas = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         mnuHerramientas = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         itemAcerca = new javax.swing.JMenuItem();
         itemAyuda = new javax.swing.JMenuItem();
@@ -58,30 +76,40 @@ public class Inicio_form extends javax.swing.JFrame {
 
         escritorio.setBackground(new java.awt.Color(102, 255, 255));
 
-        lblidpersona.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        lblidpersona.setText("jLabel1");
-        escritorio.add(lblidpersona);
-        lblidpersona.setBounds(20, 10, 130, 16);
+        IdEmpleado.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
+        IdEmpleado.setForeground(new java.awt.Color(0, 204, 0));
+        IdEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        IdEmpleado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        escritorio.add(IdEmpleado);
+        IdEmpleado.setBounds(20, 10, 200, 40);
 
-        lblnombre.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        lblnombre.setText("jLabel2");
-        escritorio.add(lblnombre);
-        lblnombre.setBounds(20, 40, 130, 16);
+        Nombre_Empleado.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
+        Nombre_Empleado.setForeground(new java.awt.Color(0, 204, 0));
+        Nombre_Empleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Nombre_Empleado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        escritorio.add(Nombre_Empleado);
+        Nombre_Empleado.setBounds(20, 60, 200, 40);
 
-        lblapaterno.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        lblapaterno.setText("jLabel3");
+        lblapaterno.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
+        lblapaterno.setForeground(new java.awt.Color(0, 204, 0));
+        lblapaterno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblapaterno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         escritorio.add(lblapaterno);
-        lblapaterno.setBounds(20, 70, 130, 16);
+        lblapaterno.setBounds(20, 110, 200, 40);
 
-        lblamaterno.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        lblamaterno.setText("jLabel4");
+        lblamaterno.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
+        lblamaterno.setForeground(new java.awt.Color(0, 204, 0));
+        lblamaterno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblamaterno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         escritorio.add(lblamaterno);
-        lblamaterno.setBounds(20, 110, 130, 16);
+        lblamaterno.setBounds(20, 160, 200, 40);
 
-        lblacceso.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        lblacceso.setText("jLabel7");
+        lblacceso.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
+        lblacceso.setForeground(new java.awt.Color(0, 204, 0));
+        lblacceso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblacceso.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         escritorio.add(lblacceso);
-        lblacceso.setBounds(20, 140, 130, 16);
+        lblacceso.setBounds(20, 210, 200, 40);
 
         mnusisreserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Inicio.png"))); // NOI18N
         mnusisreserva.setMnemonic('f');
@@ -92,27 +120,27 @@ public class Inicio_form extends javax.swing.JFrame {
         mnuarchivo.setMnemonic('e');
         mnuarchivo.setText("Archivo");
 
-        cutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
-        cutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/habitaciones.png"))); // NOI18N
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Habitaciones");
-        cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        itemAgregarCabina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        itemAgregarCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/productos.png"))); // NOI18N
+        itemAgregarCabina.setMnemonic('t');
+        itemAgregarCabina.setText("Agregar Cábina");
+        itemAgregarCabina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cutMenuItemActionPerformed(evt);
+                itemAgregarCabinaActionPerformed(evt);
             }
         });
-        mnuarchivo.add(cutMenuItem);
+        mnuarchivo.add(itemAgregarCabina);
 
-        copyMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        copyMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/productos.png"))); // NOI18N
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Productos");
-        copyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        itemDisponibles.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        itemDisponibles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/habitaciones.png"))); // NOI18N
+        itemDisponibles.setMnemonic('y');
+        itemDisponibles.setText("Cábinas Disponibles");
+        itemDisponibles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                copyMenuItemActionPerformed(evt);
+                itemDisponiblesActionPerformed(evt);
             }
         });
-        mnuarchivo.add(copyMenuItem);
+        mnuarchivo.add(itemDisponibles);
 
         menuBar.add(mnuarchivo);
 
@@ -151,6 +179,15 @@ public class Inicio_form extends javax.swing.JFrame {
 
         mnuconsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Consultas.png"))); // NOI18N
         mnuconsultas.setText("Consultas");
+
+        jMenuItem4.setText("Lista de Cabinas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(jMenuItem4);
+
         menuBar.add(mnuconsultas);
 
         mnuConfiguraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Configuraciones.png"))); // NOI18N
@@ -170,6 +207,11 @@ public class Inicio_form extends javax.swing.JFrame {
 
         mnuHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Herramientas.png"))); // NOI18N
         mnuHerramientas.setText("Herramientas");
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem3.setText("Agregar Tipo Persona");
+        mnuHerramientas.add(jMenuItem3);
+
         menuBar.add(mnuHerramientas);
 
         mnuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Ayuda.png"))); // NOI18N
@@ -219,22 +261,23 @@ public class Inicio_form extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_itemAyudaActionPerformed
 
-    private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
-        // TODO add your handling code here:
-//        frmhabitacion form =new frmhabitacion();
-//        escritorio.add(form);
-//        form.toFront();
-//        form.setVisible(true);
-    }//GEN-LAST:event_cutMenuItemActionPerformed
+    private void itemAgregarCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAgregarCabinaActionPerformed
+         
+        Agregar_Cabina form =new Agregar_Cabina();
+        Component add;
+        add = escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_itemAgregarCabinaActionPerformed
 
-    private void copyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItemActionPerformed
-        // TODO add your handling code here:
-//        frmproducto form =new frmproducto();
-//        escritorio.add(form);
-//        form.toFront();
-//        form.setVisible(true);
+    private void itemDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDisponiblesActionPerformed
+         
+        SeleccionarCabina_frm form =new SeleccionarCabina_frm();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
         
-    }//GEN-LAST:event_copyMenuItemActionPerformed
+    }//GEN-LAST:event_itemDisponiblesActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
@@ -267,6 +310,24 @@ public class Inicio_form extends javax.swing.JFrame {
 //        frmreserva.txttrabajador.setText(lblnombre.getText() + " " + lblapaterno.getText());
 //        frmreserva.idusuario=Integer.parseInt(lblidpersona.getText());
     }//GEN-LAST:event_contentMenuItemActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/vista/reportes/ListaCabinas.jrxml");
+                print = JasperFillManager.fillReport(report, null, con);
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Lista de Habitaciones");
+                view.setVisible(true);
+
+            } catch (JRException e) {
+                e.printStackTrace();
+            }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,20 +366,22 @@ public class Inicio_form extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JLabel IdEmpleado;
+    public static javax.swing.JLabel Nombre_Empleado;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem itemAcerca;
+    private javax.swing.JMenuItem itemAgregarCabina;
     private javax.swing.JMenuItem itemAyuda;
+    private javax.swing.JMenuItem itemDisponibles;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     public static javax.swing.JLabel lblacceso;
-    public static javax.swing.JLabel lblamaterno;
-    public static javax.swing.JLabel lblapaterno;
-    public static javax.swing.JLabel lblidpersona;
-    public static javax.swing.JLabel lblnombre;
+    private javax.swing.JLabel lblamaterno;
+    private javax.swing.JLabel lblapaterno;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu mnuAyuda;
     public static javax.swing.JMenu mnuConfiguraciones;
