@@ -14,13 +14,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import javax.swing.JOptionPane;
-import vista.SeleccionarCabina_frm;
 
 /**
  *
@@ -42,7 +42,7 @@ public final class Form_Factura extends javax.swing.JFrame {
     public Form_Factura() {
         initComponents();
         con = ConexionDB.conexionDB();
-        nCabina.setText(SeleccionarCabina_frm.ps_nombreCabina);
+        nCabina.setText(Seleccionar_Cabina_frm.ps_nombreCabina);
         nombreEmpleado.setText(Login_frm.ps_NombreEmpleado);
         idEmpleado.setText(Login_frm.ps_idEmpleado);
         idEmpresa.setText("1");
@@ -326,9 +326,13 @@ public final class Form_Factura extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(nombreCliente)
+                        .addGap(0, 0, 0)
                         .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
                         .addComponent(idCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
                         .addComponent(idEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
                         .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,6 +390,11 @@ public final class Form_Factura extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Facturar");
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -536,7 +545,7 @@ public final class Form_Factura extends javax.swing.JFrame {
             SimpleDateFormat sdf = new SimpleDateFormat(formato);
             Date fecha = sdf.parse(stringFecha);
             return fecha;
-        } catch (Exception e) {
+        } catch (ParseException e) {
 
             return null;
         }
@@ -570,7 +579,7 @@ public final class Form_Factura extends javax.swing.JFrame {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
-        SeleccionarCabina_frm sc = new SeleccionarCabina_frm();
+        Seleccionar_Cabina_frm sc = new Seleccionar_Cabina_frm();
         sc.setVisible(true);
         this.hide();
     }//GEN-LAST:event_volverActionPerformed
@@ -693,7 +702,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                 Precio.setText("");
                 CantidadDias.setText("");
                 
-                SeleccionarCabina_frm cabina_frm = new SeleccionarCabina_frm();
+                Seleccionar_Cabina_frm cabina_frm = new Seleccionar_Cabina_frm();
                 this.hide();
                 cabina_frm.setVisible(true);
                 
@@ -716,7 +725,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                             }
             }
             if (P == 1) {
-                SeleccionarCabina_frm cabina_frm = new SeleccionarCabina_frm();
+                Seleccionar_Cabina_frm cabina_frm = new Seleccionar_Cabina_frm();
                 this.hide();
                 cabina_frm.setVisible(true);
             }
@@ -816,6 +825,11 @@ public final class Form_Factura extends javax.swing.JFrame {
         precioTotal.setText("");
     }//GEN-LAST:event_borrarActionPerformed
 
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jLabel13MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -832,15 +846,12 @@ public final class Form_Factura extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Form_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Form_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Form_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Form_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        
         //</editor-fold>
         //</editor-fold>
 

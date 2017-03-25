@@ -49,8 +49,6 @@ public class Inicio_form extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         IdEmpleado = new javax.swing.JLabel();
         Nombre_Empleado = new javax.swing.JLabel();
-        lblapaterno = new javax.swing.JLabel();
-        lblamaterno = new javax.swing.JLabel();
         lblacceso = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mnusisreserva = new javax.swing.JMenu();
@@ -63,6 +61,7 @@ public class Inicio_form extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         mnuconsultas = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        lista_x_cabina = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         mnuHerramientas = new javax.swing.JMenu();
@@ -90,30 +89,16 @@ public class Inicio_form extends javax.swing.JFrame {
         escritorio.add(Nombre_Empleado);
         Nombre_Empleado.setBounds(20, 60, 200, 40);
 
-        lblapaterno.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
-        lblapaterno.setForeground(new java.awt.Color(0, 204, 0));
-        lblapaterno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblapaterno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        escritorio.add(lblapaterno);
-        lblapaterno.setBounds(20, 110, 200, 40);
-
-        lblamaterno.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
-        lblamaterno.setForeground(new java.awt.Color(0, 204, 0));
-        lblamaterno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblamaterno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        escritorio.add(lblamaterno);
-        lblamaterno.setBounds(20, 160, 200, 40);
-
         lblacceso.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
         lblacceso.setForeground(new java.awt.Color(0, 204, 0));
         lblacceso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblacceso.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         escritorio.add(lblacceso);
-        lblacceso.setBounds(20, 210, 200, 40);
+        lblacceso.setBounds(20, 120, 200, 40);
 
         mnusisreserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Inicio.png"))); // NOI18N
         mnusisreserva.setMnemonic('f');
-        mnusisreserva.setText("Sisreserva");
+        mnusisreserva.setText("TropiCabinas");
         menuBar.add(mnusisreserva);
 
         mnuarchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Archivo.png"))); // NOI18N
@@ -151,7 +136,7 @@ public class Inicio_form extends javax.swing.JFrame {
         contentMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         contentMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/reservas-consumos.png"))); // NOI18N
         contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Reservas y Consumos");
+        contentMenuItem.setText("Alquiler");
         contentMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contentMenuItemActionPerformed(evt);
@@ -187,6 +172,14 @@ public class Inicio_form extends javax.swing.JFrame {
             }
         });
         mnuconsultas.add(jMenuItem4);
+
+        lista_x_cabina.setText("Cabina");
+        lista_x_cabina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lista_x_cabinaActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(lista_x_cabina);
 
         menuBar.add(mnuconsultas);
 
@@ -272,7 +265,7 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void itemDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDisponiblesActionPerformed
          
-        SeleccionarCabina_frm form =new SeleccionarCabina_frm();
+        Seleccionar_Cabina_frm form =new Seleccionar_Cabina_frm();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -329,6 +322,14 @@ public class Inicio_form extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void lista_x_cabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_x_cabinaActionPerformed
+        // TODO add your handling code here:
+        Reporte_x_Cabina form = new Reporte_x_Cabina();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_lista_x_cabinaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -380,8 +381,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     public static javax.swing.JLabel lblacceso;
-    private javax.swing.JLabel lblamaterno;
-    private javax.swing.JLabel lblapaterno;
+    private javax.swing.JMenuItem lista_x_cabina;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu mnuAyuda;
     public static javax.swing.JMenu mnuConfiguraciones;

@@ -147,7 +147,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         cmbOcupado = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNombreCabina = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -157,11 +157,11 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        Salir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        btnBorrar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCabina = new javax.swing.JTable();
@@ -190,9 +190,9 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png")));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/house.png")));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -203,7 +203,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbOcupado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(cmbLibre)
@@ -227,10 +227,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         );
 
         jPanel2.add(jPanel4);
-
-        jButton6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton6.setText("Volver");
-        jPanel2.add(jButton6);
+        jPanel2.add(jLabel8);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -279,14 +276,17 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 5, 1, 1));
 
-        jButton1.setToolTipText("Nueva Cabina");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Salir.png"))); // NOI18N
+        Salir.setText("Salir");
+        Salir.setToolTipText("Nueva Cabina");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
+        jPanel1.add(Salir);
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
         btnGuardar.setToolTipText("Guardar Cabina");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,14 +295,16 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnGuardar);
 
-        jButton3.setToolTipText("Buscar Cabina");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
+        btnNuevo.setToolTipText("Buscar Cabina");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
+        jPanel1.add(btnNuevo);
 
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/edit.png"))); // NOI18N
         btnEditar.setToolTipText("Editar Cabina");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,8 +313,14 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnEditar);
 
-        btnBorrar.setToolTipText("Eliminar Cabina");
-        jPanel1.add(btnBorrar);
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Salir.png"))); // NOI18N
+        btnVolver.setToolTipText("Eliminar Cabina");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver);
 
         tablaCabina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -332,6 +340,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tablaCabina);
 
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/volver.png"))); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -515,9 +524,9 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         TipoCabina.setText(tipoCabina.getSelectedItem().toString());
     }//GEN-LAST:event_tipoCabinaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SalirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
@@ -563,10 +572,10 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         this.setSize(1095, 447);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
@@ -678,21 +687,25 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_Buscar_NombreCabinaKeyReleased
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Buscar_NombreCabina;
     private javax.swing.JLabel EstadoCabina;
+    private javax.swing.JButton Salir;
     private javax.swing.JLabel TipoCabina;
-    private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel cabina_di;
     private javax.swing.JRadioButton cmbLibre;
     private javax.swing.JRadioButton cmbOcupado;
     private javax.swing.JComboBox<String> estadoCabina;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -701,6 +714,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

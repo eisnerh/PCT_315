@@ -31,11 +31,7 @@ public class Login_frm extends javax.swing.JFrame {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    String sqlSelect;
-    String sqlSelect_Valor;
-    String sqlInsert;
-    String sqlDelete;
-
+    
     public static String ps_NombreEmpleado;
     public static String ps_idEmpleado;
     BufferedImage img = null;

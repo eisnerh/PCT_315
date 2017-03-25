@@ -284,9 +284,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                           <Component id="nombreCliente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="idCliente" min="-2" pref="104" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="idCabina" min="-2" pref="104" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="idEmpresa" min="-2" pref="104" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="idEmpleado" min="-2" pref="104" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -567,6 +571,9 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Facturar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel13MouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
