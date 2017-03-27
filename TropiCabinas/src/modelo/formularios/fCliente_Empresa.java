@@ -178,23 +178,40 @@ public class fCliente_Empresa {
         }
 
         public boolean eliminar(mCliente_Empresa dts) {
-            querySQL = "DELETE FROM `pct3`.`cliente_empresa`" +
-"WHERE empresa_id = ?";
+            public boolean eliminar(vcliente dts) {
+        sSQL = "delete from cliente_empresa where idpersona=?";
+        sSQL2 = "delete from persona where idpersona=?";
 
-            try {
+        try {
 
-                PreparedStatement preparedST = conexion.prepareStatement(querySQL);
+            PreparedStatement pst = cn.prepareStatement(sSQL);
+            PreparedStatement pst2 = cn.prepareStatement(sSQL2);
 
-                preparedST.setString(1, dts.getIdusuario());
+            
+            pst.setInt(1, dts.getIdpersona());
 
-                int n = preparedST.executeUpdate();
+            
+            pst2.setInt(1, dts.getIdpersona());
 
-                return n != 0;
+            int n = pst.executeUpdate();
 
-            } catch (SQLException e) {
-                JOptionPane.showConfirmDialog(null, e);
+            if (n != 0) {
+                int n2 = pst2.executeUpdate();
+
+                if (n2 != 0) {
+                    return true;
+
+                } else {
+                    return false;
+                }
+
+            } else {
                 return false;
             }
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return false;
         }
     }
 
