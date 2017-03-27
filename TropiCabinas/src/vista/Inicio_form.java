@@ -66,6 +66,7 @@ public class Inicio_form extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         mnuHerramientas = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         itemAcerca = new javax.swing.JMenuItem();
         itemAyuda = new javax.swing.JMenuItem();
@@ -205,6 +206,15 @@ public class Inicio_form extends javax.swing.JFrame {
         jMenuItem3.setText("Agregar Tipo Persona");
         mnuHerramientas.add(jMenuItem3);
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/horario.png"))); // NOI18N
+        jMenuItem5.setText("Horarios");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        mnuHerramientas.add(jMenuItem5);
+
         menuBar.add(mnuHerramientas);
 
         mnuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Ayuda.png"))); // NOI18N
@@ -330,6 +340,14 @@ public class Inicio_form extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_lista_x_cabinaActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        Horario_form form = new Horario_form();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -359,10 +377,8 @@ public class Inicio_form extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Inicio_form().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Inicio_form().setVisible(true);
         });
     }
 
@@ -380,6 +396,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     public static javax.swing.JLabel lblacceso;
     private javax.swing.JMenuItem lista_x_cabina;
     private javax.swing.JMenuBar menuBar;

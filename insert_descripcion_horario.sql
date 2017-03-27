@@ -1,0 +1,1 @@
+insert into pct3.horario (horario_id, descripcion_horario) values (null, "nocturno");
