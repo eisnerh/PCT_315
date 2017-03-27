@@ -55,7 +55,7 @@ public class TipoPersona_Formulario {
             }
             return modelo;
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
             return null;
         }
@@ -75,13 +75,13 @@ public class TipoPersona_Formulario {
             return n != 0;
 
         } catch (SQLException e) {
-            JOptionPane.showConfirmDialog(null, e);
+            JOptionPane.showConfirmDialog(null, e,"Error Insertar",JOptionPane.YES_OPTION);
             return false;
         }
     }
 
     public boolean editar(TipoPersona_constructor dts) {
-        sSQL = "UPDATE `tipo_persona` SET `idtipo_persona`=?,`desc_persona`=? WHERE `idtipo_persona`=?";
+        sSQL = "UPDATE `tipo_persona` SET `desc_persona` = ? WHERE `idtipo_persona`= ? ";
 
         try {
             PreparedStatement pst = connect.prepareStatement(sSQL);
@@ -99,17 +99,12 @@ public class TipoPersona_Formulario {
     }
 
     public boolean eliminar(TipoPersona_constructor dts) {
-        sSQL = "DELETE FROM `tipo_persona` WHERE `idtipo_persona` = ?";
-
+        sSQL = "DELETE FROM `tipo_persona` WHERE `desc_persona` = ?";
         try {
-
             PreparedStatement pst = connect.prepareStatement(sSQL);
             pst.setInt(1, dts.getIdtipo_persona());
-
             int n = pst.executeUpdate();
-
             return n != 0;
-
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
             return false;

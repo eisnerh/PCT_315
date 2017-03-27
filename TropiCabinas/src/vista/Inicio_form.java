@@ -203,7 +203,13 @@ public class Inicio_form extends javax.swing.JFrame {
         mnuHerramientas.setText("Herramientas");
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/members.png"))); // NOI18N
         jMenuItem3.setText("Agregar Tipo Persona");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         mnuHerramientas.add(jMenuItem3);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/horario.png"))); // NOI18N
@@ -347,6 +353,14 @@ public class Inicio_form extends javax.swing.JFrame {
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        TipoPersona form = new TipoPersona();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
