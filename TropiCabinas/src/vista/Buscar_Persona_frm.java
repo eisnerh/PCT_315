@@ -6,7 +6,7 @@
 package vista;
 
 import com.sun.glass.events.KeyEvent;
-import controller.ConexionDB;
+import controlador.ConexionDB;
 import java.awt.HeadlessException;
 import java.io.IOException;
 import java.sql.Connection;

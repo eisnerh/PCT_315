@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -55,7 +57,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = connection.createStatement();
-            String queryComboEstado = "SELECT DISTINCT(tipo_cabina) as tipoCabina, `cabina`.`precio` as precio FROM `pct3`.`cabina` AS `cabina` GROUP BY `tipo_cabina`, `precio`";
+            String queryComboEstado = "SELECT distinct tipo_cabina as tipoCabina, precio FROM pct3.cabina AS cabina ORDER BY tipo_cabina ASC";
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloTipo.addElement(rs.getString("tipoCabina"));
@@ -75,7 +77,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             Statement stmt;
             stmt = connection.createStatement();
 
-            String queryComboEstado = "select `estado_cabina`, count(*) from cabina group by `estado_cabina` ";
+            String queryComboEstado = "select distinct(`estado_cabina`) from cabina group by `estado_cabina` ";
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloEstado.addElement(rs.getString(1));
@@ -171,6 +173,10 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         EstadoCabina = new javax.swing.JLabel();
         TipoCabina = new javax.swing.JLabel();
         cabina_di = new javax.swing.JLabel();
+
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Agregar Cabinas");
 
         jPanel2.setLayout(new java.awt.GridLayout(5, 2, 1, 1));
 
@@ -521,7 +527,23 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
 
     private void tipoCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoCabinaActionPerformed
         // TODO add your handling code here:
-        TipoCabina.setText(tipoCabina.getSelectedItem().toString());
+        try {
+            // TODO add your handling code here:
+            //TipoCabina.setText(tipoCabina.getSelectedItem().toString());
+            Statement stmt;
+            stmt = connection.createStatement();
+            String queryComboEstado = "SELECT DISTINCT tipo_cabina as tipoCabina, precio FROM pct3.cabina AS cabina WHERE tipo_cabina = '"+ tipoCabina.getSelectedItem().toString() +"' ORDER BY tipo_cabina ASC";
+            rs = stmt.executeQuery(queryComboEstado);
+            while (rs.next()) {
+                String add1 = rs.getString("tipoCabina");
+                String add2 = rs.getString("precio");
+                
+                txtPrecio.setText(add2);
+                TipoCabina.setText(add1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarCabina_frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tipoCabinaActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed

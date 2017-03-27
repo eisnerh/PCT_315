@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -57,11 +59,13 @@ public final class AgregarCabina_frm extends javax.swing.JFrame {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = connection.createStatement();
-            String queryComboEstado = "SELECT COUNT( * ), `cabina`.`tipo_cabina` as tipoCabina, `cabina`.`precio` as precio FROM `pct3`.`cabina` AS `cabina` GROUP BY `tipo_cabina`, `precio`";
+            String queryComboEstado = "SELECT distinct tipo_cabina as tipoCabina, precio FROM pct3.cabina AS cabina ORDER BY tipo_cabina ASC";
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
-                modeloTipo.addElement(rs.getString("tipoCabina"));
-                txtPrecio.setText(rs.getString("precio"));
+                String add1 = rs.getString("tipoCabina");
+                String add2 = rs.getString("precio");
+                modeloTipo.addElement(add1);
+                txtPrecio.setText(add2);
             }
             tipoCabina.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
 
@@ -464,8 +468,25 @@ public final class AgregarCabina_frm extends javax.swing.JFrame {
     }//GEN-LAST:event_estadoCabinaActionPerformed
 
     private void tipoCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoCabinaActionPerformed
-        // TODO add your handling code here:
-        TipoCabina.setText(tipoCabina.getSelectedItem().toString());
+        
+        try {
+            // TODO add your handling code here:
+            //TipoCabina.setText(tipoCabina.getSelectedItem().toString());
+            Statement stmt;
+            stmt = connection.createStatement();
+            String queryComboEstado = "SELECT DISTINCT tipo_cabina as tipoCabina, precio FROM pct3.cabina AS cabina WHERE tipo_cabina = '"+ tipoCabina.getSelectedItem().toString() +"' ORDER BY tipo_cabina ASC";
+            rs = stmt.executeQuery(queryComboEstado);
+            while (rs.next()) {
+                String add1 = rs.getString("tipoCabina");
+                String add2 = rs.getString("precio");
+                
+                txtPrecio.setText(add2);
+                TipoCabina.setText(add1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarCabina_frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
     }//GEN-LAST:event_tipoCabinaActionPerformed
 
     private void tablaCabinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCabinaMouseClicked
@@ -670,8 +691,6 @@ public final class AgregarCabina_frm extends javax.swing.JFrame {
     private void Buscar_NombreCabinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Buscar_NombreCabinaKeyReleased
         // TODO add your handling code here:
         try {
-            
-            
             String sql_persona = "SELECT * FROM `cabina` WHERE `descripcion_cabina` LIKE '%" + Buscar_NombreCabina.getText() + "%'";
             pst = connection.prepareStatement(sql_persona);
             rs = pst.executeQuery();
@@ -688,13 +707,9 @@ public final class AgregarCabina_frm extends javax.swing.JFrame {
                 String registro5 = rs.getString("tipo_cabina");
                 TipoCabina.setText(registro5);
                 tipoCabina.getModel().setSelectedItem(registro5);
-                
-
             }
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-
         }
     }//GEN-LAST:event_Buscar_NombreCabinaKeyReleased
 

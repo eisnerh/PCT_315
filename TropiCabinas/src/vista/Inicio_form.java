@@ -271,7 +271,6 @@ public class Inicio_form extends javax.swing.JFrame {
     }//GEN-LAST:event_itemAyudaActionPerformed
 
     private void itemAgregarCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAgregarCabinaActionPerformed
-
         Agregar_Cabina form = new Agregar_Cabina();
         Component add;
         add = escritorio.add(form);
