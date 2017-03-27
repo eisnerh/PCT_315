@@ -22,7 +22,6 @@ import modelo.formularios.TipoPersona_Formulario;
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
 public class TipoPersona extends javax.swing.JInternalFrame {
-
     /**
      * Creates new form TipoPersona
      */
@@ -255,6 +254,7 @@ public class TipoPersona extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
+        initComponents();
         if (txt_Tipo_Persona.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un tipo persona");
             txt_Tipo_Persona.requestFocus();
@@ -276,6 +276,7 @@ public class TipoPersona extends javax.swing.JInternalFrame {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
+        initComponents();
         if (!txt_Tipo_Persona.getText().equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el dato?", "Confirmar", JOptionPane.YES_NO_OPTION, 2);
 

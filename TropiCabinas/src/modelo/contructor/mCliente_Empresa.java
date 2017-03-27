@@ -11,54 +11,52 @@ package modelo.contructor;
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
 public class mCliente_Empresa {
-    private String idusuario;
-    private String usuario;
-    private String password;
-    private String colaborador_empleado_id;
+    private String empresa_id; 
+    private String codigo_cliente; 
+    private String estado_cliente; 
+    private String persona_idpersona;
 
     public mCliente_Empresa()
     {
         
     }
-
-    public mCliente_Empresa(String idusuario, String usuario, String password, String colaborador_empleado_id) {
-        this.idusuario = idusuario;
-        this.usuario = usuario;
-        this.password = password;
-        this.colaborador_empleado_id = colaborador_empleado_id;
+    public mCliente_Empresa(String empresa_id, String codigo_cliente, String estado_cliente, String persona_idpersona) {
+        this.empresa_id = empresa_id;
+        this.codigo_cliente = codigo_cliente;
+        this.estado_cliente = estado_cliente;
+        this.persona_idpersona = persona_idpersona;
     }
 
-    public String getIdusuario() {
-        return idusuario;
+    public String getEmpresa_id() {
+        return empresa_id;
     }
 
-    public void setIdusuario(String idusuario) {
-        this.idusuario = idusuario;
+    public void setEmpresa_id(String empresa_id) {
+        this.empresa_id = empresa_id;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getCodigo_cliente() {
+        return codigo_cliente;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setCodigo_cliente(String codigo_cliente) {
+        this.codigo_cliente = codigo_cliente;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEstado_cliente() {
+        return estado_cliente;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEstado_cliente(String estado_cliente) {
+        this.estado_cliente = estado_cliente;
     }
 
-    public String getColaborador_empleado_id() {
-        return colaborador_empleado_id;
+    public String getPersona_idpersona() {
+        return persona_idpersona;
     }
 
-    public void setColaborador_empleado_id(String colaborador_empleado_id) {
-        this.colaborador_empleado_id = colaborador_empleado_id;
+    public void setPersona_idpersona(String persona_idpersona) {
+        this.persona_idpersona = persona_idpersona;
     }
-    
     
 }

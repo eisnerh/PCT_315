@@ -29,6 +29,7 @@ public class fCliente_Empresa {
         private final ConexionDB myLink = new ConexionDB();
         private final Connection conexion = ConexionDB.conexionDB();
         private String querySQL = "";
+        private String querySQL2 = "";
         public int totalRegistros;
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -178,41 +179,39 @@ public class fCliente_Empresa {
         }
 
         public boolean eliminar(mCliente_Empresa dts) {
-            public boolean eliminar(vcliente dts) {
-        sSQL = "delete from cliente_empresa where idpersona=?";
-        sSQL2 = "delete from persona where idpersona=?";
 
-        try {
+            querySQL = "delete from cliente_empresa where idpersona=?";
+            querySQL2 = "delete from persona where idpersona=?";
 
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-            PreparedStatement pst2 = cn.prepareStatement(sSQL2);
+            try {
 
-            
-            pst.setInt(1, dts.getIdpersona());
+                PreparedStatement pst = conexion.prepareStatement(querySQL);
+                PreparedStatement pst2 = conexion.prepareStatement(querySQL2);
 
-            
-            pst2.setInt(1, dts.getIdpersona());
+                pst.setString(1, dts.getPersona_idpersona());
 
-            int n = pst.executeUpdate();
+                pst2.setString(1, dts.getPersona_idpersona());
 
-            if (n != 0) {
-                int n2 = pst2.executeUpdate();
+                int n = pst.executeUpdate();
 
-                if (n2 != 0) {
-                    return true;
+                if (n != 0) {
+                    int n2 = pst2.executeUpdate();
+
+                    if (n2 != 0) {
+                        return true;
+
+                    } else {
+                        return false;
+                    }
 
                 } else {
                     return false;
                 }
 
-            } else {
+            } catch (SQLException e) {
+                JOptionPane.showConfirmDialog(null, e);
                 return false;
             }
-
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, e);
-            return false;
         }
     }
-
 }
