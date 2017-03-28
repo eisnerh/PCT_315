@@ -151,8 +151,8 @@ public final class Persona_frm extends javax.swing.JFrame {
         txtNombre_Apellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 360, 40));
 
-        jLabel3.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        jLabel3.setForeground(java.awt.Color.white);
+        jLabel3.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        jLabel3.setForeground(java.awt.Color.darkGray);
         jLabel3.setText("Cedula");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
 
@@ -166,22 +166,22 @@ public final class Persona_frm extends javax.swing.JFrame {
         getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 270, 40));
 
         jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        jLabel4.setForeground(java.awt.Color.white);
+        jLabel4.setForeground(java.awt.Color.darkGray);
         jLabel4.setText("Colaborador:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
         nombreUsuario.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        nombreUsuario.setForeground(java.awt.Color.white);
+        nombreUsuario.setForeground(java.awt.Color.darkGray);
         nombreUsuario.setText("Direccion");
         getContentPane().add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        jLabel9.setForeground(java.awt.Color.white);
+        jLabel9.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        jLabel9.setForeground(java.awt.Color.darkGray);
         jLabel9.setText("Direccion");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        jLabel6.setForeground(java.awt.Color.white);
+        jLabel6.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        jLabel6.setForeground(java.awt.Color.darkGray);
         jLabel6.setText("Télefono o Celular");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
@@ -203,13 +203,13 @@ public final class Persona_frm extends javax.swing.JFrame {
         txtClasificación.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, 40));
 
-        jLabel7.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        jLabel7.setForeground(java.awt.Color.white);
+        jLabel7.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        jLabel7.setForeground(java.awt.Color.darkGray);
         jLabel7.setText("Nombre y Apellidos");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        jLabel8.setForeground(java.awt.Color.white);
+        jLabel8.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        jLabel8.setForeground(java.awt.Color.darkGray);
         jLabel8.setText("Clasificación");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
@@ -217,11 +217,13 @@ public final class Persona_frm extends javax.swing.JFrame {
         txtPhone.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, 40));
 
-        Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/usuario.png"))); // NOI18N
-        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 150, 150));
+        Persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        Persona.setForeground(java.awt.Color.darkGray);
+        Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/usuario.png"))); // NOI18N
+        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 110, 110));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
-        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/store-new-badges.png"))); // NOI18N
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/store-new-badges.png"))); // NOI18N
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoActionPerformed(evt);
@@ -229,7 +231,7 @@ public final class Persona_frm extends javax.swing.JFrame {
         });
 
         guardar.setBackground(new java.awt.Color(204, 204, 204));
-        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
@@ -237,7 +239,7 @@ public final class Persona_frm extends javax.swing.JFrame {
         });
 
         editar.setBackground(new java.awt.Color(204, 204, 204));
-        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/edit.png"))); // NOI18N
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/edit.png"))); // NOI18N
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
@@ -245,7 +247,7 @@ public final class Persona_frm extends javax.swing.JFrame {
         });
 
         borrar.setBackground(new java.awt.Color(204, 204, 204));
-        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/dustbin.png"))); // NOI18N
+        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/dustbin.png"))); // NOI18N
         borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 borrarActionPerformed(evt);
@@ -253,14 +255,14 @@ public final class Persona_frm extends javax.swing.JFrame {
         });
 
         buscar.setBackground(new java.awt.Color(204, 204, 204));
-        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
             }
         });
 
-        volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/volver.png"))); // NOI18N
+        volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/volver.png"))); // NOI18N
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
@@ -302,18 +304,22 @@ public final class Persona_frm extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 70));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/fondos/celeste.png"))); // NOI18N
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fondos/celeste.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 380));
 
+        lbl_Gasto_Operativo_id.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        lbl_Gasto_Operativo_id.setForeground(java.awt.Color.darkGray);
         lbl_Gasto_Operativo_id.setText("jLabel1");
         getContentPane().add(lbl_Gasto_Operativo_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, -1, -1));
 
+        lbl_id_persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        lbl_id_persona.setForeground(java.awt.Color.darkGray);
         lbl_id_persona.setText("jLabel1");
         getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
         jMenu1.setText("File");
 
-        mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/exit-sign.png"))); // NOI18N
+        mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exit-sign.png"))); // NOI18N
         mnuSalir.setMnemonic(KeyEvent.VK_X);
         mnuSalir.setText("Salir");
         mnuSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -343,7 +349,6 @@ public final class Persona_frm extends javax.swing.JFrame {
 
     private void mnuSalirMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_mnuSalirMenuKeyPressed
 
-
     }//GEN-LAST:event_mnuSalirMenuKeyPressed
 
     private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked
@@ -355,7 +360,6 @@ public final class Persona_frm extends javax.swing.JFrame {
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         // TODO add your handling code here:
         txtNombre_Apellidos.setEnabled(true);
-
         txtDireccion.setEnabled(true);
         txtPhone.setEnabled(true);
         txtClasificación.setEnabled(true);

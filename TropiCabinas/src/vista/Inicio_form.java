@@ -64,6 +64,7 @@ public class Inicio_form extends javax.swing.JFrame {
         lista_x_cabina = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         mnuHerramientas = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -196,6 +197,14 @@ public class Inicio_form extends javax.swing.JFrame {
             }
         });
         mnuConfiguraciones.add(jMenuItem2);
+
+        jMenuItem6.setText("Nueva Persona");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        mnuConfiguraciones.add(jMenuItem6);
 
         menuBar.add(mnuConfiguraciones);
 
@@ -361,6 +370,14 @@ public class Inicio_form extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        Personas_frm form = new Personas_frm();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -410,6 +427,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     public static javax.swing.JLabel lblacceso;
     private javax.swing.JMenuItem lista_x_cabina;
     private javax.swing.JMenuBar menuBar;
