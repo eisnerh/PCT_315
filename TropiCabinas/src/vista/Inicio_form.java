@@ -80,21 +80,21 @@ public class Inicio_form extends javax.swing.JFrame {
         escritorio.setBackground(new java.awt.Color(102, 255, 255));
 
         IdEmpleado.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
-        IdEmpleado.setForeground(new java.awt.Color(0, 204, 0));
+        IdEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         IdEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IdEmpleado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         escritorio.add(IdEmpleado);
         IdEmpleado.setBounds(20, 10, 200, 40);
 
         Nombre_Empleado.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
-        Nombre_Empleado.setForeground(new java.awt.Color(0, 204, 0));
+        Nombre_Empleado.setForeground(new java.awt.Color(255, 255, 255));
         Nombre_Empleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Nombre_Empleado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         escritorio.add(Nombre_Empleado);
         Nombre_Empleado.setBounds(20, 60, 200, 40);
 
         lblacceso.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
-        lblacceso.setForeground(new java.awt.Color(0, 204, 0));
+        lblacceso.setForeground(new java.awt.Color(255, 255, 255));
         lblacceso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblacceso.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         escritorio.add(lblacceso);
