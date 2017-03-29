@@ -18,7 +18,8 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public class Reporte_x_Cabina extends javax.swing.JInternalFrame {
 

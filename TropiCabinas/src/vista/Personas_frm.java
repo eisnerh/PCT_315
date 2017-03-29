@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public final class Personas_frm extends javax.swing.JInternalFrame {
 

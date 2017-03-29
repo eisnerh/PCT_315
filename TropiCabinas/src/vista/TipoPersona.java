@@ -20,6 +20,7 @@ import modelo.formularios.TipoPersona_Formulario;
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public class TipoPersona extends javax.swing.JInternalFrame {
     /**

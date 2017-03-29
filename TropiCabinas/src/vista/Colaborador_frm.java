@@ -24,7 +24,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ace
+ * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public final class Colaborador_frm extends javax.swing.JFrame {
 

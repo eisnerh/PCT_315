@@ -20,6 +20,7 @@ import modelo.formularios.Horario_f;
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public class Horario_form extends javax.swing.JInternalFrame {
 

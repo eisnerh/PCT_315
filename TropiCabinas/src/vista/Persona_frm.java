@@ -22,7 +22,8 @@ import vista.Colaborador_frm;
 
 /**
  *
- * @author ace
+ * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public final class Persona_frm extends javax.swing.JFrame {
 

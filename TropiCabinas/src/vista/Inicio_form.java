@@ -19,7 +19,8 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author CARLOS
+ * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public class Inicio_form extends javax.swing.JFrame {
 

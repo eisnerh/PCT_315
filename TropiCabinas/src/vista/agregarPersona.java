@@ -8,6 +8,7 @@ package vista;
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public class agregarPersona extends javax.swing.JInternalFrame {
 

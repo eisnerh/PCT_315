@@ -14,6 +14,7 @@ import java.sql.Statement;
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public class Test {
 private static final String QUERY = "select * from usuario";
