@@ -226,7 +226,7 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
         setForeground(java.awt.Color.gray);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Agregar Persona");
+        setTitle("Agregar Cliente");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
