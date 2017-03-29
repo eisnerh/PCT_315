@@ -1,2 +1,0 @@
-define(["require","exports"],function(t,e){"use strict";function r(t){return t.map(function(t){return{idTypePair:{id:t.id,type:t.type},starred:t.is_starred}})}e.statusResultsToStarredStatuses=r});
-//# sourceMappingURL=model.min.js-vflkgc6Ps.map
