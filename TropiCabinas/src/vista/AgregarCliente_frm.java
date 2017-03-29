@@ -343,6 +343,11 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
 
         txtPhone.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtPhone.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPhoneKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, 40));
 
         Persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
@@ -574,6 +579,16 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         getNumeroCodigo();
     }//GEN-LAST:event_txtCedulaFocusLost
+
+    private void txtPhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isAlphabetic(c) || Character.isSurrogate(c) || Character.isUnicodeIdentifierPart(c)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresa Solo Números.\n Gracias!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtPhoneKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
