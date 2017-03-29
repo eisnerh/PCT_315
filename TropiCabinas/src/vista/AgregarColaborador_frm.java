@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public final class Personas_frm extends javax.swing.JInternalFrame {
+public class AgregarColaborador_frm extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Personas_frm
@@ -42,7 +42,7 @@ public final class Personas_frm extends javax.swing.JInternalFrame {
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipo;
 
-    public Personas_frm() {
+    public AgregarColaborador_frm() {
         initComponents();
         con = DBConnection.getConnection();
         sqlSelect = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` order BY `nombre`";

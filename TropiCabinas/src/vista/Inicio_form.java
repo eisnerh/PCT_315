@@ -298,10 +298,10 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
-//        frmcliente form =new frmcliente();
-//        escritorio.add(form);
-//        form.toFront();
-//        form.setVisible(true);
+        AgregarCliente_frm form =new AgregarCliente_frm();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
