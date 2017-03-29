@@ -318,18 +318,15 @@ public class Login_frm extends javax.swing.JFrame {
     private void executeLogin() {
         String a = txt_User.getText();
         String b = String.valueOf(txt_Pass.getPassword());
-        if (a.length() == 0 && b.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario y Contraseña");
-            txt_User.requestFocus();
-        }
+
         if (a.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario");
             txt_User.requestFocus();
-        }
+        }else{
         if (b.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Ingresar Contraseña");
             txt_Pass.requestFocus();
-        }
+        }else{
         try {
 
             String str = "SELECT `usuario`.`usuario`, `usuario`.`password`, "
@@ -344,8 +341,7 @@ public class Login_frm extends javax.swing.JFrame {
                     + "`colaborador`.`empleado_id` AND "
                     + "`colaborador`.`persona_idpersona` = "
                     + "`persona`.`idpersona` AND `usuario`.`usuario` = "
-                    + "binary '"+ a +"' AND `usuario`.`password` = '"+ b +"' "
-                    + "and `puesto`.`puesto_id` = 3 ";
+                    + "binary '"+ a +"' AND `usuario`.`password` = '"+ b +"' ";
             pst = con.prepareStatement(str);
             rs = pst.executeQuery();
             if (rs.next()) {
@@ -377,4 +373,6 @@ public class Login_frm extends javax.swing.JFrame {
         } catch (SQLException | HeadlessException e) {
         }
     }
+}
+}
 }
