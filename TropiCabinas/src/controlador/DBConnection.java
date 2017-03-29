@@ -31,7 +31,7 @@ public class DBConnection {
             // load the Driver Class
             Class.forName(props.getProperty("DB_DRIVER_CLASS"));
 
-            // create the connection now
+            // create the connectio n now
             con = DriverManager.getConnection(props.getProperty("DB_URL"),
                     props.getProperty("DB_USERNAME"),
                     props.getProperty("DB_PASSWORD"));

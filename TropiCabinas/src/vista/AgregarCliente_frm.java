@@ -56,6 +56,26 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
         llena_combo(); // llenar los datos al ejecutar el programa
     }
 
+    public void getNumeroCodigo() {
+        try {
+            txtCodigoCliente.setText("");
+            lbl_idPersona.setText("");
+            Statement stmt;
+            stmt = con.createStatement();
+            String queryCuentaCliente = "SELECT max(idpersona) as numeroPersona FROM pct3.persona;";
+            rs = stmt.executeQuery(queryCuentaCliente);
+            while (rs.next()) {
+                int numero = rs.getInt("numeroPersona");
+                lbl_idPersona.setText(Integer.toString(numero + 1));
+            }
+            txtCodigoCliente.setText(txtNombre_Apellidos.getText() + lbl_idPersona.getText());
+            cmbTipoPersona.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }
+
     public void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
@@ -120,68 +140,93 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
                 Statement stmt;
                 stmt = con.createStatement();
 
-                String sql1 = sqlSelect_Valor + txtNombre_Apellidos.getText() + "'";
-                rs = stmt.executeQuery(sql1);
-                if (rs.next()) {
-                    JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                    txtNombre_Apellidos.setText("");
-                    txtNombre_Apellidos.setFocusable(true);
-                    return;
-                }
-                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
-                pst = con.prepareStatement(sql);
-                pst.execute();
-                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                try {
-                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
-                    pst = con.prepareStatement(sql_persona);
-                    rs = pst.executeQuery();
-                    if (rs.next()) {
-                        String sel1 = rs.getString("idpersona");
-                        String sel2 = rs.getString("nombre");
-                        String sel3 = rs.getString("cedula");
-                        String sel4 = rs.getString("telefono");
-                        String sel5 = rs.getString("direccion");
-                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
-                        lbl_id_persona.setText(sel1);
-                        txtNombre_Apellidos.setText(sel2);
-                        txtCedula.setText(sel3);
-                        txtDireccion.setText(sel4);
-                        txtPhone.setText(sel5);
-                        lbl_idPersona.setText(sel6);
-                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
-                    }
-                } catch (SQLException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, e);
-                }
+                //String sql1 = sqlSelect_Valor + txtCedula.getText() + "'";
+                //rs = stmt.executeQuery(sql1);
+//                if (rs.next()) {
+//                    JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+//                    txtNombre_Apellidos.setText("");
+//                    txtNombre_Apellidos.setFocusable(true);
+//                    return;
+//                }
+//                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
+//                String sql2 = "INSERT INTO `pct3`.`cliente_empresa` "
+//                        + "(`empresa_id`, "
+//                        + "`codigo_cliente`, "
+//                        + "`estado_cliente`, "
+//                        + "`persona_idpersona`) "
+//                        + "VALUES "
+//                        + "(null, "
+//                        + "'" + txtCodigoCliente.getText() + "', "
+//                        + "1 ,"
+//                        + "(SELECT max(idpersona) FROM pct3.persona))";
+//                pst = con.prepareStatement(sql);
+//                pst.execute();
+                //JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Cliente Agregado", JOptionPane.INFORMATION_MESSAGE);
+//                try {
+//                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
+//                    pst = con.prepareStatement(sql_persona);
+//                    rs = pst.executeQuery();
+//                    if (rs.next()) {
+//                        String sel1 = rs.getString("idpersona");
+//                        String sel2 = rs.getString("nombre");
+//                        String sel3 = rs.getString("cedula");
+//                        String sel4 = rs.getString("telefono");
+//                        String sel5 = rs.getString("direccion");
+//                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
+//                        lbl_id_persona.setText(sel1);
+//                        txtNombre_Apellidos.setText(sel2);
+//                        txtCedula.setText(sel3);
+//                        txtDireccion.setText(sel4);
+//                        txtPhone.setText(sel5);
+//                        lbl_idPersona.setText(sel6);
+//                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
+//                    }
+//                } catch (SQLException | NumberFormatException e) {
+//                    JOptionPane.showMessageDialog(null, e);
+//                }
             }
-            if (P == 1) {
+            if (P == 0 || P == 1) {
                 String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
+                String sql2 = "INSERT INTO `pct3`.`cliente_empresa` "
+                        + "(`empresa_id`, "
+                        + "`codigo_cliente`, "
+                        + "`estado_cliente`, "
+                        + "`persona_idpersona`) "
+                        + "VALUES "
+                        + "(null, "
+                        + "'" + txtCodigoCliente.getText() + "', "
+                        + "1 ,"
+                        + "(SELECT max(idpersona) FROM pct3.persona))";
                 pst = con.prepareStatement(sql);
                 pst.execute();
-                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                try {
-                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
-                    pst = con.prepareStatement(sql_persona);
-                    rs = pst.executeQuery();
-                    if (rs.next()) {
-                        String sel1 = rs.getString("idpersona");
-                        String sel2 = rs.getString("nombre");
-                        String sel3 = rs.getString("cedula");
-                        String sel4 = rs.getString("telefono");
-                        String sel5 = rs.getString("direccion");
-                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
-                        lbl_id_persona.setText(sel1);
-                        txtNombre_Apellidos.setText(sel2);
-                        txtCedula.setText(sel3);
-                        txtDireccion.setText(sel4);
-                        txtPhone.setText(sel5);
-                        lbl_idPersona.setText(sel6);
-                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
-                    }
-                } catch (SQLException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, e);
+                int in = JOptionPane.showConfirmDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.YES_OPTION);
+                if(in == 0)
+                {
+                    pst = con.prepareStatement(sql2);
+                pst.execute();
                 }
+//                try {
+//                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
+//                    pst = con.prepareStatement(sql_persona);
+//                    rs = pst.executeQuery();
+//                    if (rs.next()) {
+//                        String sel1 = rs.getString("idpersona");
+//                        String sel2 = rs.getString("nombre");
+//                        String sel3 = rs.getString("cedula");
+//                        String sel4 = rs.getString("telefono");
+//                        String sel5 = rs.getString("direccion");
+//                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
+//                        lbl_id_persona.setText(sel1);
+//                        txtNombre_Apellidos.setText(sel2);
+//                        txtCedula.setText(sel3);
+//                        txtDireccion.setText(sel4);
+//                        txtPhone.setText(sel5);
+//                        lbl_idPersona.setText(sel6);
+//                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
+//                    }
+//                } catch (SQLException | NumberFormatException e) {
+//                    JOptionPane.showMessageDialog(null, e);
+//                }
             }
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
@@ -240,6 +285,11 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
 
         txtCedula.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtCedula.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCedulaFocusLost(evt);
+            }
+        });
         getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 270, 40));
 
         jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
@@ -375,12 +425,12 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
         lbl_idPersona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         lbl_idPersona.setForeground(java.awt.Color.darkGray);
         lbl_idPersona.setText("jLabel1");
-        getContentPane().add(lbl_idPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 366, -1, -1));
+        getContentPane().add(lbl_idPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
         lbl_id_persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         lbl_id_persona.setForeground(java.awt.Color.darkGray);
         lbl_id_persona.setText("lblIdPersona");
-        getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 366, -1, -1));
+        getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
 
         nombreUsuario1.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         nombreUsuario1.setForeground(java.awt.Color.darkGray);
@@ -406,44 +456,9 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
                 tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
 
                 if (tipoPersonaSeleccionada.equals("Cliente")) {
-                    txtCodigoCliente.setText(txtNombre_Apellidos.getText()+lbl_idPersona.getText());
+                    
                     JOptionPane.showMessageDialog(Persona, "Bienvenido", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
-                    try {
-                    String sql_persona = "SELECT * FROM `persona` WHERE `cedula` = '" + txtCedula.getText() + "'";
-                    pst = con.prepareStatement(sql_persona);
-                    rs = pst.executeQuery();
-                    if (rs.next()) {
-                        String sel1 = rs.getString("idpersona");
-                        String sel2 = rs.getString("nombre");
-                        String sel3 = rs.getString("cedula");
-                        String sel4 = rs.getString("telefono");
-                        String sel5 = rs.getString("direccion");
-                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
-                        lbl_id_persona.setText(sel1);
-                        txtNombre_Apellidos.setText(sel2);
-                        txtCedula.setText(sel3);
-                        txtDireccion.setText(sel4);
-                        txtPhone.setText(sel5);
-                        lbl_idPersona.setText(sel6);
-                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
-                    }
-                } catch (SQLException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, e);
-                }
-                    String sqlString = "SELECT persona.cedula, persona.idpersona FROM pct3.persona where persona.nombre = '" + txtCedula.getText() + "'";
-                    String sqlCliente = "INSERT INTO `pct3`.`cliente_empresa`"
-                        + "(`empresa_id`,"
-                        + "`codigo_cliente`,"
-                        + "`estado_cliente`,"
-                        + "`persona_idpersona`) "
-                        + "VALUES "
-                        + "(null, '"
-                        + txtCodigoCliente.getText() +"', "
-                        + "1, '"
-                        + lbl_id_persona.getText() + "');";
-                pst = con.prepareStatement(sqlCliente);
-                pst.execute();
-                JOptionPane.showMessageDialog(this, "Guardado con Exito", "Cliente Nuevo", JOptionPane.INFORMATION_MESSAGE);
+                    
                 }
                 if (tipoPersonaSeleccionada.equals("Colaborador")) {
                     agregarPersona();
@@ -554,6 +569,11 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
+        // TODO add your handling code here:
+        getNumeroCodigo();
+    }//GEN-LAST:event_txtCedulaFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
