@@ -62,6 +62,7 @@ public class Inicio_form extends javax.swing.JFrame {
         mnuconsultas = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         lista_x_cabina = new javax.swing.JMenuItem();
+        mnuClientes = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -182,6 +183,14 @@ public class Inicio_form extends javax.swing.JFrame {
             }
         });
         mnuconsultas.add(lista_x_cabina);
+
+        mnuClientes.setText("Clientes");
+        mnuClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuClientesActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(mnuClientes);
 
         menuBar.add(mnuconsultas);
 
@@ -378,6 +387,24 @@ public class Inicio_form extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void mnuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClientesActionPerformed
+        // TODO add your handling code here:
+        JasperReport report;
+        JasperPrint print;
+
+        try {
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/vista/reportes/Clientes_Estados.jrxml");
+            print = JasperFillManager.fillReport(report, null, con);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Lista de Habitaciones");
+            view.setVisible(true);
+
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_mnuClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -432,6 +459,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenuItem lista_x_cabina;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu mnuAyuda;
+    private javax.swing.JMenuItem mnuClientes;
     public static javax.swing.JMenu mnuConfiguraciones;
     private javax.swing.JMenu mnuHerramientas;
     private javax.swing.JMenu mnuSalir;
