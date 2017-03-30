@@ -67,6 +67,7 @@ public class Inicio_form extends javax.swing.JFrame {
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         mnuHerramientas = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -208,13 +209,22 @@ public class Inicio_form extends javax.swing.JFrame {
         });
         mnuConfiguraciones.add(jMenuItem2);
 
-        jMenuItem6.setText("Nueva Persona");
+        jMenuItem6.setText("Colaborador");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
             }
         });
         mnuConfiguraciones.add(jMenuItem6);
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/PROVEEDORES.png"))); // NOI18N
+        jMenuItem7.setText("Proveedor");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        mnuConfiguraciones.add(jMenuItem7);
 
         menuBar.add(mnuConfiguraciones);
 
@@ -308,7 +318,7 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
-        AgregarCliente_frm form =new AgregarCliente_frm();
+        AgregarCliente_frm_1 form =new AgregarCliente_frm_1();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -406,6 +416,14 @@ public class Inicio_form extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mnuClientesActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        Agregar_Proveedor_frm_1 form = new Agregar_Proveedor_frm_1();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -456,6 +474,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     public static javax.swing.JLabel lblacceso;
     private javax.swing.JMenuItem lista_x_cabina;
     private javax.swing.JMenuBar menuBar;

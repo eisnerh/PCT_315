@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
-public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
+public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Personas_frm
@@ -43,21 +43,41 @@ public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipo;
 
-    public AgregarProveedor_frm() {
+    public AgregarCliente_frm_1() {
         initComponents();
         con = DBConnection.getConnection();
         sqlSelect = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` order BY `nombre`";
         sqlSelect_Valor = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE `nombre` = '";
         sqlInsert = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES ('";
         sqlDelete = "DELETE FROM `persona` WHERE `idpersona` = ";
-        
+
         modeloTipo = new DefaultComboBoxModel();
 
         llena_combo(); // llenar los datos al ejecutar el programa
     }
-    
+
+    public void getNumeroCodigo() {
+        try {
+            txtCodigoCliente.setText("");
+            lbl_idPersona.setText("");
+            Statement stmt;
+            stmt = con.createStatement();
+            String queryCuentaCliente = "SELECT max(idpersona) as numeroPersona FROM pct3.persona;";
+            rs = stmt.executeQuery(queryCuentaCliente);
+            while (rs.next()) {
+                int numero = rs.getInt("numeroPersona");
+                lbl_idPersona.setText(Integer.toString(numero + 1));
+            }
+            txtCodigoCliente.setText(txtNombre_Apellidos.getText() + lbl_idPersona.getText());
+            cmbTipoPersona.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }
+
     public void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
-    try {
+        try {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = con.createStatement();
@@ -65,15 +85,16 @@ public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloTipo.addElement(rs.getString("desc_persona"));
-                
+
             }
             cmbTipoPersona.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-    
+
     }
+
     private void initState() {
         txtNombre_Apellidos.setEnabled(false);
         txtDireccion.setEnabled(false);
@@ -95,8 +116,6 @@ public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                
-
                 if (txtNombre_Apellidos.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -121,74 +140,99 @@ public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
                 Statement stmt;
                 stmt = con.createStatement();
 
-                String sql1 = sqlSelect_Valor + txtNombre_Apellidos.getText() + "'";
-                rs = stmt.executeQuery(sql1);
-                if (rs.next()) {
-                    JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                    txtNombre_Apellidos.setText("");
-                    txtNombre_Apellidos.requestDefaultFocus();
-                    return;
-                }
-                //                      `nombre`,                               `cedula`,                       `telefono`, `direccion`, `tipo_persona_idtipo_persona`
-                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
-                pst = con.prepareStatement(sql);
-                pst.execute();
-                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                try {
-                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
-                    pst = con.prepareStatement(sql_persona);
-                    rs = pst.executeQuery();
-                    if (rs.next()) {
-                        String sel1 = rs.getString("idpersona");
-                        String sel2 = rs.getString("nombre");
-                        String sel3 = rs.getString("cedula");
-                        String sel4 = rs.getString("telefono");
-                        String sel5 = rs.getString("direccion");
-                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
-                        lbl_id_persona.setText(sel1);
-                        txtNombre_Apellidos.setText(sel2);
-                        txtCedula.setText(sel3);
-                        txtDireccion.setText(sel4);
-                        txtPhone.setText(sel5);
-                        lbl_idPersona.setText(sel6);
-                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
-                    }
-                } catch (SQLException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, e);
-                }
+                //String sql1 = sqlSelect_Valor + txtCedula.getText() + "'";
+                //rs = stmt.executeQuery(sql1);
+//                if (rs.next()) {
+//                    JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+//                    txtNombre_Apellidos.setText("");
+//                    txtNombre_Apellidos.setFocusable(true);
+//                    return;
+//                }
+//                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
+//                String sql2 = "INSERT INTO `pct3`.`cliente_empresa` "
+//                        + "(`empresa_id`, "
+//                        + "`codigo_cliente`, "
+//                        + "`estado_cliente`, "
+//                        + "`persona_idpersona`) "
+//                        + "VALUES "
+//                        + "(null, "
+//                        + "'" + txtCodigoCliente.getText() + "', "
+//                        + "1 ,"
+//                        + "(SELECT max(idpersona) FROM pct3.persona))";
+//                pst = con.prepareStatement(sql);
+//                pst.execute();
+                //JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Cliente Agregado", JOptionPane.INFORMATION_MESSAGE);
+//                try {
+//                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
+//                    pst = con.prepareStatement(sql_persona);
+//                    rs = pst.executeQuery();
+//                    if (rs.next()) {
+//                        String sel1 = rs.getString("idpersona");
+//                        String sel2 = rs.getString("nombre");
+//                        String sel3 = rs.getString("cedula");
+//                        String sel4 = rs.getString("telefono");
+//                        String sel5 = rs.getString("direccion");
+//                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
+//                        lbl_id_persona.setText(sel1);
+//                        txtNombre_Apellidos.setText(sel2);
+//                        txtCedula.setText(sel3);
+//                        txtDireccion.setText(sel4);
+//                        txtPhone.setText(sel5);
+//                        lbl_idPersona.setText(sel6);
+//                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
+//                    }
+//                } catch (SQLException | NumberFormatException e) {
+//                    JOptionPane.showMessageDialog(null, e);
+//                }
             }
-            if (P == 1) {
+            if (P == 0 || P == 1) {
                 String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
+                String sql2 = "INSERT INTO `pct3`.`cliente_empresa` "
+                        + "(`empresa_id`, "
+                        + "`codigo_cliente`, "
+                        + "`estado_cliente`, "
+                        + "`persona_idpersona`) "
+                        + "VALUES "
+                        + "(null, "
+                        + "'" + txtCodigoCliente.getText() + "', "
+                        + "1 ,"
+                        + "(SELECT max(idpersona) FROM pct3.persona))";
                 pst = con.prepareStatement(sql);
                 pst.execute();
-                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                try {
-                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
-                    pst = con.prepareStatement(sql_persona);
-                    rs = pst.executeQuery();
-                    if (rs.next()) {
-                        String sel1 = rs.getString("idpersona");
-                        String sel2 = rs.getString("nombre");
-                        String sel3 = rs.getString("cedula");
-                        String sel4 = rs.getString("telefono");
-                        String sel5 = rs.getString("direccion");
-                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
-                        lbl_id_persona.setText(sel1);
-                        txtNombre_Apellidos.setText(sel2);
-                        txtCedula.setText(sel3);
-                        txtDireccion.setText(sel4);
-                        txtPhone.setText(sel5);
-                        lbl_idPersona.setText(sel6);
-                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
-                    }
-                } catch (SQLException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, e);
+                int in = JOptionPane.showConfirmDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.YES_OPTION);
+                if(in == 0)
+                {
+                    pst = con.prepareStatement(sql2);
+                pst.execute();
                 }
+//                try {
+//                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
+//                    pst = con.prepareStatement(sql_persona);
+//                    rs = pst.executeQuery();
+//                    if (rs.next()) {
+//                        String sel1 = rs.getString("idpersona");
+//                        String sel2 = rs.getString("nombre");
+//                        String sel3 = rs.getString("cedula");
+//                        String sel4 = rs.getString("telefono");
+//                        String sel5 = rs.getString("direccion");
+//                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
+//                        lbl_id_persona.setText(sel1);
+//                        txtNombre_Apellidos.setText(sel2);
+//                        txtCedula.setText(sel3);
+//                        txtDireccion.setText(sel4);
+//                        txtPhone.setText(sel5);
+//                        lbl_idPersona.setText(sel6);
+//                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
+//                    }
+//                } catch (SQLException | NumberFormatException e) {
+//                    JOptionPane.showMessageDialog(null, e);
+//                }
             }
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -220,41 +264,57 @@ public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
         buscar = new javax.swing.JButton();
         lbl_idPersona = new javax.swing.JLabel();
         lbl_id_persona = new javax.swing.JLabel();
+        nombreUsuario1 = new javax.swing.JLabel();
+        txtCodigoCliente = new javax.swing.JTextField();
 
         setClosable(true);
         setForeground(java.awt.Color.gray);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Agregar Persona");
+        setTitle("Agregar Cliente");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtNombre_Apellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 360, 40));
 
         cedula.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         cedula.setForeground(java.awt.Color.darkGray);
         cedula.setText("Cedula");
+        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 82, -1, -1));
 
         txtCedula.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtCedula.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCedulaFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 270, 40));
 
         jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         jLabel4.setForeground(java.awt.Color.darkGray);
-        jLabel4.setText("Colaborador:");
+        jLabel4.setText("CodigoCliente");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 343, -1, -1));
 
         nombreUsuario.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         nombreUsuario.setForeground(java.awt.Color.darkGray);
-        nombreUsuario.setText("nombreUsuario");
+        nombreUsuario.setText("CodigoClasificación");
+        getContentPane().add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 343, -1, -1));
 
         direccion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         direccion.setForeground(java.awt.Color.darkGray);
         direccion.setText("Direccion");
+        getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 172, -1, -1));
 
         telefono.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         telefono.setForeground(java.awt.Color.darkGray);
         telefono.setText("Télefono o Celular");
+        getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         txtDireccion.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtDireccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 440, 40));
 
         cmbTipoPersona.setFont(new java.awt.Font("Dialog", 1, 16));
         cmbTipoPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -264,25 +324,36 @@ public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
                 cmbTipoPersonaActionPerformed(evt);
             }
         });
+        getContentPane().add(cmbTipoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 291, 200, 40));
 
         txtClasificación.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtClasificación.setToolTipText("");
         txtClasificación.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 290, 20, 40));
 
         nombreApellidos.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         nombreApellidos.setForeground(java.awt.Color.darkGray);
         nombreApellidos.setText("Nombre y Apellidos");
+        getContentPane().add(nombreApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 82, -1, -1));
 
         clasificación.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         clasificación.setForeground(java.awt.Color.darkGray);
         clasificación.setText("Clasificación");
+        getContentPane().add(clasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
         txtPhone.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtPhone.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPhoneKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, 40));
 
         Persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Persona.setForeground(java.awt.Color.darkGray);
         Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Market-Research.png"))); // NOI18N
+        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 110, 110));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/multiple_accounts.png"))); // NOI18N
@@ -354,140 +425,43 @@ public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         lbl_idPersona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         lbl_idPersona.setForeground(java.awt.Color.darkGray);
         lbl_idPersona.setText("jLabel1");
+        getContentPane().add(lbl_idPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
         lbl_id_persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         lbl_id_persona.setForeground(java.awt.Color.darkGray);
         lbl_id_persona.setText("lblIdPersona");
+        getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(cmbTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtClasificación, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(lbl_id_persona))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_idPersona)
-                    .addComponent(nombreUsuario))
-                .addContainerGap(423, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(nombreApellidos)
-                            .addGap(259, 259, 259)
-                            .addComponent(cedula))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(260, 260, 260)
-                            .addComponent(direccion))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(590, 590, 590)
-                            .addComponent(Persona, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(txtNombre_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(260, 260, 260)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(430, 430, 430)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(telefono))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(clasificación))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(257, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(nombreUsuario))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtClasificación, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_id_persona)
-                            .addComponent(lbl_idPersona))))
-                .addGap(61, 61, 61))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nombreApellidos)
-                                .addComponent(cedula))
-                            .addGap(70, 70, 70)
-                            .addComponent(direccion)
-                            .addGap(60, 60, 60)
-                            .addComponent(Persona, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(100, 100, 100)
-                            .addComponent(txtNombre_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(190, 190, 190)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(100, 100, 100)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(160, 160, 160)
-                            .addComponent(telefono))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(250, 250, 250)
-                            .addComponent(clasificación))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(190, 190, 190)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 30, Short.MAX_VALUE)))
-        );
+        nombreUsuario1.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        nombreUsuario1.setForeground(java.awt.Color.darkGray);
+        nombreUsuario1.setText("Código Usuario");
+        getContentPane().add(nombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 251, -1, -1));
+
+        txtCodigoCliente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txtCodigoCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 290, 200, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbTipoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPersonaActionPerformed
-        // TODO add your handling code here:
-
         try {
-            
             String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
             pst = con.prepareStatement(sqlConsulta_TPersona);
             rs = pst.executeQuery();
             if (rs.next()) {
                 String add1 = rs.getString("idtipo_persona");
                 txtClasificación.setText(add1);
-
                 String tipoPersonaSeleccionada;
                 tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
 
                 if (tipoPersonaSeleccionada.equals("Cliente")) {
+                    
                     JOptionPane.showMessageDialog(Persona, "Bienvenido", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
                     
                 }
@@ -601,6 +575,21 @@ public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_buscarActionPerformed
 
+    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
+        // TODO add your handling code here:
+        getNumeroCodigo();
+    }//GEN-LAST:event_txtCedulaFocusLost
+
+    private void txtPhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isAlphabetic(c) || Character.isSurrogate(c) || Character.isUnicodeIdentifierPart(c)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresa Solo Números.\n Gracias!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtPhoneKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Persona;
@@ -618,10 +607,12 @@ public class AgregarProveedor_frm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbl_id_persona;
     private javax.swing.JLabel nombreApellidos;
     public static javax.swing.JLabel nombreUsuario;
+    public static javax.swing.JLabel nombreUsuario1;
     private javax.swing.JButton nuevo;
     private javax.swing.JLabel telefono;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtClasificación;
+    private javax.swing.JTextField txtCodigoCliente;
     private javax.swing.JTextField txtDireccion;
     public static javax.swing.JTextField txtNombre_Apellidos;
     private javax.swing.JTextField txtPhone;
