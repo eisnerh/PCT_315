@@ -291,8 +291,7 @@ public class Login_frm extends javax.swing.JFrame {
 //            DefaultTableModel modelo;
 //            ftrabajador func =new ftrabajador();
 //            vtrabajador dts=new vtrabajador();
-//<<<<<<< HEAD:TropiCabinas/src/vista/Login_frm.java
-<<<<<<< HEAD
+
 //            dts.setLogin(txtusuario.getText());
 //            dts.setPassword(txtpassword.getText());
 //            modelo=func.login(dts.getLogin(),dts.getPassword());
@@ -390,9 +389,9 @@ public class Login_frm extends javax.swing.JFrame {
 ////            
 ////            
 ////            
-//>>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
+
 ////        } catch (Exception e) {
->>>>>>> master
+
 //        }
 //    }
     private void executeLogin() {
