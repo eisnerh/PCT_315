@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
-public class AgregarCliente_frm extends javax.swing.JInternalFrame {
+public class Agregar_Proveedor_frm_1 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Personas_frm
@@ -43,7 +43,7 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipo;
 
-    public AgregarCliente_frm() {
+    public Agregar_Proveedor_frm_1() {
         initComponents();
         con = DBConnection.getConnection();
         sqlSelect = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` order BY `nombre`";
@@ -187,15 +187,13 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
             }
             if (P == 0 || P == 1) {
                 String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
-                String sql2 = "INSERT INTO `pct3`.`cliente_empresa` "
-                        + "(`empresa_id`, "
-                        + "`codigo_cliente`, "
-                        + "`estado_cliente`, "
+                String sql2 = "INSERT INTO `pct3`.`proveedor` "
+                        + "(`idproveedor`, "
+                        + "`desc_proveedor`, "
                         + "`persona_idpersona`) "
                         + "VALUES "
                         + "(null, "
                         + "'" + txtCodigoCliente.getText() + "', "
-                        + "1 ,"
                         + "(SELECT max(idpersona) FROM pct3.persona))";
                 pst = con.prepareStatement(sql);
                 pst.execute();
@@ -439,7 +437,7 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
 
         nombreUsuario1.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         nombreUsuario1.setForeground(java.awt.Color.darkGray);
-        nombreUsuario1.setText("Código Usuario");
+        nombreUsuario1.setText("Código Proveedor");
         getContentPane().add(nombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 251, -1, -1));
 
         txtCodigoCliente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -499,7 +497,7 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
         txtPhone.setText("");
         txtClasificación.setText("");
         txtPhone.setText("");
-        txtNombre_Apellidos.requestDefaultFocus();
+        txtNombre_Apellidos.setFocusable(true);
         nuevo.setEnabled(false);
         guardar.setEnabled(true);
         buscar.setEnabled(false);
@@ -583,7 +581,7 @@ public class AgregarCliente_frm extends javax.swing.JInternalFrame {
     private void txtPhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (Character.isAlphabetic(c) || Character.isSurrogate(c) || Character.isUnicodeIdentifierPart(c)) {
+        if (Character.isAlphabetic(c) || Character.isUnicodeIdentifierPart(c)) {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(this, "Ingresa Solo Números.\n Gracias!", "Error", JOptionPane.ERROR_MESSAGE);
