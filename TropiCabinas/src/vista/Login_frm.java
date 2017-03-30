@@ -154,6 +154,7 @@ public class Login_frm extends javax.swing.JFrame {
 
     private void txt_PassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PassKeyPressed
         // TODO add your handling code here:
+        // Habilta la tecla enter
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             // Enter was pressed. Your code goes here.
             executeLogin();
