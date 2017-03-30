@@ -291,56 +291,56 @@ public class Login_frm extends javax.swing.JFrame {
 //            DefaultTableModel modelo;
 //            ftrabajador func =new ftrabajador();
 //            vtrabajador dts=new vtrabajador();
-<<<<<<< HEAD:TropiCabinas/src/vista/Login_frm.java
-//            dts.setLogin(txtusuario.getText());
-//            dts.setPassword(txtpassword.getText());
-//            modelo=func.login(dts.getLogin(),dts.getPassword());
-//            tablalistado.setModel(modelo);
-=======
-//            
-//            
-//            dts.setLogin(txtusuario.getText());
-//            dts.setPassword(txtpassword.getText());
-//            
-//            
-//            modelo=func.login(dts.getLogin(),dts.getPassword());
-//            
-//            tablalistado.setModel(modelo);
-//            
->>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
-//            if (func.totalregistros >0) {
-//                this.dispose();
-//                frminicio form = new frminicio();
-//                form.toFront();
-//                form.setVisible(true);
-//                frminicio.lblidpersona.setText(tablalistado.getValueAt(0, 0).toString());
-//                frminicio.lblnombre.setText(tablalistado.getValueAt(0, 1).toString());
-//                frminicio.lblapaterno.setText(tablalistado.getValueAt(0, 2).toString());
-//                frminicio.lblamaterno.setText(tablalistado.getValueAt(0, 3).toString());
-//                frminicio.lblacceso.setText(tablalistado.getValueAt(0, 4).toString());
-//                if (!frminicio.lblacceso.getText().equals("Administrador")) {
-//                    frminicio.mnuarchivo.setEnabled(false);
-//                    frminicio.mnuconfiguraciones.setEnabled(false);
-//                }
-<<<<<<< HEAD:TropiCabinas/src/vista/Login_frm.java
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
-//            }
-=======
-//                
-//                
-//                
-//            }
-//            
-//            else {
-//                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
-//            }
-//            
-//            
-//            
->>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
-//        } catch (Exception e) {
+//<<<<<<< HEAD:TropiCabinas/src/vista/Login_frm.java
+////            dts.setLogin(txtusuario.getText());
+////            dts.setPassword(txtpassword.getText());
+////            modelo=func.login(dts.getLogin(),dts.getPassword());
+////            tablalistado.setModel(modelo);
+//=======
+////            
+////            
+////            dts.setLogin(txtusuario.getText());
+////            dts.setPassword(txtpassword.getText());
+////            
+////            
+////            modelo=func.login(dts.getLogin(),dts.getPassword());
+////            
+////            tablalistado.setModel(modelo);
+////            
+//>>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
+////            if (func.totalregistros >0) {
+////                this.dispose();
+////                frminicio form = new frminicio();
+////                form.toFront();
+////                form.setVisible(true);
+////                frminicio.lblidpersona.setText(tablalistado.getValueAt(0, 0).toString());
+////                frminicio.lblnombre.setText(tablalistado.getValueAt(0, 1).toString());
+////                frminicio.lblapaterno.setText(tablalistado.getValueAt(0, 2).toString());
+////                frminicio.lblamaterno.setText(tablalistado.getValueAt(0, 3).toString());
+////                frminicio.lblacceso.setText(tablalistado.getValueAt(0, 4).toString());
+////                if (!frminicio.lblacceso.getText().equals("Administrador")) {
+////                    frminicio.mnuarchivo.setEnabled(false);
+////                    frminicio.mnuconfiguraciones.setEnabled(false);
+////                }
+//<<<<<<< HEAD:TropiCabinas/src/vista/Login_frm.java
+////            }
+////            else {
+////                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
+////            }
+//=======
+////                
+////                
+////                
+////            }
+////            
+////            else {
+////                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
+////            }
+////            
+////            
+////            
+//>>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
+////        } catch (Exception e) {
 //        }
 //    }
     private void executeLogin() {
