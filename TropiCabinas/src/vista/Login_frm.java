@@ -291,10 +291,23 @@ public class Login_frm extends javax.swing.JFrame {
 //            DefaultTableModel modelo;
 //            ftrabajador func =new ftrabajador();
 //            vtrabajador dts=new vtrabajador();
+<<<<<<< HEAD:TropiCabinas/src/vista/Login_frm.java
 //            dts.setLogin(txtusuario.getText());
 //            dts.setPassword(txtpassword.getText());
 //            modelo=func.login(dts.getLogin(),dts.getPassword());
 //            tablalistado.setModel(modelo);
+=======
+//            
+//            
+//            dts.setLogin(txtusuario.getText());
+//            dts.setPassword(txtpassword.getText());
+//            
+//            
+//            modelo=func.login(dts.getLogin(),dts.getPassword());
+//            
+//            tablalistado.setModel(modelo);
+//            
+>>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
 //            if (func.totalregistros >0) {
 //                this.dispose();
 //                frminicio form = new frminicio();
@@ -309,10 +322,24 @@ public class Login_frm extends javax.swing.JFrame {
 //                    frminicio.mnuarchivo.setEnabled(false);
 //                    frminicio.mnuconfiguraciones.setEnabled(false);
 //                }
+<<<<<<< HEAD:TropiCabinas/src/vista/Login_frm.java
 //            }
 //            else {
 //                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
 //            }
+=======
+//                
+//                
+//                
+//            }
+//            
+//            else {
+//                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
+//            }
+//            
+//            
+//            
+>>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
 //        } catch (Exception e) {
 //        }
 //    }
