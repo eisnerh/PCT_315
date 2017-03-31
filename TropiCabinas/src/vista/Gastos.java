@@ -5,6 +5,21 @@
  */
 package vista;
 
+import controlador.DBConnection;
+import java.awt.HeadlessException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import static vista.Personas_frm.modeloTipo;
+import static vista.Personas_frm.txtNombre_Apellidos;
+
 /**
  *
  * @author treznor
@@ -15,20 +30,68 @@ public class Gastos extends javax.swing.JFrame {
      * Creates new form Gastos
      */
     
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    ResultSet rs2 = null;
+    PreparedStatement pst2 = null;
+    String sqlSelect;
+    String sqlSelect_Valor;
+    String sqlInsert;
+    String sqlDelete;
+    
+    
+    
     String categoria; 
+    
     
     public Gastos() {
         initComponents();
+        con = DBConnection.getConnection();
+        sqlSelect = "SELECT `gasto_id`, `tipo_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id` FROM `gasto_operativo` order BY `gasto_id`";
+       
+        sqlInsert = "INSERT INTO `gasto_operativo`(`gasto_id`, `tipo_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES ('";
+        sqlDelete = "DELETE FROM `gasto_operativo` WHERE `gasto_id` = ";
+        
+        modeloTipo = new DefaultComboBoxModel();
         
         
-    jTxtFMonto.setEditable(false);
-    jTxtFFecha.setEditable(false);
-    jTxtFFactura.setEditable(false);
-    jTxtFColaborador.setEditable(false);
+                llena_combo(); // llenar los datos al ejecutar el programa
+    }
     
+    public void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
+    try {
+            modeloTipo.removeAllElements(); // eliminamos lo elementos
+            Statement stmt;
+            stmt = con.createStatement();
+            String queryComboEstado = "SELECT `tipo_gasto` FROM `gasto_operativo`";
+            rs = stmt.executeQuery(queryComboEstado);
+            while (rs.next()) {
+                modeloTipo.addElement(rs.getString("tipo_gasto"));
+                
+            }
+            jComboBTipogasto.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    
+    }
+    
+    
+    
+        private void initState() {
+        jTxtFMonto.setEnabled(false);
+        jTxtFFecha.setEnabled(false);
+        jTxtFFactura.setEnabled(false);
+        jTxtFColaborador.setEnabled(false);
+        jBtnIngresar.setEnabled(false);
+        jBtnLimpiar.setEnabled(false);
         
     }
-
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,16 +111,18 @@ public class Gastos extends javax.swing.JFrame {
         jTxtFFecha = new javax.swing.JTextField();
         jTxtFFactura = new javax.swing.JTextField();
         jTxtFColaborador = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBtnIngresar = new javax.swing.JButton();
+        jBtnLimpiar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jComboBTipogasto = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gastos");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
-        jLabel1.setText("Ingreso De Gastos Al Sistema");
+        jLabel1.setText("Ingreso De Gastos ");
 
         jLblTipoGasto.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
         jLblTipoGasto.setText("Tipo De Gasto");
@@ -82,22 +147,39 @@ public class Gastos extends javax.swing.JFrame {
 
         jTxtFColaborador.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
-        jButton1.setText("Ingresar");
+        jBtnIngresar.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jBtnIngresar.setText("Ingresar");
+        jBtnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnIngresarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
-        jButton2.setText("Limpiar");
+        jBtnLimpiar.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jBtnLimpiar.setText("Limpiar");
 
         jButton3.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
         jButton3.setText("Salir");
 
         jComboBTipogasto.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
-        jComboBTipogasto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Planilla", "Operativo", "Representación" }));
         jComboBTipogasto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBTipogastoActionPerformed(evt);
             }
         });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Tipo De Gasto", "Monto", "Fecha", "Numero De Factura", "Colaborador"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,61 +188,69 @@ public class Gastos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLblTipoGasto)
-                            .addComponent(jLabel5)
-                            .addComponent(jLblMonto)
-                            .addComponent(jLblFecha)
-                            .addComponent(jLabel6))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTxtFMonto)
-                            .addComponent(jTxtFFecha)
-                            .addComponent(jTxtFFactura)
-                            .addComponent(jTxtFColaborador)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLblTipoGasto)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLblMonto)
+                                    .addComponent(jLblFecha)
+                                    .addComponent(jLabel6))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTxtFMonto)
+                                    .addComponent(jTxtFFecha)
+                                    .addComponent(jTxtFFactura)
+                                    .addComponent(jTxtFColaborador)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jBtnIngresar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jBtnLimpiar))
+                                    .addComponent(jComboBTipogasto, 0, 208, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2))
-                            .addComponent(jComboBTipogasto, 0, 208, Short.MAX_VALUE))))
-                .addContainerGap(106, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)))
+                        .addGap(16, 16, 16))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLblTipoGasto)
-                    .addComponent(jComboBTipogasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblMonto)
-                    .addComponent(jTxtFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblFecha)
-                    .addComponent(jTxtFFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jTxtFFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jTxtFColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblTipoGasto)
+                            .addComponent(jComboBTipogasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblMonto)
+                            .addComponent(jTxtFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblFecha)
+                            .addComponent(jTxtFFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jTxtFFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jTxtFColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBtnIngresar)
+                            .addComponent(jBtnLimpiar)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
@@ -175,8 +265,16 @@ public class Gastos extends javax.swing.JFrame {
         
         
         
-        
     }//GEN-LAST:event_jComboBTipogastoActionPerformed
+
+    private void jBtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIngresarActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jBtnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,8 +312,8 @@ public class Gastos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBtnIngresar;
+    private javax.swing.JButton jBtnLimpiar;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBTipogasto;
     private javax.swing.JLabel jLabel1;
@@ -224,6 +322,8 @@ public class Gastos extends javax.swing.JFrame {
     private javax.swing.JLabel jLblFecha;
     private javax.swing.JLabel jLblMonto;
     private javax.swing.JLabel jLblTipoGasto;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTxtFColaborador;
     private javax.swing.JTextField jTxtFFactura;
     private javax.swing.JTextField jTxtFFecha;
