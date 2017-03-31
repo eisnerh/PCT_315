@@ -339,7 +339,7 @@ public class Login_frm extends javax.swing.JFrame {
 //            
 //            
 //            
-//>>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
+
 //        } catch (Exception e) {
 
 ////            dts.setLogin(txtusuario.getText());

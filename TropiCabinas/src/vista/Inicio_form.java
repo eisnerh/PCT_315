@@ -71,6 +71,7 @@ public class Inicio_form extends javax.swing.JFrame {
         mnuHerramientas = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         itemAcerca = new javax.swing.JMenuItem();
         itemAyuda = new javax.swing.JMenuItem();
@@ -209,6 +210,7 @@ public class Inicio_form extends javax.swing.JFrame {
         });
         mnuConfiguraciones.add(jMenuItem2);
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/empeados_icono.png"))); // NOI18N
         jMenuItem6.setText("Colaborador");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,6 +251,15 @@ public class Inicio_form extends javax.swing.JFrame {
             }
         });
         mnuHerramientas.add(jMenuItem5);
+
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/position.png"))); // NOI18N
+        jMenuItem8.setText("Puesto");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        mnuHerramientas.add(jMenuItem8);
 
         menuBar.add(mnuHerramientas);
 
@@ -392,7 +403,7 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        Personas_frm form = new Personas_frm();
+        AgregarColaborador_frm_1 form = new AgregarColaborador_frm_1();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -423,6 +434,14 @@ public class Inicio_form extends javax.swing.JFrame {
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        TipoPuesto form = new TipoPuesto();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -475,6 +494,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     public static javax.swing.JLabel lblacceso;
     private javax.swing.JMenuItem lista_x_cabina;
     private javax.swing.JMenuBar menuBar;
