@@ -19,11 +19,14 @@ import javax.swing.JOptionPane;
  */
 public class DBConnection {
 
+    
     public static Connection getConnection() {
         Properties props;
         props = new Properties();
         FileInputStream fis = null;
         Connection con = null;
+    
+        // C:\Users\treznor\Desktop\nuevo2\PCT_315\TropiCabinas\src\dbConfig.properties
         try {
             fis = new FileInputStream("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
             props.load(fis);

@@ -148,7 +148,7 @@ public class Gastos extends javax.swing.JFrame {
         jTxtFColaborador.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
 
         jBtnIngresar.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
-        jBtnIngresar.setText("Ingresar");
+        jBtnIngresar.setText("Guardar");
         jBtnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnIngresarActionPerformed(evt);
