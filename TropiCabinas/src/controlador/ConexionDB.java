@@ -28,7 +28,7 @@ public class ConexionDB {
             
             String urlDriver = "jdbc:mysql://localhost:3306/pct3?zeroDateTimeBehavior=convertToNull";
             String user = "root";
-            String pass = "";
+            String pass = "surfing";
             Connection con = DriverManager.getConnection(urlDriver, user, pass);
             return con;
         } catch (ClassNotFoundException | SQLException e) {
