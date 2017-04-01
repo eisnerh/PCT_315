@@ -26,7 +26,7 @@ import static vista.Form_Factura.nCabina;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Nueva_Factura extends javax.swing.JInternalFrame {
+public final class Nueva_Factura extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Nueva_Factura
@@ -44,7 +44,7 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
         nCabina.setText(Seleccionar_Cabina_frm.ps_nombreCabina);
         nombreEmpleado.setText(Login_frm.ps_NombreEmpleado);
         idEmpleado.setText(Login_frm.ps_idEmpleado);
-        idEmpresa.setText("1");
+        
         //idCabina.setVisible(false);
         fechaActual();
         fechas();
@@ -52,20 +52,20 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
 
     public void fechas() {
         Date h = new Date();
-        SimpleDateFormat formato_Fecha = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        SimpleDateFormat formato_Fecha;
+        formato_Fecha = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
         String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-        SimpleDateFormat formato_Hora = new SimpleDateFormat("HH:mm:ss a", Locale.getDefault());
-        //System.out.println(formato_Fecha.format(h));
+        SimpleDateFormat formato_Hora;
+        formato_Hora = new SimpleDateFormat("HH:mm:ss a", Locale.getDefault());
+        //formato_Fecha.format(h)) Imprime el tiempo formateado 
         Valor = date;
         fechaEntrada.setText(Valor);
-
     }
     
     public void fechaActual() {
-        Date hoy = new Date();
-
+        Date hoy;
+        hoy = new Date();
         String date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
-
 //        jDateChooser1.setDateFormatString(date);
 //        jDateChooser1.setDate(hoy);
 //        Valor = jDateChooser1.getDateFormatString();
@@ -105,18 +105,16 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
         nombreCliente = new javax.swing.JLabel();
         idCliente = new javax.swing.JLabel();
         idCabina = new javax.swing.JLabel();
-        idEmpresa = new javax.swing.JLabel();
         idEmpleado = new javax.swing.JLabel();
         idCliente1 = new javax.swing.JLabel();
         idCabina1 = new javax.swing.JLabel();
         nombreCliente1 = new javax.swing.JLabel();
         idEmpleado1 = new javax.swing.JLabel();
-        idEmpresa1 = new javax.swing.JLabel();
         nombreEmpleado = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        lblRegresar = new javax.swing.JLabel();
+        lblFacturar = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lblVaciar = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         borrar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
@@ -297,7 +295,7 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel5.setLayout(new java.awt.GridLayout());
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         nombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreCliente.setText("nombreCliente");
@@ -307,8 +305,6 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
 
         idCabina.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         idCabina.setText("idCabina");
-
-        idEmpresa.setText("idEmpresa");
 
         idEmpleado.setText("idEmpleado");
 
@@ -323,8 +319,6 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
 
         idEmpleado1.setText("idEmpleado");
 
-        idEmpresa1.setText("idEmpresa");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -338,31 +332,31 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
                         .addComponent(AgregarCliente))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(nombreCliente)
-                        .addGap(0, 0, 0)
-                        .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(idCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(idEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreCliente)
+                            .addComponent(nombreCliente1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(idCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(idCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(idCabina1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(nombreCliente1)
-                    .addGap(0, 0, 0)
-                    .addComponent(idCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(idCabina1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(idEmpresa1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(idEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(281, Short.MAX_VALUE)))
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {idCabina, idCliente, idEmpleado, nombreCliente});
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {idCabina1, idCliente1, idEmpleado1, nombreCliente1});
+
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -373,40 +367,35 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreCliente)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idCliente)
+                    .addComponent(nombreCliente)
                     .addComponent(idCabina)
-                    .addComponent(idEmpresa)
                     .addComponent(idEmpleado))
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addContainerGap(219, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(nombreCliente1)
-                        .addComponent(idCliente1)
-                        .addComponent(idCabina1)
-                        .addComponent(idEmpresa1)
-                        .addComponent(idEmpleado1))
-                    .addGap(2, 2, 2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreCliente1)
+                    .addComponent(idEmpleado1)
+                    .addComponent(idCabina1)
+                    .addComponent(idCliente1)))
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {idCabina, idCliente, idEmpleado, nombreCliente});
 
         nombreEmpleado.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         nombreEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nombreEmpleado.setText("Eisner Lopez Acevedo");
         nombreEmpleado.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
 
-        jLabel12.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Regresar");
+        lblRegresar.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
+        lblRegresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRegresar.setText("Regresar");
 
-        jLabel13.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Facturar");
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblFacturar.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
+        lblFacturar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFacturar.setText("Facturar");
+        lblFacturar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel13MouseClicked(evt);
+                lblFacturarMouseClicked(evt);
             }
         });
 
@@ -415,9 +404,9 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
         jLabel14.setText("Nombre Cabina");
         jLabel14.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
 
-        jLabel15.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Vaciar");
+        lblVaciar.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
+        lblVaciar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVaciar.setText("Vaciar");
 
         jLabel16.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -425,6 +414,7 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
         jLabel16.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
 
         borrar.setBackground(new java.awt.Color(204, 204, 204));
+        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/compose_64px.png"))); // NOI18N
         borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 borrarActionPerformed(evt);
@@ -432,12 +422,14 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
         });
 
         guardar.setBackground(new java.awt.Color(204, 204, 204));
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book_64px.png"))); // NOI18N
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
             }
         });
 
+        volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Inicio.png"))); // NOI18N
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
@@ -446,7 +438,6 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
 
         nCabina.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         nCabina.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nCabina.setText("Havoc");
         nCabina.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -455,7 +446,7 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(112, 112, 112)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -464,7 +455,7 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
                             .addComponent(nombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblVaciar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,37 +463,42 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
                             .addComponent(nCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFacturar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {borrar, guardar, nCabina, nombreEmpleado, volver});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVaciar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(borrar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nCabina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(volver, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(6, 6, 6)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFacturar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(borrar)
+                    .addComponent(guardar)
+                    .addComponent(volver)
+                    .addComponent(nCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(127, 127, 127))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {borrar, guardar, nCabina, nombreEmpleado, volver});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -672,10 +668,10 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_AgregarClienteActionPerformed
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+    private void lblFacturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFacturarMouseClicked
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jLabel13MouseClicked
+    }//GEN-LAST:event_lblFacturarMouseClicked
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         // TODO add your handling code here:
@@ -699,7 +695,6 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
         + "'"+ impuesto.getText()+"', "
         + "'"+ precioTotal.getText() +"', "
         + "'"+ idCabina.getText() +"', "
-        + "'"+ idEmpresa.getText() +"', "
         + "'"+ idCliente.getText()+"', "
         + "'"+ idEmpleado.getText() +"')";
         try {
@@ -787,16 +782,11 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel idCliente;
     private javax.swing.JLabel idCliente1;
     private javax.swing.JLabel idEmpleado;
-    private javax.swing.JLabel idEmpleado1;
-    private javax.swing.JLabel idEmpresa;
-    private javax.swing.JLabel idEmpresa1;
+    public static javax.swing.JLabel idEmpleado1;
     private javax.swing.JTextField impuesto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -806,12 +796,15 @@ public class Nueva_Factura extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblCantDias;
+    private javax.swing.JLabel lblFacturar;
     private javax.swing.JLabel lblFechaEntrada;
     private javax.swing.JLabel lblImpuesto;
+    private javax.swing.JLabel lblRegresar;
+    private javax.swing.JLabel lblVaciar;
     public static javax.swing.JLabel nCabina;
     private javax.swing.JLabel nombreCliente;
     private javax.swing.JLabel nombreCliente1;
-    private javax.swing.JLabel nombreEmpleado;
+    public static javax.swing.JLabel nombreEmpleado;
     private javax.swing.JTextField precioTotal;
     private javax.swing.JTextField subTotal;
     private javax.swing.JTextField txtNombreCliente;

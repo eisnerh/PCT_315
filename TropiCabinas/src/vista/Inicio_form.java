@@ -52,6 +52,7 @@ public class Inicio_form extends javax.swing.JFrame {
         IdEmpleado = new javax.swing.JLabel();
         Nombre_Empleado = new javax.swing.JLabel();
         lblacceso = new javax.swing.JLabel();
+        lblPuesto = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mnusisreserva = new javax.swing.JMenu();
         mnuarchivo = new javax.swing.JMenu();
@@ -102,7 +103,14 @@ public class Inicio_form extends javax.swing.JFrame {
         lblacceso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblacceso.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         escritorio.add(lblacceso);
-        lblacceso.setBounds(20, 120, 200, 40);
+        lblacceso.setBounds(20, 180, 200, 40);
+
+        lblPuesto.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
+        lblPuesto.setForeground(new java.awt.Color(255, 255, 255));
+        lblPuesto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPuesto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        escritorio.add(lblPuesto);
+        lblPuesto.setBounds(20, 120, 200, 40);
 
         mnusisreserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Inicio.png"))); // NOI18N
         mnusisreserva.setMnemonic('f');
@@ -361,14 +369,14 @@ public class Inicio_form extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuSalirMouseClicked
 
     private void contentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItemActionPerformed
-        // TODO add your handling code here:
-//        frmreserva form = new frmreserva();
-//        escritorio.add(form);
-//        form.toFront();
-//        form.setVisible(true);
-//        frmreserva.txtidtrabajador.setText(lblidpersona.getText());
-//        frmreserva.txttrabajador.setText(lblnombre.getText() + " " + lblapaterno.getText());
-//        frmreserva.idusuario=Integer.parseInt(lblidpersona.getText());
+        
+        Nueva_Factura form = new Nueva_Factura();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+        Nueva_Factura.idEmpleado1.setText(IdEmpleado.getText());
+        Nueva_Factura.nombreEmpleado.setText(Nombre_Empleado.getText());
+        
     }//GEN-LAST:event_contentMenuItemActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -515,6 +523,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    public static javax.swing.JLabel lblPuesto;
     public static javax.swing.JLabel lblacceso;
     private javax.swing.JMenuItem lista_x_cabina;
     private javax.swing.JMenuBar menuBar;
