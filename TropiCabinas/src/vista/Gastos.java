@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import static vista.Personas_frm.modeloTipo;
@@ -29,7 +30,6 @@ public class Gastos extends javax.swing.JFrame {
     /**
      * Creates new form Gastos
      */
-    
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -39,28 +39,34 @@ public class Gastos extends javax.swing.JFrame {
     String sqlSelect_Valor;
     String sqlInsert;
     String sqlDelete;
-    
-    
-    
-    String categoria; 
-    
-    
+
+    String categoria;
+
     public Gastos() {
         initComponents();
         con = DBConnection.getConnection();
         sqlSelect = "SELECT `gasto_id`, `tipo_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id` FROM `gasto_operativo` order BY `gasto_id`";
-       
+
         sqlInsert = "INSERT INTO `gasto_operativo`(`gasto_id`, `tipo_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES ('";
         sqlDelete = "DELETE FROM `gasto_operativo` WHERE `gasto_id` = ";
-        
+
         modeloTipo = new DefaultComboBoxModel();
+
+        llena_combo(); // llenar los datos al ejecutar el programa
+
+                   //Group radio buttons.
+        ButtonGroup group = new ButtonGroup();
+        group.add(jRadioBtnIngresar);
+        group.add(jRadioBtnEditar);
         
         
-                llena_combo(); // llenar los datos al ejecutar el programa
+        
+        
+
     }
-    
+
     public void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
-    try {
+        try {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = con.createStatement();
@@ -68,30 +74,26 @@ public class Gastos extends javax.swing.JFrame {
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloTipo.addElement(rs.getString("tipo_gasto"));
-                
+
             }
             jComboBTipogasto.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-    
+
     }
-    
-    
-    
-        private void initState() {
+
+    private void initState() {
         jTxtFMonto.setEnabled(false);
         jTxtFFecha.setEnabled(false);
         jTxtFFactura.setEnabled(false);
         jTxtFColaborador.setEnabled(false);
         jBtnIngresar.setEnabled(false);
         jBtnLimpiar.setEnabled(false);
-        
+        jTable1.setEnabled(false);
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,6 +103,7 @@ public class Gastos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLblTipoGasto = new javax.swing.JLabel();
         jLblMonto = new javax.swing.JLabel();
@@ -117,6 +120,13 @@ public class Gastos extends javax.swing.JFrame {
         jComboBTipogasto = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jRadioBtnIngresar = new javax.swing.JRadioButton();
+        jRadioBtnEditar = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
+        jLblNumerofac = new javax.swing.JLabel();
+        jTxtFNumFac = new javax.swing.JTextField();
+        jBtnEditar = new javax.swing.JButton();
+        jBtnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gastos");
@@ -181,6 +191,31 @@ public class Gastos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jRadioBtnIngresar.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jRadioBtnIngresar.setText("Ingresar Gastos");
+        jRadioBtnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioBtnIngresarActionPerformed(evt);
+            }
+        });
+
+        jRadioBtnEditar.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jRadioBtnEditar.setText("Editar Gastos");
+
+        jButton1.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jButton1.setText("Buscar");
+
+        jLblNumerofac.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jLblNumerofac.setText("Buscar número de factura");
+
+        jTxtFNumFac.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+
+        jBtnEditar.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jBtnEditar.setText("Editar");
+
+        jBtnGuardar.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jBtnGuardar.setText("Guardar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,40 +225,70 @@ public class Gastos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLblTipoGasto)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblMonto)
+                            .addComponent(jLblFecha)
+                            .addComponent(jLabel6))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTxtFMonto)
+                                .addComponent(jTxtFFecha)
+                                .addComponent(jTxtFFactura)
+                                .addComponent(jTxtFColaborador)
+                                .addComponent(jComboBTipogasto, 0, 208, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jBtnIngresar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addComponent(jBtnLimpiar)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLblTipoGasto)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLblMonto)
-                                    .addComponent(jLblFecha)
-                                    .addComponent(jLabel6))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTxtFMonto)
-                                    .addComponent(jTxtFFecha)
-                                    .addComponent(jTxtFFactura)
-                                    .addComponent(jTxtFColaborador)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jBtnIngresar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jBtnLimpiar))
-                                    .addComponent(jComboBTipogasto, 0, 208, Short.MAX_VALUE))
+                                .addGap(5, 5, 5)
+                                .addComponent(jBtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jBtnGuardar)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(16, 16, 16))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jRadioBtnEditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTxtFNumFac, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jRadioBtnIngresar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblNumerofac)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addGap(229, 229, 229))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioBtnIngresar)
+                    .addComponent(jLblNumerofac))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioBtnEditar)
+                    .addComponent(jButton1)
+                    .addComponent(jTxtFNumFac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,12 +309,15 @@ public class Gastos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jTxtFColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBtnIngresar)
-                            .addComponent(jBtnLimpiar)))
+                            .addComponent(jTxtFColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnIngresar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtnLimpiar)
+                        .addComponent(jBtnGuardar)
+                        .addComponent(jBtnEditar)))
                 .addGap(24, 24, 24)
                 .addComponent(jButton3)
                 .addContainerGap())
@@ -260,21 +328,26 @@ public class Gastos extends javax.swing.JFrame {
 
     private void jComboBTipogastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBTipogastoActionPerformed
         // TODO add your handling code here:
-        
+
         categoria = (String) jComboBTipogasto.getSelectedItem();
-        
-        
-        
+
+
     }//GEN-LAST:event_jComboBTipogastoActionPerformed
 
     private void jBtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIngresarActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jBtnIngresarActionPerformed
+
+    private void jRadioBtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBtnIngresarActionPerformed
         // TODO add your handling code here:
         
         
         
         
         
-    }//GEN-LAST:event_jBtnIngresarActionPerformed
+    }//GEN-LAST:event_jRadioBtnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,8 +385,12 @@ public class Gastos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBtnEditar;
+    private javax.swing.JButton jBtnGuardar;
     private javax.swing.JButton jBtnIngresar;
     private javax.swing.JButton jBtnLimpiar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBTipogasto;
     private javax.swing.JLabel jLabel1;
@@ -321,12 +398,16 @@ public class Gastos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLblFecha;
     private javax.swing.JLabel jLblMonto;
+    private javax.swing.JLabel jLblNumerofac;
     private javax.swing.JLabel jLblTipoGasto;
+    private javax.swing.JRadioButton jRadioBtnEditar;
+    private javax.swing.JRadioButton jRadioBtnIngresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTxtFColaborador;
     private javax.swing.JTextField jTxtFFactura;
     private javax.swing.JTextField jTxtFFecha;
     private javax.swing.JTextField jTxtFMonto;
+    private javax.swing.JTextField jTxtFNumFac;
     // End of variables declaration//GEN-END:variables
 }
