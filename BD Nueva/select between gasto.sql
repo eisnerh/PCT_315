@@ -1,0 +1,1 @@
+SELECT * FROM pct3.gasto_operativo where fecha_gasto between cast('2017-03-01' as date) and cast('2017-03-31' as date);
