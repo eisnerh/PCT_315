@@ -21,7 +21,8 @@ import modelo.contructor.TipoPersona_constructor;
  */
 public class TipoPersona_Formulario {
 
-    private final ConexionDB mysql = new ConexionDB();
+    private
+            final ConexionDB mysql = new ConexionDB();
     private final Connection connect = ConexionDB.conexionDB();
     private String sSQL = "";
     public Integer totalregistros;

@@ -21,23 +21,20 @@ public class ConexionDB {
     
     public static Connection conexionDB() {
         try {
-           
-            
-            
+           //Se carga el driver para la BD
             Class.forName("com.mysql.jdbc.Driver");
-            
+            //La dirección de la db
             String urlDriver = "jdbc:mysql://localhost:3306/pct3?zeroDateTimeBehavior=convertToNull";
+            //usuario
             String user = "root";
+            //contraseña
             String pass = "";
+            //se unifica la conección
             Connection con = DriverManager.getConnection(urlDriver, user, pass);
             return con;
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Cannot process request,Database disconnected!", "", JOptionPane.ERROR_MESSAGE);
-
             return null;
-
         }
-
     }
-
 }

@@ -8,6 +8,7 @@ package vista;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -18,8 +19,22 @@ public class Fechas extends javax.swing.JFrame {
     /**
      * Creates new form Fechas
      */
+    String Valor;
     public Fechas() {
         initComponents();
+        fechaActual();
+    }
+    
+    public void fechaActual() {
+        Date hoy = new Date();
+
+        String date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
+
+        jDateChooser2.setDateFormatString(date);
+        jDateChooser2.setDate(hoy);
+        Valor = jDateChooser2.getDateFormatString();
+        System.out.println(Valor);
+        jTextField1.setText(Valor);
     }
 
     /**

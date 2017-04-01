@@ -110,7 +110,7 @@ public class fCabina {
             return n != 0;
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Cábina Duplicado", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }

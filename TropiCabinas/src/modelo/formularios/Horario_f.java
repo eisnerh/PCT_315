@@ -24,17 +24,16 @@ public class Horario_f {
     private final DBConnection myLink = new DBConnection();
     private final Connection conexion = DBConnection.getConnection();
     private String querySQL = "";
-
     public int totalRegistros;
     ResultSet resultSets = null;
     PreparedStatement pst = null;
 
     public boolean mostrarHorario(String buscar) {
-        //DefaultTableModel tableModel;
+        DefaultTableModel tableModel = null;
         //creación de un array para definir las columnas
-        //String[] columnas = {"ID", "Horario"};
+        String[] columnas = {"ID", "Horario"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
-        //String[] registro = new String[2];
+        String[] registro = new String[2];
         //integer que indica la cantidad de registros obtenidos del select
         String id;
         String descripcion;
@@ -51,7 +50,7 @@ public class Horario_f {
                 descripcion = resultSets.getString("descripcion_horario");
 
                 totalRegistros++;
-                //tableModel.addRow(registro);
+                tableModel.addRow(registro);
             }
             //return tableModel;
         } catch (SQLException sqle) {
@@ -65,13 +64,10 @@ public class Horario_f {
     public boolean insertar(mHorario dts) {
         querySQL = "insert into pct3.horario (descripcion_horario) values (?)";
         try {
-
             PreparedStatement ps;
             ps = conexion.prepareStatement(querySQL);
-            //ps.setString(1, dts.getHorarioId());
             ps.setString(1, dts.getDescripcionHorario());
             int n = ps.executeUpdate();
-
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, "Valor Duplicado", "Corregir", JOptionPane.YES_NO_OPTION);
         }
@@ -80,9 +76,7 @@ public class Horario_f {
 
     public boolean editar(mHorario dts) {
         querySQL = "UPDATE `horario` SET `descripcion_horario` = ? WHERE `horario`.`horario_id` = ?";
-
         try {
-
             PreparedStatement ps = conexion.prepareStatement(querySQL);
             ps.setString(1, dts.getHorarioId());
             ps.setString(2, dts.getDescripcionHorario());
@@ -97,7 +91,6 @@ public class Horario_f {
     public boolean eliminar(mHorario dts) {
         querySQL = "DELETE FROM `pct3`.`horario` WHERE descripcion_horario = ?";
         try {
-
             PreparedStatement ps = conexion.prepareStatement(querySQL);
             ps.setString(1, dts.getDescripcionHorario());
             int n = ps.executeUpdate();

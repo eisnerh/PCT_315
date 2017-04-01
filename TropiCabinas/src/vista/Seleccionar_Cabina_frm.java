@@ -57,7 +57,11 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
     }
     
     private void Get_Data() {
-        String sqlQuery = "SELECT `descripcion_cabina`, `estado_cabina` FROM `pct3`.`cabina` AS `cabina` ORDER BY `estado_cabina` ASC";
+        String sqlQuery = "SELECT "
+                + "`descripcion_cabina`, "
+                + "`estado_cabina` "
+                + "FROM `pct3`.`cabina` AS `cabina` "
+                + "ORDER BY `estado_cabina` ASC";
         int totalRegistros;
         agregarCabinas.removeAll();
         try {
@@ -73,6 +77,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                     btn.setBackground(Color.red);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
                 }
+                //cambia los iconos especifico dependiendo de el estado de la cabina.
                 if (rs.getString(2).equals("Libre")) {
                     btn.setBackground(Color.green);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/house.png"))); // NOI18N
@@ -133,10 +138,12 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                     });
                     totalRegistros++;
                 }
+                //cambia los iconos especifico dependiendo de el estado de la cabina.
                 if (rs.getString(2).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/wiping.png"))); // NOI18N
                 }
+                //cambia los iconos especifico dependiendo de el estado de la cabina.
                 if (rs.getString(2).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
@@ -693,6 +700,10 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
         Salir = new javax.swing.JRadioButton();
         NombreEmpleado = new javax.swing.JLabel();
         IdEmpleado = new javax.swing.JLabel();
+
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Seleccionar Cábina");
 
         opciones.setBackground(new java.awt.Color(204, 204, 255));
         opciones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

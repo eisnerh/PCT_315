@@ -37,6 +37,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
     PreparedStatement pst2 = null;
 
     private String id_Persona;
+    private String estado_Cabina;
     static DefaultComboBoxModel modeloEstado = new DefaultComboBoxModel();
     static DefaultComboBoxModel modeloTipo = new DefaultComboBoxModel();
     public Agregar_Cabina() {
@@ -46,6 +47,8 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         this.setSize(623, 445);
         comboEstado();
         comboTipoCabina();
+        //Se asigna el valor del combo a una variable fija llamada estado_Cabina
+        estado_Cabina = estadoCabina.getSelectedItem().toString();
         EstadoCabina.setText(estadoCabina.getSelectedItem().toString());
         TipoCabina.setText(tipoCabina.getSelectedItem().toString());
         
@@ -400,8 +403,6 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        EstadoCabina.setText("jLabel6");
-
         TipoCabina.setText("jLabel6");
 
         cabina_di.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
@@ -461,7 +462,8 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             txtNombreCabina.requestFocus();
             return;
         }
-        if (EstadoCabina.getText().length() == 0) {
+        if(estado_Cabina.length() == 0)
+        {
             JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
             estadoCabina.requestFocus();
             return;
@@ -495,7 +497,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             txtNombreCabina.requestFocus();
             return;
         }
-        if (EstadoCabina.getText().length() == 0) {
+        if (estado_Cabina.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
             estadoCabina.requestFocus();
             return;
@@ -523,7 +525,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
 
     private void estadoCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoCabinaActionPerformed
         // TODO add your handling code here:
-        EstadoCabina.setText(estadoCabina.getSelectedItem().toString());
+        estado_Cabina = (estadoCabina.getSelectedItem().toString());
     }//GEN-LAST:event_estadoCabinaActionPerformed
 
     private void tipoCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoCabinaActionPerformed
@@ -557,7 +559,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             txtNombreCabina.requestFocus();
             return;
         }
-        if (EstadoCabina.getText().length() == 0) {
+        if (estado_Cabina.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
             estadoCabina.requestFocus();
             return;
@@ -581,7 +583,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         dts.setId_cabina(null);
 
         dts.setDescripcionCabina(txtNombreCabina.getText());
-        dts.setEstado_cabina(EstadoCabina.getText());
+        dts.setEstado_cabina(estado_Cabina);
 
         dts.setPrecio(txtPrecio.getText());
 
@@ -605,7 +607,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             txtNombreCabina.requestFocus();
             return;
         }
-        if (EstadoCabina.getText().length() == 0) {
+        if (estado_Cabina.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
             estadoCabina.requestFocus();
             return;
@@ -628,7 +630,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
         dts.setId_cabina(null);
 
         dts.setDescripcionCabina(txtNombreCabina.getText());
-        dts.setEstado_cabina(EstadoCabina.getText());
+        dts.setEstado_cabina(estado_Cabina);
 
         dts.setPrecio(txtPrecio.getText());
 
@@ -655,7 +657,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
                 String registro2 = rs.getString("descripcion_cabina");
                 txtNombreCabina.setText(registro2);
                 String registro3 = rs.getString("estado_cabina");
-                EstadoCabina.setText(registro3);
+                estado_Cabina = (registro3);
                 estadoCabina.getModel().setSelectedItem(registro3);
                 String registro4 = rs.getString("precio");
                 txtPrecio.setText(registro4);
@@ -692,7 +694,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
                 String registro2 = rs.getString("descripcion_cabina");
                 txtNombreCabina.setText(registro2);
                 String registro3 = rs.getString("estado_cabina");
-                EstadoCabina.setText(registro3);
+                estado_Cabina = (registro3);
                 estadoCabina.getModel().setSelectedItem(registro3);
                 String registro4 = rs.getString("precio");
                 txtPrecio.setText(registro4);
