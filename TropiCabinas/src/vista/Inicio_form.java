@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.io.File;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -64,6 +65,7 @@ public class Inicio_form extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         lista_x_cabina = new javax.swing.JMenuItem();
         mnuClientes = new javax.swing.JMenuItem();
+        mnuGastoFecha = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -194,6 +196,14 @@ public class Inicio_form extends javax.swing.JFrame {
             }
         });
         mnuconsultas.add(mnuClientes);
+
+        mnuGastoFecha.setText("Gastos por Fechas");
+        mnuGastoFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuGastoFechaActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(mnuGastoFecha);
 
         menuBar.add(mnuconsultas);
 
@@ -373,7 +383,7 @@ public class Inicio_form extends javax.swing.JFrame {
             view.setVisible(true);
 
         } catch (JRException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -443,6 +453,14 @@ public class Inicio_form extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void mnuGastoFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGastoFechaActionPerformed
+        // TODO add your handling code here:
+        Gastos_Parametros form = new Gastos_Parametros();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_mnuGastoFechaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -501,6 +519,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenu mnuAyuda;
     private javax.swing.JMenuItem mnuClientes;
     public static javax.swing.JMenu mnuConfiguraciones;
+    private javax.swing.JMenuItem mnuGastoFecha;
     private javax.swing.JMenu mnuHerramientas;
     private javax.swing.JMenu mnuSalir;
     public static javax.swing.JMenu mnuarchivo;

@@ -10,6 +10,8 @@ import java.io.File;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -112,8 +114,8 @@ public class Reporte_x_Cabina extends javax.swing.JInternalFrame {
                 view.setTitle("Reporte por Cábina");
                 view.setVisible(true);
 
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (JRException e) {
+                JOptionPane.showMessageDialog(this, e);
             }
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
