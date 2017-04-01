@@ -47,7 +47,6 @@ public class TipoPuesto extends javax.swing.JInternalFrame {
             modeloTipoPuesto.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = conexion.createStatement();
-
             String queryComboTipoPersona = "SELECT distinct (descripcion_puesto) as puesto FROM pct3.puesto order by descripcion_puesto;";
             rs = stmt.executeQuery(queryComboTipoPersona);
             while (rs.next()) {
@@ -253,11 +252,9 @@ public class TipoPuesto extends javax.swing.JInternalFrame {
         mPuesto dts = new mPuesto();
         fPuesto func = new fPuesto();
         
-        
-        dts.setPuesto_id("null");
         dts.setDescripcion_puesto(txt_Puesto.getText());
         dts.setPago_hora_sencilla(txt_MontoHS.getText());
-        dts.setPago_hora_sencilla(txt_MontoHE.getText());
+        dts.setPago_hora_extra(txt_MontoHE.getText());
         if (func.insertar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "el tipo de puesto creado satisfactoriamente");
         }
@@ -337,18 +334,19 @@ public class TipoPuesto extends javax.swing.JInternalFrame {
 
     private void comboTipoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoPersonaActionPerformed
         // TODO add your handling code here:
+        
         try {
-            String sql = "SELECT puesto_id, descripcion_puesto FROM pct3.puesto where descripcion_puesto = '" + comboTipoPersona.getSelectedItem().toString() + "'";
+            String sql = "SELECT puesto_id, descripcion_puesto FROM puesto where descripcion_puesto = '" + comboTipoPersona.getSelectedItem().toString() + "'";
             pst = conexion.prepareStatement(sql);
             rs = pst.executeQuery();
             if (rs.next()) {
                 String add1 = rs.getString("puesto_id");
                 String add2 = rs.getString("descripcion_puesto");
-
                 var1 = add1;
                 txt_Puesto.setText(add2);
-
-            }
+            }else
+                var1= "";
+            txt_Puesto.setText("");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);

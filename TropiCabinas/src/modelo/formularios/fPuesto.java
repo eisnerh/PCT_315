@@ -67,18 +67,21 @@ public class fPuesto {
     }
 
     public boolean insertar(mPuesto dts) {
-        sSQL = "INSERT INTO `pct3`.`puesto` (`puesto_id`, `descripcion_puesto`, `pago_hora_sencilla`, `pago_hora_extra`) VALUES (?, ?, ?, ?);";
+        sSQL = "INSERT INTO `pct3`.`puesto` "
+                + "(`descripcion_puesto`, `pago_hora_sencilla`, `pago_hora_extra`) "
+                + "VALUES (?, ?, ?);";
         try {
 
             PreparedStatement ps;
             ps = conexion.prepareStatement(sSQL);
-            ps.setString(1, dts.getPuesto_id());
-            ps.setString(2, dts.getDescripcion_puesto());
-            ps.setString(3, dts.getPago_hora_sencilla());
-            ps.setString(4, dts.getPago_hora_extra());
+            
+            ps.setString(1, dts.getDescripcion_puesto());
+            ps.setString(2, dts.getPago_hora_sencilla());
+            ps.setString(3, dts.getPago_hora_extra());
             int n = ps.executeUpdate();
 
         } catch (SQLException e) {
+            System.out.println(e);
             JOptionPane.showConfirmDialog(null, "Valor Duplicado", "Corregir", JOptionPane.YES_NO_OPTION);
         }
         return false;

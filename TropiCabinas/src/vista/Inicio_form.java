@@ -208,7 +208,7 @@ public class Inicio_form extends javax.swing.JFrame {
         menuBar.add(mnuconsultas);
 
         mnuConfiguraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Configuraciones.png"))); // NOI18N
-        mnuConfiguraciones.setText("Configuraciones");
+        mnuConfiguraciones.setText("Datos");
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/trabajadores.png"))); // NOI18N
@@ -220,6 +220,7 @@ public class Inicio_form extends javax.swing.JFrame {
         });
         mnuConfiguraciones.add(jMenuItem2);
 
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/empeados_icono.png"))); // NOI18N
         jMenuItem6.setText("Colaborador");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +230,7 @@ public class Inicio_form extends javax.swing.JFrame {
         });
         mnuConfiguraciones.add(jMenuItem6);
 
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/PROVEEDORES.png"))); // NOI18N
         jMenuItem7.setText("Proveedor");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +243,7 @@ public class Inicio_form extends javax.swing.JFrame {
         menuBar.add(mnuConfiguraciones);
 
         mnuHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Herramientas.png"))); // NOI18N
-        mnuHerramientas.setText("Herramientas");
+        mnuHerramientas.setText("Mantenimiento");
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/members.png"))); // NOI18N
