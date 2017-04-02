@@ -33,8 +33,13 @@ public class Login_frm extends javax.swing.JFrame {
     ResultSet rs = null;
     PreparedStatement pst = null;
 
+    /**
+     * Creacion de variables estaticas las cuales se van a exportar al
+     * formulario inicio para realizar el primer filtro y bloqueo de menus
+     */
     public static String ps_NombreEmpleado;
     public static String ps_idEmpleado;
+    public static String ps_descripcion_puesto;
     BufferedImage img = null;
 
     int xMouse;
@@ -47,9 +52,7 @@ public class Login_frm extends javax.swing.JFrame {
         con = ConexionDB.conexionDB();
         //centra la ventana para que se inicie en el centro del escritorio
         this.setLocationRelativeTo(null);
-
         this.setTitle("Acceso al Sistema");
-
     }
 
     /**
@@ -74,15 +77,9 @@ public class Login_frm extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_User.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
-        txt_User.setForeground(new java.awt.Color(0, 0, 0));
         txt_User.setBorder(null);
         txt_User.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -92,7 +89,6 @@ public class Login_frm extends javax.swing.JFrame {
         getContentPane().add(txt_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 220, 40));
 
         txt_Pass.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
-        txt_Pass.setForeground(new java.awt.Color(0, 0, 0));
         txt_Pass.setBorder(null);
         txt_Pass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -169,10 +165,6 @@ public class Login_frm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_UserKeyPressed
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formKeyPressed
-
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
         executeLogin();
@@ -185,7 +177,7 @@ public class Login_frm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -285,114 +277,9 @@ public class Login_frm extends javax.swing.JFrame {
     private javax.swing.JTextField txt_User;
     // End of variables declaration//GEN-END:variables
 
-//    private void execLogin()
-//    {
-//        try {
-//            DefaultTableModel modelo;
-//            ftrabajador func =new ftrabajador();
-//            vtrabajador dts=new vtrabajador();
-//            dts.setLogin(txtusuario.getText());
-//            dts.setPassword(txtpassword.getText());
-//            modelo=func.login(dts.getLogin(),dts.getPassword());
-//            tablalistado.setModel(modelo);
-//=======
-//            
-//            
-//            dts.setLogin(txtusuario.getText());
-//            dts.setPassword(txtpassword.getText());
-//            
-//            
-//            modelo=func.login(dts.getLogin(),dts.getPassword());
-//            
-//            tablalistado.setModel(modelo);
-//            
-//>>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
-//            if (func.totalregistros >0) {
-//                this.dispose();
-//                frminicio form = new frminicio();
-//                form.toFront();
-//                form.setVisible(true);
-//                frminicio.lblidpersona.setText(tablalistado.getValueAt(0, 0).toString());
-//                frminicio.lblnombre.setText(tablalistado.getValueAt(0, 1).toString());
-//                frminicio.lblapaterno.setText(tablalistado.getValueAt(0, 2).toString());
-//                frminicio.lblamaterno.setText(tablalistado.getValueAt(0, 3).toString());
-//                frminicio.lblacceso.setText(tablalistado.getValueAt(0, 4).toString());
-//                if (!frminicio.lblacceso.getText().equals("Administrador")) {
-//                    frminicio.mnuarchivo.setEnabled(false);
-//                    frminicio.mnuconfiguraciones.setEnabled(false);
-//                }
-//<<<<<<< HEAD:TropiCabinas/src/vista/Login_frm.java
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
-//            }
-//=======
-//                
-//                
-//                
-//            }
-//            
-//            else {
-//                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
-//            }
-//            
-//            
-//            
-//        } catch (Exception e) {
-////            dts.setLogin(txtusuario.getText());
-////            dts.setPassword(txtpassword.getText());
-////            modelo=func.login(dts.getLogin(),dts.getPassword());
-////            tablalistado.setModel(modelo);
-//=======
-////            
-////            
-////            dts.setLogin(txtusuario.getText());
-////            dts.setPassword(txtpassword.getText());
-////            
-////            
-////            modelo=func.login(dts.getLogin(),dts.getPassword());
-////            
-////            tablalistado.setModel(modelo);
-////            
-//>>>>>>> refs/remotes/origin/Reportes:CaTrop/src/view/Login_frm.java
-////            if (func.totalregistros >0) {
-////                this.dispose();
-////                frminicio form = new frminicio();
-////                form.toFront();
-////                form.setVisible(true);
-////                frminicio.lblidpersona.setText(tablalistado.getValueAt(0, 0).toString());
-////                frminicio.lblnombre.setText(tablalistado.getValueAt(0, 1).toString());
-////                frminicio.lblapaterno.setText(tablalistado.getValueAt(0, 2).toString());
-////                frminicio.lblamaterno.setText(tablalistado.getValueAt(0, 3).toString());
-////                frminicio.lblacceso.setText(tablalistado.getValueAt(0, 4).toString());
-////                if (!frminicio.lblacceso.getText().equals("Administrador")) {
-////                    frminicio.mnuarchivo.setEnabled(false);
-////                    frminicio.mnuconfiguraciones.setEnabled(false);
-////                }
-//<<<<<<< HEAD:TropiCabinas/src/vista/Login_frm.java
-////            }
-////            else {
-////                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
-////            }
-//=======
-////                
-////                
-////                
-////            }
-////            
-////            else {
-////                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
-////            }
-////            
-////            
-////            
-////        } catch (Exception e) {
-//        }
-//    }
     private void executeLogin() {
         String a = txt_User.getText();
         String b = String.valueOf(txt_Pass.getPassword());
-
         if (a.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario");
             txt_User.requestFocus();
@@ -402,25 +289,24 @@ public class Login_frm extends javax.swing.JFrame {
                 txt_Pass.requestFocus();
             } else {
                 try {
-
                     String str = "SELECT "
-                            + "`usuario`.`usuario`, "
-                            + "`usuario`.`password`, "
-                            + "`usuario`.`colaborador_empleado_id` AS 'empleado_id',  "
-                            + "`persona`.`nombre` AS `nombre`, "
-                            + "`puesto`.`puesto_id` AS `acceso`, "
-                            + "`puesto`.`descripcion_puesto` AS `tipo_acceso` "
-                            + "FROM "
-                            + "`pct3`.`usuario` AS `usuario`, "
-                            + "`pct3`.`colaborador` AS `colaborador`, "
-                            + "`pct3`.`persona` AS `persona`, "
-                            + "`pct3`.`puesto` AS `puesto` "
-                            + "WHERE "
-                            + "`usuario`.`colaborador_empleado_id` = `colaborador`.`empleado_id` "
-                            + "AND `colaborador`.`persona_idpersona` = `persona`.`idpersona` "
-                            + "and `colaborador`.`puesto_puesto_id` = `puesto`.`puesto_id` "
-                            + "AND `usuario`.`usuario` = BINARY 'admin' "
-                            + "AND `usuario`.`password` = 'admin'; ";
+                            + "    `usuario`.`usuario`,"
+                            + "    `usuario`.`password`,"
+                            + "    `usuario`.`colaborador_empleado_id` AS `empleado_id`,"
+                            + "    `persona`.`nombre` AS `nombre`,"
+                            + "    `puesto`.`puesto_id` AS `acceso`,"
+                            + "    `puesto`.`descripcion_puesto` AS `tipo_acceso`"
+                            + "FROM"
+                            + "    `pct3`.`usuario` AS `usuario`,"
+                            + "    `pct3`.`colaborador` AS `colaborador`,"
+                            + "    `pct3`.`persona` AS `persona`,"
+                            + "    `pct3`.`puesto` AS `puesto`"
+                            + "WHERE"
+                            + "		`usuario`.`colaborador_empleado_id` = `colaborador`.`empleado_id`"
+                            + "        AND `colaborador`.`persona_idpersona` = `persona`.`idpersona`"
+                            + "        and `colaborador`.`puesto_puesto_id` = `puesto`.`puesto_id`"
+                            + "        AND `usuario`.`usuario` = BINARY '" + a + "'"
+                            + "        AND `usuario`.`password` = BINARY '" + b + "'";
                     pst = con.prepareStatement(str);
                     rs = pst.executeQuery();
                     if (rs.next()) {
@@ -429,19 +315,23 @@ public class Login_frm extends javax.swing.JFrame {
                         String acceso = rs.getString("acceso");
                         ps_NombreEmpleado = rs.getString("nombre");
                         ps_idEmpleado = rs.getString("empleado_id");
-//                if (!Inicio_form.lblacceso.getText().equals("3")) {
-//                    Inicio_form.mnuarchivo.setEnabled(false);
-//                    Inicio_form.mnuConfiguraciones.setEnabled(false);
-//                }
+                        ps_descripcion_puesto = rs.getString(6);
+//                        
                         Inicio_form p = new Inicio_form();
                         p.setVisible(true);
                         this.dispose();
                         Inicio_form.Nombre_Empleado.setText(nombre_persona);
                         Inicio_form.IdEmpleado.setText(id_colaborador);
                         Inicio_form.lblacceso.setText(acceso);
+                        Inicio_form.lblPuesto.setText(ps_descripcion_puesto);
+                        if (Inicio_form.lblPuesto.getText().equals("Administrador")) {
+                        } else {
+                            Inicio_form.mnuConfiguraciones.setEnabled(false);
+                            Inicio_form.mnuHerramientas.setEnabled(false);
+                        }
                     } else {
                         int opcion = JOptionPane.showConfirmDialog(this, "Usuario o Contraseña Incorrecta", "Desea Salir", JOptionPane.YES_NO_OPTION);
-                        if (opcion == 0) { //The ISSUE is here
+                        if (opcion == 1) { //The ISSUE is here
                             System.exit(0);
                         } else {
                             txt_User.setText("");

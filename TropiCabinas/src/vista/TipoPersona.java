@@ -46,7 +46,6 @@ public class TipoPersona extends javax.swing.JInternalFrame {
             modeloTipoPersona.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = conexion.createStatement();
-
             String queryComboTipoPersona = "SELECT "
                     + "COUNT(*) as `Conteo`, `desc_persona` AS `descripcion` "
                     + "FROM "
@@ -58,7 +57,6 @@ public class TipoPersona extends javax.swing.JInternalFrame {
                 modeloTipoPersona.addElement(rs.getString("descripcion"));
             }
             comboTipoPersona.setModel(modeloTipoPersona); // seteamos el modelo y se cargan los datos
-
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
@@ -230,7 +228,6 @@ public class TipoPersona extends javax.swing.JInternalFrame {
             }
             Statement stmt;
             stmt = conexion.createStatement();
-
             String sql1 = "SELECT `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + txt_Tipo_Persona.getText() + "'";
             rs = stmt.executeQuery(sql1);
             if (rs.next()) {
@@ -240,9 +237,7 @@ public class TipoPersona extends javax.swing.JInternalFrame {
             }
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-
         }
-
         TipoPersona_constructor dts = new TipoPersona_constructor();
         TipoPersona_Formulario func = new TipoPersona_Formulario();
         dts.setDesc_persona(txt_Tipo_Persona.getText());
@@ -261,17 +256,13 @@ public class TipoPersona extends javax.swing.JInternalFrame {
             txt_Tipo_Persona.requestFocus();
             return;
         }
-
         TipoPersona_constructor dts = new TipoPersona_constructor();
         TipoPersona_Formulario func = new TipoPersona_Formulario();
         dts.setDesc_persona(txt_Tipo_Persona.getText());
-
         if (func.editar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "Tipo de Persona editado satisfactoriamente");
-
         }
         txt_Tipo_Persona.setText("");
-
         comboTipoPersona();
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -335,15 +326,11 @@ public class TipoPersona extends javax.swing.JInternalFrame {
             if (rs.next()) {
                 String add1 = rs.getString("idtipo_persona");
                 String add2 = rs.getString("desc_persona");
-
                 var1 = add1;
                 txt_Tipo_Persona.setText(add2);
-
             }
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-
         }
     }//GEN-LAST:event_comboTipoPersonaActionPerformed
 

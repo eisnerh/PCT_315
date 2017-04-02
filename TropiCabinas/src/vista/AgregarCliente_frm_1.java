@@ -37,12 +37,12 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
     String sqlSelect_Valor;
     String sqlInsert;
     String sqlDelete;
-
+    
     private String id_Persona;
 
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipo;
-
+    
     public AgregarCliente_frm_1() {
         initComponents();
         con = DBConnection.getConnection();
@@ -50,12 +50,12 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
         sqlSelect_Valor = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE `nombre` = '";
         sqlInsert = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES ('";
         sqlDelete = "DELETE FROM `persona` WHERE `idpersona` = ";
-
+        //txtClasificación es no visible para la obtencion del id del tipo de persona.
+        txtClasificación.setVisible(false);
         modeloTipo = new DefaultComboBoxModel();
-
         llena_combo(); // llenar los datos al ejecutar el programa
     }
-
+    
     public void getNumeroCodigo() {
         try {
             txtCodigoCliente.setText("");
@@ -70,12 +70,11 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
             }
             txtCodigoCliente.setText(txtNombre_Apellidos.getText() + lbl_idPersona.getText());
             cmbTipoPersona.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
-
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
-
+    
     public void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
@@ -85,16 +84,13 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloTipo.addElement(rs.getString("desc_persona"));
-
             }
             cmbTipoPersona.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
-
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-
     }
-
+    
     private void initState() {
         txtNombre_Apellidos.setEnabled(false);
         txtDireccion.setEnabled(false);
@@ -109,9 +105,9 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
         buscar.setEnabled(true);
         editar.setEnabled(false);
         borrar.setEnabled(false);
-
+        
     }
-
+    
     private void agregarPersona() {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
@@ -136,7 +132,7 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de cédula!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
+                
                 Statement stmt;
                 stmt = con.createStatement();
 
@@ -200,10 +196,9 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
                 pst = con.prepareStatement(sql);
                 pst.execute();
                 int in = JOptionPane.showConfirmDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.YES_OPTION);
-                if(in == 0)
-                {
+                if (in == 0) {
                     pst = con.prepareStatement(sql2);
-                pst.execute();
+                    pst.execute();
                 }
 //                try {
 //                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
@@ -353,7 +348,7 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
         Persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Persona.setForeground(java.awt.Color.darkGray);
         Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Market-Research.png"))); // NOI18N
-        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 110, 110));
+        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 130, 110));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/multiple_accounts.png"))); // NOI18N
@@ -459,7 +454,7 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
                 txtClasificación.setText(add1);
                 String tipoPersonaSeleccionada;
                 tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
-
+                
                 if (tipoPersonaSeleccionada.equals("Cliente")) {
                     
                     JOptionPane.showMessageDialog(Persona, "Bienvenido", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
@@ -470,19 +465,19 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
                     Colaborador_frm colaborador = new Colaborador_frm();
                     colaborador.setVisible(true);
-
+                    
                     Colaborador_frm.id_persona.setText(lbl_id_persona.getText());
-
+                    
                 }
                 if (tipoPersonaSeleccionada.equals("Proveedor")) {
                     JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
                 }
-
+                
             }
-
+            
         } catch (SQLException | HeadlessException | IOException e) {
             JOptionPane.showMessageDialog(null, e);
-
+            
         }
     }//GEN-LAST:event_cmbTipoPersonaActionPerformed
 
@@ -508,7 +503,7 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-
+        
         agregarPersona();
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -518,25 +513,25 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere editar este dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-
+                
                 Statement stmt;
                 stmt = con.createStatement();
-
+                
                 String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtPhone.getText() + "',`direccion`='" + txtPhone.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_idPersona.getText() + "'";
                 pst = con.prepareStatement(Pru);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
                 txtNombre_Apellidos.setText("");
-
+                
                 if (P == 1) {
                     txtNombre_Apellidos.setText("");
-
+                    
                 }
             }
-
+            
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-
+            
         }
     }//GEN-LAST:event_editarActionPerformed
 
@@ -553,13 +548,13 @@ public class AgregarCliente_frm_1 extends javax.swing.JInternalFrame {
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Successfully deleted", "Record", JOptionPane.INFORMATION_MESSAGE);
                 initState();
-
+                
             }
             initState();
-
+            
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-
+            
         }
     }//GEN-LAST:event_borrarActionPerformed
 

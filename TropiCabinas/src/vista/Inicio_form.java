@@ -531,7 +531,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuClientes;
     public static javax.swing.JMenu mnuConfiguraciones;
     private javax.swing.JMenuItem mnuGastoFecha;
-    private javax.swing.JMenu mnuHerramientas;
+    public static javax.swing.JMenu mnuHerramientas;
     private javax.swing.JMenu mnuSalir;
     public static javax.swing.JMenu mnuarchivo;
     private javax.swing.JMenu mnuconsultas;
