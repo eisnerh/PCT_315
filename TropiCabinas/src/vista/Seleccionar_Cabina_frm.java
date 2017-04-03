@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import static vista.Inicio_form.escritorio;
 
 /**
  *
@@ -215,10 +216,11 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            Form_Factura factura_frm = new Form_Factura();
-                            hide();
-                            factura_frm.setVisible(true);
-                            Form_Factura.nCabina.setText(nombreCabina);
+                            frmFactura form = new frmFactura();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+                            frmFactura.nCabina.setText(nombreCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -280,12 +282,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            Form_Factura factura_frm = new Form_Factura();
-                            hide();
-                            factura_frm.setVisible(true);
-                            Form_Factura.nCabina.setText(nombreCabina);
-                            Form_Factura.idCabina.setText(idCabina);
-                            Form_Factura.Precio.setText(precioCabina);
+                            frmFactura form = new frmFactura();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+                            frmFactura.nCabina.setText(nombreCabina);
+                            frmFactura.idCabina.setText(idCabina);
+                            frmFactura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -503,12 +506,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            Form_Factura factura_frm = new Form_Factura();
-                            hide();
-                            factura_frm.setVisible(true);
-                            Form_Factura.nCabina.setText(nombreCabina);
-                            Form_Factura.idCabina.setText(idCabina);
-                            Form_Factura.Precio.setText(precioCabina);
+                            frmFactura form = new frmFactura();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+        frmFactura.nCabina.setText(nombreCabina);
+                            frmFactura.idCabina.setText(idCabina);
+                            frmFactura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -601,12 +605,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            Form_Factura factura_frm = new Form_Factura();
-                            hide();
-                            factura_frm.setVisible(true);
-                            Form_Factura.nCabina.setText(nombreCabina);
-                            Form_Factura.idCabina.setText(idCabina);
-                            Form_Factura.Precio.setText(precioCabina);
+                            frmFactura form = new frmFactura();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+                            frmFactura.nCabina.setText(nombreCabina);
+                            frmFactura.idCabina.setText(idCabina);
+                            frmFactura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
