@@ -5,7 +5,7 @@
  */
 package modelo.formularios;
 
-import controlador.ConexionDB;
+import controlador.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,8 +21,8 @@ import modelo.contructor.mPersona;
  */
 public class fPersona {
 
-    private final ConexionDB myLink = new ConexionDB();
-    private final Connection conexion = ConexionDB.conexionDB();
+    private final DBConnection myLink = new DBConnection();
+    private final Connection conexion = DBConnection.getConnection();
     private String sSQL = "";
     private String sSQL2 = "";
     public Integer totalregistros;

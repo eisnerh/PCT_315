@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.ConexionDB;
+import controlador.DBConnection;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -49,7 +49,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
         initComponents();
         
         botones = new ArrayList<>();
-        con = ConexionDB.conexionDB();
+        con = DBConnection.getConnection();
         Get_Data();
         
         NombreEmpleado.setText(Login_frm.ps_NombreEmpleado);
@@ -97,7 +97,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                                 try {
                                     int P = JOptionPane.showConfirmDialog(null, " Ordenar limpieza a la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                                     if (P == 0) {
-                                        con = ConexionDB.conexionDB();
+                                        con = DBConnection.getConnection();
                                         Statement stmt;
                                         stmt = con.createStatement();
 
@@ -117,7 +117,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                                 try {
                                     int P = JOptionPane.showConfirmDialog(null, " Ordenar bloquear la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                                     if (P == 0) {
-                                        con = ConexionDB.conexionDB();
+                                        con = DBConnection.getConnection();
                                         Statement stmt;
                                         stmt = con.createStatement();
 
@@ -204,7 +204,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                             try {
                                 
                                 
-                                    con = ConexionDB.conexionDB();
+                                    con = DBConnection.getConnection();
                                     Statement stmt;
                                     stmt = con.createStatement();
 
@@ -343,7 +343,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                             try {
                                 int P = JOptionPane.showConfirmDialog(null, " Quiere liberar la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                                 if (P == 0) {
-                                    con = ConexionDB.conexionDB();
+                                    con = DBConnection.getConnection();
                                     Statement stmt;
                                     stmt = con.createStatement();
 
@@ -433,7 +433,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                             try {
                                 int P = JOptionPane.showConfirmDialog(null, " Quiere liberar la cábina # " + nombreCabina + " este dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                                 if (P == 0) {
-                                    con = ConexionDB.conexionDB();
+                                    con = DBConnection.getConnection();
                                     Statement stmt;
                                     stmt = con.createStatement();
 
@@ -525,7 +525,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                             try {
                                 int P = JOptionPane.showConfirmDialog(null, " Quiere liberar la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                                 if (P == 0) {
-                                    con = ConexionDB.conexionDB();
+                                    con = DBConnection.getConnection();
                                     Statement stmt;
                                     stmt = con.createStatement();
 
@@ -628,7 +628,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                             try {
                                 int P = JOptionPane.showConfirmDialog(null, " Quiere liberar la cábina # " + nombreCabina + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                                 if (P == 0) {
-                                    con = ConexionDB.conexionDB();
+                                    con = DBConnection.getConnection();
                                     Statement stmt;
                                     stmt = con.createStatement();
 
