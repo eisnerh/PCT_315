@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.ConexionDB;
+import controlador.DBConnection;
 import java.io.File;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class Reporte_x_Cabina extends javax.swing.JInternalFrame {
     Connection con = null;
     public Reporte_x_Cabina() {
         initComponents();
-        con = ConexionDB.conexionDB();
+        con = DBConnection.getConnection();
     }
 
     /**

@@ -6,7 +6,7 @@
 package vista;
 
 import com.sun.glass.events.KeyEvent;
-import controlador.ConexionDB;
+import controlador.DBConnection;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,7 +42,7 @@ public final class Form_Factura extends javax.swing.JFrame {
 
     public Form_Factura() {
         initComponents();
-        con = ConexionDB.conexionDB();
+        con = DBConnection.getConnection();
         nCabina.setText(Seleccionar_Cabina_frm.ps_nombreCabina);
         nombreEmpleado.setText(Login_frm.ps_NombreEmpleado);
         idEmpleado.setText(Login_frm.ps_idEmpleado);
@@ -590,7 +590,7 @@ public final class Form_Factura extends javax.swing.JFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar un cliente ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = ConexionDB.conexionDB();
+                con = DBConnection.getConnection();
 
                 if (txtNombreCliente.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -673,7 +673,7 @@ public final class Form_Factura extends javax.swing.JFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = ConexionDB.conexionDB();
+                con = DBConnection.getConnection();
 
                 if (txtNombreCliente.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -710,7 +710,7 @@ public final class Form_Factura extends javax.swing.JFrame {
                 try {
                                 int op = JOptionPane.showConfirmDialog(null, " Cambiar el estado de la cábina # " + nCabina.getText() + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                                 if (op == 0) {
-                                    con = ConexionDB.conexionDB();
+                                    con = DBConnection.getConnection();
                                     Statement statement;
                                     statement = con.createStatement();
 
@@ -746,7 +746,7 @@ public final class Form_Factura extends javax.swing.JFrame {
             try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = ConexionDB.conexionDB();
+                con = DBConnection.getConnection();
 
                 if (txtNombreCliente.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);

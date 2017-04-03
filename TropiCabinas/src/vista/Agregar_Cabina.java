@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.ConexionDB;
+import controlador.DBConnection;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +30,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
     /**
      * Creates new form Agregar_Cabina
      */
-    Connection connection = ConexionDB.conexionDB();
+    Connection connection = DBConnection.getConnection();
     ResultSet rs = null;
     PreparedStatement pst = null;
     ResultSet rs2 = null;
@@ -645,7 +645,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
     private void tablaCabinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCabinaMouseClicked
         // TODO add your handling code here:
         try {
-            connection = ConexionDB.conexionDB();
+            connection = DBConnection.getConnection();
             int row = tablaCabina.getSelectedRow();
             String tabla_click = tablaCabina.getModel().getValueAt(row, 0).toString();
             String sql = "SELECT * FROM `cabina` WHERE `descripcion_cabina` = '" + tabla_click + "'";

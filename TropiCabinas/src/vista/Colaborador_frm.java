@@ -6,7 +6,7 @@
 package vista;
 
 import com.sun.glass.events.KeyEvent;
-import controlador.ConexionDB;
+import controlador.DBConnection;
 import java.awt.HeadlessException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -48,7 +48,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         initComponents();
         Date sumarRestarDiasFecha = sumarRestarDiasFecha(dcFechaContrato.getDate(),3);
         //inicialización de las variables de la coneccion a la base de datos
-        con = ConexionDB.conexionDB();
+        con = DBConnection.getConnection();
         //llama al procedimiento de obtener la información.
 
         //centra la ventana para que se inicie en el centro del escritorio
@@ -449,7 +449,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = ConexionDB.conexionDB();
+                con = DBConnection.getConnection();
 
                 if (txtFechaDespido.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -510,7 +510,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere editar este dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = ConexionDB.conexionDB();
+                con = DBConnection.getConnection();
                 Statement stmt;
                 stmt = con.createStatement();
 
@@ -570,7 +570,7 @@ public final class Colaborador_frm extends javax.swing.JFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Seguro que quiere eliminar ?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = ConexionDB.conexionDB();
+                con = DBConnection.getConnection();
                 //DELETE FROM `Horario_frm` WHERE `horario_id` = 4
                 String sql = sqlDelete + empleado_id.getText() + "";
                 //String sql = "DELETE FROM `horario` WHERE `horario_id`='" + lbl_Horario_id.getText() + "'";

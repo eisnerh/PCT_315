@@ -29,8 +29,8 @@ public class DBConnection {
     
         // C:\Users\treznor\Desktop\nuevo2\PCT_315\TropiCabinas\src\dbConfig.properties
         try {
-            
-            fis = new FileInputStream("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+            fis = new FileInputStream("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
+            //fis = new FileInputStream("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
             //fi2 = new FileInputStream("C:\\Users\\treznor\\Desktop\\nuevo2\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
 
             props.load(fis);
@@ -39,7 +39,7 @@ public class DBConnection {
             // load the Driver Class
             Class.forName(props.getProperty("DB_DRIVER_CLASS"));
 
-            // create the connectio n now
+            // create the connection now
             con = DriverManager.getConnection(props.getProperty("DB_URL"),
                     props.getProperty("DB_USERNAME"),
                     props.getProperty("DB_PASSWORD"));

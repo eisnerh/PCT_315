@@ -6,7 +6,7 @@
 package vista;
 
 import com.sun.glass.events.KeyEvent;
-import controlador.ConexionDB;
+import controlador.DBConnection;
 import java.awt.HeadlessException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -49,10 +49,10 @@ public class Login_frm extends javax.swing.JFrame {
         initComponents();
 
         //inicialización de las variables de la coneccion a la base de datos
-        con = ConexionDB.conexionDB();
+        con = DBConnection.getConnection();
         //centra la ventana para que se inicie en el centro del escritorio
         this.setLocationRelativeTo(null);
-        this.setTitle("Acceso al Sistema");
+        
     }
 
     /**

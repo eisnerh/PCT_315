@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.ConexionDB;
+import controlador.DBConnection;
 import java.io.File;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class Gastos_Parametros extends javax.swing.JInternalFrame {
     Connection con = null;
     public Gastos_Parametros() {
         initComponents();
-        con = ConexionDB.conexionDB();
+        con = DBConnection.getConnection();
     }
 
     /**

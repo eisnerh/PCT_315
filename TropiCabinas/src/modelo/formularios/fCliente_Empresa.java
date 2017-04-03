@@ -5,7 +5,7 @@
  */
 package modelo.formularios;
 
-import controlador.ConexionDB;
+import controlador.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,8 +26,8 @@ public class fCliente_Empresa {
 
         // Se crea un array de botones
         // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
-        private final ConexionDB myLink = new ConexionDB();
-        private final Connection conexion = ConexionDB.conexionDB();
+        private final DBConnection myLink = new DBConnection();
+        private final Connection conexion = DBConnection.getConnection();
         private String querySQL = "";
         private String querySQL2 = "";
         public int totalRegistros;

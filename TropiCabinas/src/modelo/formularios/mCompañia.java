@@ -22,7 +22,7 @@ public class mCompañia {
 
         try {
 //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-            File archivo = new File("C:\\Users\\eisne\\Dropbox\\Archivos enviados\\texto.txt");
+            File archivo = new File("src/texto.txt");
 
 //Escribimos en el archivo con el metodo write
             try (//Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
