@@ -13,7 +13,7 @@ import java.io.IOException;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class mCompañia {
+public class Modelo_Compañia {
 
     public static void main(String[] args) {
 

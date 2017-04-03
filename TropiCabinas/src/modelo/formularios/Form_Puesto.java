@@ -12,13 +12,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import modelo.contructor.mPuesto;
+import modelo.contructor.Modelo_Puesto;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class fPuesto {
+public class Form_Puesto {
 
     private final DBConnection myLink = new DBConnection();
     private final Connection conexion = DBConnection.getConnection();
@@ -66,7 +66,7 @@ public class fPuesto {
 
     }
 
-    public boolean insertar(mPuesto dts) {
+    public boolean insertar(Modelo_Puesto dts) {
         sSQL = "INSERT INTO `pct3`.`puesto` "
                 + "(`descripcion_puesto`, `pago_hora_sencilla`, `pago_hora_extra`) "
                 + "VALUES (?, ?, ?);";
@@ -87,7 +87,7 @@ public class fPuesto {
         return false;
     }
 
-    public boolean editar(mPuesto dts) {
+    public boolean editar(Modelo_Puesto dts) {
         sSQL = "UPDATE `pct3`.`puesto` "
                 + "SET"
                 + "`descripcion_puesto` = ?, "
@@ -107,7 +107,7 @@ public class fPuesto {
         return false;
     }
 
-    public boolean eliminar(mPuesto dts) {
+    public boolean eliminar(Modelo_Puesto dts) {
         sSQL = "DELETE FROM `pct3`.`puesto` WHERE descripcion_puesto = ?";
         try {
 

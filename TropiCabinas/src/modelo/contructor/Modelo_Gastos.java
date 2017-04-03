@@ -9,7 +9,7 @@ package modelo.contructor;
  *
  * @author treznor
  */
-public class Gastos {
+public class Modelo_Gastos {
     
     
     private String GastoID;
@@ -22,7 +22,7 @@ public class Gastos {
     
     
     
-        public Gastos(String GastoID, String Tipo_Gasto, String Monto_Gasto, String Fecha_Gasto, String Factura_Gasto, String Colaborador_EmpleadoID  ) {
+        public Modelo_Gastos(String GastoID, String Tipo_Gasto, String Monto_Gasto, String Fecha_Gasto, String Factura_Gasto, String Colaborador_EmpleadoID  ) {
    
             this.GastoID = GastoID;
             this.Tipo_Gasto = Tipo_Gasto;

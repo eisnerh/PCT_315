@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import modelo.contructor.TipoPersona_constructor;
-import modelo.formularios.TipoPersona_Formulario;
+import modelo.contructor.Modelo_TipoPersona;
+import modelo.formularios.Form_TipoPersona;
 
 /**
  *
@@ -238,8 +238,8 @@ public class TipoPersona extends javax.swing.JInternalFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-        TipoPersona_constructor dts = new TipoPersona_constructor();
-        TipoPersona_Formulario func = new TipoPersona_Formulario();
+        Modelo_TipoPersona dts = new Modelo_TipoPersona();
+        Form_TipoPersona func = new Form_TipoPersona();
         dts.setDesc_persona(txt_Tipo_Persona.getText());
         if (func.insertar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "el tipo de persona creado satisfactoriamente");
@@ -256,8 +256,8 @@ public class TipoPersona extends javax.swing.JInternalFrame {
             txt_Tipo_Persona.requestFocus();
             return;
         }
-        TipoPersona_constructor dts = new TipoPersona_constructor();
-        TipoPersona_Formulario func = new TipoPersona_Formulario();
+        Modelo_TipoPersona dts = new Modelo_TipoPersona();
+        Form_TipoPersona func = new Form_TipoPersona();
         dts.setDesc_persona(txt_Tipo_Persona.getText());
         if (func.editar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "Tipo de Persona editado satisfactoriamente");
@@ -273,8 +273,8 @@ public class TipoPersona extends javax.swing.JInternalFrame {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el dato?", "Confirmar", JOptionPane.YES_NO_OPTION, 2);
 
             if (confirmacion == 0) {
-                TipoPersona_constructor dts = new TipoPersona_constructor();
-                TipoPersona_Formulario func = new TipoPersona_Formulario();
+                Modelo_TipoPersona dts = new Modelo_TipoPersona();
+                Form_TipoPersona func = new Form_TipoPersona();
 
                 dts.setDesc_persona(txt_Tipo_Persona.getText());
                 func.eliminar(dts);

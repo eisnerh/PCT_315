@@ -9,7 +9,7 @@ package modelo.contructor;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class mPersona {
+public class Modelo_Persona {
 
     private String idpersona;
     private String nombre;
@@ -19,11 +19,11 @@ public class mPersona {
     private String tipo_persona_idtipo_persona;
     
 
-    public mPersona() {
+    public Modelo_Persona() {
 
     }
 
-    public mPersona(String idpersona, String nombre, String cedula, String telefono, String direccion, String tipo_persona_idtipo_persona) {
+    public Modelo_Persona(String idpersona, String nombre, String cedula, String telefono, String direccion, String tipo_persona_idtipo_persona) {
         this.idpersona = idpersona;
         this.nombre = nombre;
         this.cedula = cedula;

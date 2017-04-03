@@ -41,6 +41,7 @@ public class frmFactura extends javax.swing.JInternalFrame {
 
     public frmFactura() {
         initComponents();
+        ComboCliente();
     }
 
     private void ComboCliente() { //para poder llamarlo desde el otro frame o JDialog
@@ -48,21 +49,23 @@ public class frmFactura extends javax.swing.JInternalFrame {
             modeloCliente.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = conexion.createStatement();
-            String queryComboTipoPersona = "SELECT "
-                    + "persona.nombre, "
-                    + "cliente_empresa.codigo_cliente, "
-                    + "tipo_persona.desc_persona "
-                    + "FROM "
-                    + "pct3.persona, "
-                    + "pct3.cliente_empresa, "
-                    + "pct3.tipo_persona"
-                    + "WHERE "
-                    + "persona.idpersona = cliente_empresa.persona_idpersona"
-                    + "AND persona.tipo_persona_idtipo_persona = tipo_persona.idtipo_persona"
-                    + "AND tipo_persona.desc_persona = 'cliente';";
+            String queryComboTipoPersona
+                    = "    SELECT "
+                    + "`tipo_persona`.`desc_persona` AS `Tipo Persona`,"
+                    + "`cliente_empresa`.`codigo_cliente` AS `Codigo Cliente`,"
+                    + "`persona`.`nombre` AS `Nombre`,"
+                    + "`persona`.`idpersona` AS `Id Cliente`"
+                    + "FROM"
+                    + "`persona`"
+                    + "    INNER JOIN"
+                    + "`cliente_empresa` ON `cliente_empresa`.`persona_idpersona` = `persona`.`idpersona`"
+                    + "    INNER JOIN"
+                    + "`tipo_persona` ON `persona`.`tipo_persona_idtipo_persona` = `tipo_persona`.`idtipo_persona`"
+                    + "WHERE"
+                    + "`tipo_persona`.`desc_persona` = 'Cliente'";
             rs = stmt.executeQuery(queryComboTipoPersona);
             while (rs.next()) {
-                modeloCliente.addElement(rs.getString("descripcion"));
+                modeloCliente.addElement(rs.getString("Nombre"));
             }
             txtNombreCliente.setModel(modeloCliente); // seteamos el modelo y se cargan los datos
         } catch (HeadlessException | SQLException ex) {
@@ -529,11 +532,10 @@ public class frmFactura extends javax.swing.JInternalFrame {
                     return;
 
                 }
-                String sqlIns = "INSERT INTO `cliente_empresa`(`nombre_empresa`) VALUES ('" + txtNombreCliente.getSelectedItem().toString()+ "')";
+                String sqlIns = "INSERT INTO `cliente_empresa`(`nombre_empresa`) VALUES ('" + txtNombreCliente.getSelectedItem().toString() + "')";
                 pst = conexion.prepareStatement(sqlIns);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-
 
             }
 

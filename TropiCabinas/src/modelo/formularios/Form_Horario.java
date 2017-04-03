@@ -13,13 +13,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.contructor.mHorario;
+import modelo.contructor.Modelo_Horario;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Horario_f {
+public class Form_Horario {
 
     private final DBConnection myLink = new DBConnection();
     private final Connection conexion = DBConnection.getConnection();
@@ -61,7 +61,7 @@ public class Horario_f {
 
     }
 
-    public boolean insertar(mHorario dts) {
+    public boolean insertar(Modelo_Horario dts) {
         querySQL = "insert into pct3.horario (descripcion_horario) values (?)";
         try {
             PreparedStatement ps;
@@ -74,7 +74,7 @@ public class Horario_f {
         return false;
     }
 
-    public boolean editar(mHorario dts) {
+    public boolean editar(Modelo_Horario dts) {
         querySQL = "UPDATE `horario` SET `descripcion_horario` = ? WHERE `horario`.`horario_id` = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(querySQL);
@@ -88,7 +88,7 @@ public class Horario_f {
         return false;
     }
 
-    public boolean eliminar(mHorario dts) {
+    public boolean eliminar(Modelo_Horario dts) {
         querySQL = "DELETE FROM `pct3`.`horario` WHERE descripcion_horario = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(querySQL);

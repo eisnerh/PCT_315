@@ -9,14 +9,14 @@ package modelo.contructor;
  *
  * @author ace
  */
-public class mCabina {
+public class Modelo_Cabina {
     private String id_cabina;
     private String descripcionCabina;
     private String estado_cabina;
     private String precio;
     private String tipo_cabina;
 
-    public mCabina(String id_cabina, String descripcionCabina, String estado_cabina, String precio, String tipo_cabina) {
+    public Modelo_Cabina(String id_cabina, String descripcionCabina, String estado_cabina, String precio, String tipo_cabina) {
         this.id_cabina = id_cabina;
         this.descripcionCabina = descripcionCabina;
         this.estado_cabina = estado_cabina;
@@ -24,7 +24,7 @@ public class mCabina {
         this.tipo_cabina = tipo_cabina;
     }
     
-    public mCabina()
+    public Modelo_Cabina()
     {
         
     }

@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import modelo.contructor.mHorario;
-import modelo.formularios.Horario_f;
+import modelo.contructor.Modelo_Horario;
+import modelo.formularios.Form_Horario;
 
 /**
  *
@@ -272,8 +272,8 @@ public class Horario_form extends javax.swing.JInternalFrame {
 
         }
 
-        mHorario dts = new mHorario();
-        Horario_f func = new Horario_f();
+        Modelo_Horario dts = new Modelo_Horario();
+        Form_Horario func = new Form_Horario();
         dts.setDescripcionHorario(txtDescripcionHorario.getText());
         if (func.insertar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "el cliente fue registrado satisfactoriamente");
@@ -290,8 +290,8 @@ public class Horario_form extends javax.swing.JInternalFrame {
             return;
         }
 
-        mHorario dts = new mHorario();
-        Horario_f func = new Horario_f();
+        Modelo_Horario dts = new Modelo_Horario();
+        Form_Horario func = new Form_Horario();
         dts.setDescripcionHorario(txtDescripcionHorario.getText());
 
         if (func.editar(dts)) {
@@ -309,8 +309,8 @@ public class Horario_form extends javax.swing.JInternalFrame {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el dato?", "Confirmar", JOptionPane.YES_NO_OPTION, 2);
 
             if (confirmacion == 0) {
-                mHorario dts = new mHorario();
-                Horario_f func = new Horario_f();
+                Modelo_Horario dts = new Modelo_Horario();
+                Form_Horario func = new Form_Horario();
 
                 dts.setDescripcionHorario(txtDescripcionHorario.getText());
                 func.eliminar(dts);

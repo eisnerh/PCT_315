@@ -13,14 +13,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.contructor.mCabina;
-import modelo.contructor.mCliente_Empresa;
+import modelo.contructor.Modelo_Cabina;
+import modelo.contructor.Modelo_ClienteEmpresa;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class fCliente_Empresa {
+public class Form_ClienteEmpresa {
 
     public class fCabina {
 
@@ -98,7 +98,7 @@ public class fCliente_Empresa {
             }
         }
 
-        public boolean insertar(mCabina dts) {
+        public boolean insertar(Modelo_Cabina dts) {
             querySQL = "INSERT INTO `cabina`(`cabina_id`,`descripcion_cabina`, `estado_cabina`, `precio`, `tipo_cabina`) VALUES (?,?,?,?,?)";
             try {
 
@@ -119,7 +119,7 @@ public class fCliente_Empresa {
             }
         }
 
-        public boolean editar(mCabina dts) {
+        public boolean editar(Modelo_Cabina dts) {
             querySQL = "UPDATE `cabina` SET `descripcion_cabina`= ?,`estado_cabina`= ?,`precio`= ?,`tipo_cabina`= ? WHERE `cabina_id` = ?";
 
             try {
@@ -139,7 +139,7 @@ public class fCliente_Empresa {
             }
         }
 
-        public boolean cambiarPassword(mCabina dts) {
+        public boolean cambiarPassword(Modelo_Cabina dts) {
             querySQL = "UPDATE `pct3`.`usuario`"
                     + "SET"
                     + "`password` = ?"
@@ -160,7 +160,7 @@ public class fCliente_Empresa {
             }
         }
 
-        public boolean betado(mCabina dts) {
+        public boolean betado(Modelo_Cabina dts) {
             querySQL = "UPDATE `cabina` SET `estado_cabina` = 'Ocupado' WHERE `cabina_id` = ?";
 
             try {
@@ -178,7 +178,7 @@ public class fCliente_Empresa {
             }
         }
 
-        public boolean eliminar(mCliente_Empresa dts) {
+        public boolean eliminar(Modelo_ClienteEmpresa dts) {
 
             querySQL = "delete from cliente_empresa where idpersona=?";
             querySQL2 = "delete from persona where idpersona=?";

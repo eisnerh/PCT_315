@@ -10,17 +10,17 @@ package modelo.contructor;
  * 
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class mCliente_Empresa {
+public class Modelo_ClienteEmpresa {
     private String empresa_id; 
     private String codigo_cliente; 
     private String estado_cliente; 
     private String persona_idpersona;
 
-    public mCliente_Empresa()
+    public Modelo_ClienteEmpresa()
     {
         
     }
-    public mCliente_Empresa(String empresa_id, String codigo_cliente, String estado_cliente, String persona_idpersona) {
+    public Modelo_ClienteEmpresa(String empresa_id, String codigo_cliente, String estado_cliente, String persona_idpersona) {
         this.empresa_id = empresa_id;
         this.codigo_cliente = codigo_cliente;
         this.estado_cliente = estado_cliente;

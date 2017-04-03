@@ -13,13 +13,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.contructor.mPersona;
+import modelo.contructor.Modelo_Persona;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class fPersona {
+public class Form_Persona {
 
     private final DBConnection myLink = new DBConnection();
     private final Connection conexion = DBConnection.getConnection();
@@ -73,7 +73,7 @@ public class fPersona {
 
     }
 
-    public boolean insertar(mPersona dts) {
+    public boolean insertar(Modelo_Persona dts) {
         sSQL = "INSERT INTO `persona`("
                 + "`idpersona`, "
                 + "`nombre`, "
@@ -103,7 +103,7 @@ public class fPersona {
         return false;
 }
 
-    public boolean editar(mPersona dts) {
+    public boolean editar(Modelo_Persona dts) {
         sSQL = "UPDATE `persona` "
                 + "SET "
                 + "`nombre`=?,"
@@ -129,7 +129,7 @@ public class fPersona {
         return false;
     }
 
-    public boolean eliminar(mPersona dts) {
+    public boolean eliminar(Modelo_Persona dts) {
         sSQL = "delete from persona where idpersona=?";
         sSQL2 = "delete from cliente_empresa where idpersona=?";
 

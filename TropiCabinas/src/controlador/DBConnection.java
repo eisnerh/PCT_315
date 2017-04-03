@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -19,30 +20,63 @@ import javax.swing.JOptionPane;
  */
 public class DBConnection {
 
-    
     public static Connection getConnection() {
         Properties props;
         props = new Properties();
-        FileInputStream fis = null;
-        FileInputStream fi2 = null;
+        FileInputStream fis1 = null;
+        FileInputStream fis2 = null;
+        FileInputStream fis3 = null;
         Connection con = null;
-    
-        // C:\Users\treznor\Desktop\nuevo2\PCT_315\TropiCabinas\src\dbConfig.properties
+
         try {
-            fis = new FileInputStream("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
-            //fis = new FileInputStream("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
-            //fi2 = new FileInputStream("C:\\Users\\treznor\\Desktop\\nuevo2\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+            File data1 = new File("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+            File data2 = new File("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
+            File data3 = new File("C:\\Users\\treznor\\Desktop\\nuevo2\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+            if (!data1.exists()) {
+                System.out.println("File 1 doesn't exist");
+                System.exit(1);
+            } else if (data1.exists()) {
+                System.out.println("File 1 exist");
+                fis1 = new FileInputStream("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+                props.load(fis1);
+                // load the Driver Class
+                Class.forName(props.getProperty("DB_DRIVER_CLASS"));
+                // create the connection now
+                con = DriverManager.getConnection(props.getProperty("DB_URL"),
+                        props.getProperty("DB_USERNAME"),
+                        props.getProperty("DB_PASSWORD"));
+            } else if (!data2.exists()) {
+                System.out.println("File 2 doesn't exist");
+                System.exit(1);
+            } else if (data2.exists()) {
+                System.out.println("File 2 exist");
+                fis2 = new FileInputStream("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
+                props.load(fis2);
+                // load the Driver Class
+                Class.forName(props.getProperty("DB_DRIVER_CLASS"));
 
-            props.load(fis);
+                // create the connection now
+                con = DriverManager.getConnection(props.getProperty("DB_URL"),
+                        props.getProperty("DB_USERNAME"),
+                        props.getProperty("DB_PASSWORD"));
 
+            } else if (!data3.exists()) {
+                System.out.println("File 3 doesn't exist");
+                System.exit(1);
+            } else if (data3.exists()) {
+                System.out.println("File 3 exist");
+                fis3 = new FileInputStream("C:\\Users\\treznor\\Desktop\\nuevo2\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+                props.load(fis3);
+                // load the Driver Class
+                Class.forName(props.getProperty("DB_DRIVER_CLASS"));
 
-            // load the Driver Class
-            Class.forName(props.getProperty("DB_DRIVER_CLASS"));
+                // create the connection now
+                con = DriverManager.getConnection(props.getProperty("DB_URL"),
+                        props.getProperty("DB_USERNAME"),
+                        props.getProperty("DB_PASSWORD"));
 
-            // create the connection now
-            con = DriverManager.getConnection(props.getProperty("DB_URL"),
-                    props.getProperty("DB_USERNAME"),
-                    props.getProperty("DB_PASSWORD"));
+            }
+
         } catch (IOException | ClassNotFoundException | SQLException e) {
             // TODO Auto-generated catch block
             JOptionPane.showMessageDialog(null, e);

@@ -13,13 +13,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.contructor.TipoPersona_constructor;
+import modelo.contructor.Modelo_TipoPersona;
 
 /**
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class TipoPersona_Formulario {
+public class Form_TipoPersona {
 
     private final DBConnection mysql = new DBConnection();
     private final Connection connect = DBConnection.getConnection();
@@ -62,7 +62,7 @@ public class TipoPersona_Formulario {
 
     }
 
-    public boolean insertar(TipoPersona_constructor dts) {
+    public boolean insertar(Modelo_TipoPersona dts) {
         sSQL = "INSERT INTO `tipo_persona`(`idtipo_persona`, `desc_persona`) VALUES (?,?)";
         try {
 
@@ -80,7 +80,7 @@ public class TipoPersona_Formulario {
         }
     }
 
-    public boolean editar(TipoPersona_constructor dts) {
+    public boolean editar(Modelo_TipoPersona dts) {
         sSQL = "UPDATE `tipo_persona` SET `desc_persona` = ? WHERE `idtipo_persona`= ? ";
 
         try {
@@ -98,7 +98,7 @@ public class TipoPersona_Formulario {
         }
     }
 
-    public boolean eliminar(TipoPersona_constructor dts) {
+    public boolean eliminar(Modelo_TipoPersona dts) {
         sSQL = "DELETE FROM `tipo_persona` WHERE `desc_persona` = ?";
         try {
             PreparedStatement pst = connect.prepareStatement(sSQL);

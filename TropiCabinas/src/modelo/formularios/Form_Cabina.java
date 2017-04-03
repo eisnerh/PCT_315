@@ -5,7 +5,7 @@
  */
 package modelo.formularios;
 
-import modelo.contructor.mCabina;
+import modelo.contructor.Modelo_Cabina;
 import controlador.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ace
  */
-public class fCabina {
+public class Form_Cabina {
 
     // Se crea un array de botones
     // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
@@ -94,7 +94,7 @@ public class fCabina {
         }
     }
 
-    public boolean insertar(mCabina dts) {
+    public boolean insertar(Modelo_Cabina dts) {
         querySQL = "INSERT INTO `cabina`(`cabina_id`,`descripcion_cabina`, `estado_cabina`, `precio`, `tipo_cabina`) VALUES (?,?,?,?,?)";
         try {
 
@@ -115,7 +115,7 @@ public class fCabina {
         }
     }
 
-    public boolean editar(mCabina dts) {
+    public boolean editar(Modelo_Cabina dts) {
         querySQL = "UPDATE `cabina` SET `descripcion_cabina`= ?,`estado_cabina`= ?,`precio`= ?,`tipo_cabina`= ? WHERE `cabina_id` = ?";
 
         try {
@@ -135,7 +135,7 @@ public class fCabina {
         }
     }
 
-    public boolean desocupar(mCabina dts) {
+    public boolean desocupar(Modelo_Cabina dts) {
         querySQL = "UPDATE `cabina` SET `estado_cabina` = 'Libre' WHERE `cabina_id` = ?";
 
         try {
@@ -153,7 +153,7 @@ public class fCabina {
         }
     }
 
-    public boolean ocupar(mCabina dts) {
+    public boolean ocupar(Modelo_Cabina dts) {
         querySQL = "UPDATE `cabina` SET `estado_cabina` = 'Ocupado' WHERE `cabina_id` = ?";
 
         try {
@@ -171,7 +171,7 @@ public class fCabina {
         }
     }
 
-    public boolean eliminar(mCabina dts) {
+    public boolean eliminar(Modelo_Cabina dts) {
         querySQL = "DELETE FROM `cabina` WHERE `cabina_id` = ?";
 
         try {

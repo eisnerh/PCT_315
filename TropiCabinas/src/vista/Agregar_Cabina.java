@@ -17,8 +17,8 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.contructor.mCabina;
-import modelo.formularios.fCabina;
+import modelo.contructor.Modelo_Cabina;
+import modelo.formularios.Form_Cabina;
 
 /**
  *
@@ -97,7 +97,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
     public void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            fCabina func = new fCabina();
+            Form_Cabina func = new Form_Cabina();
             modelo = func.mostrarCabina(buscar);
 
             tablaCabina.setModel(modelo);
@@ -481,8 +481,8 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             return;
         }
 
-        mCabina dts = new mCabina();
-        fCabina func = new fCabina();
+        Modelo_Cabina dts = new Modelo_Cabina();
+        Form_Cabina func = new Form_Cabina();
 
         dts.setId_cabina(cabina_di.getText());
         func.desocupar(dts);
@@ -514,8 +514,8 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             txtPrecio.requestFocus();
             return;
         }
-        mCabina dts = new mCabina();
-        fCabina func = new fCabina();
+        Modelo_Cabina dts = new Modelo_Cabina();
+        Form_Cabina func = new Form_Cabina();
 
         dts.setId_cabina(cabina_di.getText());
         func.ocupar(dts);
@@ -577,8 +577,8 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             return;
         }
 
-        mCabina dts = new mCabina();
-        fCabina func = new fCabina();
+        Modelo_Cabina dts = new Modelo_Cabina();
+        Form_Cabina func = new Form_Cabina();
 
         dts.setId_cabina(null);
 
@@ -624,8 +624,8 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
             txtPrecio.requestFocus();
             return;
         }
-        mCabina dts = new mCabina();
-        fCabina func = new fCabina();
+        Modelo_Cabina dts = new Modelo_Cabina();
+        Form_Cabina func = new Form_Cabina();
 
         dts.setId_cabina(null);
 

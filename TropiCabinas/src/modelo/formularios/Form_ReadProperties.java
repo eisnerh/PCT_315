@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Properties;
 
-public class ReadProperties {
+public class Form_ReadProperties {
 
     private java.net.URL ruta;
     private String ipHost;
@@ -21,7 +21,7 @@ public class ReadProperties {
     private String contrasena;
     private String gestor;
 
-    public ReadProperties(java.net.URL path) throws IOException {
+    public Form_ReadProperties(java.net.URL path) throws IOException {
         this.ruta = path;
         init();
     }

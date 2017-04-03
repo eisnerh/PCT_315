@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import modelo.contructor.mPuesto;
-import modelo.formularios.fPuesto;
+import modelo.contructor.Modelo_Puesto;
+import modelo.formularios.Form_Puesto;
 
 /**
  *
@@ -249,8 +249,8 @@ public class TipoPuesto extends javax.swing.JInternalFrame {
 
         }
 
-        mPuesto dts = new mPuesto();
-        fPuesto func = new fPuesto();
+        Modelo_Puesto dts = new Modelo_Puesto();
+        Form_Puesto func = new Form_Puesto();
         
         dts.setDescripcion_puesto(txt_Puesto.getText());
         dts.setPago_hora_sencilla(txt_MontoHS.getText());
@@ -271,8 +271,8 @@ public class TipoPuesto extends javax.swing.JInternalFrame {
             return;
         }
 
-        mPuesto dts = new mPuesto();
-        fPuesto func = new fPuesto();
+        Modelo_Puesto dts = new Modelo_Puesto();
+        Form_Puesto func = new Form_Puesto();
         dts.setPuesto_id("null");
         dts.setDescripcion_puesto(txt_Puesto.getText());
         dts.setPago_hora_extra(txt_MontoHS.getText());
@@ -293,8 +293,8 @@ public class TipoPuesto extends javax.swing.JInternalFrame {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el dato?", "Confirmar", JOptionPane.YES_NO_OPTION, 2);
 
             if (confirmacion == 0) {
-                mPuesto dts = new mPuesto();
-                fPuesto func = new fPuesto();
+                Modelo_Puesto dts = new Modelo_Puesto();
+                Form_Puesto func = new Form_Puesto();
                 dts.setDescripcion_puesto(txt_Puesto.getText());
                 func.eliminar(dts);
 

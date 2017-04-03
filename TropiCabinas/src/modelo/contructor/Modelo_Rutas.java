@@ -11,7 +11,7 @@ import java.net.URL;
  *
  * @author ace
  */
-public class Rutas {
+public class Modelo_Rutas {
 
     private final String dbOracle = "/controlador/dboracle.properties";
     private final String dbMysql = "/com/credencials.properties";
