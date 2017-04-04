@@ -25,10 +25,10 @@ import modelo.formularios.Form_Cabina;
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
-public final class Agregar_Cabina extends javax.swing.JInternalFrame {
+public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Agregar_Cabina
+     * Creates new form Frm_Agregar_Cabina
      */
     Connection connection = DBConnection.getConnection();
     ResultSet rs = null;
@@ -40,7 +40,7 @@ public final class Agregar_Cabina extends javax.swing.JInternalFrame {
     private String estado_Cabina;
     static DefaultComboBoxModel modeloEstado = new DefaultComboBoxModel();
     static DefaultComboBoxModel modeloTipo = new DefaultComboBoxModel();
-    public Agregar_Cabina() {
+    public Frm_Agregar_Cabina() {
         initComponents();
         cabina_di.setVisible(false);
         
