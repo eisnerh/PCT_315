@@ -27,10 +27,10 @@ import javax.swing.JOptionPane;
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
-public final class Form_Factura extends javax.swing.JFrame {
+public final class f_Factura extends javax.swing.JFrame {
 
     /**
-     * Creates new form Form_Factura
+     * Creates new form f_Factura
      */
     Connection con = null;
     ResultSet rs = null;
@@ -40,7 +40,7 @@ public final class Form_Factura extends javax.swing.JFrame {
     DateFormat df = DateFormat.getDateInstance();
     public String Valor;
 
-    public Form_Factura() {
+    public f_Factura() {
         initComponents();
         con = DBConnection.getConnection();
         nCabina.setText(Seleccionar_Cabina_frm.ps_nombreCabina);
@@ -848,8 +848,10 @@ public final class Form_Factura extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Form_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(f_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -858,7 +860,7 @@ public final class Form_Factura extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Form_Factura().setVisible(true);
+            new f_Factura().setVisible(true);
         });
     }
 

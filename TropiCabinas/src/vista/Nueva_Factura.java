@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import javax.swing.JOptionPane;
-import static vista.Form_Factura.nCabina;
+import static vista.f_Factura.nCabina;
 
 /**
  *
