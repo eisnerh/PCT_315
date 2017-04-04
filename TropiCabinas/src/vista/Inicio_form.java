@@ -331,7 +331,7 @@ public class Inicio_form extends javax.swing.JFrame {
     }//GEN-LAST:event_itemAyudaActionPerformed
 
     private void itemAgregarCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAgregarCabinaActionPerformed
-        Agregar_Cabina form = new Agregar_Cabina();
+        Frm_Agregar_Cabina form = new Frm_Agregar_Cabina();
         Component add;
         add = escritorio.add(form);
         form.toFront();
@@ -349,7 +349,7 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
-        AgregarCliente_frm_1 form =new AgregarCliente_frm_1();
+        Frm_AgregarCliente form =new Frm_AgregarCliente();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -370,12 +370,12 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void contentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItemActionPerformed
         
-        Nueva_Factura form = new Nueva_Factura();
+        Frm_NuevaFactura form = new Frm_NuevaFactura();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-        Nueva_Factura.idEmpleado1.setText(IdEmpleado.getText());
-        Nueva_Factura.nombreEmpleado.setText(Nombre_Empleado.getText());
+        Frm_NuevaFactura.idEmpleado1.setText(IdEmpleado.getText());
+        Frm_NuevaFactura.nombreEmpleado.setText(Nombre_Empleado.getText());
         
     }//GEN-LAST:event_contentMenuItemActionPerformed
 
@@ -407,7 +407,7 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        Horario_form form = new Horario_form();
+        Frm_Horario form = new Frm_Horario();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -423,7 +423,7 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        AgregarColaborador_frm_1 form = new AgregarColaborador_frm_1();
+        Frm_AgregarColaborador form = new Frm_AgregarColaborador();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -449,7 +449,7 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        Agregar_Proveedor_frm_1 form = new Agregar_Proveedor_frm_1();
+        Frm_Agregar_Proveedor form = new Frm_Agregar_Proveedor();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -465,7 +465,7 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void mnuGastoFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGastoFechaActionPerformed
         // TODO add your handling code here:
-        Gastos_Parametros form = new Gastos_Parametros();
+        Frm_GastosParametros form = new Frm_GastosParametros();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);

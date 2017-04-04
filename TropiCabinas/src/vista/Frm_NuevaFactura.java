@@ -26,10 +26,10 @@ import static vista.f_Factura.nCabina;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public final class Nueva_Factura extends javax.swing.JInternalFrame {
+public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Nueva_Factura
+     * Creates new form Frm_NuevaFactura
      */
     Connection con = null;
     ResultSet rs = null;
@@ -38,7 +38,7 @@ public final class Nueva_Factura extends javax.swing.JInternalFrame {
     PreparedStatement pst2 = null;
     DateFormat df = DateFormat.getDateInstance();
     public String Valor;
-    public Nueva_Factura() {
+    public Frm_NuevaFactura() {
         initComponents();
         con = DBConnection.getConnection();
         nCabina.setText(Seleccionar_Cabina_frm.ps_nombreCabina);

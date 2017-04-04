@@ -23,13 +23,13 @@ import org.apache.commons.collections.map.HashedMap;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Gastos_Parametros extends javax.swing.JInternalFrame {
+public class Frm_GastosParametros extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Gastos_Parametros
+     * Creates new form Frm_GastosParametros
      */
     Connection con = null;
-    public Gastos_Parametros() {
+    public Frm_GastosParametros() {
         initComponents();
         con = DBConnection.getConnection();
     }

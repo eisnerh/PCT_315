@@ -216,11 +216,11 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            frmFactura form = new frmFactura();
+                            Frm_Factura form = new Frm_Factura();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-                            frmFactura.nCabina.setText(nombreCabina);
+                            Frm_Factura.nCabina.setText(nombreCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -282,13 +282,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            frmFactura form = new frmFactura();
+                            Frm_Factura form = new Frm_Factura();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-                            frmFactura.nCabina.setText(nombreCabina);
-                            frmFactura.idCabina.setText(idCabina);
-                            frmFactura.Precio.setText(precioCabina);
+                            Frm_Factura.nCabina.setText(nombreCabina);
+                            Frm_Factura.idCabina.setText(idCabina);
+                            Frm_Factura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -506,13 +506,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            frmFactura form = new frmFactura();
+                            Frm_Factura form = new Frm_Factura();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-        frmFactura.nCabina.setText(nombreCabina);
-                            frmFactura.idCabina.setText(idCabina);
-                            frmFactura.Precio.setText(precioCabina);
+        Frm_Factura.nCabina.setText(nombreCabina);
+                            Frm_Factura.idCabina.setText(idCabina);
+                            Frm_Factura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -605,13 +605,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            frmFactura form = new frmFactura();
+                            Frm_Factura form = new Frm_Factura();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-                            frmFactura.nCabina.setText(nombreCabina);
-                            frmFactura.idCabina.setText(idCabina);
-                            frmFactura.Precio.setText(precioCabina);
+                            Frm_Factura.nCabina.setText(nombreCabina);
+                            Frm_Factura.idCabina.setText(idCabina);
+                            Frm_Factura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;

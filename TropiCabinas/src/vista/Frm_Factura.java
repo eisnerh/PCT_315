@@ -23,10 +23,10 @@ import static vista.TipoPersona.modeloTipoPersona;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class frmFactura extends javax.swing.JInternalFrame {
+public class Frm_Factura extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form frmFactura
+     * Creates new form Frm_Factura
      */
     //Conección a la Clase DBConnection que contiene la información de la bd, usuario y contraseña
     private DBConnection myLink = new DBConnection();
@@ -39,7 +39,7 @@ public class frmFactura extends javax.swing.JInternalFrame {
     static DefaultComboBoxModel modeloCliente = new DefaultComboBoxModel();
     public String var1 = "";
 
-    public frmFactura() {
+    public Frm_Factura() {
         initComponents();
         ComboCliente();
     }
@@ -340,7 +340,7 @@ public class frmFactura extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel5.setLayout(new java.awt.GridLayout());
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         nombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreCliente.setText("nombreCliente");

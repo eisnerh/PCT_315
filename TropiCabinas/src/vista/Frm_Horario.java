@@ -22,10 +22,10 @@ import modelo.formularios.Form_Horario;
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
-public class Horario_form extends javax.swing.JInternalFrame {
+public class Frm_Horario extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Horario_form
+     * Creates new form Frm_Horario
      */
     private final DBConnection myLink = new DBConnection();
     private final Connection conexion = DBConnection.getConnection();
@@ -37,7 +37,7 @@ public class Horario_form extends javax.swing.JInternalFrame {
     static DefaultComboBoxModel modeloTurno = new DefaultComboBoxModel();
     public String var1 = "";
 
-    public Horario_form() {
+    public Frm_Horario() {
         initComponents();
         comboTurno();
     }
