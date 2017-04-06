@@ -5,10 +5,16 @@
  */
 package vista;
 
+import com.toedter.calendar.JDateChooser;
+import java.beans.PropertyChangeEvent;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,11 +26,66 @@ public class Fechas extends javax.swing.JFrame {
      * Creates new form Fechas
      */
     String Valor;
+
     public Fechas() {
         initComponents();
-        fechaActual();
+
     }
-    
+    public void fecha5()
+    {
+        int d = jDateChooser2.getCalendar().get(Calendar.DAY_OF_MONTH);
+        int m = jDateChooser2.getCalendar().get(Calendar.MONTH);
+        int a = jDateChooser2.getCalendar().get(Calendar.YEAR);
+        String fechas= String.valueOf(a)+"-"+String.valueOf(m)+"-"+String.valueOf(d);
+        jTextField1.setText(fechas);
+    }
+
+    public void fecha() {
+        Date o = jDateChooser2.getDate();   //Import java.util not java.sql
+        String x = String.format("yyyy-MM-dd", o);
+        jTextField1.setText(x);
+    }
+
+    public void fechas() {
+        // string containing date in one format
+        // String strDate = "2012-05-20T09:00:00.000Z";
+        String strDate = "2012-05-20T09:00:00.000Z";
+
+        try {
+            // create SimpleDateFormat object with source string date format
+            SimpleDateFormat sdfSource = new SimpleDateFormat(
+                    "yyyy-MM-dd'T'hh:mm:ss'.000Z'");
+
+            // parse the string into Date object
+            Date date = sdfSource.parse(strDate);
+
+            // create SimpleDateFormat object with desired date format
+            SimpleDateFormat sdfDestination = new SimpleDateFormat(
+                    "dd/MM/yyyy, ha");
+
+            // parse the date into another format
+            strDate = sdfDestination.format(date);
+
+            System.out
+                    .println("Date is converted from yyyy-MM-dd'T'hh:mm:ss'.000Z' format to dd/MM/yyyy, ha");
+            System.out.println("Converted date is : " + strDate.toLowerCase());
+
+        } catch (ParseException pe) {
+            System.out.println("Parse Exception : " + pe);
+        }
+    }
+
+    public void fecha1() {
+        JDateChooser chooser = new JDateChooser();
+        Date d = (Date) chooser.getDate();
+        chooser.addPropertyChangeListener("date", (PropertyChangeEvent pce) -> {
+            JDateChooser chooser1 = (JDateChooser) pce.getSource();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            jTextField1.setText(formatter.format(chooser1.getDate()));
+        });
+
+    }
+
     public void fechaActual() {
         Date hoy = new Date();
 
@@ -35,6 +96,32 @@ public class Fechas extends javax.swing.JFrame {
         Valor = jDateChooser2.getDateFormatString();
         System.out.println(Valor);
         jTextField1.setText(Valor);
+    }
+
+    public void fecha2() throws ParseException {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+
+        try {
+            Date today = df.parse("27/8/2009");
+
+            cal.setTime(today);
+            // cal.set (Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+            Date dt = cal.getTime();
+            DateFormat ndf = new SimpleDateFormat("dd/MM/yyyy");
+            String str2 = ndf.format(dt);
+            jTextField1.setText(str2);
+
+            System.out.println(str2);
+
+            System.out.println(
+                    cal.get(Calendar.DAY_OF_MONTH) + "/"
+                    + cal.get(Calendar.MONTH) + "/"
+                    + cal.get(Calendar.YEAR));
+
+        } catch (ParseException e) {
+        }
     }
 
     /**
@@ -93,16 +180,7 @@ public class Fechas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date=null;
-   try{
-        date=sdf.parse(jDateChooser2.getDate().toString());
-   } catch (ParseException e) {
-            // TODO Auto-generated catch block
-
-   }
-   jTextField1.setText((jDateChooser2.getDate().toString()));
-        
+        fecha5();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -121,22 +199,16 @@ public class Fechas extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fechas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fechas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fechas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Fechas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
+        //</editor-fold>
+
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Fechas().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Fechas().setVisible(true);
         });
     }
 
