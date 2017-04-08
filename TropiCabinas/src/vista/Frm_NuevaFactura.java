@@ -7,7 +7,6 @@ package vista;
 
 import controlador.DBConnection;
 import java.awt.HeadlessException;
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,8 +18,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import static vista.f_Factura.nCabina;
 
 /**
  *
@@ -32,22 +31,55 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
      * Creates new form Frm_NuevaFactura
      */
     Connection con = null;
+    
     ResultSet rs = null;
     PreparedStatement pst = null;
     ResultSet rs2 = null;
     PreparedStatement pst2 = null;
+    
+    
+    
+    
     DateFormat df = DateFormat.getDateInstance();
     public String Valor;
+    //declarar static e instanciarla en tu contructor`
+    static DefaultComboBoxModel modeloTipoPersona;
+
     public Frm_NuevaFactura() {
         initComponents();
         con = DBConnection.getConnection();
         nCabina.setText(Seleccionar_Cabina_frm.ps_nombreCabina);
         nombreEmpleado.setText(Login_frm.ps_NombreEmpleado);
         idEmpleado.setText(Login_frm.ps_idEmpleado);
-        
         //idCabina.setVisible(false);
         fechaActual();
         fechas();
+        modeloTipoPersona = new DefaultComboBoxModel();
+        llena_comboPersona(); // llenar los datos al ejecutar el programa
+    }
+
+    public void llena_comboPersona() { // static para poder llamarlo desde el otro frame o JDialog
+        try {
+            modeloTipoPersona.removeAllElements(); // eliminamos lo elementos
+            Statement stmt;
+            stmt = con.createStatement();
+            String queryComboEstado = "SELECT "
+                    + "empresa_id, codigo_cliente, nombre "
+                    + "FROM "
+                    + "pct3.cliente_empresa "
+                    + "INNER JOIN "
+                    + "pct3.persona ON cliente_empresa.persona_idpersona = persona.idpersona";
+            rs = stmt.executeQuery(queryComboEstado);
+            while (rs.next()) {
+                modeloTipoPersona.addElement(rs.getString("nombre"));
+                codigoCliente.setText(rs.getString("empresa_id"));
+                JOptionPane.showMessageDialog(this, rs.getString("empresa_id"));
+            }
+            cmb_clienteEmpresa.setModel(modeloTipoPersona); // seteamos el modelo y se cargan los datos
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
     }
 
     public void fechas() {
@@ -61,7 +93,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         Valor = date;
         fechaEntrada.setText(Valor);
     }
-    
+
     public void fechaActual() {
         Date hoy;
         hoy = new Date();
@@ -72,6 +104,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         System.out.println(Valor);
         fechaEntrada.setText(Valor);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,7 +116,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtNombreCliente = new javax.swing.JTextField();
         CantidadDias = new javax.swing.JFormattedTextField();
         lblCantDias = new javax.swing.JLabel();
         fechaEntrada = new javax.swing.JLabel();
@@ -92,6 +124,9 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         fechaSalida = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         Precio = new javax.swing.JFormattedTextField();
+        cmb_clienteEmpresa = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        Precio1 = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblImpuesto = new javax.swing.JLabel();
@@ -100,13 +135,12 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         impuesto = new javax.swing.JTextField();
         subTotal = new javax.swing.JTextField();
         precioTotal = new javax.swing.JTextField();
-        AgregarCliente = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         nombreCliente = new javax.swing.JLabel();
         idCliente = new javax.swing.JLabel();
         idCabina = new javax.swing.JLabel();
         idEmpleado = new javax.swing.JLabel();
-        idCliente1 = new javax.swing.JLabel();
+        codigoCliente = new javax.swing.JLabel();
         idCabina1 = new javax.swing.JLabel();
         nombreCliente1 = new javax.swing.JLabel();
         idEmpleado1 = new javax.swing.JLabel();
@@ -129,13 +163,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         jLabel2.setText("Nombre Cliente");
-
-        txtNombreCliente.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
-        txtNombreCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreClienteKeyPressed(evt);
-            }
-        });
 
         CantidadDias.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0"))));
         CantidadDias.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -174,37 +201,74 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             }
         });
 
+        cmb_clienteEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_clienteEmpresa.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_clienteEmpresaItemStateChanged(evt);
+            }
+        });
+        cmb_clienteEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_clienteEmpresaActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
+        jLabel4.setText("N° Factura");
+
+        Precio1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0"))));
+        Precio1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                Precio1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                Precio1FocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(186, 186, 186)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblCantDias)
                     .addComponent(fechaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CantidadDias, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblFechaEntrada)
                         .addGap(113, 113, 113)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fechaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel1)
-                            .addComponent(Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Precio)))
+                    .addComponent(cmb_clienteEmpresa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(168, 168, 168))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Precio1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(28, 28, 28)
                     .addComponent(jLabel2)
                     .addContainerGap(691, Short.MAX_VALUE)))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {CantidadDias, Precio, Precio1, jLabel1, jLabel4});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(cmb_clienteEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaEntrada)
                     .addComponent(jLabel3))
@@ -212,14 +276,18 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 5, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCantDias)
-                    .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CantidadDias, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CantidadDias, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Precio)
+                        .addComponent(Precio1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6, 6, 6))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -227,6 +295,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addContainerGap(126, Short.MAX_VALUE)))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CantidadDias, Precio, Precio1, jLabel1, jLabel4});
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -289,12 +359,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                         .addContainerGap())))
         );
 
-        AgregarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgregarClienteActionPerformed(evt);
-            }
-        });
-
         jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         nombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -308,8 +372,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         idEmpleado.setText("idEmpleado");
 
-        idCliente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        idCliente1.setText("idCliente");
+        codigoCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        codigoCliente.setText("idCliente");
 
         idCabina1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         idCabina1.setText("idCabina");
@@ -326,10 +390,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(AgregarCliente))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -343,7 +404,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(idCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(idCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(codigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(idCabina1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
@@ -355,15 +416,13 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {idCabina, idCliente, idEmpleado, nombreCliente});
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {idCabina1, idCliente1, idEmpleado1, nombreCliente1});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {codigoCliente, idCabina1, idEmpleado1, nombreCliente1});
 
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AgregarCliente))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -377,7 +436,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                     .addComponent(nombreCliente1)
                     .addComponent(idEmpleado1)
                     .addComponent(idCabina1)
-                    .addComponent(idCliente1)))
+                    .addComponent(codigoCliente)))
         );
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {idCabina, idCliente, idEmpleado, nombreCliente});
@@ -503,84 +562,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
-            try {
-                int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
-                if (P == 0) {
-                    con = DBConnection.getConnection();
-
-                    if (txtNombreCliente.getText().equals("")) {
-                        JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    Statement stmt;
-                    stmt = con.createStatement();
-
-                    String sql1 = "SELECT * FROM `cliente_empresa` WHERE `nombre_empresa` LIKE '%" + txtNombreCliente.getText() + "%'";
-                    rs = stmt.executeQuery(sql1);
-                    if (rs.next()) {
-                        JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                        pst = con.prepareStatement(sql1);
-                        rs = pst.executeQuery();
-                        if (rs.next()) {
-                            String add1 = rs.getString("empresa_id");
-                            String add2 = rs.getString("nombre_empresa");
-
-                            nombreCliente.setText(add2);
-
-                            idCliente.setText(add1);
-
-                        }
-                        txtNombreCliente.requestDefaultFocus();
-                        return;
-
-                    }
-                    //                      `nombre`,                               `cedula`,                       `telefono`, `direccion`, `tipo_persona_idtipo_persona`
-                    String sqlIns = "INSERT INTO `cliente_empresa`(`nombre_empresa`) VALUES ('" + txtNombreCliente.getText() + "')";
-                    pst = con.prepareStatement(sqlIns);
-                    pst.execute();
-                    JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                    txtNombreCliente.setText("");
-
-                }
-                if (P == 1) {
-                    String sqlIns = "INSERT INTO `cliente_empresa`(`nombre_empresa`) VALUES ('" + txtNombreCliente.getText() + "')";
-                    pst = con.prepareStatement(sqlIns);
-                    pst.execute();
-                    JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                    AgregarCliente.setEnabled(false);
-                    try {
-
-                        String sql_persona = "SELECT `empresa_id`, `nombre_empresa` FROM `cliente_empresa` WHERE `nombre_empresa` LIKE '%" + txtNombreCliente.getText() + "%'";
-                        pst = con.prepareStatement(sql_persona);
-                        rs = pst.executeQuery();
-                        if (rs.next()) {
-                            String add1 = rs.getString("empresa_id");
-                            String add2 = rs.getString("nombre_empresa");
-
-                            nombreCliente.setText(add2);
-
-                            idCliente.setText(add1);
-
-                        }
-
-                    } catch (SQLException | NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, e);
-
-                    }
-                }
-
-            } catch (HeadlessException | SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex);
-
-            }
-        }
-    }//GEN-LAST:event_txtNombreClienteKeyPressed
-
     private void CantidadDiasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CantidadDiasFocusLost
         // TODO add your handling code here:
         Calendar c1 = GregorianCalendar.getInstance();
@@ -620,54 +601,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         subTotal.setText(String.valueOf(subt));
     }//GEN-LAST:event_PrecioFocusLost
 
-    private void AgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarClienteActionPerformed
-        // TODO add your handling code here:
-        try {
-            int P = JOptionPane.showConfirmDialog(null, " Quiere agregar un cliente ?", "Confirmación", JOptionPane.YES_NO_OPTION);
-            if (P == 0) {
-                con = DBConnection.getConnection();
-
-                if (txtNombreCliente.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                Statement stmt;
-                stmt = con.createStatement();
-
-                String sql1 = "SELECT * FROM `cliente_empresa` WHERE `nombre_empresa` LIKE '%" + txtNombreCliente.getText() + "%'";
-                rs = stmt.executeQuery(sql1);
-                if (rs.next()) {
-                    JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                    pst = con.prepareStatement(sql1);
-                    rs = pst.executeQuery();
-                    if (rs.next()) {
-                        String add1 = rs.getString("empresa_id");
-                        String add2 = rs.getString("nombre_empresa");
-
-                        nombreCliente.setText(add2);
-
-                        idCliente.setText(add1);
-
-                    }
-                    txtNombreCliente.requestDefaultFocus();
-                    return;
-
-                }
-                String sqlIns = "INSERT INTO `cliente_empresa`(`nombre_empresa`) VALUES ('" + txtNombreCliente.getText() + "')";
-                pst = con.prepareStatement(sqlIns);
-                pst.execute();
-                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                txtNombreCliente.setText("");
-
-            }
-
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-
-        }
-    }//GEN-LAST:event_AgregarClienteActionPerformed
-
     private void lblFacturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFacturarMouseClicked
         // TODO add your handling code here:
 
@@ -675,7 +608,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         // TODO add your handling code here:
-        txtNombreCliente.setText("");
+
         CantidadDias.setText("");
         impuesto.setText("");
         subTotal.setText("");
@@ -684,28 +617,22 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        String queryFacturar = "INSERT INTO `factura_cabina` "
-        + "(`factura_id`, `cant_dia`, `fecha`, `impuesto_cabina`, "
-        + "`precio_total_cabina`, `cabina_cabina_id`, "
-        + "`dato_empresa_iddato_empresa`, "
-        + "`cliente_empresa_empresa_id`, "
-        + "`colaborador_empleado_id`) VALUES "
-        + "(NULL, '"+CantidadDias.getText()+"', "
-        + "'"+ fechaEntrada.getText() +"', "
-        + "'"+ impuesto.getText()+"', "
-        + "'"+ precioTotal.getText() +"', "
-        + "'"+ idCabina.getText() +"', "
-        + "'"+ idCliente.getText()+"', "
-        + "'"+ idEmpleado.getText() +"')";
+        String queryFacturar = "INSERT INTO "
+                + "`factura_cabina` "
+                + "(`factura_id`, "
+                + "`cant_dia`, "
+                + "`fecha`, "
+                + "`impuesto_cabina`, "
+                + "`precio_total_cabina`, "
+                + "`cabina_cabina_id`, "
+                + "`colaborador_empleado_id`, "
+                + "`numero_factura`, "
+                + "`cliente_empresa_empresa_id`) "
+                + "VALUES (NULL, '1', '2017-04-17', '1300', '5000', '1', '2', '25', '1')";
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
                 con = DBConnection.getConnection();
-
-                if (txtNombreCliente.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
 
                 if (CantidadDias.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de días a hospedarse ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -722,7 +649,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 pst = con.prepareStatement(queryFacturar);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                txtNombreCliente.setText("");
+
                 Precio.setText("");
                 CantidadDias.setText("");
 
@@ -768,19 +695,55 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         this.hide();
     }//GEN-LAST:event_volverActionPerformed
 
+    private void Precio1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Precio1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Precio1FocusGained
+
+    private void Precio1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Precio1FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Precio1FocusLost
+
+    private void cmb_clienteEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_clienteEmpresaActionPerformed
+        // TODO add your handling code here:
+        codigoCliente.setText("");
+        try {
+            String sqlClienteEmpresa = "SELECT empresa_id, codigo_cliente, nombre FROM pct3.cliente_empresa INNER JOIN pct3.persona ON cliente_empresa.persona_idpersona = persona.idpersona where nombre = '"+ cmb_clienteEmpresa.getSelectedItem() +"'";
+            pst = con.prepareStatement(sqlClienteEmpresa);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String add1 = rs.getString(1);
+                codigoCliente.setText(add1);
+                JOptionPane.showMessageDialog(this, rs.getString("empresa_id"));
+                String tipoPersonaSeleccionada;
+                tipoPersonaSeleccionada = (String) cmb_clienteEmpresa.getSelectedItem();
+                nombreCliente1.setText(tipoPersonaSeleccionada);
+            }
+
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }//GEN-LAST:event_cmb_clienteEmpresaActionPerformed
+
+    private void cmb_clienteEmpresaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_clienteEmpresaItemStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cmb_clienteEmpresaItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AgregarCliente;
     private javax.swing.JFormattedTextField CantidadDias;
     public static javax.swing.JFormattedTextField Precio;
+    public static javax.swing.JFormattedTextField Precio1;
     private javax.swing.JButton borrar;
+    private javax.swing.JComboBox<String> cmb_clienteEmpresa;
+    private javax.swing.JLabel codigoCliente;
     private javax.swing.JLabel fechaEntrada;
     private javax.swing.JLabel fechaSalida;
     private javax.swing.JButton guardar;
     public static javax.swing.JLabel idCabina;
     private javax.swing.JLabel idCabina1;
     private javax.swing.JLabel idCliente;
-    private javax.swing.JLabel idCliente1;
     private javax.swing.JLabel idEmpleado;
     public static javax.swing.JLabel idEmpleado1;
     private javax.swing.JTextField impuesto;
@@ -790,6 +753,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -807,7 +771,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel nombreEmpleado;
     private javax.swing.JTextField precioTotal;
     private javax.swing.JTextField subTotal;
-    private javax.swing.JTextField txtNombreCliente;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
