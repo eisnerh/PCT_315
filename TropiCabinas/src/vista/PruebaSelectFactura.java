@@ -8,8 +8,6 @@ package vista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
 import modelo.contructor.Modelo_Factura;
 import modelo.formularios.Form_Factura;
 

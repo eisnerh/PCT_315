@@ -117,7 +117,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
-        Persona = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         nuevo = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
@@ -125,12 +124,8 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         borrar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        fondo = new javax.swing.JLabel();
         lbl_id_persona = new javax.swing.JLabel();
         lbl_Gasto_Operativo_id = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        mnuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Datos de Personas");
@@ -220,9 +215,6 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         });
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 200, 40));
 
-        Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/cabeza (2).png"))); // NOI18N
-        getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 130, 200));
-
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/store-new-badges.png"))); // NOI18N
         nuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -305,56 +297,14 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 420));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/FondoAzul.png"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 380));
-
         lbl_id_persona.setText("jLabel1");
         getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
         lbl_Gasto_Operativo_id.setText("jLabel1");
         getContentPane().add(lbl_Gasto_Operativo_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
 
-        jMenu1.setText("File");
-
-        mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/exit-sign.png"))); // NOI18N
-        mnuSalir.setMnemonic(KeyEvent.VK_X);
-        mnuSalir.setText("Salir");
-        mnuSalir.setBorderPainted(false);
-        mnuSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        mnuSalir.setName(""); // NOI18N
-        mnuSalir.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
-            public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
-                mnuSalirMenuKeyPressed(evt);
-            }
-            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
-            }
-            public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
-            }
-        });
-        mnuSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnuSalirMouseClicked(evt);
-            }
-        });
-        jMenu1.add(mnuSalir);
-
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void mnuSalirMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_mnuSalirMenuKeyPressed
-
-
-    }//GEN-LAST:event_mnuSalirMenuKeyPressed
-
-    private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked
-        // TODO add your handling code here:
-        dispose();
-
-    }//GEN-LAST:event_mnuSalirMouseClicked
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         // TODO add your handling code here:
@@ -806,12 +756,10 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Persona;
     private javax.swing.JButton borrar;
     private javax.swing.JButton buscar;
     private javax.swing.JComboBox<String> cmbTipoPersona;
     private javax.swing.JButton editar;
-    private javax.swing.JLabel fondo;
     private javax.swing.JButton guardar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
@@ -819,12 +767,9 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_Gasto_Operativo_id;
     private javax.swing.JLabel lbl_id_persona;
-    private javax.swing.JMenu mnuSalir;
     private javax.swing.JButton nuevo;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtClasificación;
