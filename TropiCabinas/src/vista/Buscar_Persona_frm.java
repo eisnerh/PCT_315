@@ -216,7 +216,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 200, 40));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
-        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/store-new-badges.png"))); // NOI18N
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoActionPerformed(evt);
@@ -224,7 +224,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         });
 
         guardar.setBackground(new java.awt.Color(204, 204, 204));
-        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png"))); // NOI18N
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
@@ -232,7 +232,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         });
 
         editar.setBackground(new java.awt.Color(204, 204, 204));
-        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/edit.png"))); // NOI18N
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book_64px.png"))); // NOI18N
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
@@ -240,7 +240,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         });
 
         borrar.setBackground(new java.awt.Color(204, 204, 204));
-        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/dustbin.png"))); // NOI18N
+        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/dustbin.png"))); // NOI18N
         borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 borrarActionPerformed(evt);
@@ -248,14 +248,14 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         });
 
         buscar.setBackground(new java.awt.Color(204, 204, 204));
-        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/room-key.png"))); // NOI18N
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icons/CRUD/volver.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/volver.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -275,7 +275,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
                     .addComponent(buscar)
                     .addComponent(borrar)
                     .addComponent(jButton1))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +292,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
                 .addComponent(buscar)
                 .addGap(18, 18, 18)
                 .addComponent(borrar)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 420));

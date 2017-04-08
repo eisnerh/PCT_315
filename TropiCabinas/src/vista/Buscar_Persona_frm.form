@@ -221,7 +221,7 @@
                       <Component id="borrar" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -240,7 +240,7 @@
                   <Component id="buscar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="borrar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="59" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -252,7 +252,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/view/icons/CRUD/store-new-badges.png"/>
+              <Image iconType="3" name="/icons/CRUD/save-icon-silhouette.png"/>
             </Property>
           </Properties>
           <Events>
@@ -265,7 +265,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/view/icons/CRUD/save-icon-silhouette.png"/>
+              <Image iconType="3" name="/Files/guardar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -278,7 +278,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/view/icons/CRUD/edit.png"/>
+              <Image iconType="3" name="/icons/book_64px.png"/>
             </Property>
           </Properties>
           <Events>
@@ -291,7 +291,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/view/icons/CRUD/dustbin.png"/>
+              <Image iconType="3" name="/icons/CRUD/dustbin.png"/>
             </Property>
           </Properties>
           <Events>
@@ -304,7 +304,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/view/icons/CRUD/searching-magnifying-glass.png"/>
+              <Image iconType="3" name="/icons/CRUD/room-key.png"/>
             </Property>
           </Properties>
           <Events>
@@ -314,7 +314,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/view/icons/CRUD/volver.png"/>
+              <Image iconType="3" name="/icons/CRUD/volver.png"/>
             </Property>
           </Properties>
           <Events>

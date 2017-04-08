@@ -18,5 +18,5 @@ private String impuesto_cabina;
 private String precio_total_cabina;
 private String cabina_cabina_id;
 private String colaborador_empleado_id;
-private String numero_factura
+private String numero_factura;
 }
