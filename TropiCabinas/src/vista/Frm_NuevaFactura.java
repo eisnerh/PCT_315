@@ -73,7 +73,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 modeloTipoPersona.addElement(rs.getString("nombre"));
                 codigoCliente.setText(rs.getString("empresa_id"));
-                JOptionPane.showMessageDialog(this, rs.getString("empresa_id"));
+                
             }
             cmb_clienteEmpresa.setModel(modeloTipoPersona); // seteamos el modelo y se cargan los datos
 
@@ -713,7 +713,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             if (rs.next()) {
                 String add1 = rs.getString(1);
                 codigoCliente.setText(add1);
-                JOptionPane.showMessageDialog(this, rs.getString("empresa_id"));
+                
                 String tipoPersonaSeleccionada;
                 tipoPersonaSeleccionada = (String) cmb_clienteEmpresa.getSelectedItem();
                 nombreCliente1.setText(tipoPersonaSeleccionada);

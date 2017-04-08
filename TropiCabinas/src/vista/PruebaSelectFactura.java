@@ -22,22 +22,23 @@ public class PruebaSelectFactura {
     /**
      * @param args the command line arguments
      */
-        Connection con = null;
+    Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
     ResultSet rs2 = null;
     PreparedStatement pst2 = null;
-    
+
     public static void main(String[] args) {
         // TODO code application logic here
         buscar();
     }
-    private static void buscar(){
+
+    private static void buscar() {
         String busqueda = "1";
-    Modelo_Factura mf = new Modelo_Factura();
+        Modelo_Factura mf = new Modelo_Factura();
         Form_Factura ff = new Form_Factura();
-    ff.mostrarFactura(busqueda);
-        
-      }
-    
+        ff.mostrarFactura(busqueda);
+
+    }
+
 }
