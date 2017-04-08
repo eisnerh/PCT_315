@@ -7,29 +7,30 @@ package vista;
 
 import controlador.DBConnection;
 import java.awt.HeadlessException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import static vista.Personas_frm.modeloTipo;
-import static vista.Personas_frm.txtNombre_Apellidos;
 
 /**
  *
  * @author treznor
  */
+<<<<<<< HEAD
 public class Gastos extends javax.swing.JFrame {
     DefaultListModel modelo = new DefaultListModel();
     
+=======
+public final class Gastos extends javax.swing.JFrame {
+
+>>>>>>> Facturación
     /**
      * Creates new form Gastos
      */
@@ -49,7 +50,6 @@ public class Gastos extends javax.swing.JFrame {
         initComponents();
         con = DBConnection.getConnection();
         sqlSelect = "SELECT `gasto_id`, `tipo_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id` FROM `gasto_operativo` order BY `gasto_id`";
-
         sqlInsert = "INSERT INTO `gasto_operativo`(`gasto_id`, `tipo_gasto`, `monto_gasto`, `fecha_gasto`, `factura_gasto`, `colaborador_empleado_id`) VALUES ('";
         sqlDelete = "DELETE FROM `gasto_operativo` WHERE `gasto_id` = ";
 
@@ -294,6 +294,7 @@ public class Gastos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -309,6 +310,19 @@ public class Gastos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jRadioBtnEditar)
                         .addGap(18, 18, 18)))
+=======
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioBtnIngresar)
+                    .addComponent(jLblNumerofac))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioBtnEditar)
+                        .addComponent(jTxtFNumFac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+>>>>>>> Facturación
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -193,6 +193,11 @@ public class Frm_Factura extends javax.swing.JInternalFrame {
 
         txtNombreCliente.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         txtNombreCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -633,6 +638,10 @@ public class Frm_Factura extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_guardarActionPerformed
+
+    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

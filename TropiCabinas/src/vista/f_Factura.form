@@ -462,7 +462,7 @@
         <Component class="javax.swing.JButton" name="AgregarCliente">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/view/icons/CRUD/multiple_accounts.png"/>
+              <Image iconType="3" name="/icons/book_64px.png"/>
             </Property>
           </Properties>
           <Events>
