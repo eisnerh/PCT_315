@@ -42,21 +42,21 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
     public static String ps_idCabina;
     public static String ps_nombreCabina;
     public static String ps_Precio;
-    
+
     public Seleccionar_Cabina_frm() {
         initComponents();
         agregarCabinas.setOpaque(false);
         opciones.setOpaque(false);
         initComponents();
-        
+
         botones = new ArrayList<>();
         con = DBConnection.getConnection();
         Get_Data();
-        
+
         NombreEmpleado.setText(Login_frm.ps_NombreEmpleado);
         IdEmpleado.setText(Login_frm.ps_idEmpleado);
     }
-    
+
     private void Get_Data() {
         String sqlQuery = "SELECT "
                 + "`descripcion_cabina`, "
@@ -203,30 +203,28 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
                             try {
-                                
-                                
-                                    con = DBConnection.getConnection();
-                                    Statement stmt;
-                                    stmt = con.createStatement();
 
-                                    String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Libre' WHERE `descripcion_cabina` = '" + nombreCabina + "' ";
-                                    pst = con.prepareStatement(Pru);
-                                    pst.execute();
+                                con = DBConnection.getConnection();
+                                Statement stmt;
+                                stmt = con.createStatement();
+
+                                String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Libre' WHERE `descripcion_cabina` = '" + nombreCabina + "' ";
+                                pst = con.prepareStatement(Pru);
+                                pst.execute();
                                 btn.addActionListener(new Seleccionar_Cabina_frm.ActionListener() {
 
-                        @Override
-                        public void actionPerformed(java.awt.event.ActionEvent e) {
-                            Frm_Factura form = new Frm_Factura();
-        escritorio.add(form);
-        form.toFront();
-        form.setVisible(true);
-                            Frm_Factura.nCabina.setText(nombreCabina);
-                            ps_Precio = precioCabina;
-                            ps_idCabina = idCabina;
-                            ps_nombreCabina = nombreCabina;
-                        }
-                    });
-                                
+                                    @Override
+                                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                                        Frm_NuevaFactura form = new Frm_NuevaFactura();
+                                        escritorio.add(form);
+                                        form.toFront();
+                                        form.setVisible(true);
+                                        Frm_NuevaFactura.nCabina.setText(nombreCabina);
+                                        ps_Precio = precioCabina;
+                                        ps_idCabina = idCabina;
+                                        ps_nombreCabina = nombreCabina;
+                                    }
+                                });
 
                             } catch (HeadlessException | SQLException ex) {
                                 JOptionPane.showMessageDialog(null, ex);
@@ -282,13 +280,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            Frm_Factura form = new Frm_Factura();
-        escritorio.add(form);
-        form.toFront();
-        form.setVisible(true);
-                            Frm_Factura.nCabina.setText(nombreCabina);
-                            Frm_Factura.idCabina.setText(idCabina);
-                            Frm_Factura.Precio.setText(precioCabina);
+                            Frm_NuevaFactura form = new Frm_NuevaFactura();
+                            escritorio.add(form);
+                            form.toFront();
+                            form.setVisible(true);
+                            Frm_NuevaFactura.nCabina.setText(nombreCabina);
+                            Frm_NuevaFactura.idCabina.setText(idCabina);
+                            Frm_NuevaFactura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -388,7 +386,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                 totalRegistros++;
 
             }
-            
+
             agregarCabinas.updateUI();
 
         } catch (SQLException e) {
@@ -462,7 +460,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                 totalRegistros++;
 
             }
-            
+
             agregarCabinas.updateUI();
 
         } catch (SQLException e) {
@@ -485,8 +483,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                 String nombreCabina = rs.getString(1);
                 JButton btn = new JButton(nombreCabina);
                 agregarCabinas.add(btn);
-                
-                
+
                 String idCabina = rs.getString(4);
                 String precioCabina = rs.getString(5);
                 ps_Precio = precioCabina;
@@ -497,7 +494,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                 if (rs.getString(2).equals("Doble")) {
                     btn.setBackground(Color.BLUE);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/queen.png"))); // NOI18N
-                    
+
                 }
                 if (rs.getString(2).equals("Sencilla")) {
                     btn.setBackground(Color.green);
@@ -506,13 +503,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            Frm_Factura form = new Frm_Factura();
-        escritorio.add(form);
-        form.toFront();
-        form.setVisible(true);
-        Frm_Factura.nCabina.setText(nombreCabina);
-                            Frm_Factura.idCabina.setText(idCabina);
-                            Frm_Factura.Precio.setText(precioCabina);
+                            Frm_NuevaFactura form = new Frm_NuevaFactura();
+                            escritorio.add(form);
+                            form.toFront();
+                            form.setVisible(true);
+                            Frm_NuevaFactura.nCabina.setText(nombreCabina);
+                            Frm_NuevaFactura.idCabina.setText(idCabina);
+                            Frm_NuevaFactura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -567,7 +564,6 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
             }
 
-            
             agregarCabinas.updateUI();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -589,8 +585,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                 String nombreCabina = rs.getString(1);
                 JButton btn = new JButton(nombreCabina);
                 agregarCabinas.add(btn);
-                
-                
+
                 String idCabina = rs.getString(4);
                 String precioCabina = rs.getString(5);
                 ps_Precio = precioCabina;
@@ -605,13 +600,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
-                            Frm_Factura form = new Frm_Factura();
-        escritorio.add(form);
-        form.toFront();
-        form.setVisible(true);
-                            Frm_Factura.nCabina.setText(nombreCabina);
-                            Frm_Factura.idCabina.setText(idCabina);
-                            Frm_Factura.Precio.setText(precioCabina);
+                            Frm_NuevaFactura form = new Frm_NuevaFactura();
+                            escritorio.add(form);
+                            form.toFront();
+                            form.setVisible(true);
+                            Frm_NuevaFactura.nCabina.setText(nombreCabina);
+                            Frm_NuevaFactura.idCabina.setText(idCabina);
+                            Frm_NuevaFactura.Precio.setText(precioCabina);
                             ps_Precio = precioCabina;
                             ps_idCabina = idCabina;
                             ps_nombreCabina = nombreCabina;
@@ -621,7 +616,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                 if (rs.getString(2).equals("Sencilla")) {
                     btn.setBackground(Color.green);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/single.png"))); // NOI18N
-                    
+
                 }
 
                 if (rs.getString(3).equals("Ocupado")) {
@@ -671,14 +666,13 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
 
             }
 
-            
             agregarCabinas.updateUI();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
 
         }
     }
-    
+
     private static abstract class ActionListener implements java.awt.event.ActionListener {
 
         public ActionListener() {
