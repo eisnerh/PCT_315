@@ -23,6 +23,7 @@ import modelo.formularios.Form_TipoPersona;
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public class TipoPersona extends javax.swing.JInternalFrame {
+
     /**
      * Creates new form TipoPersona
      */
@@ -33,11 +34,14 @@ public class TipoPersona extends javax.swing.JInternalFrame {
     PreparedStatement pst = null;
     public Integer totalregistros;
     //declaración del modelo para Turno u Horario
-    static DefaultComboBoxModel modeloTipoPersona = new DefaultComboBoxModel();
+    //declarar static e instanciarla en tu contructor`
+    static DefaultComboBoxModel modeloTipoPersona;
+    
     public String var1 = "";
 
     public TipoPersona() {
         initComponents();
+        modeloTipoPersona = new DefaultComboBoxModel();
         comboTipoPersona();
     }
 
@@ -46,15 +50,14 @@ public class TipoPersona extends javax.swing.JInternalFrame {
             modeloTipoPersona.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = conexion.createStatement();
-            String queryComboTipoPersona = "SELECT "
-                    + "COUNT(*) as `Conteo`, `desc_persona` AS `descripcion` "
+            String queryComboTipoPersona = "SELECT DISTINCT "
+                    + "desc_persona "
                     + "FROM "
-                    + "`tipo_persona` "
-                    + "GROUP BY `desc_persona` "
-                    + "ORDER BY `desc_persona`";
+                    + "pct3.tipo_persona "
+                    + "ORDER BY desc_persona;";
             rs = stmt.executeQuery(queryComboTipoPersona);
             while (rs.next()) {
-                modeloTipoPersona.addElement(rs.getString("descripcion"));
+                modeloTipoPersona.addElement(rs.getString(1));
             }
             comboTipoPersona.setModel(modeloTipoPersona); // seteamos el modelo y se cargan los datos
         } catch (HeadlessException | SQLException ex) {
@@ -220,7 +223,7 @@ public class TipoPersona extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        initComponents();
+        
         try {
             if (txt_Tipo_Persona.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Favor ingresa un tipo de persona", "Error", JOptionPane.ERROR_MESSAGE);
@@ -242,7 +245,7 @@ public class TipoPersona extends javax.swing.JInternalFrame {
         Form_TipoPersona func = new Form_TipoPersona();
         dts.setDesc_persona(txt_Tipo_Persona.getText());
         if (func.insertar(dts)) {
-            JOptionPane.showMessageDialog(rootPane, "el tipo de persona creado satisfactoriamente");
+            JOptionPane.showMessageDialog(rootPane, "El tipo de persona creado satisfactoriamente");
         }
         txt_Tipo_Persona.setText("");
         comboTipoPersona();
@@ -278,33 +281,14 @@ public class TipoPersona extends javax.swing.JInternalFrame {
 
                 dts.setDesc_persona(txt_Tipo_Persona.getText());
                 func.eliminar(dts);
-
             }
-
         }
         txt_Tipo_Persona.setText("");
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void txt_Tipo_PersonaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_Tipo_PersonaFocusLost
         // TODO add your handling code here:
-        try {
-            if (txt_Tipo_Persona.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Favor ingresa un turno", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            Statement stmt;
-            stmt = conexion.createStatement();
-
-            String sql1 = "SELECT `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + txt_Tipo_Persona.getText() + "'";
-            rs = stmt.executeQuery(sql1);
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "Horario existente.", "Error", JOptionPane.ERROR_MESSAGE);
-                txt_Tipo_Persona.setText("");
-            }
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-
-        }
+        
     }//GEN-LAST:event_txt_Tipo_PersonaFocusLost
 
     private void txt_Tipo_PersonaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_Tipo_PersonaKeyPressed

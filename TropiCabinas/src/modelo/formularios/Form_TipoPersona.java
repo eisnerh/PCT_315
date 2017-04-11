@@ -25,7 +25,6 @@ public class Form_TipoPersona {
     private final Connection connect = DBConnection.getConnection();
     private String sSQL = "";
     public Integer totalregistros;
-    
 
     public DefaultTableModel mostrar(String buscar) {
         DefaultTableModel modelo;
@@ -35,7 +34,7 @@ public class Form_TipoPersona {
         String[] registro = new String[2];
 
         totalregistros = 0;
-        
+
         modelo = new DefaultTableModel(null, titulos);
 
         sSQL = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE = " + buscar + " order by `desc_persona`";
@@ -63,19 +62,18 @@ public class Form_TipoPersona {
     }
 
     public boolean insertar(Modelo_TipoPersona dts) {
-        sSQL = "INSERT INTO `tipo_persona`(`idtipo_persona`, `desc_persona`) VALUES (?,?)";
+        sSQL = "INSERT INTO `pct3`.`tipo_persona` "
+                + "(`desc_persona`) "
+                + "VALUES "
+                + "(?);";
         try {
 
             PreparedStatement pst = connect.prepareStatement(sSQL);
-            pst.setInt(1, dts.getIdtipo_persona());
-            pst.setString(2, dts.getDesc_persona());
-            
+            pst.setString(1, dts.getDesc_persona());
             int n = pst.executeUpdate();
-
             return n != 0;
-
         } catch (SQLException e) {
-            JOptionPane.showConfirmDialog(null, e,"Error Insertar",JOptionPane.YES_OPTION);
+            JOptionPane.showConfirmDialog(null, e, "Error Insertar", JOptionPane.YES_OPTION);
             return false;
         }
     }
