@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,17 +32,17 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
      * Creates new form Frm_NuevaFactura
      */
     Connection con = null;
-
+    
     ResultSet rs = null;
     PreparedStatement pst = null;
     ResultSet rs2 = null;
     PreparedStatement pst2 = null;
-
+    
     DateFormat df = DateFormat.getDateInstance();
     public String Valor;
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipoPersona;
-
+    
     public Frm_NuevaFactura() {
         initComponents();
         con = DBConnection.getConnection();
@@ -54,7 +55,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         modeloTipoPersona = new DefaultComboBoxModel();
         llena_comboPersona(); // llenar los datos al ejecutar el programa
     }
-
+    
     public void llena_comboPersona() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloTipoPersona.removeAllElements(); // eliminamos lo elementos
@@ -70,14 +71,14 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 modeloTipoPersona.addElement(rs.getString("nombre"));
                 codigoCliente.setText(rs.getString("empresa_id"));
-
+                
             }
-
+            
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
-
+    
     public void fechas() {
         Date h = new Date();
         SimpleDateFormat formato_Fecha;
@@ -89,7 +90,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         Valor = date;
         fechaEntrada.setText(Valor);
     }
-
+    
     public void fechaActual() {
         Date hoy;
         hoy = new Date();
@@ -138,6 +139,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         Precio = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
         nombreEmpleado = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -363,6 +366,26 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         });
         jPanel4.add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 270, 30));
 
+        jDateChooser1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jDateChooser1MouseClicked(evt);
+            }
+        });
+        jDateChooser1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jDateChooser1KeyTyped(evt);
+            }
+        });
+        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 170, 30));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
+
         nombreEmpleado.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         nombreEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreEmpleado.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
@@ -534,7 +557,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
                 con = DBConnection.getConnection();
-
+                
                 if (CantidadDias.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de días a hospedarse ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -543,35 +566,35 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el monto de la cábina ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
+                
                 Statement stmt;
                 stmt = con.createStatement();
-
+                
                 pst = con.prepareStatement(queryFacturar);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-
+                
                 Precio.setText("");
                 CantidadDias.setText("");
-
+                
                 Seleccionar_Cabina_frm cabina_frm = new Seleccionar_Cabina_frm();
                 this.hide();
                 cabina_frm.setVisible(true);
-
+                
                 try {
                     int op = JOptionPane.showConfirmDialog(null, " Cambiar el estado de la cábina # " + nCabina.getText() + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (op == 0) {
                         con = DBConnection.getConnection();
                         Statement statement;
                         statement = con.createStatement();
-
+                        
                         String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Ocupado' WHERE `descripcion_cabina` = '" + nCabina.getText() + "' ";
                         pst = con.prepareStatement(Pru);
                         pst.execute();
                         JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
-
+                        
                     }
-
+                    
                 } catch (HeadlessException | SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 }
@@ -581,10 +604,10 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 this.hide();
                 cabina_frm.setVisible(true);
             }
-
+            
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-
+            
         }
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -623,14 +646,75 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 nombreCliente1.setText(add2);
                 codigoCliente.setText(add1);
                 txtNombreCliente.setText(add3);
-
+                
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-
+            
         }
     }//GEN-LAST:event_txtNombreClienteKeyPressed
+
+    private void jDateChooser1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDateChooser1KeyTyped
+        // TODO add your handling code here:
+        Calendar cal;
+        int d, m, a;
+        cal = jDateChooser1.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        // Create an instance of SimpleDateFormat used for formatting 
+// the string representation of date (month/day/year)
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+
+// Get the date today using Calendar object.
+        Date today = jDateChooser1.getDate();
+// Using DateFormat format method we can create a string 
+// representation of a date with the defined format.
+        String reportDate = df.format(today);
+
+// Print what date is today!
+        System.out.println("Report Date: " + reportDate);
+        fechaEntrada.setText(reportDate);
+        
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(jDateChooser1.getDate());
+        
+        fechaEntrada.setText(s);
+    }//GEN-LAST:event_jDateChooser1KeyTyped
+
+    private void jDateChooser1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser1MouseClicked
+        // TODO add your handling code here:
+        Calendar cal;
+        int d, m, a;
+        cal = jDateChooser1.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(jDateChooser1.getDate());
+        
+        fechaEntrada.setText(s);
+        JOptionPane.showMessageDialog(this, s);
+    }//GEN-LAST:event_jDateChooser1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Calendar cal;
+        int d, m, a;
+        cal = jDateChooser1.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(jDateChooser1.getDate());
+        
+        fechaEntrada.setText(s);
+        JOptionPane.showMessageDialog(this, s);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -647,6 +731,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel idEmpleado;
     public static javax.swing.JLabel idEmpleado1;
     private javax.swing.JTextField impuesto;
+    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
