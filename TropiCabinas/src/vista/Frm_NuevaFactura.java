@@ -21,6 +21,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import static vista.Inicio_form.escritorio;
 
 /**
  *
@@ -128,6 +129,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         idCabina1 = new javax.swing.JLabel();
         idEmpleado = new javax.swing.JLabel();
         idEmpleado1 = new javax.swing.JLabel();
+        lbl_IdClienteEmpresa = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         lblFechaEntrada = new javax.swing.JLabel();
         fechaEntrada = new javax.swing.JLabel();
@@ -141,6 +143,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         txtNombreCliente = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         nombreEmpleado = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -197,6 +200,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         idEmpleado1.setText("idEmpleado");
 
+        lbl_IdClienteEmpresa.setText("IdClienteEmpresa");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -211,14 +216,19 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                     .addComponent(codigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(idCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idCabina1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(idCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idCabina1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(lbl_IdClienteEmpresa)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -237,15 +247,17 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                             .addComponent(nombreCliente1)
                             .addComponent(codigoCliente)))
                     .addComponent(idCliente))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idEmpleado)
+                    .addComponent(idCabina))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idCabina)
-                    .addComponent(idEmpleado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idEmpleado1)
-                    .addComponent(idCabina1))
-                .addGap(25, 25, 25))
+                    .addComponent(idCabina1)
+                    .addComponent(idEmpleado1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_IdClienteEmpresa)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {idCabina, idCliente, idEmpleado, nombreCliente});
@@ -385,6 +397,14 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             }
         });
         jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
+
+        jButton2.setText("...");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
         nombreEmpleado.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         nombreEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -646,10 +666,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 nombreCliente1.setText(add2);
                 codigoCliente.setText(add1);
                 txtNombreCliente.setText(add3);
-                
             }
-            
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
             
         }
@@ -664,22 +682,19 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         m = cal.get(Calendar.MONTH);
         a = cal.get(Calendar.YEAR) - 1900;
         // Create an instance of SimpleDateFormat used for formatting 
-// the string representation of date (month/day/year)
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-
-// Get the date today using Calendar object.
+        // the string representation of date (month/day/year)
+        DateFormat dateFormatdf;
+        dateFormatdf = new SimpleDateFormat("MM/dd/yyyy");
+        // Get the date today using Calendar object.
         Date today = jDateChooser1.getDate();
-// Using DateFormat format method we can create a string 
-// representation of a date with the defined format.
-        String reportDate = df.format(today);
-
-// Print what date is today!
+        // Using DateFormat format method we can create a string 
+        // representation of a date with the defined format.
+        String reportDate = dateFormatdf.format(today);
+        // Print what date is today!
         System.out.println("Report Date: " + reportDate);
         fechaEntrada.setText(reportDate);
-        
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = formatter.format(jDateChooser1.getDate());
-        
         fechaEntrada.setText(s);
     }//GEN-LAST:event_jDateChooser1KeyTyped
 
@@ -716,6 +731,14 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Frm_BuscarCliente form = new Frm_BuscarCliente();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField CantidadDias;
@@ -732,6 +755,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel idEmpleado1;
     private javax.swing.JTextField impuesto;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -748,6 +772,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblCantDias;
     private javax.swing.JLabel lblFechaEntrada;
     private javax.swing.JLabel lblImpuesto;
+    public static javax.swing.JLabel lbl_IdClienteEmpresa;
     public static javax.swing.JLabel nCabina;
     private javax.swing.JLabel nombreCliente;
     private javax.swing.JLabel nombreCliente1;
@@ -755,7 +780,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel numeroFactura;
     private javax.swing.JTextField precioTotal;
     private javax.swing.JTextField subTotal;
-    private javax.swing.JTextField txtNombreCliente;
+    public static javax.swing.JTextField txtNombreCliente;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
