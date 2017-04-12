@@ -3,34 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package vista;
 
-import modelo.formularios.Form_Clientes;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.formularios.Form_Clientes;
 
 /**
  *
- * @author CARLOS
+ * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Frm_BuscarCliente extends javax.swing.JFrame {
+public class Frm_BusquedaClientes extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form frmvistacliente
+     * Creates new form FrmBusquedaClientes
      */
-    public Frm_BuscarCliente() {
+    public Frm_BusquedaClientes() {
         initComponents();
+        
         mostrar("");
     }
     
-    void ocultar_columnas() {
-        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
-        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
-    }
-    
-     private void mostrar(String buscar) {
+    private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
             Form_Clientes func = new Form_Clientes();
@@ -43,6 +37,11 @@ public class Frm_BuscarCliente extends javax.swing.JFrame {
         }
     }
     
+    void ocultar_columnas() {
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,7 +60,7 @@ public class Frm_BuscarCliente extends javax.swing.JFrame {
         btnbuscar = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Busqueda de Clientes");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Clientes"));
@@ -137,7 +136,7 @@ public class Frm_BuscarCliente extends javax.swing.JFrame {
                     .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                 .addGap(9, 9, 9)
                 .addComponent(lbltotalregistros))
         );
@@ -157,13 +156,8 @@ public class Frm_BuscarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
-        
-    }//GEN-LAST:event_tablalistadoMouseClicked
 
-    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-        // TODO add your handling code here:
-        mostrar(txtbuscar.getText());
-    }//GEN-LAST:event_btnbuscarActionPerformed
+    }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
         // TODO add your handling code here:
@@ -171,10 +165,10 @@ public class Frm_BuscarCliente extends javax.swing.JFrame {
             int fila= tablalistado.getSelectedRow();
             String cod;
             String valor;
-            
+
             cod=tablalistado.getValueAt(fila, 0).toString();
-            valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString(); 
-            
+            valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
+
             Frm_NuevaFactura.txtNombreCliente.setText(valor);
             Frm_NuevaFactura.lbl_IdClienteEmpresa.setText(cod);
             this.dispose();
@@ -187,36 +181,11 @@ public class Frm_BuscarCliente extends javax.swing.JFrame {
         mostrar(txtbuscar.getText());
     }//GEN-LAST:event_txtbuscarKeyTyped
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm_BuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        
-        //</editor-fold>
-        //</editor-fold>
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        // TODO add your handling code here:
+        mostrar(txtbuscar.getText());
+    }//GEN-LAST:event_btnbuscarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Frm_BuscarCliente().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;

@@ -640,37 +640,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_volverActionPerformed
 
     private void txtNombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteKeyPressed
-        // TODO add your handling code here:
-        try {
-            //SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE 1
-            String sql_persona = "SELECT "
-                    + "cliente_empresa.empresa_id, "
-                    + "cliente_empresa.codigo_cliente,"
-                    + "persona.nombre, "
-                    + "tipo_persona.desc_persona "
-                    + "FROM "
-                    + "cliente_empresa "
-                    + "INNER JOIN "
-                    + "persona ON persona.idpersona = cliente_empresa.persona_idpersona "
-                    + "INNER JOIN "
-                    + "tipo_persona ON persona.tipo_persona_idtipo_persona = tipo_persona.idtipo_persona "
-                    + "WHERE "
-                    + "persona.nombre LIKE '%" + txtNombreCliente.getText() + "%' "
-                    + "AND tipo_persona.desc_persona = 'Cliente'";
-            pst = con.prepareStatement(sql_persona);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString(1);
-                String add2 = rs.getString(2);
-                String add3 = rs.getString(3);
-                nombreCliente1.setText(add2);
-                codigoCliente.setText(add1);
-                txtNombreCliente.setText(add3);
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            
-        }
+               
+        
     }//GEN-LAST:event_txtNombreClienteKeyPressed
 
     private void jDateChooser1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDateChooser1KeyTyped
@@ -733,7 +704,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Frm_BuscarCliente form = new Frm_BuscarCliente();
+        Frm_BusquedaClientes form = new Frm_BusquedaClientes();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
