@@ -695,10 +695,10 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
         Dobles = new javax.swing.JRadioButton();
         Vacio = new javax.swing.JRadioButton();
         Sencillas = new javax.swing.JRadioButton();
-        agregarCabinas = new javax.swing.JPanel();
         Salir = new javax.swing.JRadioButton();
         NombreEmpleado = new javax.swing.JLabel();
         IdEmpleado = new javax.swing.JLabel();
+        agregarCabinas = new javax.swing.JPanel();
 
         setClosable(true);
         setIconifiable(true);
@@ -762,8 +762,6 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
             }
         });
 
-        agregarCabinas.setLayout(new java.awt.GridLayout(0, 3));
-
         Salir.setBackground(new java.awt.Color(204, 204, 255));
         buttonGroup1.add(Salir);
         Salir.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
@@ -789,12 +787,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                     .addComponent(Ocupado)
                     .addComponent(Vacio)
                     .addComponent(Todos))
-                .addContainerGap(535, Short.MAX_VALUE))
-            .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(opcionesLayout.createSequentialGroup()
-                    .addGap(0, 348, Short.MAX_VALUE)
-                    .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 348, Short.MAX_VALUE)))
+                .addContainerGap(541, Short.MAX_VALUE))
         );
         opcionesLayout.setVerticalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -811,19 +804,19 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                 .addComponent(Dobles)
                 .addGap(18, 18, 18)
                 .addComponent(Salir)
-                .addGap(0, 221, Short.MAX_VALUE))
-            .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(opcionesLayout.createSequentialGroup()
-                    .addGap(0, 263, Short.MAX_VALUE)
-                    .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 263, Short.MAX_VALUE)))
+                .addGap(0, 223, Short.MAX_VALUE))
         );
+
+        agregarCabinas.setLayout(new java.awt.GridLayout(0, 3));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(236, 236, 236)
+                .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(470, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -838,7 +831,10 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 538, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(439, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

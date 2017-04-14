@@ -165,12 +165,14 @@ public class Frm_BusquedaClientes extends javax.swing.JInternalFrame {
             int fila= tablalistado.getSelectedRow();
             String cod;
             String valor;
+            String nombre;
 
             cod=tablalistado.getValueAt(fila, 0).toString();
             valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
-
-            Frm_NuevaFactura.txtNombreCliente.setText(valor);
+            nombre=tablalistado.getValueAt(fila, 1).toString();
+            Frm_NuevaFactura.txtNombreCliente.setText(nombre);
             Frm_NuevaFactura.lbl_IdClienteEmpresa.setText(cod);
+            Frm_NuevaFactura.nombreCliente.setText(nombre);
             this.dispose();
 
         }

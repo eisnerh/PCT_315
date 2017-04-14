@@ -33,10 +33,10 @@ public class DBConnection {
             File data2 = new File("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
             File data3 = new File("C:\\Users\\treznor\\Desktop\\nuevo2\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
             if (!data1.exists()) {
-                System.out.println("File 1 doesn't exist");
+                
                 System.exit(1);
             } else if (data1.exists()) {
-                System.out.println("File 1 exist");
+                
                 fis1 = new FileInputStream("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
                 props.load(fis1);
                 // load the Driver Class
@@ -46,10 +46,10 @@ public class DBConnection {
                         props.getProperty("DB_USERNAME"),
                         props.getProperty("DB_PASSWORD"));
             } else if (!data2.exists()) {
-                System.out.println("File 2 doesn't exist");
+                
                 System.exit(1);
             } else if (data2.exists()) {
-                System.out.println("File 2 exist");
+                
                 fis2 = new FileInputStream("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
                 props.load(fis2);
                 // load the Driver Class
@@ -61,10 +61,10 @@ public class DBConnection {
                         props.getProperty("DB_PASSWORD"));
 
             } else if (!data3.exists()) {
-                System.out.println("File 3 doesn't exist");
+                
                 System.exit(1);
             } else if (data3.exists()) {
-                System.out.println("File 3 exist");
+                
                 fis3 = new FileInputStream("C:\\Users\\treznor\\Desktop\\nuevo2\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
                 props.load(fis3);
                 // load the Driver Class

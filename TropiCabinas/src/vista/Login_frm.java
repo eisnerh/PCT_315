@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +42,9 @@ public class Login_frm extends javax.swing.JFrame {
     public static String ps_idEmpleado;
     public static String ps_descripcion_puesto;
     BufferedImage img = null;
-
+    //Se cargan los valores de int 'x' o 'y' para conocer la ubicación del mouse
+    //y cambiar la imagen de minimizar al momento de pasar por la ventana
+    //del formuario.
     int xMouse;
     int yMouse;
 
@@ -52,6 +55,8 @@ public class Login_frm extends javax.swing.JFrame {
         con = DBConnection.getConnection();
         //centra la ventana para que se inicie en el centro del escritorio
         this.setLocationRelativeTo(null);
+        //Se carga una imagen para cargar el Login
+        setIconImage(new ImageIcon(getClass().getResource("../Files/Home.png")).getImage());
         
     }
 
@@ -324,6 +329,9 @@ public class Login_frm extends javax.swing.JFrame {
                         Inicio_form.IdEmpleado.setText(id_colaborador);
                         Inicio_form.lblacceso.setText(acceso);
                         Inicio_form.lblPuesto.setText(ps_descripcion_puesto);
+                        reImprimirFactura.idColaborador.setText(id_colaborador);
+                        reImprimirFactura.nombreColaborador.setText(nombre_persona);
+                        
                         if (Inicio_form.lblPuesto.getText().equals("Administrador")) {
                         } else {
                             Inicio_form.mnuConfiguraciones.setEnabled(false);

@@ -67,6 +67,7 @@ public class Inicio_form extends javax.swing.JFrame {
         lista_x_cabina = new javax.swing.JMenuItem();
         mnuClientes = new javax.swing.JMenuItem();
         mnuGastoFecha = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -212,6 +213,15 @@ public class Inicio_form extends javax.swing.JFrame {
             }
         });
         mnuconsultas.add(mnuGastoFecha);
+
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem9.setText("Re Imprimir Factura");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(jMenuItem9);
 
         menuBar.add(mnuconsultas);
 
@@ -374,7 +384,7 @@ public class Inicio_form extends javax.swing.JFrame {
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-        Frm_NuevaFactura.idEmpleado1.setText(IdEmpleado.getText());
+        Frm_NuevaFactura.idEmpleado.setText(IdEmpleado.getText());
         Frm_NuevaFactura.nombreEmpleado.setText(Nombre_Empleado.getText());
         
     }//GEN-LAST:event_contentMenuItemActionPerformed
@@ -471,6 +481,14 @@ public class Inicio_form extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_mnuGastoFechaActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        reImprimirFactura imprimirFactura = new reImprimirFactura();
+        escritorio.add(imprimirFactura);
+        imprimirFactura.toFront();
+        imprimirFactura.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -523,6 +541,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     public static javax.swing.JLabel lblPuesto;
     public static javax.swing.JLabel lblacceso;
     private javax.swing.JMenuItem lista_x_cabina;

@@ -1,0 +1,1 @@
+SELECT max(factura_cabina.numero_factura)+1 as N_Factura FROM pct3.factura_cabina;

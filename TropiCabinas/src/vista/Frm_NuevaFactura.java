@@ -7,6 +7,7 @@ package vista;
 
 import controlador.DBConnection;
 import java.awt.HeadlessException;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,10 +18,17 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Locale;
-import javax.swing.DefaultComboBoxModel;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+import static vista.Frm_Horario.modeloTurno;
 import static vista.Inicio_form.escritorio;
 
 /**
@@ -33,17 +41,15 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
      * Creates new form Frm_NuevaFactura
      */
     Connection con = null;
-    
     ResultSet rs = null;
     PreparedStatement pst = null;
     ResultSet rs2 = null;
     PreparedStatement pst2 = null;
-    
     DateFormat df = DateFormat.getDateInstance();
     public String Valor;
-    //declarar static e instanciarla en tu contructor`
-    static DefaultComboBoxModel modeloTipoPersona;
-    
+    private final DBConnection myLink = new DBConnection();
+    private final Connection conexion = DBConnection.getConnection();
+
     public Frm_NuevaFactura() {
         initComponents();
         con = DBConnection.getConnection();
@@ -53,33 +59,28 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         //idCabina.setVisible(false);
         fechaActual();
         fechas();
-        modeloTipoPersona = new DefaultComboBoxModel();
-        llena_comboPersona(); // llenar los datos al ejecutar el programa
+        nuevoNFactura();
     }
     
-    public void llena_comboPersona() { // static para poder llamarlo desde el otro frame o JDialog
+    public void nuevoNFactura()
+    {
         try {
-            modeloTipoPersona.removeAllElements(); // eliminamos lo elementos
+            modeloTurno.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
-            stmt = con.createStatement();
-            String queryComboEstado = "SELECT "
-                    + "empresa_id, codigo_cliente, nombre "
-                    + "FROM "
-                    + "pct3.cliente_empresa "
-                    + "INNER JOIN "
-                    + "pct3.persona ON cliente_empresa.persona_idpersona = persona.idpersona";
-            rs = stmt.executeQuery(queryComboEstado);
+            stmt = conexion.createStatement();
+
+            String qSQL = "SELECT max(factura_cabina.numero_factura)+1 as N_Factura FROM pct3.factura_cabina;";
+
+            rs = stmt.executeQuery(qSQL);
             while (rs.next()) {
-                modeloTipoPersona.addElement(rs.getString("nombre"));
-                codigoCliente.setText(rs.getString("empresa_id"));
-                
+                numeroFactura.setText(rs.getString(1));
             }
-            
+
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
-    
+
     public void fechas() {
         Date h = new Date();
         SimpleDateFormat formato_Fecha;
@@ -91,7 +92,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         Valor = date;
         fechaEntrada.setText(Valor);
     }
-    
+
     public void fechaActual() {
         Date hoy;
         hoy = new Date();
@@ -114,28 +115,18 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        lblImpuesto = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        impuesto = new javax.swing.JTextField();
-        subTotal = new javax.swing.JTextField();
-        precioTotal = new javax.swing.JTextField();
+        impuesto = new javax.swing.JLabel();
+        precioTotal = new javax.swing.JLabel();
+        subTotal = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         nombreCliente = new javax.swing.JLabel();
-        nombreCliente1 = new javax.swing.JLabel();
-        idCliente = new javax.swing.JLabel();
-        codigoCliente = new javax.swing.JLabel();
         idCabina = new javax.swing.JLabel();
-        idCabina1 = new javax.swing.JLabel();
         idEmpleado = new javax.swing.JLabel();
-        idEmpleado1 = new javax.swing.JLabel();
         lbl_IdClienteEmpresa = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        lblFechaEntrada = new javax.swing.JLabel();
         fechaEntrada = new javax.swing.JLabel();
         lblCantDias = new javax.swing.JLabel();
         CantidadDias = new javax.swing.JFormattedTextField();
-        jLabel3 = new javax.swing.JLabel();
         fechaSalida = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         Precio = new javax.swing.JFormattedTextField();
@@ -145,13 +136,10 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         nombreEmpleado = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        borrar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         volver = new javax.swing.JButton();
         nCabina = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         numeroFactura = new javax.swing.JLabel();
 
         setClosable(true);
@@ -163,104 +151,57 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lblImpuesto.setText("Impuesto:");
+        impuesto.setBorder(javax.swing.BorderFactory.createTitledBorder("Impuesto"));
 
-        jLabel9.setText("Total:");
+        precioTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Monto Total a Cancelar"));
 
-        jLabel10.setText("Sub Total:");
-
-        impuesto.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        impuesto.setEnabled(false);
-
-        subTotal.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        subTotal.setEnabled(false);
-
-        precioTotal.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        precioTotal.setEnabled(false);
+        subTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Sub Total"));
+        subTotal.setRequestFocusEnabled(false);
 
         nombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nombreCliente.setText("nombreCliente");
-
-        nombreCliente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nombreCliente1.setText("nombreCliente");
-
-        idCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        idCliente.setText("idCliente");
-
-        codigoCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        codigoCliente.setText("idCliente");
+        nombreCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre Cliente"));
+        nombreCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         idCabina.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        idCabina.setText("idCabina");
+        idCabina.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Cabina"));
+        idCabina.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        idCabina1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        idCabina1.setText("idCabina");
+        idEmpleado.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Empleado"));
+        idEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        idEmpleado.setText("idEmpleado");
-
-        idEmpleado1.setText("idEmpleado");
-
-        lbl_IdClienteEmpresa.setText("IdClienteEmpresa");
+        lbl_IdClienteEmpresa.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Cliente"));
+        lbl_IdClienteEmpresa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreCliente)
-                    .addComponent(nombreCliente1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(codigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(idCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idCabina1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbl_IdClienteEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(lbl_IdClienteEmpresa)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(idCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {idCabina, idCliente, idEmpleado, nombreCliente});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {codigoCliente, idCabina1, idEmpleado1, nombreCliente1});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nombreCliente)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombreCliente1)
-                            .addComponent(codigoCliente)))
-                    .addComponent(idCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idEmpleado)
-                    .addComponent(idCabina))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idCabina1)
-                    .addComponent(idEmpleado1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_IdClienteEmpresa)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nombreCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(lbl_IdClienteEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(idCabina, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(idEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {idCabina, idCliente, idEmpleado, nombreCliente});
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -269,43 +210,27 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImpuesto)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(impuesto)
-                    .addComponent(subTotal)
-                    .addComponent(precioTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+                    .addComponent(impuesto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(precioTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(subTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblImpuesto)
-                            .addComponent(impuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(impuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(subTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
-                                .addGap(31, 31, 31))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(precioTotal)
-                                .addContainerGap())))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(subTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(precioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 206, -1, -1));
@@ -323,16 +248,13 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 325, -1, -1));
 
-        lblFechaEntrada.setText("Fecha Entrada:");
-        jPanel4.add(lblFechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 56, -1, -1));
-
         fechaEntrada.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         fechaEntrada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fechaEntrada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.add(fechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 176, 26));
+        fechaEntrada.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Entrada"));
+        jPanel4.add(fechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 176, 50));
 
         lblCantDias.setText("Cantidad de Días:");
-        jPanel4.add(lblCantDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 20));
+        jPanel4.add(lblCantDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, 20));
 
         CantidadDias.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0"))));
         CantidadDias.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -345,28 +267,21 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 CantidadDiasKeyPressed(evt);
             }
         });
-        jPanel4.add(CantidadDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 176, 30));
+        jPanel4.add(CantidadDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 176, 30));
 
-        jLabel3.setText("Fecha Salida:");
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, 20));
+        fechaSalida.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Salida"));
+        jPanel4.add(fechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 176, 50));
 
-        fechaSalida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.add(fechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 176, 26));
-
-        jLabel1.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         jLabel1.setText("Precio:");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 176, 28));
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 176, 28));
 
         Precio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0"))));
         Precio.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                PrecioFocusGained(evt);
-            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 PrecioFocusLost(evt);
             }
         });
-        jPanel4.add(Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 176, 28));
+        jPanel4.add(Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 170, 28));
 
         jLabel2.setText("Nombre del Cliente:");
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -377,26 +292,15 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             }
         });
         jPanel4.add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 270, 30));
-
-        jDateChooser1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jDateChooser1MouseClicked(evt);
-            }
-        });
-        jDateChooser1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jDateChooser1KeyTyped(evt);
-            }
-        });
         jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 170, 30));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
 
         jButton2.setText("...");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -408,23 +312,13 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         nombreEmpleado.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         nombreEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nombreEmpleado.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
+        nombreEmpleado.setBorder(javax.swing.BorderFactory.createTitledBorder("Colaborador"));
 
-        jLabel14.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Nombre Cabina");
-        jLabel14.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
-
-        jLabel16.setFont(new java.awt.Font("Hack", 1, 12)); // NOI18N
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Nombre Colaborador");
-        jLabel16.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
-
-        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/compose_64px.png"))); // NOI18N
-        borrar.setToolTipText("Vaciar los Campos");
-        borrar.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/compose_64px.png"))); // NOI18N
+        btnLimpiar.setToolTipText("Vaciar los Campos");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borrarActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
 
@@ -444,9 +338,9 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
         nCabina.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         nCabina.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nCabina.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
+        nCabina.setBorder(javax.swing.BorderFactory.createTitledBorder("Cabina"));
 
-        jLabel5.setText("Factura #");
+        numeroFactura.setBorder(javax.swing.BorderFactory.createTitledBorder("Factura #..."));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -455,67 +349,48 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(nombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(borrar)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(nombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addComponent(nCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(guardar)
                         .addGap(18, 18, 18)
                         .addComponent(volver)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(numeroFactura))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(numeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(nCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(borrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(nombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(volver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                        .addComponent(guardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(numeroFactura)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(numeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nCabina, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(volver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                                .addComponent(guardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(nombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void CantidadDiasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CantidadDiasFocusLost
-        // TODO add your handling code here:
-        Calendar c1 = GregorianCalendar.getInstance();
-        System.out.println("Fecha actual: " + c1.getTime().toLocaleString());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
+        Calendar c1 = jDateChooser1.getCalendar();
+        System.out.println("Fecha actual: " + c1.getTime().toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         System.out.println("Fecha Formateada: " + sdf.format(c1.getTime()));
         sdf = new SimpleDateFormat("yyyy/MM/dd");
         System.out.println("Fecha Formateada: " + sdf.format(c1.getTime()));
@@ -528,16 +403,13 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         c1.add(Calendar.DATE, valorDias);
         System.out.println("Fecha Formateada: " + sdf.format(c1.getTime()));
         fechaSalida.setText(sdf.format(c1.getTime()));
+
     }//GEN-LAST:event_CantidadDiasFocusLost
 
     private void CantidadDiasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CantidadDiasKeyPressed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_CantidadDiasKeyPressed
-
-    private void PrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PrecioFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PrecioFocusGained
 
     private void PrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PrecioFocusLost
         // TODO add your handling code here:
@@ -550,20 +422,37 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         subTotal.setText(String.valueOf(subt));
     }//GEN-LAST:event_PrecioFocusLost
 
-    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
 
+        try {
+            modeloTurno.removeAllElements(); // eliminamos lo elementos
+            Statement stmt;
+            stmt = conexion.createStatement();
+
+            String qSQL = "SELECT max(factura_cabina.numero_factura)+1 as N_Factura FROM pct3.factura_cabina;";
+
+            rs = stmt.executeQuery(qSQL);
+            while (rs.next()) {
+                numeroFactura.setText(rs.getString(1));
+            }
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
         CantidadDias.setText("");
         impuesto.setText("");
         subTotal.setText("");
-        precioTotal.setText("");
-    }//GEN-LAST:event_borrarActionPerformed
+
+        txtNombreCliente.setText("");
+        fechaSalida.setText("");
+        Precio.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        String queryFacturar = "INSERT INTO "
-                + "`factura_cabina` "
-                + "(`factura_id`, "
+        String queryFacturar = "INSERT INTO `pct3`.`factura_cabina` "
+                + "("
                 + "`cant_dia`, "
                 + "`fecha`, "
                 + "`impuesto_cabina`, "
@@ -572,12 +461,21 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 + "`colaborador_empleado_id`, "
                 + "`numero_factura`, "
                 + "`cliente_empresa_empresa_id`) "
-                + "VALUES (NULL, '1', '2017-04-17', '1300', '5000', '1', '2', '25', '1')";
+                + "VALUES "
+                + "("
+                + "'" + CantidadDias.getText() + "', "
+                + "'" + fechaEntrada.getText() + "', "
+                + "'" + impuesto.getText() + "', "
+                + "'" + precioTotal.getText() + "', "
+                + "'" + idCabina.getText() + "', "
+                + "'" + idEmpleado.getText() + "', "
+                + "'" + numeroFactura.getText() + "', "
+                + "'" + lbl_IdClienteEmpresa.getText() + "')";
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
                 con = DBConnection.getConnection();
-                
+
                 if (CantidadDias.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de días a hospedarse ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -586,35 +484,54 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el monto de la cábina ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+
                 Statement stmt;
                 stmt = con.createStatement();
-                
+
                 pst = con.prepareStatement(queryFacturar);
                 pst.execute();
-                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.INFORMATION_MESSAGE);
-                
+                int Imp = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                if (Imp == 0) {
+                    if (!numeroFactura.getText().equals("") && !idEmpleado.getText().equals("")) {
+            Map p = new HashMap();
+            p.put("facturaNumero", numeroFactura.getText());
+            p.put("idEmpleado", idEmpleado.getText());
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/vista/reportes/N_Factura.jrxml");
+                print = JasperFillManager.fillReport(report, p, con);
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Reporte por Cábina");
+                view.setVisible(true);
+
+            } catch (JRException e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+        }
+                }
                 Precio.setText("");
                 CantidadDias.setText("");
-                
+
                 Seleccionar_Cabina_frm cabina_frm = new Seleccionar_Cabina_frm();
                 this.hide();
                 cabina_frm.setVisible(true);
-                
+
                 try {
                     int op = JOptionPane.showConfirmDialog(null, " Cambiar el estado de la cábina # " + nCabina.getText() + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (op == 0) {
                         con = DBConnection.getConnection();
                         Statement statement;
                         statement = con.createStatement();
-                        
-                        String Pru = "UPDATE `cabina` SET `estado_cabina` = 'Ocupado' WHERE `descripcion_cabina` = '" + nCabina.getText() + "' ";
+                        String Pru = "UPDATE `pct3`.`cabina` SET `estado_cabina`='Ocupado' WHERE `cabina_id`='" + idCabina.getText() + "'";
                         pst = con.prepareStatement(Pru);
                         pst.execute();
                         JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
-                        
+
                     }
-                    
+
                 } catch (HeadlessException | SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 }
@@ -624,10 +541,10 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 this.hide();
                 cabina_frm.setVisible(true);
             }
-            
+
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-            
+
         }
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -640,50 +557,9 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_volverActionPerformed
 
     private void txtNombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteKeyPressed
-               
-        
+
+
     }//GEN-LAST:event_txtNombreClienteKeyPressed
-
-    private void jDateChooser1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDateChooser1KeyTyped
-        // TODO add your handling code here:
-        Calendar cal;
-        int d, m, a;
-        cal = jDateChooser1.getCalendar();
-        d = cal.get(Calendar.DAY_OF_MONTH);
-        m = cal.get(Calendar.MONTH);
-        a = cal.get(Calendar.YEAR) - 1900;
-        // Create an instance of SimpleDateFormat used for formatting 
-        // the string representation of date (month/day/year)
-        DateFormat dateFormatdf;
-        dateFormatdf = new SimpleDateFormat("MM/dd/yyyy");
-        // Get the date today using Calendar object.
-        Date today = jDateChooser1.getDate();
-        // Using DateFormat format method we can create a string 
-        // representation of a date with the defined format.
-        String reportDate = dateFormatdf.format(today);
-        // Print what date is today!
-        System.out.println("Report Date: " + reportDate);
-        fechaEntrada.setText(reportDate);
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String s = formatter.format(jDateChooser1.getDate());
-        fechaEntrada.setText(s);
-    }//GEN-LAST:event_jDateChooser1KeyTyped
-
-    private void jDateChooser1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser1MouseClicked
-        // TODO add your handling code here:
-        Calendar cal;
-        int d, m, a;
-        cal = jDateChooser1.getCalendar();
-        d = cal.get(Calendar.DAY_OF_MONTH);
-        m = cal.get(Calendar.MONTH);
-        a = cal.get(Calendar.YEAR) - 1900;
-        
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String s = formatter.format(jDateChooser1.getDate());
-        
-        fechaEntrada.setText(s);
-        JOptionPane.showMessageDialog(this, s);
-    }//GEN-LAST:event_jDateChooser1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -693,13 +569,10 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         d = cal.get(Calendar.DAY_OF_MONTH);
         m = cal.get(Calendar.MONTH);
         a = cal.get(Calendar.YEAR) - 1900;
-        
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = formatter.format(jDateChooser1.getDate());
-        
         fechaEntrada.setText(s);
         JOptionPane.showMessageDialog(this, s);
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -714,43 +587,30 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField CantidadDias;
     public static javax.swing.JFormattedTextField Precio;
-    private javax.swing.JButton borrar;
-    private javax.swing.JLabel codigoCliente;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel fechaEntrada;
     private javax.swing.JLabel fechaSalida;
     private javax.swing.JButton guardar;
     public static javax.swing.JLabel idCabina;
-    private javax.swing.JLabel idCabina1;
-    private javax.swing.JLabel idCliente;
-    private javax.swing.JLabel idEmpleado;
-    public static javax.swing.JLabel idEmpleado1;
-    private javax.swing.JTextField impuesto;
+    public static javax.swing.JLabel idEmpleado;
+    private javax.swing.JLabel impuesto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblCantDias;
-    private javax.swing.JLabel lblFechaEntrada;
-    private javax.swing.JLabel lblImpuesto;
     public static javax.swing.JLabel lbl_IdClienteEmpresa;
     public static javax.swing.JLabel nCabina;
-    private javax.swing.JLabel nombreCliente;
-    private javax.swing.JLabel nombreCliente1;
+    public static javax.swing.JLabel nombreCliente;
     public static javax.swing.JLabel nombreEmpleado;
     private javax.swing.JLabel numeroFactura;
-    private javax.swing.JTextField precioTotal;
-    private javax.swing.JTextField subTotal;
+    private javax.swing.JLabel precioTotal;
+    private javax.swing.JLabel subTotal;
     public static javax.swing.JTextField txtNombreCliente;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
