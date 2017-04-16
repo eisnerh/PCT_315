@@ -140,50 +140,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                 Statement stmt;
                 stmt = con.createStatement();
 
-                //String sql1 = sqlSelect_Valor + txtCedula.getText() + "'";
-                //rs = stmt.executeQuery(sql1);
-//                if (rs.next()) {
-//                    JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-//                    txtNombre_Apellidos.setText("");
-//                    txtNombre_Apellidos.setFocusable(true);
-//                    return;
-//                }
-//                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
-//                String sql2 = "INSERT INTO `pct3`.`cliente_empresa` "
-//                        + "(`empresa_id`, "
-//                        + "`codigo_cliente`, "
-//                        + "`estado_cliente`, "
-//                        + "`persona_idpersona`) "
-//                        + "VALUES "
-//                        + "(null, "
-//                        + "'" + txtCodigoCliente.getText() + "', "
-//                        + "1 ,"
-//                        + "(SELECT max(idpersona) FROM pct3.persona))";
-//                pst = con.prepareStatement(sql);
-//                pst.execute();
-                //JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Cliente Agregado", JOptionPane.INFORMATION_MESSAGE);
-//                try {
-//                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
-//                    pst = con.prepareStatement(sql_persona);
-//                    rs = pst.executeQuery();
-//                    if (rs.next()) {
-//                        String sel1 = rs.getString("idpersona");
-//                        String sel2 = rs.getString("nombre");
-//                        String sel3 = rs.getString("cedula");
-//                        String sel4 = rs.getString("telefono");
-//                        String sel5 = rs.getString("direccion");
-//                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
-//                        lbl_id_persona.setText(sel1);
-//                        txtNombre_Apellidos.setText(sel2);
-//                        txtCedula.setText(sel3);
-//                        txtDireccion.setText(sel4);
-//                        txtPhone.setText(sel5);
-//                        lbl_idPersona.setText(sel6);
-//                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
-//                    }
-//                } catch (SQLException | NumberFormatException e) {
-//                    JOptionPane.showMessageDialog(null, e);
-//                }
             }
             if (P == 0 || P == 1) {
                 String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
@@ -203,28 +159,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                     pst = con.prepareStatement(sql2);
                 pst.execute();
                 }
-//                try {
-//                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
-//                    pst = con.prepareStatement(sql_persona);
-//                    rs = pst.executeQuery();
-//                    if (rs.next()) {
-//                        String sel1 = rs.getString("idpersona");
-//                        String sel2 = rs.getString("nombre");
-//                        String sel3 = rs.getString("cedula");
-//                        String sel4 = rs.getString("telefono");
-//                        String sel5 = rs.getString("direccion");
-//                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
-//                        lbl_id_persona.setText(sel1);
-//                        txtNombre_Apellidos.setText(sel2);
-//                        txtCedula.setText(sel3);
-//                        txtDireccion.setText(sel4);
-//                        txtPhone.setText(sel5);
-//                        lbl_idPersona.setText(sel6);
-//                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
-//                    }
-//                } catch (SQLException | NumberFormatException e) {
-//                    JOptionPane.showMessageDialog(null, e);
-//                }
             }
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);

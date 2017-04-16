@@ -369,17 +369,19 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
-        Frm_AgregarCliente form =new Frm_AgregarCliente();
+        Frm_AgregarCliente form;
+        form = new Frm_AgregarCliente();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-//        frmtrabajador form =new frmtrabajador();
-//        escritorio.add(form);
-//        form.toFront();
-//        form.setVisible(true);
+        Frm_AgregarUsuario form;
+        form = new Frm_AgregarUsuario();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked

@@ -668,17 +668,17 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
 
     private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
         // TODO add your handling code here:
-        getNumeroCodigo();
+        
     }//GEN-LAST:event_txtCedulaFocusLost
 
     private void txtPhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyPressed
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isAlphabetic(c) || Character.isSurrogate(c) || Character.isUnicodeIdentifierPart(c)) {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Ingresa Solo Números.\n Gracias!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+//        char c = evt.getKeyChar();
+//        if (Character.isAlphabetic(c) || Character.isSurrogate(c) || Character.isUnicodeIdentifierPart(c)) {
+//            getToolkit().beep();
+//            evt.consume();
+//            JOptionPane.showMessageDialog(this, "Ingresa Solo Números.\n Gracias!", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_txtPhoneKeyPressed
 
     private void cmbPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPuestoActionPerformed

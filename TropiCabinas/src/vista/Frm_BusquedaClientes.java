@@ -20,7 +20,6 @@ public class Frm_BusquedaClientes extends javax.swing.JInternalFrame {
      */
     public Frm_BusquedaClientes() {
         initComponents();
-        
         mostrar("");
     }
     
