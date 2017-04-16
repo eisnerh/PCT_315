@@ -289,14 +289,12 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
             txtDescripcionHorario.requestFocus();
             return;
         }
-
         Modelo_Horario dts = new Modelo_Horario();
         Form_Horario func = new Form_Horario();
         dts.setDescripcionHorario(txtDescripcionHorario.getText());
 
         if (func.editar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "El Horario fue editado satisfactoriamente");
-
         }
         txtDescripcionHorario.setText("");
 
@@ -307,16 +305,12 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (!txtDescripcionHorario.getText().equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el dato?", "Confirmar", JOptionPane.YES_NO_OPTION, 2);
-
             if (confirmacion == 0) {
                 Modelo_Horario dts = new Modelo_Horario();
                 Form_Horario func = new Form_Horario();
-
                 dts.setDescripcionHorario(txtDescripcionHorario.getText());
                 func.eliminar(dts);
-
             }
-
         }
         txtDescripcionHorario.setText("");
     }//GEN-LAST:event_btnBorrarActionPerformed

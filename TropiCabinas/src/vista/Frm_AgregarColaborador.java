@@ -81,7 +81,7 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         }
     }
 
-    public void llena_comboPersona() { // static para poder llamarlo desde el otro frame o JDialog
+    public final void llena_comboPersona() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloTipoPersona.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
@@ -99,7 +99,7 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         }
     }
 
-    public void llena_comboPuesto() { // static para poder llamarlo desde el otro frame o JDialog
+    public final void llena_comboPuesto() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloPuesto.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
@@ -115,7 +115,7 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         }
     }
 
-    public void llena_comboHorario() { // static para poder llamarlo desde el otro frame o JDialog
+    public final void llena_comboHorario() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloHorario.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
@@ -661,7 +661,7 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
             buscar_Persona_frm = new Buscar_Persona_frm();
             buscar_Persona_frm.setVisible(true);
         } catch (IOException ex) {
-            Logger.getLogger(Persona_frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frm_AgregarColaborador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_buscarActionPerformed

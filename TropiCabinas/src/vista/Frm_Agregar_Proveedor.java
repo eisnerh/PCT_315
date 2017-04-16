@@ -76,7 +76,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         }
     }
 
-    public void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
+    public final void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
@@ -466,11 +466,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                 if (tipoPersonaSeleccionada.equals("Colaborador")) {
                     agregarPersona();
                     JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
-                    Colaborador_frm colaborador = new Colaborador_frm();
-                    colaborador.setVisible(true);
-
-                    Colaborador_frm.id_persona.setText(lbl_id_persona.getText());
-
                 }
                 if (tipoPersonaSeleccionada.equals("Proveedor")) {
                     JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
@@ -478,7 +473,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
 
             }
 
-        } catch (SQLException | HeadlessException | IOException e) {
+        } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e);
 
         }
@@ -568,7 +563,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
             buscar_Persona_frm = new Buscar_Persona_frm();
             buscar_Persona_frm.setVisible(true);
         } catch (IOException ex) {
-            Logger.getLogger(Persona_frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frm_Agregar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_buscarActionPerformed

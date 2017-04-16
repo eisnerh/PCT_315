@@ -29,7 +29,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 import static vista.Frm_Horario.modeloTurno;
-import static vista.Inicio_form.escritorio;
+import static vista.Frm_Inicio.escritorio;
 
 /**
  *
@@ -61,9 +61,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         fechas();
         nuevoNFactura();
     }
-    
-    public void nuevoNFactura()
-    {
+
+    public void nuevoNFactura() {
         try {
             modeloTurno.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
@@ -134,7 +133,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         txtNombreCliente = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBuscarCliente = new javax.swing.JButton();
         nombreEmpleado = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
@@ -302,13 +301,14 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         });
         jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
 
-        jButton2.setText("...");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarCliente.setText("...");
+        btnBuscarCliente.setToolTipText("Busqueda del Cliente");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBuscarClienteActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
+        jPanel4.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
         nombreEmpleado.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         nombreEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -493,24 +493,24 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 int Imp = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (Imp == 0) {
                     if (!numeroFactura.getText().equals("") && !idEmpleado.getText().equals("")) {
-            Map p = new HashMap();
-            p.put("facturaNumero", numeroFactura.getText());
-            p.put("idEmpleado", idEmpleado.getText());
-            JasperReport report;
-            JasperPrint print;
+                        Map p = new HashMap();
+                        p.put("facturaNumero", numeroFactura.getText());
+                        p.put("idEmpleado", idEmpleado.getText());
+                        JasperReport report;
+                        JasperPrint print;
 
-            try {
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/vista/reportes/N_Factura.jrxml");
-                print = JasperFillManager.fillReport(report, p, con);
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte por Cábina");
-                view.setVisible(true);
+                        try {
+                            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                                    + "/src/vista/reportes/N_Factura.jrxml");
+                            print = JasperFillManager.fillReport(report, p, con);
+                            JasperViewer view = new JasperViewer(print, false);
+                            view.setTitle("Reporte por Cábina");
+                            view.setVisible(true);
 
-            } catch (JRException e) {
-                JOptionPane.showMessageDialog(this, e);
-            }
-        }
+                        } catch (JRException e) {
+                            JOptionPane.showMessageDialog(this, e);
+                        }
+                    }
                 }
                 Precio.setText("");
                 CantidadDias.setText("");
@@ -575,18 +575,19 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, s);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         // TODO add your handling code here:
         Frm_BusquedaClientes form = new Frm_BusquedaClientes();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField CantidadDias;
     public static javax.swing.JFormattedTextField Precio;
+    private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel fechaEntrada;
     private javax.swing.JLabel fechaSalida;
@@ -595,7 +596,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel idEmpleado;
     private javax.swing.JLabel impuesto;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

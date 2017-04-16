@@ -23,18 +23,18 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
-public class Inicio_form extends javax.swing.JFrame {
+public class Frm_Inicio extends javax.swing.JFrame {
 
     /**
      * Creates new form frminicio
      */
     Connection con = null;
 
-    public Inicio_form() {
+    public Frm_Inicio() {
         //inicialización de las variables de la coneccion a la base de datos
         con = DBConnection.getConnection();
         initComponents();
-        this.setExtendedState(Inicio_form.MAXIMIZED_BOTH);
+        this.setExtendedState(Frm_Inicio.MAXIMIZED_BOTH);
         this.setTitle("Sistema de Reserva de Cábinas y Gestión - Cábinas el Trópico");
         setIconImage(new ImageIcon(getClass().getResource("../Files/Home.png")).getImage());
     }
@@ -68,6 +68,7 @@ public class Inicio_form extends javax.swing.JFrame {
         mnuClientes = new javax.swing.JMenuItem();
         mnuGastoFecha = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        mnuFacturaCliente = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -223,6 +224,15 @@ public class Inicio_form extends javax.swing.JFrame {
         });
         mnuconsultas.add(jMenuItem9);
 
+        mnuFacturaCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
+        mnuFacturaCliente.setText("Factura x Cliente");
+        mnuFacturaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuFacturaClienteActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(mnuFacturaCliente);
+
         menuBar.add(mnuconsultas);
 
         mnuConfiguraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Configuraciones.png"))); // NOI18N
@@ -366,7 +376,6 @@ public class Inicio_form extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
 //        frmtrabajador form =new frmtrabajador();
 //        escritorio.add(form);
 //        form.toFront();
@@ -386,7 +395,6 @@ public class Inicio_form extends javax.swing.JFrame {
         form.setVisible(true);
         Frm_NuevaFactura.idEmpleado.setText(IdEmpleado.getText());
         Frm_NuevaFactura.nombreEmpleado.setText(Nombre_Empleado.getText());
-        
     }//GEN-LAST:event_contentMenuItemActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -453,7 +461,7 @@ public class Inicio_form extends javax.swing.JFrame {
             view.setVisible(true);
 
         } catch (JRException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_mnuClientesActionPerformed
 
@@ -483,11 +491,21 @@ public class Inicio_form extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        reImprimirFactura imprimirFactura = new reImprimirFactura();
+        Frm_R_ImprimirFactura imprimirFactura = new Frm_R_ImprimirFactura();
         escritorio.add(imprimirFactura);
         imprimirFactura.toFront();
         imprimirFactura.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void mnuFacturaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFacturaClienteActionPerformed
+        // TODO add your handling code here:
+        Frm_GrupoCabinasxCliente grupoCabinasxCliente = new Frm_GrupoCabinasxCliente();
+        escritorio.add(grupoCabinasxCliente);
+        grupoCabinasxCliente.toFront();
+        grupoCabinasxCliente.setVisible(true);
+        Frm_GrupoCabinasxCliente.idEmpleado.setText(IdEmpleado.getText());
+        Frm_GrupoCabinasxCliente.nombreEmpleado.setText(Nombre_Empleado.getText());
+    }//GEN-LAST:event_mnuFacturaClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -505,21 +523,22 @@ public class Inicio_form extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio_form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio_form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio_form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio_form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Frm_Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Inicio_form().setVisible(true);
+            new Frm_Inicio().setVisible(true);
         });
     }
 
@@ -549,6 +568,7 @@ public class Inicio_form extends javax.swing.JFrame {
     private javax.swing.JMenu mnuAyuda;
     private javax.swing.JMenuItem mnuClientes;
     public static javax.swing.JMenu mnuConfiguraciones;
+    private javax.swing.JMenuItem mnuFacturaCliente;
     private javax.swing.JMenuItem mnuGastoFecha;
     public static javax.swing.JMenu mnuHerramientas;
     private javax.swing.JMenu mnuSalir;

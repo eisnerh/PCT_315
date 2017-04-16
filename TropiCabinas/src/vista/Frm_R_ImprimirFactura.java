@@ -17,27 +17,24 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
-import static vista.Seleccionar_Cabina_frm.IdEmpleado;
-import static vista.Seleccionar_Cabina_frm.NombreEmpleado;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class reImprimirFactura extends javax.swing.JInternalFrame {
+public class Frm_R_ImprimirFactura extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form reImprimirFactura
+     * Creates new form Frm_R_ImprimirFactura
      */
     
     Connection con = null;
-    public reImprimirFactura() {
+    public Frm_R_ImprimirFactura() {
         initComponents();
         con = DBConnection.getConnection();
         //inicializacion de los parametros id Empleado y Nombre Empleado
         nombreColaborador.setText(Login_frm.ps_NombreEmpleado);
         idColaborador.setText(Login_frm.ps_idEmpleado);
-        
     }
 
     /**
@@ -120,21 +117,17 @@ public class reImprimirFactura extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (!idColaborador.getText().equals("") && !jTextField1.getText().equals("")) {
             Map p = new HashMap();
-            
             p.put("facturaNumero", jTextField1.getText());
             p.put("idEmpleado", idColaborador.getText());
             JasperReport report;
             JasperPrint print;
-
             try {
-                //C:\Users\eisne\PCT_315\TropiCabinas\src\vista\reportes\Ejemplo_GastosOperatvos.jrxml
                 report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
                         + "/src/vista/reportes/N_Factura.jrxml");
                 print = JasperFillManager.fillReport(report, p, con);
                 JasperViewer view = new JasperViewer(print, false);
                 view.setTitle("Reporte de Gastos");
                 view.setVisible(true);
-
             } catch (JRException e) {
                 JOptionPane.showMessageDialog(this, e);
             }

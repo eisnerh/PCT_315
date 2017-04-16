@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import static vista.Inicio_form.escritorio;
+import static vista.Frm_Inicio.escritorio;
 
 /**
  *

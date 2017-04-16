@@ -10,7 +10,6 @@ import controlador.DBConnection;
 import java.awt.HeadlessException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,7 +49,6 @@ public class Login_frm extends javax.swing.JFrame {
 
     public Login_frm() throws IOException {
         initComponents();
-
         //inicialización de las variables de la coneccion a la base de datos
         con = DBConnection.getConnection();
         //centra la ventana para que se inicie en el centro del escritorio
@@ -79,6 +77,8 @@ public class Login_frm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(102, 102, 102));
         setUndecorated(true);
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
@@ -321,21 +321,17 @@ public class Login_frm extends javax.swing.JFrame {
                         ps_NombreEmpleado = rs.getString("nombre");
                         ps_idEmpleado = rs.getString("empleado_id");
                         ps_descripcion_puesto = rs.getString(6);
-//                        
-                        Inicio_form p = new Inicio_form();
+                        Frm_Inicio p = new Frm_Inicio();
                         p.setVisible(true);
                         this.dispose();
-                        Inicio_form.Nombre_Empleado.setText(nombre_persona);
-                        Inicio_form.IdEmpleado.setText(id_colaborador);
-                        Inicio_form.lblacceso.setText(acceso);
-                        Inicio_form.lblPuesto.setText(ps_descripcion_puesto);
-                        reImprimirFactura.idColaborador.setText(id_colaborador);
-                        reImprimirFactura.nombreColaborador.setText(nombre_persona);
-                        
-                        if (Inicio_form.lblPuesto.getText().equals("Administrador")) {
+                        Frm_Inicio.Nombre_Empleado.setText(nombre_persona);
+                        Frm_Inicio.IdEmpleado.setText(id_colaborador);
+                        Frm_Inicio.lblacceso.setText(acceso);
+                        Frm_Inicio.lblPuesto.setText(ps_descripcion_puesto);
+                        if (Frm_Inicio.lblPuesto.getText().equals("Administrador")) {
                         } else {
-                            Inicio_form.mnuConfiguraciones.setEnabled(false);
-                            Inicio_form.mnuHerramientas.setEnabled(false);
+                            Frm_Inicio.mnuConfiguraciones.setEnabled(false);
+                            Frm_Inicio.mnuHerramientas.setEnabled(false);
                         }
                     } else {
                         int opcion = JOptionPane.showConfirmDialog(this, "Usuario o Contraseña Incorrecta", "Desea Salir", JOptionPane.YES_NO_OPTION);

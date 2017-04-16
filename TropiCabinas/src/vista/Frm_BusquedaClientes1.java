@@ -13,12 +13,12 @@ import modelo.formularios.Form_Clientes;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Frm_BusquedaClientes extends javax.swing.JInternalFrame {
+public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmBusquedaClientes
      */
-    public Frm_BusquedaClientes() {
+    public Frm_BusquedaClientes1() {
         initComponents();
         
         mostrar("");
@@ -169,9 +169,8 @@ public class Frm_BusquedaClientes extends javax.swing.JInternalFrame {
             cod=tablalistado.getValueAt(fila, 0).toString();
             valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
             nombre=tablalistado.getValueAt(fila, 1).toString();
-            Frm_NuevaFactura.txtNombreCliente.setText(nombre);
-            Frm_NuevaFactura.lbl_IdClienteEmpresa.setText(cod);
-            Frm_NuevaFactura.nombreCliente.setText(nombre);
+            Frm_GrupoCabinasxCliente.nombreCliente.setText(nombre);
+            Frm_GrupoCabinasxCliente.idCliente.setText(cod);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed
