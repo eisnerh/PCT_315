@@ -5,4 +5,8 @@
 /TropiCabinas/dist/
 /Limpieza/nbproject/private/
 /Limpieza/build/
+<<<<<<< HEAD
 /dbConfig.properties
+=======
+dbConfig.properties
+>>>>>>> master
