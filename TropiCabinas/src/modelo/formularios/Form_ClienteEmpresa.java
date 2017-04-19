@@ -22,7 +22,7 @@ import modelo.contructor.Modelo_ClienteEmpresa;
  */
 public class Form_ClienteEmpresa {
 
-    public class fCabina {
+    
 
         // Se crea un array de botones
         // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
@@ -185,24 +185,20 @@ public class Form_ClienteEmpresa {
 
             try {
 
-                PreparedStatement pst = conexion.prepareStatement(querySQL);
+                PreparedStatement ps;
+                ps = conexion.prepareStatement(querySQL);
                 PreparedStatement pst2 = conexion.prepareStatement(querySQL2);
 
-                pst.setString(1, dts.getPersona_idpersona());
+                ps.setString(1, dts.getPersona_idpersona());
 
                 pst2.setString(1, dts.getPersona_idpersona());
 
-                int n = pst.executeUpdate();
+                int n = ps.executeUpdate();
 
                 if (n != 0) {
                     int n2 = pst2.executeUpdate();
 
-                    if (n2 != 0) {
-                        return true;
-
-                    } else {
-                        return false;
-                    }
+                    return n2 != 0;
 
                 } else {
                     return false;
@@ -214,4 +210,4 @@ public class Form_ClienteEmpresa {
             }
         }
     }
-}
+
