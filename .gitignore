@@ -6,7 +6,13 @@
 /Limpieza/nbproject/private/
 /Limpieza/build/
 <<<<<<< HEAD
+<<<<<<< HEAD
 /dbConfig.properties
 =======
 dbConfig.properties
 >>>>>>> master
+=======
+/TropiCabinas/src/dbConfig.properties
+/TropiCabinas/src/Controlador/DB_Conexion.java
+/TropiCabinas/src/Controlador/DBConexion.java
+>>>>>>> origin/develop
