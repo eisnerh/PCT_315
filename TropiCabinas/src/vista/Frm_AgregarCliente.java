@@ -239,7 +239,6 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
 
         txtNombre_Apellidos = new javax.swing.JTextField();
         cedula = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         nombreUsuario = new javax.swing.JLabel();
         direccion = new javax.swing.JLabel();
@@ -249,7 +248,6 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
         txtClasificación = new javax.swing.JTextField();
         nombreApellidos = new javax.swing.JLabel();
         clasificación = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
         Persona = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         nuevo = new javax.swing.JButton();
@@ -261,6 +259,8 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
         lbl_id_persona = new javax.swing.JLabel();
         nombreUsuario1 = new javax.swing.JLabel();
         txtCodigoCliente = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JFormattedTextField();
+        txtPhone = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setForeground(java.awt.Color.gray);
@@ -278,22 +278,13 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
         cedula.setText("Cedula");
         getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 82, -1, -1));
 
-        txtCedula.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtCedula.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCedulaFocusLost(evt);
-            }
-        });
-        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 270, 40));
-
         jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        jLabel4.setForeground(java.awt.Color.darkGray);
+        jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("CodigoCliente");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 343, -1, -1));
 
         nombreUsuario.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        nombreUsuario.setForeground(java.awt.Color.darkGray);
+        nombreUsuario.setForeground(new java.awt.Color(238, 238, 238));
         nombreUsuario.setText("CodigoClasificación");
         getContentPane().add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 343, -1, -1));
 
@@ -321,6 +312,7 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
         });
         getContentPane().add(cmbTipoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 291, 200, 40));
 
+        txtClasificación.setEditable(false);
         txtClasificación.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtClasificación.setToolTipText("");
         txtClasificación.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -335,15 +327,6 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
         clasificación.setForeground(java.awt.Color.darkGray);
         clasificación.setText("Clasificación");
         getContentPane().add(clasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
-
-        txtPhone.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtPhone.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPhoneKeyPressed(evt);
-            }
-        });
-        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, 40));
 
         Persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Persona.setForeground(java.awt.Color.darkGray);
@@ -395,7 +378,7 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(92, 92, 92)
                 .addComponent(nuevo)
                 .addGap(18, 18, 18)
                 .addComponent(guardar)
@@ -405,30 +388,30 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
                 .addComponent(editar)
                 .addGap(24, 24, 24)
                 .addComponent(buscar)
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscar)
-                    .addComponent(nuevo)
-                    .addComponent(guardar)
-                    .addComponent(borrar)
-                    .addComponent(editar))
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(borrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(nuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(guardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
 
         lbl_idPersona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
-        lbl_idPersona.setForeground(java.awt.Color.darkGray);
+        lbl_idPersona.setForeground(new java.awt.Color(238, 238, 238));
         lbl_idPersona.setText("jLabel1");
         getContentPane().add(lbl_idPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
         lbl_id_persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
-        lbl_id_persona.setForeground(java.awt.Color.darkGray);
+        lbl_id_persona.setForeground(new java.awt.Color(238, 238, 238));
         lbl_id_persona.setText("lblIdPersona");
         getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
 
@@ -437,9 +420,20 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
         nombreUsuario1.setText("Código Usuario");
         getContentPane().add(nombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 251, -1, -1));
 
+        txtCodigoCliente.setEditable(false);
         txtCodigoCliente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtCodigoCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 290, 200, 40));
+
+        try {
+            txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 270, 40));
+
+        txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 240, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -562,21 +556,6 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_buscarActionPerformed
 
-    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
-        // TODO add your handling code here:
-        getNumeroCodigo();
-    }//GEN-LAST:event_txtCedulaFocusLost
-
-    private void txtPhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyPressed
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isAlphabetic(c) || Character.isSurrogate(c) || Character.isUnicodeIdentifierPart(c)) {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Ingresa Solo Números.\n Gracias!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_txtPhoneKeyPressed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Persona;
@@ -597,11 +576,11 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel nombreUsuario1;
     private javax.swing.JButton nuevo;
     private javax.swing.JLabel telefono;
-    private javax.swing.JTextField txtCedula;
+    private javax.swing.JFormattedTextField txtCedula;
     private javax.swing.JTextField txtClasificación;
     private javax.swing.JTextField txtCodigoCliente;
     private javax.swing.JTextField txtDireccion;
     public static javax.swing.JTextField txtNombre_Apellidos;
-    private javax.swing.JTextField txtPhone;
+    private javax.swing.JFormattedTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }
