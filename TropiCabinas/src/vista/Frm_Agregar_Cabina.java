@@ -163,11 +163,9 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
-        Salir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCabina = new javax.swing.JTable();
@@ -286,16 +284,6 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 5, 1, 1));
 
-        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Salir.png"))); // NOI18N
-        Salir.setText("Salir");
-        Salir.setToolTipText("Nueva Cabina");
-        Salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Salir);
-
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
         btnGuardar.setToolTipText("Guardar Cabina");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -322,15 +310,6 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btnEditar);
-
-        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Salir.png"))); // NOI18N
-        btnVolver.setToolTipText("Eliminar Cabina");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnVolver);
 
         tablaCabina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -549,10 +528,6 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tipoCabinaActionPerformed
 
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_SalirActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (txtNombreCabina.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Debes ingresar un Número de Habitación");
@@ -710,21 +685,14 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_Buscar_NombreCabinaKeyReleased
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Buscar_NombreCabina;
     private javax.swing.JLabel EstadoCabina;
-    private javax.swing.JButton Salir;
     private javax.swing.JLabel TipoCabina;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel cabina_di;
     private javax.swing.JRadioButton cmbLibre;
     private javax.swing.JRadioButton cmbOcupado;

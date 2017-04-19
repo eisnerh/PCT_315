@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.contructor.Modelo_Gastos;
 
 /**
@@ -21,12 +23,58 @@ import modelo.contructor.Modelo_Gastos;
  */
 public class Form_Gastos {
 
+    // Se crea un array de botones
+    // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
     private final DBConnection myLink = new DBConnection();
     private final Connection conexion = DBConnection.getConnection();
     private String querySQL = "";
+    public int totalRegistros;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    Statement st = null;
+
+    public DefaultTableModel todosGastos(String buscar) {
+        DefaultTableModel tableModel;
+        //creación de un array para definir las columnas
+        String[] columnas = {"ID Gastos", "Tipo Gastos", "Monto Gastos", "Fecha Gasto", "N° Factura", "Nombre Colaborador"};
+        //creación de un array para definir los registros que se incluiran por medio del codigo
+        String[] registro = new String[4];
+
+        totalRegistros = 0;
+
+        tableModel = new DefaultTableModel(null, columnas);
+        querySQL = "SELECT "
+                + "gasto_operativo.gasto_id, "
+                + "gasto_operativo.tipo_gasto, "
+                + "gasto_operativo.monto_gasto, "
+                + "gasto_operativo.fecha_gasto, "
+                + "gasto_operativo.factura_gasto, "
+                + "persona.nombre "
+                + "FROM "
+                + "pct3.gasto_operativo "
+                + "INNER JOIN "
+                + "colaborador ON gasto_operativo.colaborador_empleado_id = colaborador.empleado_id "
+                + "INNER JOIN "
+                + "persona ON colaborador.persona_idpersona = persona.idpersona "
+                + "where gasto_operativo.factura_gasto like '%" + buscar + "%'";
+        try {
+            Statement st = conexion.createStatement();
+            rs = st.executeQuery(querySQL);
+
+            while (rs.next()) {
+                registro[0] = rs.getString(1);
+                registro[1] = rs.getString(2);
+                registro[2] = rs.getString(3);
+                registro[3] = rs.getString(4);
+                totalRegistros++;
+                tableModel.addRow(registro);
+            }
+            return tableModel;
+        } catch (SQLException sqle) {
+            JOptionPane.showConfirmDialog(null, sqle);
+            return null;
+        }
+
+    }
 
     public void todosGastos(Modelo_Gastos gastos) {
         try {
@@ -38,7 +86,7 @@ public class Form_Gastos {
                     + "`gasto_operativo`.`colaborador_empleado_id` "
                     + "FROM `pct3`.`gasto_operativo` "
                     + "WHERE `gasto_operativo`.`gasto_id` = 1";
-            
+
             PreparedStatement ps;
             ps = conexion.prepareStatement(querySQL);
             if (rs.next()) {
@@ -48,7 +96,7 @@ public class Form_Gastos {
         } catch (SQLException ex) {
             Logger.getLogger(Form_Gastos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 }
