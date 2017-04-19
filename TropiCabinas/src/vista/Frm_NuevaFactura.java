@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.sql.Connection;
@@ -47,12 +47,12 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     PreparedStatement pst2 = null;
     DateFormat df = DateFormat.getDateInstance();
     public String Valor;
-    private final DBConnection myLink = new DBConnection();
-    private final Connection conexion = DBConnection.getConnection();
+    private final DBConnection1 myLink = new DBConnection1();
+    private final Connection conexion = DBConnection1.getConnection();
 
     public Frm_NuevaFactura() {
         initComponents();
-        con = DBConnection.getConnection();
+        con = DBConnection1.getConnection();
         nCabina.setText(Seleccionar_Cabina_frm.ps_nombreCabina);
         nombreEmpleado.setText(Login_frm.ps_NombreEmpleado);
         idEmpleado.setText(Login_frm.ps_idEmpleado);
@@ -474,7 +474,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = DBConnection.getConnection();
+                con = DBConnection1.getConnection();
 
                 if (CantidadDias.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de días a hospedarse ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -522,7 +522,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 try {
                     int op = JOptionPane.showConfirmDialog(null, " Cambiar el estado de la cábina # " + nCabina.getText() + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (op == 0) {
-                        con = DBConnection.getConnection();
+                        con = DBConnection1.getConnection();
                         Statement statement;
                         statement = con.createStatement();
                         String Pru = "UPDATE `pct3`.`cabina` SET `estado_cabina`='Ocupado' WHERE `cabina_id`='" + idCabina.getText() + "'";

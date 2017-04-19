@@ -6,7 +6,7 @@
 package vista;
 
 import com.sun.glass.events.KeyEvent;
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.awt.HeadlessException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -45,7 +45,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         initComponents();
 
         //inicialización de las variables de la coneccion a la base de datos
-        con = DBConnection.getConnection();
+        con = DBConnection1.getConnection();
         //llama al procedimiento de obtener la información.
         //centra la ventana para que se inicie en el centro del escritorio
         setLocationRelativeTo(null);
@@ -333,7 +333,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = DBConnection.getConnection();
+                con = DBConnection1.getConnection();
 
                 if (txtNombre_Apellidos.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -396,7 +396,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere editar este dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = DBConnection.getConnection();
+                con = DBConnection1.getConnection();
                 Statement stmt;
                 stmt = con.createStatement();
                 
@@ -451,7 +451,7 @@ public final class Buscar_Persona_frm extends javax.swing.JFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Seguro que quiere eliminar ?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = DBConnection.getConnection();
+                con = DBConnection1.getConnection();
                 
                 String sql = sqlDelete + lbl_id_persona.getText() + "";
                 //DELETE FROM `persona` WHERE 1

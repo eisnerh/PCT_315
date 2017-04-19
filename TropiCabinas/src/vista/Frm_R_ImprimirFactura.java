@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.io.File;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class Frm_R_ImprimirFactura extends javax.swing.JInternalFrame {
     Connection con = null;
     public Frm_R_ImprimirFactura() {
         initComponents();
-        con = DBConnection.getConnection();
+        con = DBConnection1.getConnection();
         //inicializacion de los parametros id Empleado y Nombre Empleado
         nombreColaborador.setText(Login_frm.ps_NombreEmpleado);
         idColaborador.setText(Login_frm.ps_idEmpleado);

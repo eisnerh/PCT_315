@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.awt.HeadlessException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -45,7 +45,7 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
     
     public Frm_AgregarCliente() {
         initComponents();
-        con = DBConnection.getConnection();
+        con = DBConnection1.getConnection();
         sqlSelect = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` order BY `nombre`";
         sqlSelect_Valor = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE `nombre` = '";
         sqlInsert = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES ('";

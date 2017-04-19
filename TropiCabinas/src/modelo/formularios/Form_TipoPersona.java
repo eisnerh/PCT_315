@@ -5,7 +5,7 @@
  */
 package modelo.formularios;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,8 +21,8 @@ import modelo.contructor.Modelo_TipoPersona;
  */
 public class Form_TipoPersona {
 
-    private final DBConnection mysql = new DBConnection();
-    private final Connection connect = DBConnection.getConnection();
+    private final DBConnection1 mysql = new DBConnection1();
+    private final Connection connect = DBConnection1.getConnection();
     private String sSQL = "";
     public Integer totalregistros;
 

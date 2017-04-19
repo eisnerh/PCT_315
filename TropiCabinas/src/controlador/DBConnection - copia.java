@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class DBConnection {
+public class DBConnection2 {
 
     public static Connection getConnection() {
         Properties props;

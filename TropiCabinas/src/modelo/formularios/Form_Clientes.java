@@ -5,7 +5,7 @@
  */
 package modelo.formularios;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,8 +21,8 @@ import modelo.contructor.Modelo_Clientes;
  */
 public class Form_Clientes {
 
-    private final DBConnection myLink = new DBConnection();
-    private final Connection conexion = DBConnection.getConnection();
+    private final DBConnection1 myLink = new DBConnection1();
+    private final Connection conexion = DBConnection1.getConnection();
     private String sSQL = "";
     public Integer totalregistros;
 

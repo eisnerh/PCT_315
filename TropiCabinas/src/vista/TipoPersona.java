@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,8 +27,8 @@ public class TipoPersona extends javax.swing.JInternalFrame {
     /**
      * Creates new form TipoPersona
      */
-    private final DBConnection myLink = new DBConnection();
-    private final Connection conexion = DBConnection.getConnection();
+    private final DBConnection1 myLink = new DBConnection1();
+    private final Connection conexion = DBConnection1.getConnection();
     private final String sSQL = "";
     ResultSet rs = null;
     PreparedStatement pst = null;

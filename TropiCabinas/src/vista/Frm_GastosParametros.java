@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.io.File;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
     Connection con = null;
     public Frm_GastosParametros() {
         initComponents();
-        con = DBConnection.getConnection();
+        con = DBConnection1.getConnection();
     }
 
     /**

@@ -5,7 +5,7 @@
  */
 package modelo.formularios;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class Form_Factura {
 
-    private final DBConnection myLink = new DBConnection();
-    private final Connection conexion = DBConnection.getConnection();
+    private final DBConnection1 myLink = new DBConnection1();
+    private final Connection conexion = DBConnection1.getConnection();
     private String querySQL = "";
     ResultSet rs = null;
     PreparedStatement pst = null;

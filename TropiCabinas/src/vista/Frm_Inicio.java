@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.awt.Component;
 import java.io.File;
 import java.sql.Connection;
@@ -32,7 +32,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     public Frm_Inicio() {
         //inicialización de las variables de la coneccion a la base de datos
-        con = DBConnection.getConnection();
+        con = DBConnection1.getConnection();
         initComponents();
         this.setExtendedState(Frm_Inicio.MAXIMIZED_BOTH);
         this.setTitle("Sistema de Reserva de Cábinas y Gestión - Cábinas el Trópico");

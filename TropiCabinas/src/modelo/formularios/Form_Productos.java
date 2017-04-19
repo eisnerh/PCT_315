@@ -5,7 +5,7 @@
  */
 package modelo.formularios;
 
-import controlador.DBConnection;
+import controlador.DBConnection1;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,8 +23,8 @@ import modelo.contructor.Modelo_Productos;
 public class Form_Productos {
 
     // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
-    private final DBConnection myLink = new DBConnection();
-    private final Connection conexion = DBConnection.getConnection();
+    private final DBConnection1 myLink = new DBConnection1();
+    private final Connection conexion = DBConnection1.getConnection();
     private String querySQL = "";
     private String querySQL2 = "";
     public int totalRegistros;
