@@ -29,15 +29,15 @@ public class DBConnection {
         Connection con = null;
 
         try {
-            File data1 = new File("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+            File data1 = new File("C:\\Users\\treznor\\Desktop\\NEW\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
             File data2 = new File("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
-            File data3 = new File("C:\\Users\\treznor\\Desktop\\nuevo2\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+            File data3 = new File("C:\\Users\\treznor\\Desktop\\NEW\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
             if (!data1.exists()) {
                 System.out.println("File 1 doesn't exist");
                 System.exit(1);
             } else if (data1.exists()) {
                 System.out.println("File 1 exist");
-                fis1 = new FileInputStream("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+                fis1 = new FileInputStream("C:\\Users\\treznor\\Desktop\\NEW\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
                 props.load(fis1);
                 // load the Driver Class
                 Class.forName(props.getProperty("DB_DRIVER_CLASS"));
