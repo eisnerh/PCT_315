@@ -371,7 +371,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
 
         nombreUsuario1.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         nombreUsuario1.setForeground(java.awt.Color.darkGray);
-        nombreUsuario1.setText("Código Proveedor");
+        nombreUsuario1.setText("Nombre empresa proveedor");
         getContentPane().add(nombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 251, -1, -1));
 
         txtCodigoCliente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -435,7 +435,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-
         agregarPersona();
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -480,13 +479,11 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Successfully deleted", "Record", JOptionPane.INFORMATION_MESSAGE);
                 initState();
-
             }
             initState();
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-
         }
     }//GEN-LAST:event_borrarActionPerformed
 

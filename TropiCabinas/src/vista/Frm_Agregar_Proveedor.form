@@ -434,7 +434,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="40" green="40" id="darkGray" palette="1" red="40" type="palette"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="C&#xf3;digo Proveedor"/>
+        <Property name="text" type="java.lang.String" value="Nombre empresa proveedor"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

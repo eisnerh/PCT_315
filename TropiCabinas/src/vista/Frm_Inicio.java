@@ -69,6 +69,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         mnuGastoFecha = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         mnuFacturaCliente = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -175,7 +176,12 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/pagos.png"))); // NOI18N
-        jMenuItem1.setText("Pagos");
+        jMenuItem1.setText("Productos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         mnureservas.add(jMenuItem1);
 
         menuBar.add(mnureservas);
@@ -232,6 +238,15 @@ public class Frm_Inicio extends javax.swing.JFrame {
             }
         });
         mnuconsultas.add(mnuFacturaCliente);
+
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem10.setText("Productos x Proveedor");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(jMenuItem10);
 
         menuBar.add(mnuconsultas);
 
@@ -509,6 +524,31 @@ public class Frm_Inicio extends javax.swing.JFrame {
         Frm_GrupoCabinasxCliente.nombreEmpleado.setText(Nombre_Empleado.getText());
     }//GEN-LAST:event_mnuFacturaClienteActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        Frm_AgregarProductos agregarProductos = new Frm_AgregarProductos();
+        escritorio.add(agregarProductos);
+        agregarProductos.toFront();
+        agregarProductos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        JasperReport report;
+        JasperPrint print;
+        try {
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/vista/reportes/ProductosporProveedor.jrxml");
+            print = JasperFillManager.fillReport(report, null, con);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Lista de Productos por Proveedor");
+            view.setVisible(true);
+
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -555,6 +595,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemAyuda;
     private javax.swing.JMenuItem itemDisponibles;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
