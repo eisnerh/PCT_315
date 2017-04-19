@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="edc22581-fa81-420c-81af-9f401f75fd72">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -52,6 +55,20 @@ FROM
 						</textElement>
 						<textFieldExpression><![CDATA[$F{desc_proveedor}]]></textFieldExpression>
 					</textField>
+					<textField isStretchWithOverflow="true">
+						<reportElement style="Detail" positionType="Float" x="199" y="6" width="199" height="18" forecolor="#FFFFFF" uuid="0423b0ed-5c2e-4d27-b99d-1188a71dd8cc"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true">
+						<reportElement style="Detail" positionType="Float" x="498" y="6" width="199" height="18" forecolor="#FFFFFF" uuid="65f97616-259b-48a8-91cb-6f134321b5df"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+					</textField>
 				</frame>
 				<rectangle>
 					<reportElement x="725" y="3" width="77" height="24" backcolor="#666666" uuid="44c62880-c00f-418e-82c9-c9df1661fddc"/>
@@ -70,26 +87,22 @@ FROM
 	</background>
 	<title>
 		<band height="102" splitType="Stretch">
-			<image>
-				<reportElement x="725" y="0" width="77" height="102" uuid="d12fa105-91ee-447c-b4b2-a96e92c8a5dd"/>
-				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
-			</image>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="721" height="66" backcolor="#000000" uuid="940a108f-f3d9-4c7b-8bd5-756062f914bb"/>
 				<staticText>
-					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="7de85cbe-e6e1-4e02-acb0-a61306cfe8b7"/>
+					<reportElement style="Title" x="0" y="0" width="438" height="66" uuid="7de85cbe-e6e1-4e02-acb0-a61306cfe8b7"/>
 					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
 					<textElement verticalAlignment="Bottom">
 						<font isBold="false"/>
 					</textElement>
-					<text><![CDATA[Cherry Title]]></text>
+					<text><![CDATA[Cábinas El Trópico]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SubTitle" x="370" y="37" width="316" height="29" uuid="0f3f9651-8451-4b11-bb33-5ac0546a12fc"/>
+					<reportElement style="SubTitle" x="405" y="37" width="316" height="29" uuid="0f3f9651-8451-4b11-bb33-5ac0546a12fc"/>
 					<textElement textAlignment="Right">
 						<font size="22" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Cherry SubTitle]]></text>
+					<text><![CDATA[Cédula Jurídica]]></text>
 				</staticText>
 			</frame>
 			<frame>
@@ -123,20 +136,6 @@ FROM
 				</textElement>
 				<text><![CDATA[nombre_producto]]></text>
 			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="398" y="0" width="199" height="18" forecolor="#000000" uuid="54b823ed-9fa7-4fd3-b4b7-d77ee8da1014"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[nombre]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="597" y="0" width="199" height="18" forecolor="#000000" uuid="81ab2600-10a6-4959-9ba7-e51f4384512e"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[telefono]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -156,20 +155,6 @@ FROM
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nombre_producto}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="398" y="0" width="199" height="18" uuid="0423b0ed-5c2e-4d27-b99d-1188a71dd8cc"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="597" y="0" width="199" height="18" uuid="65f97616-259b-48a8-91cb-6f134321b5df"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
