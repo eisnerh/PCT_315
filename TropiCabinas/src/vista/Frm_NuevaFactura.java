@@ -60,6 +60,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         fechaActual();
         fechas();
         nuevoNFactura();
+        fechaEntrada.setVisible(false);
     }
 
     public void nuevoNFactura() {

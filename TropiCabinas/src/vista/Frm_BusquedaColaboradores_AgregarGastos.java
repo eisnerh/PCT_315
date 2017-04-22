@@ -5,72 +5,35 @@
  */
 package vista;
 
-import controlador.DBConnection1;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.formularios.Form_Gastos;
-
+import modelo.formularios.Form_Usuario;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
+public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmBusquedaClientes
      */
-    private final DBConnection1 myLink = new DBConnection1();
-    private final Connection conexion = DBConnection1.getConnection();
-    private String querySQL = "";
-    private String querySQL2 = "";
-    public int totalRegistros;
-    public float montoRegistros;
-    ResultSet rs = null;
-    ResultSet rsuma = null;
-    PreparedStatement pst = null;
-    public Frm_BusquedaGastos() {
+    public Frm_BusquedaColaboradores_AgregarGastos() {
         initComponents();
+        
         mostrar("");
     }
     
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            Form_Gastos func = new Form_Gastos();
-            modelo = func.todosGastos(buscar);
+            Form_Usuario func = new Form_Usuario();
+            modelo = func.mostrarColaborador(buscar);
             tablalistado.setModel(modelo);
-            ocultar_columnas();
-            lbltotalregistros.setText("Total Registros " + Integer.toString(func.totalRegistros));
-            
-            String querySQL2 = "SELECT "
-                    + "    SUM(gasto_operativo.monto_gasto) AS total "
-                    + "FROM "
-                    + "    pct3.gasto_operativo "
-                    + "WHERE "
-                    + "    gasto_operativo.fecha_gasto = CURDATE();";
-            Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery(querySQL2);
-            while (rs.next()) {
-                lbltotalMono.setText("Monto Pagado por Gastos ¢ " + rs.getString(1));
-            }
-            
-            
-            
-        } catch (SQLException e) {
+            lbltotalregistros.setText("Total Registros " + Integer.toString(func.totalregistros));
+        } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
-    }
-    
-    void ocultar_columnas() {
-        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
-        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
 
     /**
@@ -89,8 +52,8 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
         txtbuscar = new javax.swing.JTextField();
         btnbuscar = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
-        lbltotalMono = new javax.swing.JLabel();
 
+        setClosable(true);
         setTitle("Busqueda de Clientes");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -137,8 +100,6 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
 
         lbltotalregistros.setText("Registros");
 
-        lbltotalMono.setText("Registros");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -147,19 +108,16 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(97, 97, 97)
                                 .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(lbltotalMono, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(26, 26, 26)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -174,9 +132,7 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                 .addGap(9, 9, 9)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltotalregistros)
-                    .addComponent(lbltotalMono)))
+                .addComponent(lbltotalregistros))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,14 +158,12 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
         if (evt.getClickCount() == 2) {
             int fila= tablalistado.getSelectedRow();
             String cod;
-            String valor;
             String nombre;
             cod=tablalistado.getValueAt(fila, 0).toString();
-            valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
             nombre=tablalistado.getValueAt(fila, 1).toString();
-            Frm_NuevaFactura.txtNombreCliente.setText(nombre);
-            Frm_NuevaFactura.lbl_IdClienteEmpresa.setText(cod);
-            Frm_NuevaFactura.nombreCliente.setText(nombre);
+            Frm_AgregarUsuario.idColaborador.setText(cod);
+            Frm_AgregarUsuario.nombreColaborador.setText(nombre);
+
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed
@@ -230,7 +184,6 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lbltotalMono;
     private javax.swing.JLabel lbltotalregistros;
     private javax.swing.JTable tablalistado;
     private javax.swing.JTextField txtbuscar;

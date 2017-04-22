@@ -28,19 +28,22 @@ public class Form_Gastos {
     private final DBConnection1 myLink = new DBConnection1();
     private final Connection conexion = DBConnection1.getConnection();
     private String querySQL = "";
+    private String querySQL2 = "";
     public int totalRegistros;
+    public float montoRegistros;
     ResultSet rs = null;
+    ResultSet rsuma = null;
     PreparedStatement pst = null;
 
     public DefaultTableModel todosGastos(String buscar) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
         String[] columnas = {
-            "ID Gastos", 
-            "Tipo Gastos", 
-            "Monto Gastos", 
-            "Fecha Gasto", 
-            "N° Factura", 
+            "ID Gastos",
+            "Tipo Gastos",
+            "Monto Gastos",
+            "Fecha Gasto",
+            "N° Factura",
             "Nombre Colaborador"
         };
         //creación de un array para definir los registros que se incluiran por medio del codigo
@@ -62,11 +65,13 @@ public class Form_Gastos {
                 + "colaborador ON gasto_operativo.colaborador_empleado_id = colaborador.empleado_id "
                 + "INNER JOIN "
                 + "persona ON colaborador.persona_idpersona = persona.idpersona "
-                + "where gasto_operativo.factura_gasto like '%" + buscar + "%'";
+                + "where gasto_operativo.factura_gasto like '%" + buscar + "%'"
+                + "and gasto_operativo.fecha_gasto = curdate()";
+        
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
-
+            
             while (rs.next()) {
                 registro[0] = rs.getString(1);
                 registro[1] = rs.getString(2);
@@ -74,7 +79,6 @@ public class Form_Gastos {
                 registro[3] = rs.getString(4);
                 registro[4] = rs.getString(5);
                 registro[5] = rs.getString(6);
-                
                 totalRegistros++;
                 tableModel.addRow(registro);
             }
@@ -107,6 +111,34 @@ public class Form_Gastos {
             Logger.getLogger(Form_Gastos.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public boolean insertar(Modelo_Gastos dts) {
+        querySQL = "INSERT INTO `pct3`.`gasto_operativo` "
+                + "(`tipo_gasto`, "
+                + "`monto_gasto`, "
+                + "`fecha_gasto`, "
+                + "`factura_gasto`, "
+                + "`colaborador_empleado_id`) "
+                + "VALUES "
+                + "(?, "
+                + "?, "
+                + "?, "
+                + "?, "
+                + "?);";
+        try {
+            PreparedStatement ps;
+            ps = conexion.prepareStatement(querySQL);
+            ps.setString(1, dts.getTipo_Gasto());
+            ps.setString(2, dts.getMonto_Gasto());
+            ps.setString(3, dts.getFecha_Gasto());
+            ps.setString(4, dts.getFactura_Gasto());
+            ps.setString(5, dts.getColaborador_EmpleadoID());
+            int n = ps.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, e, "Corregir", JOptionPane.YES_NO_OPTION);
+        }
+        return false;
     }
 
 }

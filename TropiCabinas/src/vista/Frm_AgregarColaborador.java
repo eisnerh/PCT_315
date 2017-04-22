@@ -666,15 +666,11 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_borrarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        // TODO add your handling code here:
-        Buscar_Persona_frm buscar_Persona_frm;
-        try {
-            buscar_Persona_frm = new Buscar_Persona_frm();
-            buscar_Persona_frm.setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(Frm_AgregarColaborador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        Frm_BusquedaColaboradores form;
+        form = new Frm_BusquedaColaboradores();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_buscarActionPerformed
 
     private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
