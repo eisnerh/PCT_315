@@ -10,5 +10,3 @@ FROM
     proveedor ON proveedor.idproveedor = productos.proveedor_idproveedor
         INNER JOIN
     persona ON proveedor.persona_idpersona = persona.idpersona
-WHERE
-    productos.nombre_producto LIKE '%De%';

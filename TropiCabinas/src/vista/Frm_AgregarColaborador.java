@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import static vista.Frm_Inicio.escritorio;
 
 /**
  *
@@ -59,26 +60,15 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         llena_comboPuesto(); // llenar los datos al ejecutar el programa
         modeloHorario = new DefaultComboBoxModel();
         llena_comboHorario(); // llenar los datos al ejecutar el programa
-    }
 
-    public void getNumeroCodigo() {
-        try {
-            txtFechaContrato.setText("");
-            lbl_idHorario.setText("");
-            Statement stmt;
-            stmt = con.createStatement();
-            String queryCuentaCliente = "SELECT max(idpersona) as numeroPersona FROM pct3.persona;";
-            rs = stmt.executeQuery(queryCuentaCliente);
-            while (rs.next()) {
-                int numero = rs.getInt("numeroPersona");
-                lbl_idHorario.setText(Integer.toString(numero + 1));
-            }
-            txtFechaContrato.setText(txtNombre_Apellidos.getText() + lbl_idHorario.getText());
-            cmbTipoPersona.setModel(modeloTipoPersona); // seteamos el modelo y se cargan los datos
+        //Selecciona el valor por defecto de empleado.
+        TipoPersona();
 
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-        }
+        //Seleciona el valor por defecto de tipo de puesto
+        TipoPuesto();
+
+        //Selecciona el tipo de horario por defecto en este caso Diurno.
+        TipoTurno();
     }
 
     public final void llena_comboPersona() { // static para poder llamarlo desde el otro frame o JDialog
@@ -90,7 +80,9 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloTipoPersona.addElement(rs.getString("desc_persona"));
-
+                if (rs.getString("desc_persona").equals("Empleado")) {
+                    modeloTipoPersona.setSelectedItem(rs.getString(1));
+                }
             }
             cmbTipoPersona.setModel(modeloTipoPersona); // seteamos el modelo y se cargan los datos
 
@@ -108,6 +100,9 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
             rs = stmt.executeQuery(queryComboPuesto);
             while (rs.next()) {
                 modeloPuesto.addElement(rs.getString("descripcion_puesto"));
+                if (rs.getString("descripcion_puesto").equals("Empleado")) {
+                    modeloPuesto.setSelectedItem(rs.getString("descripcion_puesto"));
+                }
             }
             cmbPuesto.setModel(modeloPuesto); // seteamos el modelo y se cargan los datos
         } catch (HeadlessException | SQLException ex) {
@@ -115,6 +110,7 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         }
     }
 
+    //Metodo para llenar el combo horario
     public final void llena_comboHorario() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloHorario.removeAllElements(); // eliminamos lo elementos
@@ -123,12 +119,88 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
             String queryComboHorario = "SELECT * FROM pct3.horario;";
             rs = stmt.executeQuery(queryComboHorario);
             while (rs.next()) {
-                modeloHorario.addElement(rs.getString(2));
+                modeloHorario.addElement(rs.getString("descripcion_horario"));
+                if (rs.getString("descripcion_horario").equals("Diurno")) {
+                    modeloHorario.setSelectedItem(rs.getString("descripcion_horario"));
+                }
             }
             cmbHorario.setModel(modeloHorario); // seteamos el modelo y se cargan los datos
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
+        }
+    }
+    //Fin Metodo combo Horario
+
+    //Metodo TipoPuesto
+    private void TipoPuesto() {
+        // TODO add your handling code here:
+        lbl_idPuesto.setText("");
+        try {
+            String sqlConsulta_TPuesto = "SELECT "
+                    + "puesto_id, "
+                    + "descripcion_puesto "
+                    + "FROM "
+                    + "pct3.puesto "
+                    + "WHERE "
+                    + "`descripcion_puesto` = '" + cmbPuesto.getSelectedItem() + "'";
+            pst = con.prepareStatement(sqlConsulta_TPuesto);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String add1 = rs.getString(1);
+                lbl_idPuesto.setText(add1);
+                String TipoPuestoSeleccionado;
+                TipoPuestoSeleccionado = (String) cmbPuesto.getSelectedItem();
+            }
+
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }
+
+    //Metodo TipoTurno
+    private void TipoTurno() {
+        // TODO add your handling code here:
+        lbl_idHorario.setText("");
+        try {
+            String sqlConsulta_THorario = "SELECT * FROM pct3.horario "
+                    + "WHERE "
+                    + "`descripcion_horario` = '" + cmbHorario.getSelectedItem() + "'";
+            pst = con.prepareStatement(sqlConsulta_THorario);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String add1 = rs.getString(1);
+                lbl_idHorario.setText(add1);
+                String tipoHorarioSeleccionado;
+                tipoHorarioSeleccionado = (String) cmbHorario.getSelectedItem();
+            }
+
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }
+    //Inicio metodo TipoPersona
+    private void TipoPersona() {
+        try {
+            String sqlConsulta_TPersona = "SELECT "
+                    + "`idtipo_persona`, "
+                    + "`desc_persona` "
+                    + "FROM "
+                    + "`tipo_persona` "
+                    + "WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
+            pst = con.prepareStatement(sqlConsulta_TPersona);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String add1 = rs.getString("idtipo_persona");
+                txtClasificación.setText(add1);
+                String tipoPersonaSeleccionada;
+                tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
+            }
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+
         }
     }
 
@@ -148,7 +220,7 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         borrar.setEnabled(false);
 
     }
-
+    //Metodo para insertar en la Tabla Personas y Colaborador.
     private void agregarPersona() {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
@@ -173,54 +245,8 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de cédula!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
                 Statement stmt;
                 stmt = con.createStatement();
-
-                //String sql1 = sqlSelect_Valor + txtCedula.getText() + "'";
-                //rs = stmt.executeQuery(sql1);
-//                if (rs.next()) {
-//                    JOptionPane.showMessageDialog(this, "Valor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-//                    txtNombre_Apellidos.setText("");
-//                    txtNombre_Apellidos.setFocusable(true);
-//                    return;
-//                }
-//                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
-//                String sql2 = "INSERT INTO `pct3`.`cliente_empresa` "
-//                        + "(`empresa_id`, "
-//                        + "`codigo_cliente`, "
-//                        + "`estado_cliente`, "
-//                        + "`persona_idpersona`) "
-//                        + "VALUES "
-//                        + "(null, "
-//                        + "'" + txtCodigoCliente.getText() + "', "
-//                        + "1 ,"
-//                        + "(SELECT max(idpersona) FROM pct3.persona))";
-//                pst = con.prepareStatement(sql);
-//                pst.execute();
-                //JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Cliente Agregado", JOptionPane.INFORMATION_MESSAGE);
-//                try {
-//                    String sql_persona = "SELECT * FROM `persona` WHERE `nombre` LIKE '%" + txtNombre_Apellidos.getText() + "%'";
-//                    pst = con.prepareStatement(sql_persona);
-//                    rs = pst.executeQuery();
-//                    if (rs.next()) {
-//                        String sel1 = rs.getString("idpersona");
-//                        String sel2 = rs.getString("nombre");
-//                        String sel3 = rs.getString("cedula");
-//                        String sel4 = rs.getString("telefono");
-//                        String sel5 = rs.getString("direccion");
-//                        String sel6 = rs.getString("tipo_persona_idtipo_persona");
-//                        lbl_id_persona.setText(sel1);
-//                        txtNombre_Apellidos.setText(sel2);
-//                        txtCedula.setText(sel3);
-//                        txtDireccion.setText(sel4);
-//                        txtPhone.setText(sel5);
-//                        lbl_idPersona.setText(sel6);
-//                        cmbTipoPersona.setSelectedIndex(Integer.parseInt(sel6) - 1);
-//                    }
-//                } catch (SQLException | NumberFormatException e) {
-//                    JOptionPane.showMessageDialog(null, e);
-//                }
             }
             if (P == 0 || P == 1) {
                 txtFechaDespido.setText("0000-00-00");
@@ -288,21 +314,17 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         clasificación1 = new javax.swing.JLabel();
         clasificación2 = new javax.swing.JLabel();
         cmbHorario = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        nombreUsuario = new javax.swing.JLabel();
         lbl_idHorario = new javax.swing.JLabel();
-        lbl_id_persona = new javax.swing.JLabel();
-        txtClasificación = new javax.swing.JTextField();
         nombreUsuario2 = new javax.swing.JLabel();
         txtFechaDespido = new javax.swing.JTextField();
-        lbl_idPersona1 = new javax.swing.JLabel();
         lbl_idPuesto = new javax.swing.JLabel();
+        txtClasificación = new javax.swing.JLabel();
 
         setClosable(true);
         setForeground(java.awt.Color.gray);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Agregar Cliente");
+        setTitle("Agregar Colaborador");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cedula.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
@@ -514,30 +536,10 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         });
         getContentPane().add(cmbHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 200, 40));
 
-        jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 8)); // NOI18N
-        jLabel4.setForeground(java.awt.Color.darkGray);
-        jLabel4.setText("CodigoCliente");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, -1, -1));
-
-        nombreUsuario.setFont(new java.awt.Font("Roboto Black", 1, 8)); // NOI18N
-        nombreUsuario.setForeground(java.awt.Color.darkGray);
-        nombreUsuario.setText("CodigoClasificación");
-        getContentPane().add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, -1, -1));
-
         lbl_idHorario.setFont(new java.awt.Font("Roboto Black", 1, 8)); // NOI18N
-        lbl_idHorario.setForeground(java.awt.Color.darkGray);
+        lbl_idHorario.setForeground(new java.awt.Color(238, 238, 238));
         lbl_idHorario.setText("Horario: ");
         getContentPane().add(lbl_idHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 450, -1, -1));
-
-        lbl_id_persona.setFont(new java.awt.Font("Roboto Black", 1, 8)); // NOI18N
-        lbl_id_persona.setForeground(java.awt.Color.darkGray);
-        lbl_id_persona.setText("lblIdPersona");
-        getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, -1, -1));
-
-        txtClasificación.setFont(new java.awt.Font("Roboto Black", 1, 8)); // NOI18N
-        txtClasificación.setToolTipText("");
-        txtClasificación.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, 20, 40));
 
         nombreUsuario2.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         nombreUsuario2.setForeground(java.awt.Color.darkGray);
@@ -548,35 +550,21 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         txtFechaDespido.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtFechaDespido, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 200, 40));
 
-        lbl_idPersona1.setFont(new java.awt.Font("Roboto Black", 1, 8)); // NOI18N
-        lbl_idPersona1.setForeground(java.awt.Color.darkGray);
-        lbl_idPersona1.setText("jLabel1");
-        getContentPane().add(lbl_idPersona1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, -1, -1));
-
         lbl_idPuesto.setFont(new java.awt.Font("Roboto Black", 1, 8)); // NOI18N
-        lbl_idPuesto.setForeground(java.awt.Color.darkGray);
+        lbl_idPuesto.setForeground(new java.awt.Color(238, 238, 238));
         lbl_idPuesto.setText("Puesto: ");
-        getContentPane().add(lbl_idPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, -1, -1));
+        getContentPane().add(lbl_idPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, -1, -1));
+
+        txtClasificación.setForeground(new java.awt.Color(238, 238, 238));
+        txtClasificación.setText("jLabel1");
+        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Ejecuta el Metodo TipoPersona
     private void cmbTipoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPersonaActionPerformed
-        try {
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-                String tipoPersonaSeleccionada;
-                tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
-            }
-
-        } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
+        TipoPersona();
     }//GEN-LAST:event_cmbTipoPersonaActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
@@ -599,10 +587,31 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
         editar.setEnabled(false);
         borrar.setEnabled(false);
     }//GEN-LAST:event_nuevoActionPerformed
-
+    //Inicio Boton Guardar
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-
-        agregarPersona();
+        String tipoPersonaSeleccionada;
+        tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
+        switch (tipoPersonaSeleccionada) {
+            case "Cliente":
+                this.dispose();
+                JOptionPane.showMessageDialog(this, "Abriremos el Formulario para agregar Clientes");
+                Frm_AgregarCliente agregarCliente = new Frm_AgregarCliente();
+                escritorio.add(agregarCliente);
+                agregarCliente.toFront();
+                agregarCliente.setVisible(true);
+                break;
+            case "Proveedor":
+                this.dispose();
+                JOptionPane.showMessageDialog(this, "Abriremos el Formulario para agregar Proveedores");
+                Frm_Agregar_Proveedor agregar_Proveedor = new Frm_Agregar_Proveedor();
+                escritorio.add(agregar_Proveedor);
+                agregar_Proveedor.toFront();
+                agregar_Proveedor .setVisible(true);
+                break;
+            default:
+                agregarPersona();
+                break;
+        }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
@@ -670,7 +679,7 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
 
     private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtCedulaFocusLost
 
     private void txtPhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyPressed
@@ -683,52 +692,13 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
 //        }
     }//GEN-LAST:event_txtPhoneKeyPressed
 
+
     private void cmbPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPuestoActionPerformed
-        // TODO add your handling code here:
-        lbl_idPuesto.setText("");
-        try {
-            String sqlConsulta_TPuesto = "SELECT "
-                    + "puesto_id, "
-                    + "descripcion_puesto "
-                    + "FROM "
-                    + "pct3.puesto "
-                    + "WHERE "
-                    + "`descripcion_puesto` = '" + cmbPuesto.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPuesto);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString(1);
-                lbl_idPuesto.setText(add1);
-                String tipoPersonaSeleccionada;
-                tipoPersonaSeleccionada = (String) cmbPuesto.getSelectedItem();
-            }
-
-        } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
+        TipoPersona();
     }//GEN-LAST:event_cmbPuestoActionPerformed
 
     private void cmbHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHorarioActionPerformed
-        // TODO add your handling code here:
-        lbl_idHorario.setText("");
-        try {
-            String sqlConsulta_THorario = "SELECT * FROM pct3.horario "
-                    + "WHERE "
-                    + "`descripcion_horario` = '" + cmbHorario.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_THorario);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString(1);
-                lbl_idHorario.setText(add1);
-                String tipoPersonaSeleccionada;
-                tipoPersonaSeleccionada = (String) cmbHorario.getSelectedItem();
-            }
-
-        } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
+        TipoTurno();
     }//GEN-LAST:event_cmbHorarioActionPerformed
 
 
@@ -747,20 +717,16 @@ public class Frm_AgregarColaborador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel direccion1;
     private javax.swing.JButton editar;
     private javax.swing.JButton guardar;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_idHorario;
-    private javax.swing.JLabel lbl_idPersona1;
     private javax.swing.JLabel lbl_idPuesto;
-    private javax.swing.JLabel lbl_id_persona;
     private javax.swing.JLabel nombreApellidos;
-    public static javax.swing.JLabel nombreUsuario;
     public static javax.swing.JLabel nombreUsuario1;
     public static javax.swing.JLabel nombreUsuario2;
     private javax.swing.JButton nuevo;
     private javax.swing.JLabel telefono;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtClasificación;
+    private javax.swing.JLabel txtClasificación;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFechaContrato;
     private javax.swing.JTextField txtFechaDespido;

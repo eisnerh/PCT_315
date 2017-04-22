@@ -24,19 +24,13 @@ public class DBConnection1 {
         Properties props;
         props = new Properties();
         FileInputStream fis1 = null;
-        FileInputStream fis2 = null;
-        FileInputStream fis3 = null;
         Connection con = null;
 
         try {
             File data1 = new File("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
-            File data2 = new File("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
-            File data3 = new File("C:\\Users\\treznor\\Desktop\\nuevo2\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
-            if (!data1.exists()) {
-                
+            if (!data1.exists()) {  
                 System.exit(1);
             } else if (data1.exists()) {
-                
                 fis1 = new FileInputStream("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
                 props.load(fis1);
                 // load the Driver Class
@@ -45,36 +39,6 @@ public class DBConnection1 {
                 con = DriverManager.getConnection(props.getProperty("DB_URL"),
                         props.getProperty("DB_USERNAME"),
                         props.getProperty("DB_PASSWORD"));
-            } else if (!data2.exists()) {
-                
-                System.exit(1);
-            } else if (data2.exists()) {
-                
-                fis2 = new FileInputStream("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
-                props.load(fis2);
-                // load the Driver Class
-                Class.forName(props.getProperty("DB_DRIVER_CLASS"));
-
-                // create the connection now
-                con = DriverManager.getConnection(props.getProperty("DB_URL"),
-                        props.getProperty("DB_USERNAME"),
-                        props.getProperty("DB_PASSWORD"));
-
-            } else if (!data3.exists()) {
-                
-                System.exit(1);
-            } else if (data3.exists()) {
-                
-                fis3 = new FileInputStream("C:\\Users\\treznor\\Desktop\\nuevo2\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
-                props.load(fis3);
-                // load the Driver Class
-                Class.forName(props.getProperty("DB_DRIVER_CLASS"));
-
-                // create the connection now
-                con = DriverManager.getConnection(props.getProperty("DB_URL"),
-                        props.getProperty("DB_USERNAME"),
-                        props.getProperty("DB_PASSWORD"));
-
             }
 
         } catch (IOException | ClassNotFoundException | SQLException e) {

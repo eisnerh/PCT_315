@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import static vista.Frm_AgregarColaborador.modeloTipoPersona;
+import static vista.Frm_Inicio.escritorio;
 
 /**
  *
@@ -54,6 +56,8 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
         txtClasificación.setVisible(false);
         modeloTipo = new DefaultComboBoxModel();
         llena_combo(); // llenar los datos al ejecutar el programa
+        //Busca el ID del tipo de persona.
+        TipoPersona();
     }
     
     public void getNumeroCodigo() {
@@ -74,7 +78,8 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
-    
+    //Llena el JComboBox con los datos almacenados en la BD para Tipo Persona
+    //Inicio del Metodo Llena_Combo
     public final void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
@@ -84,10 +89,51 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloTipo.addElement(rs.getString("desc_persona"));
+                //Se consulta si el tipo de persona corresponde al valor predefinido
+                if (rs.getString("desc_persona").equals("Cliente")) {
+                    modeloTipo.setSelectedItem(rs.getString("desc_persona"));
+                }
             }
             cmbTipoPersona.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
+        }
+    }
+    //Inicio del Metodo Tipo Persona
+    
+    private void TipoPersona()
+    {
+        try {
+            String sqlConsulta_TPersona = "SELECT "
+                    + "`idtipo_persona`, "
+                    + "`desc_persona` "
+                    + "FROM "
+                    + "`tipo_persona` "
+                    + "WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
+            pst = con.prepareStatement(sqlConsulta_TPersona);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String add1 = rs.getString("idtipo_persona");
+                txtClasificación.setText(add1);
+                String tipoPersonaSeleccionada;
+                tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
+                if (tipoPersonaSeleccionada.equals("Cliente")) {
+                    JOptionPane.showMessageDialog(Persona, "Bienvenido", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
+                }
+                if (tipoPersonaSeleccionada.equals("Colaborador")) {
+                    agregarPersona();
+                    JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
+                    
+                }
+                if (tipoPersonaSeleccionada.equals("Proveedor")) {
+                    JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
+                }
+                
+            }
+            
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+            
         }
     }
     
@@ -425,11 +471,7 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
         txtCodigoCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 290, 200, 40));
 
-        try {
-            txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 270, 40));
 
         txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
@@ -439,33 +481,7 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbTipoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPersonaActionPerformed
-        try {
-            String sqlConsulta_TPersona = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-                String tipoPersonaSeleccionada;
-                tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
-                if (tipoPersonaSeleccionada.equals("Cliente")) {
-                    JOptionPane.showMessageDialog(Persona, "Bienvenido", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
-                }
-                if (tipoPersonaSeleccionada.equals("Colaborador")) {
-                    agregarPersona();
-                    JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
-                    
-                }
-                if (tipoPersonaSeleccionada.equals("Proveedor")) {
-                    JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
-                }
-                
-            }
-            
-        } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e);
-            
-        }
+        TipoPersona();
     }//GEN-LAST:event_cmbTipoPersonaActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
@@ -490,7 +506,31 @@ public class Frm_AgregarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-              agregarPersona();
+        //Variable que almacena el tipo de persona
+        String tipoPersonaSeleccionada;
+        tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
+        //Se consulta si es Empleado o Proveedor, si son diferentes abren el form correspondiente
+        switch (tipoPersonaSeleccionada) {
+            case "Empleado":
+                this.dispose();
+                JOptionPane.showMessageDialog(this, "Abriremos el Formulario para agregar Colaborador");
+                Frm_AgregarColaborador agregarColaborador = new Frm_AgregarColaborador();
+                escritorio.add(agregarColaborador);
+                agregarColaborador.toFront();
+                agregarColaborador.setVisible(true);
+                break;
+            case "Proveedor":
+                this.dispose();
+                JOptionPane.showMessageDialog(this, "Abriremos el Formulario para agregar Proveedores");
+                Frm_Agregar_Proveedor agregar_Proveedor = new Frm_Agregar_Proveedor();
+                escritorio.add(agregar_Proveedor);
+                agregar_Proveedor.toFront();
+                agregar_Proveedor .setVisible(true);
+                break;      
+            default:
+                agregarPersona();
+                break;
+        }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed

@@ -99,7 +99,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         Nombre_Empleado.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
         Nombre_Empleado.setForeground(new java.awt.Color(255, 255, 255));
         Nombre_Empleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Nombre_Empleado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        Nombre_Empleado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         escritorio.add(Nombre_Empleado);
         Nombre_Empleado.setBounds(20, 60, 200, 60);
 
@@ -113,7 +113,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         lblPuesto.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
         lblPuesto.setForeground(new java.awt.Color(255, 255, 255));
         lblPuesto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPuesto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        lblPuesto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         escritorio.add(lblPuesto);
         lblPuesto.setBounds(240, 60, 200, 60);
 
@@ -121,6 +121,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         mnusisreserva.setMnemonic('f');
         mnusisreserva.setText("TropiCabinas");
 
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/wallet_64px.png"))); // NOI18N
         jMenuItem11.setText("Gastos Operativos");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +137,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         mnuarchivo.setText("Archivo");
 
         itemAgregarCabina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
-        itemAgregarCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/productos.png"))); // NOI18N
+        itemAgregarCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/1-39-128.png"))); // NOI18N
         itemAgregarCabina.setMnemonic('t');
         itemAgregarCabina.setText("Agregar Cábina");
         itemAgregarCabina.addActionListener(new java.awt.event.ActionListener() {

@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import static vista.Frm_AgregarCliente.modeloTipo;
+import static vista.Frm_Inicio.escritorio;
 
 /**
  *
@@ -37,12 +39,12 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
     String sqlSelect_Valor;
     String sqlInsert;
     String sqlDelete;
-
+    
     private String id_Persona;
 
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipo;
-
+    
     public Frm_Agregar_Proveedor() {
         initComponents();
         con = DBConnection1.getConnection();
@@ -50,12 +52,16 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         sqlSelect_Valor = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE `nombre` = '";
         sqlInsert = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES ('";
         sqlDelete = "DELETE FROM `persona` WHERE `idpersona` = ";
-
+        lbl_idPersona.setVisible(false);
+        lbl_id_persona.setVisible(false);
+        //modelamos el JComboBox con los valores de las tabla tipo Persona.
         modeloTipo = new DefaultComboBoxModel();
-
         llena_combo(); // llenar los datos al ejecutar el programa
+        txtClasificación.setVisible(false);
+        lbl_idPersona.setVisible(false);
+        lbl_id_persona.setVisible(false);
     }
-
+    
     public void getNumeroCodigo() {
         try {
             txtCodigoCliente.setText("");
@@ -75,7 +81,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
-
+    
     public final void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
@@ -85,20 +91,23 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloTipo.addElement(rs.getString("desc_persona"));
-
+                //Se consulta si el tipo de persona corresponde al valor predefinido
+                if (rs.getString("desc_persona").equals("Proveedor")) {
+                    modeloTipo.setSelectedItem(rs.getString("desc_persona"));
+                }
             }
             cmbTipoPersona.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-
+        
     }
-
+    
     private void initState() {
         txtNombre_Apellidos.setEnabled(false);
         txtDireccion.setEnabled(false);
-        txtPhone.setEnabled(false);
+        txtCedula.setEnabled(false);
         txtClasificación.setEnabled(false);
         txtCedula.setEnabled(false);
         cmbTipoPersona.setEnabled(false);
@@ -109,13 +118,14 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         buscar.setEnabled(true);
         editar.setEnabled(false);
         borrar.setEnabled(false);
-
+        
     }
-
+    
     private void agregarPersona() {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
+                this.dispose();
                 if (txtNombre_Apellidos.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -124,7 +134,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Favor ingresa la Direccion", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                if (txtPhone.getText().equals("")) {
+                if (txtCedula.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de Teléfono o Celular ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -136,13 +146,13 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de cédula!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
+                
                 Statement stmt;
                 stmt = con.createStatement();
-
+                
             }
             if (P == 0 || P == 1) {
-                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
+                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtCedula.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
                 String sql2 = "INSERT INTO `pct3`.`proveedor` "
                         + "(`idproveedor`, "
                         + "`desc_proveedor`, "
@@ -154,10 +164,9 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                 pst = con.prepareStatement(sql);
                 pst.execute();
                 int in = JOptionPane.showConfirmDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.YES_OPTION);
-                if(in == 0)
-                {
+                if (in == 0) {
                     pst = con.prepareStatement(sql2);
-                pst.execute();
+                    pst.execute();
                 }
             }
         } catch (HeadlessException | SQLException ex) {
@@ -176,9 +185,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
 
         txtNombre_Apellidos = new javax.swing.JTextField();
         cedula = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        nombreUsuario = new javax.swing.JLabel();
         direccion = new javax.swing.JLabel();
         telefono = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
@@ -186,7 +192,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         txtClasificación = new javax.swing.JTextField();
         nombreApellidos = new javax.swing.JLabel();
         clasificación = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
         Persona = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         nuevo = new javax.swing.JButton();
@@ -198,12 +203,14 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         lbl_id_persona = new javax.swing.JLabel();
         nombreUsuario1 = new javax.swing.JLabel();
         txtCodigoCliente = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JFormattedTextField();
+        txtPhone1 = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setForeground(java.awt.Color.gray);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Agregar Cliente");
+        setTitle("Agregar Proveedor");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -214,25 +221,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         cedula.setForeground(java.awt.Color.darkGray);
         cedula.setText("Cedula");
         getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 82, -1, -1));
-
-        txtCedula.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtCedula.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCedulaFocusLost(evt);
-            }
-        });
-        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 270, 40));
-
-        jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        jLabel4.setForeground(java.awt.Color.darkGray);
-        jLabel4.setText("CodigoCliente");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 343, -1, -1));
-
-        nombreUsuario.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
-        nombreUsuario.setForeground(java.awt.Color.darkGray);
-        nombreUsuario.setText("CodigoClasificación");
-        getContentPane().add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 343, -1, -1));
 
         direccion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         direccion.setForeground(java.awt.Color.darkGray);
@@ -272,15 +260,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         clasificación.setForeground(java.awt.Color.darkGray);
         clasificación.setText("Clasificación");
         getContentPane().add(clasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
-
-        txtPhone.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtPhone.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPhoneKeyPressed(evt);
-            }
-        });
-        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, 40));
 
         Persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Persona.setForeground(java.awt.Color.darkGray);
@@ -378,6 +357,12 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         txtCodigoCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 290, 200, 40));
 
+        txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 220, 40));
+
+        txtPhone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        getContentPane().add(txtPhone1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 220, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -391,25 +376,24 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                 txtClasificación.setText(add1);
                 String tipoPersonaSeleccionada;
                 tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
-
-                if (tipoPersonaSeleccionada.equals("Cliente")) {
-                    
-                    JOptionPane.showMessageDialog(Persona, "Bienvenido", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
-                    
+                switch (tipoPersonaSeleccionada) {
+                    case "Cliente":
+                        JOptionPane.showMessageDialog(Persona, "Bienvenido", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
+                        break;
+                    case "Colaborador":
+                        agregarPersona();
+                        JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
+                        break;
                 }
-                if (tipoPersonaSeleccionada.equals("Colaborador")) {
-                    agregarPersona();
-                    JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
-                }
-                if (tipoPersonaSeleccionada.equals("Proveedor")) {
-                    JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
-                }
-
+                
             }
-
+            
         } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e);
-
+            
         }
     }//GEN-LAST:event_cmbTipoPersonaActionPerformed
 
@@ -417,15 +401,15 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         txtNombre_Apellidos.setEnabled(true);
         txtDireccion.setEnabled(true);
-        txtPhone.setEnabled(true);
+        txtCedula.setEnabled(true);
         txtClasificación.setEnabled(true);
         txtCedula.setEnabled(true);
         cmbTipoPersona.setEnabled(true);
         lbl_idPersona.setText("");
         txtNombre_Apellidos.setText("");
-        txtPhone.setText("");
+        txtCedula.setText("");
         txtClasificación.setText("");
-        txtPhone.setText("");
+        txtCedula.setText("");
         txtNombre_Apellidos.setFocusable(true);
         nuevo.setEnabled(false);
         guardar.setEnabled(true);
@@ -435,7 +419,31 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        agregarPersona();
+        //Variable que almacena el tipo de persona
+        String tipoPersonaSeleccionada;
+        tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
+        //Se consulta si es Empleado o Proveedor, si son diferentes abren el form correspondiente
+        switch (tipoPersonaSeleccionada) {
+            case "Empleado":
+                this.dispose();
+                JOptionPane.showMessageDialog(this, "Abriremos el Formulario para agregar Colaborador");
+                Frm_AgregarColaborador agregarColaborador = new Frm_AgregarColaborador();
+                escritorio.add(agregarColaborador);
+                agregarColaborador.toFront();
+                agregarColaborador.setVisible(true);
+                break;
+            case "Cliente":
+                this.dispose();
+                JOptionPane.showMessageDialog(this, "Abriremos el Formulario para agregar Clientes");
+                Frm_AgregarCliente agregarCliente = new Frm_AgregarCliente();
+                escritorio.add(agregarCliente);
+                agregarCliente.toFront();
+                agregarCliente.setVisible(true);
+                break;
+            default:
+                agregarPersona();
+                break;
+        }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
@@ -444,25 +452,25 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere editar este dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-
+                
                 Statement stmt;
                 stmt = con.createStatement();
-
-                String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtPhone.getText() + "',`direccion`='" + txtPhone.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_idPersona.getText() + "'";
+                
+                String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtCedula.getText() + "',`direccion`='" + txtCedula.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_idPersona.getText() + "'";
                 pst = con.prepareStatement(Pru);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
                 txtNombre_Apellidos.setText("");
-
+                
                 if (P == 1) {
                     txtNombre_Apellidos.setText("");
-
+                    
                 }
             }
-
+            
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-
+            
         }
     }//GEN-LAST:event_editarActionPerformed
 
@@ -481,38 +489,19 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                 initState();
             }
             initState();
-
+            
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_borrarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        // TODO add your handling code here:
-        Buscar_Persona_frm buscar_Persona_frm;
-        try {
-            buscar_Persona_frm = new Buscar_Persona_frm();
-            buscar_Persona_frm.setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(Frm_Agregar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        Frm_BusquedaProveedor1 form;
+        form = new Frm_BusquedaProveedor1();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_buscarActionPerformed
-
-    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
-        // TODO add your handling code here:
-        getNumeroCodigo();
-    }//GEN-LAST:event_txtCedulaFocusLost
-
-    private void txtPhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyPressed
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isAlphabetic(c) || Character.isUnicodeIdentifierPart(c)) {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Ingresa Solo Números.\n Gracias!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_txtPhoneKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -525,20 +514,18 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel direccion;
     private javax.swing.JButton editar;
     private javax.swing.JButton guardar;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_idPersona;
     private javax.swing.JLabel lbl_id_persona;
     private javax.swing.JLabel nombreApellidos;
-    public static javax.swing.JLabel nombreUsuario;
     public static javax.swing.JLabel nombreUsuario1;
     private javax.swing.JButton nuevo;
     private javax.swing.JLabel telefono;
-    private javax.swing.JTextField txtCedula;
+    private javax.swing.JFormattedTextField txtCedula;
     private javax.swing.JTextField txtClasificación;
     private javax.swing.JTextField txtCodigoCliente;
     private javax.swing.JTextField txtDireccion;
     public static javax.swing.JTextField txtNombre_Apellidos;
-    private javax.swing.JTextField txtPhone;
+    private javax.swing.JFormattedTextField txtPhone1;
     // End of variables declaration//GEN-END:variables
 }

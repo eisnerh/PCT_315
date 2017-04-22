@@ -7,18 +7,18 @@ package vista;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.formularios.Form_Productos;
+import modelo.formularios.Form_Proveedor;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Frm_BusquedaProveedor extends javax.swing.JInternalFrame {
+public class Frm_BusquedaProveedor1 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmBusquedaClientes
      */
-    public Frm_BusquedaProveedor() {
+    public Frm_BusquedaProveedor1() {
         initComponents();
         
         mostrar("");
@@ -27,7 +27,7 @@ public class Frm_BusquedaProveedor extends javax.swing.JInternalFrame {
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            Form_Productos func = new Form_Productos();
+            Form_Proveedor func = new Form_Proveedor();
             modelo = func.mostrarProveedor(buscar);
             tablalistado.setModel(modelo);
             ocultar_columnas();
@@ -60,7 +60,7 @@ public class Frm_BusquedaProveedor extends javax.swing.JInternalFrame {
         btnbuscar = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setTitle("Busqueda de Clientes");
+        setTitle("Busqueda de Proveedores");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Clientes"));

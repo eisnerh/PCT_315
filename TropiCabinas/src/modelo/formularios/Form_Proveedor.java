@@ -11,19 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.contructor.Modelo_Gastos;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Form_Gastos {
+public class Form_Proveedor {
 
-    // Se crea un array de botones
     // Se agrega un indice para prueba del nombre, aunque debería leer el nombre de la cabina.
     private final DBConnection1 myLink = new DBConnection1();
     private final Connection conexion = DBConnection1.getConnection();
@@ -32,37 +28,33 @@ public class Form_Gastos {
     ResultSet rs = null;
     PreparedStatement pst = null;
 
-    public DefaultTableModel todosGastos(String buscar) {
+    public DefaultTableModel mostrarProveedor(String buscar) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
-        String[] columnas = {
-            "ID Gastos", 
-            "Tipo Gastos", 
-            "Monto Gastos", 
-            "Fecha Gasto", 
-            "N° Factura", 
-            "Nombre Colaborador"
-        };
+        String[] columnas = {"ID Proveedor", "Nombre Proveedor", "Contacto", 
+        "Cédula", "Teléfono", "Tipo Persona"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
-        String[] registro = new String[6];
+        String[] registro = new String[7];
 
         totalRegistros = 0;
 
         tableModel = new DefaultTableModel(null, columnas);
         querySQL = "SELECT "
-                + "gasto_operativo.gasto_id, "
-                + "gasto_operativo.tipo_gasto, "
-                + "gasto_operativo.monto_gasto, "
-                + "gasto_operativo.fecha_gasto, "
-                + "gasto_operativo.factura_gasto, "
-                + "persona.nombre "
+                + "proveedor.idproveedor AS 'ID Proveedor', "
+                + "proveedor.desc_proveedor AS 'Nombre Proveedor', "
+                + "persona.nombre AS 'Nombre Contacto', "
+                + "persona.cedula AS 'Cédula', "
+                + "persona.telefono AS 'Teléfono', "
+                + "persona.direccion AS 'Dirección', "
+                + "tipo_persona.desc_persona AS 'Tipo Persona' "
                 + "FROM "
-                + "pct3.gasto_operativo "
+                + "proveedor "
                 + "INNER JOIN "
-                + "colaborador ON gasto_operativo.colaborador_empleado_id = colaborador.empleado_id "
+                + "persona ON proveedor.persona_idpersona = persona.idpersona "
                 + "INNER JOIN "
-                + "persona ON colaborador.persona_idpersona = persona.idpersona "
-                + "where gasto_operativo.factura_gasto like '%" + buscar + "%'";
+                + "tipo_persona ON persona.tipo_persona_idtipo_persona = tipo_persona.idtipo_persona "
+                + "WHERE "
+                + "proveedor.desc_proveedor LIKE '%" + buscar + "%'";
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
@@ -74,7 +66,7 @@ public class Form_Gastos {
                 registro[3] = rs.getString(4);
                 registro[4] = rs.getString(5);
                 registro[5] = rs.getString(6);
-                
+                registro[6] = rs.getString(7);
                 totalRegistros++;
                 tableModel.addRow(registro);
             }
@@ -85,28 +77,4 @@ public class Form_Gastos {
         }
 
     }
-
-    public void todosGastos(Modelo_Gastos gastos) {
-        try {
-            querySQL = "SELECT `gasto_operativo`.`gasto_id`, "
-                    + "`gasto_operativo`.`tipo_gasto`, "
-                    + "`gasto_operativo`.`monto_gasto`, "
-                    + "`gasto_operativo`.`fecha_gasto`, "
-                    + "`gasto_operativo`.`factura_gasto`, "
-                    + "`gasto_operativo`.`colaborador_empleado_id` "
-                    + "FROM `pct3`.`gasto_operativo` "
-                    + "WHERE `gasto_operativo`.`gasto_id` = 1";
-
-            PreparedStatement ps;
-            ps = conexion.prepareStatement(querySQL);
-            if (rs.next()) {
-                ps.setString(1, gastos.getGastoID());
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_Gastos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
 }

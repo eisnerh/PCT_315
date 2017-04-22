@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.contructor.Modelo_Cabina;
 import modelo.contructor.Modelo_Productos;
 
 /**
