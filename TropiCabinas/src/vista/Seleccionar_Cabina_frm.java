@@ -492,7 +492,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                 agregarCabinas.add(btn);
 
                 if (rs.getString(2).equals("Doble")) {
-                    btn.setBackground(Color.BLUE);
+                    btn.setBackground(Color.green);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/queen.png"))); // NOI18N
 
                 }
@@ -594,7 +594,7 @@ public class Seleccionar_Cabina_frm extends javax.swing.JInternalFrame {
                 agregarCabinas.add(btn);
 
                 if (rs.getString(2).equals("Doble")) {
-                    btn.setBackground(Color.BLUE);
+                    btn.setBackground(Color.green);
                     btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/queen.png"))); // NOI18N
                     btn.addActionListener(new Seleccionar_Cabina_frm.ActionListener() {
 
