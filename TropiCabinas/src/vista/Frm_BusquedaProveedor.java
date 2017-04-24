@@ -7,7 +7,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.formularios.Form_Productos;
+import modelo.formularios.Interfaz_Productos;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Frm_BusquedaProveedor extends javax.swing.JInternalFrame {
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            Form_Productos func = new Form_Productos();
+            Interfaz_Productos func = new Interfaz_Productos();
             modelo = func.mostrarProveedor(buscar);
             tablalistado.setModel(modelo);
             ocultar_columnas();
@@ -169,8 +169,8 @@ public class Frm_BusquedaProveedor extends javax.swing.JInternalFrame {
             cod=tablalistado.getValueAt(fila, 0).toString();
             valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
             nombre=tablalistado.getValueAt(fila, 1).toString();
-            Frm_AgregarProductos.nombreProveedor.setText(nombre);
-            Frm_AgregarProductos.idProveedor.setText(cod);
+            Frm_Agregar_Productos.nombreProveedor.setText(nombre);
+            Frm_Agregar_Productos.idProveedor.setText(cod);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed

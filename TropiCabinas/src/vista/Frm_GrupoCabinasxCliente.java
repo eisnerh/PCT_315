@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection1;
+import controlador.dbConnection;
 import java.io.File;
 import java.sql.Connection;
 import java.text.Format;
@@ -35,7 +35,7 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
     
     public Frm_GrupoCabinasxCliente() {
         initComponents();
-        con = DBConnection1.getConnection();
+        con = dbConnection.getConnection();
         
     }
 

@@ -3,7 +3,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[Select cliente_empresa.codigo_cliente, if (cliente_empresa.estado_cliente = 0, "Activo", "Betado") as estado, persona.nombre, persona.cedula from cliente_empresa inner join persona on  cliente_empresa.persona_idpersona = persona.idpersona;]]>
 	</queryString>
 	<field name="codigo_cliente" class="java.lang.String">
@@ -16,6 +16,7 @@
 	<field name="cedula" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<sortField name="estado"/>
 	<group name="estado">
 		<groupExpression><![CDATA[$F{estado}]]></groupExpression>
 		<groupHeader>
@@ -55,14 +56,14 @@
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Clientes x Estado]]></text>
+					<text><![CDATA[Cábinas el Trópico]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="897c7a78-c8b2-479f-b311-697c8546e2da"/>
+					<reportElement x="395" y="43" width="180" height="38" forecolor="#FFFFFF" uuid="897c7a78-c8b2-479f-b311-697c8546e2da"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Add a description here]]></text>
+					<text><![CDATA[Estados de los Clientes Actuales]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -80,21 +81,21 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[codigo_cliente]]></text>
+				<text><![CDATA[Código del Cliente	]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="185" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="cea2d12a-2f39-404f-b0be-fe7a2493b473"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[nombre]]></text>
+				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="370" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c3be0766-735d-4a28-9c55-fd6e58d43f39"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[cedula]]></text>
+				<text><![CDATA[Cédula]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

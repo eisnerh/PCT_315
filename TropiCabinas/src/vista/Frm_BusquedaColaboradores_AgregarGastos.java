@@ -7,7 +7,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.formularios.Form_Usuario;
+import modelo.formularios.Interfaz_Usuario;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JIntern
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            Form_Usuario func = new Form_Usuario();
+            Interfaz_Usuario func = new Interfaz_Usuario();
             modelo = func.mostrarColaborador(buscar);
             tablalistado.setModel(modelo);
             lbltotalregistros.setText("Total Registros " + Integer.toString(func.totalregistros));
@@ -161,8 +161,8 @@ public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JIntern
             String nombre;
             cod=tablalistado.getValueAt(fila, 0).toString();
             nombre=tablalistado.getValueAt(fila, 1).toString();
-            Frm_AgregarUsuario.idColaborador.setText(cod);
-            Frm_AgregarUsuario.nombreColaborador.setText(nombre);
+            Frm_Agregar_Usuario.idColaborador.setText(cod);
+            Frm_Agregar_Usuario.nombreColaborador.setText(nombre);
 
             this.dispose();
         }

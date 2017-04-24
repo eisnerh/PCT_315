@@ -14,18 +14,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import modelo.contructor.Modelo_Horario;
-import modelo.formularios.Interfaz_Horario;
+import modelo.contructor.Modelo_TipoPersona;
+import modelo.formularios.Interfaz_TipoPersona;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
-public class Frm_Horario extends javax.swing.JInternalFrame {
+public class Frm_TipoPersona extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Frm_Horario
+     * Creates new form Frm_TipoPersona
      */
     private final dbConnection myLink = new dbConnection();
     private final Connection conexion = dbConnection.getConnection();
@@ -34,32 +34,32 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
     PreparedStatement pst = null;
     public Integer totalregistros;
     //declaración del modelo para Turno u Horario
-    static DefaultComboBoxModel modeloTurno = new DefaultComboBoxModel();
+    //declarar static e instanciarla en tu contructor`
+    static DefaultComboBoxModel modeloTipoPersona;
+    
     public String var1 = "";
 
-    public Frm_Horario() {
+    public Frm_TipoPersona() {
         initComponents();
-        comboTurno();
+        modeloTipoPersona = new DefaultComboBoxModel();
+        comboTipoPersona();
     }
 
-    private void comboTurno() { //para poder llamarlo desde el otro frame o JDialog
+    private void comboTipoPersona() { //para poder llamarlo desde el otro frame o JDialog
         try {
-            modeloTurno.removeAllElements(); // eliminamos lo elementos
+            modeloTipoPersona.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = conexion.createStatement();
-
-            String queryComboTurno = "SELECT "
-                    + "COUNT(*), descripcion_horario AS descripcion "
+            String queryComboTipoPersona = "SELECT DISTINCT "
+                    + "desc_persona "
                     + "FROM "
-                    + "horario "
-                    + "GROUP BY descripcion_horario "
-                    + "ORDER BY descripcion_horario;";
-            rs = stmt.executeQuery(queryComboTurno);
+                    + "pct3.tipo_persona "
+                    + "ORDER BY desc_persona;";
+            rs = stmt.executeQuery(queryComboTipoPersona);
             while (rs.next()) {
-                modeloTurno.addElement(rs.getString("descripcion"));
+                modeloTipoPersona.addElement(rs.getString(1));
             }
-            Combo_turno.setModel(modeloTurno); // seteamos el modelo y se cargan los datos
-
+            comboTipoPersona.setModel(modeloTipoPersona); // seteamos el modelo y se cargan los datos
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
@@ -75,37 +75,27 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtDescripcionHorario = new javax.swing.JTextField();
+        txt_Tipo_Persona = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        Combo_turno = new javax.swing.JComboBox<>();
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        comboTipoPersona = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("Horarios");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
+        btnGuardar.setMaximumSize(new java.awt.Dimension(82, 58));
+        btnGuardar.setMinimumSize(new java.awt.Dimension(82, 58));
+        btnGuardar.setPreferredSize(new java.awt.Dimension(82, 58));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -147,17 +137,17 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("HP Simplified Light", 1, 14)); // NOI18N
-        jLabel1.setText("Turnos:");
+        jLabel1.setText("Tipo Persona");
 
-        txtDescripcionHorario.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        txtDescripcionHorario.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_Tipo_Persona.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        txt_Tipo_Persona.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDescripcionHorarioFocusLost(evt);
+                txt_Tipo_PersonaFocusLost(evt);
             }
         });
-        txtDescripcionHorario.addKeyListener(new java.awt.event.KeyAdapter() {
+        txt_Tipo_Persona.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDescripcionHorarioKeyPressed(evt);
+                txt_Tipo_PersonaKeyPressed(evt);
             }
         });
 
@@ -168,7 +158,7 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDescripcionHorario)
+                    .addComponent(txt_Tipo_Persona)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -180,14 +170,14 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDescripcionHorario, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addComponent(txt_Tipo_Persona, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        Combo_turno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Combo_turno.addActionListener(new java.awt.event.ActionListener() {
+        comboTipoPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboTipoPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Combo_turnoActionPerformed(evt);
+                comboTipoPersonaActionPerformed(evt);
             }
         });
 
@@ -197,14 +187,14 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Combo_turno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboTipoPersona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Combo_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -213,12 +203,12 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +225,76 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDescripcionHorarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionHorarioKeyPressed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
+        try {
+            if (txt_Tipo_Persona.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Favor ingresa un tipo de persona", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Statement stmt;
+            stmt = conexion.createStatement();
+            String sql1 = "SELECT `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + txt_Tipo_Persona.getText() + "'";
+            rs = stmt.executeQuery(sql1);
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Tipo Persona Existente.", "Error", JOptionPane.ERROR_MESSAGE);
+                txt_Tipo_Persona.setText("");
+                return;
+            }
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+        Modelo_TipoPersona dts = new Modelo_TipoPersona();
+        Interfaz_TipoPersona func = new Interfaz_TipoPersona();
+        dts.setDesc_persona(txt_Tipo_Persona.getText());
+        if (func.insertar(dts)) {
+            JOptionPane.showMessageDialog(rootPane, "El tipo de persona creado satisfactoriamente");
+        }
+        txt_Tipo_Persona.setText("");
+        comboTipoPersona();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        initComponents();
+        if (txt_Tipo_Persona.getText().length() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un tipo persona");
+            txt_Tipo_Persona.requestFocus();
+            return;
+        }
+        Modelo_TipoPersona dts = new Modelo_TipoPersona();
+        Interfaz_TipoPersona func = new Interfaz_TipoPersona();
+        dts.setDesc_persona(txt_Tipo_Persona.getText());
+        if (func.editar(dts)) {
+            JOptionPane.showMessageDialog(rootPane, "Tipo de Persona editado satisfactoriamente");
+        }
+        txt_Tipo_Persona.setText("");
+        comboTipoPersona();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+        initComponents();
+        if (!txt_Tipo_Persona.getText().equals("")) {
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el dato?", "Confirmar", JOptionPane.YES_NO_OPTION, 2);
+
+            if (confirmacion == 0) {
+                Modelo_TipoPersona dts = new Modelo_TipoPersona();
+                Interfaz_TipoPersona func = new Interfaz_TipoPersona();
+
+                dts.setDesc_persona(txt_Tipo_Persona.getText());
+                func.eliminar(dts);
+            }
+        }
+        txt_Tipo_Persona.setText("");
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void txt_Tipo_PersonaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_Tipo_PersonaFocusLost
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txt_Tipo_PersonaFocusLost
+
+    private void txt_Tipo_PersonaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_Tipo_PersonaKeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (Character.isDigit(c)) {
@@ -243,134 +302,35 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Ingresa Solo Letras.\n Gracias!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_txtDescripcionHorarioKeyPressed
+    }//GEN-LAST:event_txt_Tipo_PersonaKeyPressed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-        if (txtDescripcionHorario.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un Turno para el Horario");
-            txtDescripcionHorario.requestFocus();
-            return;
-        }
-        try {
-            if (txtDescripcionHorario.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Favor ingresa un turno", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            Statement stmt;
-            stmt = conexion.createStatement();
-
-            String sql1 = "SELECT `descripcion_horario` FROM `horario` WHERE `descripcion_horario` = '" + txtDescripcionHorario.getText() + "'";
-            rs = stmt.executeQuery(sql1);
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "Horario existente.", "Error", JOptionPane.ERROR_MESSAGE);
-                txtDescripcionHorario.setText("");
-                return;
-            }
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-
-        }
-
-        Modelo_Horario dts = new Modelo_Horario();
-        Interfaz_Horario func = new Interfaz_Horario();
-        dts.setDescripcionHorario(txtDescripcionHorario.getText());
-        if (func.insertar(dts)) {
-            JOptionPane.showMessageDialog(rootPane, "el cliente fue registrado satisfactoriamente");
-        }
-        txtDescripcionHorario.setText("");
-        comboTurno();
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-        if (txtDescripcionHorario.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un Turno para el Horario");
-            txtDescripcionHorario.requestFocus();
-            return;
-        }
-        Modelo_Horario dts = new Modelo_Horario();
-        Interfaz_Horario func = new Interfaz_Horario();
-        dts.setDescripcionHorario(txtDescripcionHorario.getText());
-
-        if (func.editar(dts)) {
-            JOptionPane.showMessageDialog(rootPane, "El Horario fue editado satisfactoriamente");
-        }
-        txtDescripcionHorario.setText("");
-
-        comboTurno();
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
-        if (!txtDescripcionHorario.getText().equals("")) {
-            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el dato?", "Confirmar", JOptionPane.YES_NO_OPTION, 2);
-            if (confirmacion == 0) {
-                Modelo_Horario dts = new Modelo_Horario();
-                Interfaz_Horario func = new Interfaz_Horario();
-                dts.setDescripcionHorario(txtDescripcionHorario.getText());
-                func.eliminar(dts);
-            }
-        }
-        txtDescripcionHorario.setText("");
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void Combo_turnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_turnoActionPerformed
+    private void comboTipoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoPersonaActionPerformed
         // TODO add your handling code here:
         try {
-            //SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE 1
-            String sql = "SELECT `horario_id`, `descripcion_horario` FROM `horario` WHERE `descripcion_horario` = '" + Combo_turno.getSelectedItem().toString() + "'";
+            String sql = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` WHERE `desc_persona` = '" + comboTipoPersona.getSelectedItem().toString() + "'";
             pst = conexion.prepareStatement(sql);
             rs = pst.executeQuery();
             if (rs.next()) {
-                String add1 = rs.getString("horario_id");
-                String add2 = rs.getString("descripcion_horario");
-
+                String add1 = rs.getString("idtipo_persona");
+                String add2 = rs.getString("desc_persona");
                 var1 = add1;
-                txtDescripcionHorario.setText(add2);
-
+                txt_Tipo_Persona.setText(add2);
             }
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-
         }
-
-    }//GEN-LAST:event_Combo_turnoActionPerformed
-
-    private void txtDescripcionHorarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionHorarioFocusLost
-        // TODO add your handling code here:
-        try {
-            if (txtDescripcionHorario.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Favor ingresa un turno", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            Statement stmt;
-            stmt = conexion.createStatement();
-
-            String sql1 = "SELECT `descripcion_horario` FROM `horario` WHERE `descripcion_horario` = '" + txtDescripcionHorario.getText() + "'";
-            rs = stmt.executeQuery(sql1);
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "Horario existente.", "Error", JOptionPane.ERROR_MESSAGE);
-                txtDescripcionHorario.setText("");
-            }
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-
-        }
-    }//GEN-LAST:event_txtDescripcionHorarioFocusLost
+    }//GEN-LAST:event_comboTipoPersonaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Combo_turno;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> comboTipoPersona;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField txtDescripcionHorario;
+    private javax.swing.JTextField txt_Tipo_Persona;
     // End of variables declaration//GEN-END:variables
 }

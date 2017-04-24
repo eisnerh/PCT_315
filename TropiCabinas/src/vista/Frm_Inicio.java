@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection1;
+import controlador.dbConnection;
 import java.awt.Component;
 import java.io.File;
 import java.sql.Connection;
@@ -32,7 +32,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     public Frm_Inicio() {
         //inicialización de las variables de la coneccion a la base de datos
-        con = DBConnection1.getConnection();
+        con = dbConnection.getConnection();
         initComponents();
         this.setExtendedState(Frm_Inicio.MAXIMIZED_BOTH);
         this.setTitle("Sistema de Reserva de Cábinas y Gestión - Cábinas el Trópico");
@@ -373,6 +373,10 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     private void itemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAyudaActionPerformed
         // TODO add your handling code here:
+        Frm_BusquedaClientes_Switch form = new Frm_BusquedaClientes_Switch();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_itemAyudaActionPerformed
 
     private void itemAgregarCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAgregarCabinaActionPerformed
@@ -385,7 +389,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     private void itemDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDisponiblesActionPerformed
 
-        Seleccionar_Cabina_frm form = new Seleccionar_Cabina_frm();
+        Frm_Seleccionar_Cabina form = new Frm_Seleccionar_Cabina();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -394,16 +398,16 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
-        Frm_AgregarCliente form;
-        form = new Frm_AgregarCliente();
+        Frm_Agregar_Cliente form;
+        form = new Frm_Agregar_Cliente();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        Frm_AgregarUsuario form;
-        form = new Frm_AgregarUsuario();
+        Frm_Agregar_Usuario form;
+        form = new Frm_Agregar_Usuario();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -434,7 +438,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     private void lista_x_cabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_x_cabinaActionPerformed
         // TODO add your handling code here:
-        Reporte_x_Cabina form = new Reporte_x_Cabina();
+        Frm_Reporte_x_Cabina form = new Frm_Reporte_x_Cabina();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -450,7 +454,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        TipoPersona form = new TipoPersona();
+        Frm_TipoPersona form = new Frm_TipoPersona();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -458,7 +462,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        Frm_AgregarColaborador form = new Frm_AgregarColaborador();
+        Frm_Agregar_Colaborador form = new Frm_Agregar_Colaborador();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -492,7 +496,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        TipoPuesto form = new TipoPuesto();
+        Frm_TipoPuesto form = new Frm_TipoPuesto();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -526,7 +530,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        Frm_AgregarProductos agregarProductos = new Frm_AgregarProductos();
+        Frm_Agregar_Productos agregarProductos = new Frm_Agregar_Productos();
         escritorio.add(agregarProductos);
         agregarProductos.toFront();
         agregarProductos.setVisible(true);

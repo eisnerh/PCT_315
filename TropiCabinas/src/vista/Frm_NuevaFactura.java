@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection1;
+import controlador.dbConnection;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.sql.Connection;
@@ -47,22 +47,37 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     PreparedStatement pst2 = null;
     DateFormat df = DateFormat.getDateInstance();
     public String Valor;
-    private final DBConnection1 myLink = new DBConnection1();
-    private final Connection conexion = DBConnection1.getConnection();
+    private final dbConnection myLink = new dbConnection();
+    private final Connection conexion = dbConnection.getConnection();
 
     public Frm_NuevaFactura() {
         initComponents();
-        con = DBConnection1.getConnection();
-        nCabina.setText(Seleccionar_Cabina_frm.ps_nombreCabina);
-        nombreEmpleado.setText(Login_frm.ps_NombreEmpleado);
-        idEmpleado.setText(Login_frm.ps_idEmpleado);
+        con = dbConnection.getConnection();
+        nCabina.setText(Frm_Seleccionar_Cabina.ps_nombreCabina);
+        nombreEmpleado.setText(Frm_Login.ps_NombreEmpleado);
+        idEmpleado.setText(Frm_Login.ps_idEmpleado);
         //idCabina.setVisible(false);
         fechaActual();
         fechas();
         nuevoNFactura();
         fechaEntrada.setVisible(false);
+        jPanel1.setVisible(false);
     }
 
+    private void obtenerFecha()
+    {
+        Calendar cal;
+        int d, m, a;
+        cal = jDateChooser1.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(jDateChooser1.getDate());
+        fechaEntrada.setText(s);
+        JOptionPane.showMessageDialog(this, s);
+    }
+    
     public void nuevoNFactura() {
         try {
             modeloTurno.removeAllElements(); // eliminamos lo elementos
@@ -133,7 +148,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
         btnBuscarCliente = new javax.swing.JButton();
         nombreEmpleado = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
@@ -251,10 +265,10 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         fechaEntrada.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         fechaEntrada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fechaEntrada.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Entrada"));
-        jPanel4.add(fechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 176, 50));
+        jPanel4.add(fechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 176, 50));
 
         lblCantDias.setText("Cantidad de Días:");
-        jPanel4.add(lblCantDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, 20));
+        jPanel4.add(lblCantDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 20));
 
         CantidadDias.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0"))));
         CantidadDias.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -267,13 +281,13 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 CantidadDiasKeyPressed(evt);
             }
         });
-        jPanel4.add(CantidadDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 176, 30));
+        jPanel4.add(CantidadDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 176, 30));
 
         fechaSalida.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Salida"));
-        jPanel4.add(fechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 176, 50));
+        jPanel4.add(fechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 176, 50));
 
         jLabel1.setText("Precio:");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 176, 28));
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 176, 28));
 
         Precio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0"))));
         Precio.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -281,7 +295,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 PrecioFocusLost(evt);
             }
         });
-        jPanel4.add(Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 170, 28));
+        jPanel4.add(Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 170, 28));
 
         jLabel2.setText("Nombre del Cliente:");
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -292,15 +306,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             }
         });
         jPanel4.add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 270, 30));
-        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 170, 30));
-
-        jButton1.setText("...");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
+        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 30));
 
         btnBuscarCliente.setText("...");
         btnBuscarCliente.setToolTipText("Busqueda del Cliente");
@@ -324,6 +330,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         });
 
         guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book_64px.png"))); // NOI18N
+        guardar.setToolTipText("Imprimir Factura");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
@@ -452,6 +459,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
+        obtenerFecha();
         String queryFacturar = "INSERT INTO `pct3`.`factura_cabina` "
                 + "("
                 + "`cant_dia`, "
@@ -475,8 +483,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                con = DBConnection1.getConnection();
-
+                con = dbConnection.getConnection();
                 if (CantidadDias.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de días a hospedarse ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -485,21 +492,19 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el monto de la cábina ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
                 Statement stmt;
                 stmt = con.createStatement();
-
                 pst = con.prepareStatement(queryFacturar);
                 pst.execute();
-                int Imp = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
-                if (Imp == 0) {
+                
+                
                     if (!numeroFactura.getText().equals("") && !idEmpleado.getText().equals("")) {
                         Map p = new HashMap();
                         p.put("facturaNumero", numeroFactura.getText());
                         p.put("idEmpleado", idEmpleado.getText());
                         JasperReport report;
                         JasperPrint print;
-
+                        
                         try {
                             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
                                     + "/src/vista/reportes/N_Factura.jrxml");
@@ -507,23 +512,21 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                             JasperViewer view = new JasperViewer(print, false);
                             view.setTitle("Reporte por Cábina");
                             view.setVisible(true);
-
+                            
                         } catch (JRException e) {
                             JOptionPane.showMessageDialog(this, e);
                         }
-                    }
-                }
+                    
+                
                 Precio.setText("");
                 CantidadDias.setText("");
 
-                Seleccionar_Cabina_frm cabina_frm = new Seleccionar_Cabina_frm();
+                Frm_Seleccionar_Cabina cabina_frm = new Frm_Seleccionar_Cabina();
                 this.hide();
                 cabina_frm.setVisible(true);
 
                 try {
-                    int op = JOptionPane.showConfirmDialog(null, " Cambiar el estado de la cábina # " + nCabina.getText() + " ?", "Confirmación", JOptionPane.YES_NO_OPTION);
-                    if (op == 0) {
-                        con = DBConnection1.getConnection();
+                        con = dbConnection.getConnection();
                         Statement statement;
                         statement = con.createStatement();
                         String Pru = "UPDATE `pct3`.`cabina` SET `estado_cabina`='Ocupado' WHERE `cabina_id`='" + idCabina.getText() + "'";
@@ -531,18 +534,16 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                         pst.execute();
                         JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
 
-                    }
-
                 } catch (HeadlessException | SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 }
             }
             if (P == 1) {
-                Seleccionar_Cabina_frm cabina_frm = new Seleccionar_Cabina_frm();
+                Frm_Seleccionar_Cabina cabina_frm = new Frm_Seleccionar_Cabina();
                 this.hide();
                 cabina_frm.setVisible(true);
             }
-
+            }
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 
@@ -552,7 +553,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
-        Seleccionar_Cabina_frm sc = new Seleccionar_Cabina_frm();
+        Frm_Seleccionar_Cabina sc = new Frm_Seleccionar_Cabina();
         sc.setVisible(true);
         this.hide();
     }//GEN-LAST:event_volverActionPerformed
@@ -561,20 +562,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_txtNombreClienteKeyPressed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Calendar cal;
-        int d, m, a;
-        cal = jDateChooser1.getCalendar();
-        d = cal.get(Calendar.DAY_OF_MONTH);
-        m = cal.get(Calendar.MONTH);
-        a = cal.get(Calendar.YEAR) - 1900;
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String s = formatter.format(jDateChooser1.getDate());
-        fechaEntrada.setText(s);
-        JOptionPane.showMessageDialog(this, s);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         // TODO add your handling code here:
@@ -596,7 +583,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel idCabina;
     public static javax.swing.JLabel idEmpleado;
     private javax.swing.JLabel impuesto;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

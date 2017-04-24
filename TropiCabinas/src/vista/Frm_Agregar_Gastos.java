@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import modelo.contructor.Modelo_Gastos;
-import modelo.formularios.Form_Gastos;
+import modelo.formularios.Interfaz_Gastos;
 import static vista.Frm_Inicio.escritorio;
 
 /**
@@ -51,7 +51,6 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtFacturaN = new javax.swing.JFormattedTextField();
-        fecha = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Agregar Gastos");
@@ -75,6 +74,11 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
         });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/edit.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/dustbin.png"))); // NOI18N
 
@@ -89,8 +93,6 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
         jLabel4.setText("Número Factura");
 
         txtFacturaN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-
-        fecha.setText("jLabel5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,9 +118,7 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
                                     .addComponent(nombreColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
                                 .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fecha)
-                                    .addComponent(idColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(idColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -148,9 +148,7 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
                     .addComponent(nombreColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(fecha))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTipoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -191,14 +189,21 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
         a = cal.get(Calendar.YEAR) - 1900;
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = formatter.format(fechaGasto.getDate());
-        fecha.setText(s);
+        
         JOptionPane.showMessageDialog(this, s);
         //Fin Fecha
-        Modelo_Gastos dts = new Modelo_Gastos();
-        Form_Gastos func = new Form_Gastos();
+        Modelo_Gastos dts;
+        dts = null;
+        Interfaz_Gastos func;
+        func = null;
+        try {
+            dts = new Modelo_Gastos();
+            func = new Interfaz_Gastos();
+        } catch (Exception e) {
+        }
         dts.setTipo_Gasto(txtTipoGasto.getText());
         dts.setMonto_Gasto(txtMonto.getText());
-        dts.setFecha_Gasto(fecha.getText());
+        dts.setFecha_Gasto(s);
         dts.setFactura_Gasto(txtFacturaN.getText());
         dts.setColaborador_EmpleadoID(idColaborador.getText());
         if (func.insertar(dts)) {
@@ -207,11 +212,14 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarProveedor;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JLabel fecha;
     private com.toedter.calendar.JDateChooser fechaGasto;
     public static javax.swing.JLabel idColaborador;
     private javax.swing.JButton jButton3;

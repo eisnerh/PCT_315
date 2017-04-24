@@ -7,7 +7,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.formularios.Form_Clientes;
+import modelo.formularios.Interfaz_Clientes;
 
 /**
  *
@@ -26,7 +26,7 @@ public class Frm_BusquedaClientes extends javax.swing.JInternalFrame {
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            Form_Clientes func = new Form_Clientes();
+            Interfaz_Clientes func = new Interfaz_Clientes();
             modelo = func.mostrar(buscar);
             tablalistado.setModel(modelo);
             ocultar_columnas();

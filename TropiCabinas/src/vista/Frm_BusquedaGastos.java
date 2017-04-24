@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection1;
+import controlador.dbConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.formularios.Form_Gastos;
+import modelo.formularios.Interfaz_Gastos;
 
 
 /**
@@ -25,8 +25,8 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmBusquedaClientes
      */
-    private final DBConnection1 myLink = new DBConnection1();
-    private final Connection conexion = DBConnection1.getConnection();
+    private final dbConnection myLink = new dbConnection();
+    private final Connection conexion = dbConnection.getConnection();
     private String querySQL = "";
     private String querySQL2 = "";
     public int totalRegistros;
@@ -42,7 +42,7 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            Form_Gastos func = new Form_Gastos();
+            Interfaz_Gastos func = new Interfaz_Gastos();
             modelo = func.todosGastos(buscar);
             tablalistado.setModel(modelo);
             ocultar_columnas();

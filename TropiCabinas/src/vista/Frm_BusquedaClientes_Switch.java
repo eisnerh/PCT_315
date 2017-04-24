@@ -7,28 +7,32 @@ package vista;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.contructor.Modelo_ClienteEmpresa;
+import modelo.contructor.Modelo_Horario;
+import modelo.formularios.Interfaz_ClienteEmpresa;
 import modelo.formularios.Interfaz_Clientes;
+import modelo.formularios.Interfaz_Horario;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
+public class Frm_BusquedaClientes_Switch extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmBusquedaClientes
      */
-    public Frm_BusquedaClientes1() {
+    public Frm_BusquedaClientes_Switch() {
         initComponents();
-        
+
         mostrar("");
     }
-    
+
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
             Interfaz_Clientes func = new Interfaz_Clientes();
-            modelo = func.mostrar(buscar);
+            modelo = func.busquedaClientesBetados(buscar);
             tablalistado.setModel(modelo);
             ocultar_columnas();
             lbltotalregistros.setText("Total Registros " + Integer.toString(func.totalregistros));
@@ -36,7 +40,7 @@ public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
-    
+
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
@@ -60,6 +64,8 @@ public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
         btnbuscar = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
         setTitle("Busqueda de Clientes");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -162,15 +168,23 @@ public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
-            int fila= tablalistado.getSelectedRow();
+            int fila = tablalistado.getSelectedRow();
             String cod;
             String valor;
             String nombre;
-            cod=tablalistado.getValueAt(fila, 0).toString();
-            valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
-            nombre=tablalistado.getValueAt(fila, 1).toString();
-            Frm_GrupoCabinasxCliente.nombreCliente.setText(nombre);
-            Frm_GrupoCabinasxCliente.idCliente.setText(cod);
+            String estado;
+            estado = tablalistado.getValueAt(fila, 4).toString();
+            JOptionPane.showMessageDialog(this, estado);
+            cod = tablalistado.getValueAt(fila, 0).toString();
+            Modelo_ClienteEmpresa dts = new Modelo_ClienteEmpresa();
+            Interfaz_ClienteEmpresa func;
+            func = new Interfaz_ClienteEmpresa();
+            dts.setEmpresa_id(cod);
+
+            if (func.betado(dts)) {
+                JOptionPane.showMessageDialog(rootPane, "El Horario fue editado satisfactoriamente");
+            }
+
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed
