@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import modelo.contructor.Modelo_Persona;
+import modelo.formularios.Interfaz_Persona;
 import static vista.Frm_Inicio.escritorio;
 
 /**
@@ -37,7 +39,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
     String sqlDelete;
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipo;
-    
+
     public Frm_Agregar_Proveedor() {
         initComponents();
         con = dbConnection.getConnection();
@@ -50,7 +52,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         lbl_idPersona.setVisible(false);
         lbl_id_persona.setVisible(false);
     }
-    
+
     public void getNumeroCodigo() {
         try {
             txtCodigoCliente.setText("");
@@ -70,7 +72,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
-    
+
     public final void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
         try {
             modeloTipo.removeAllElements(); // eliminamos lo elementos
@@ -90,9 +92,9 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-        
+
     }
-    
+
     private void initState() {
         txtNombre_Apellidos.setEnabled(false);
         txtDireccion.setEnabled(false);
@@ -107,9 +109,9 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         buscar.setEnabled(true);
         editar.setEnabled(false);
         borrar.setEnabled(false);
-        
+
     }
-    
+
     private void agregarPersona() {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
@@ -135,24 +137,34 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de cédula!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+
                 Statement stmt;
                 stmt = con.createStatement();
-                
+
             }
             if (P == 0 || P == 1) {
-                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtCedula.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
+                Modelo_Persona dts = new Modelo_Persona();
+                Interfaz_Persona func = new Interfaz_Persona();
+                
+                dts.setNombre(txtNombre_Apellidos.getText());
+                dts.setCedula(txtCedula.getText());
+                dts.setTelefono(txtPhone.getText());
+                dts.setDireccion(txtDireccion.getText());
+                dts.setTipo_persona_idtipo_persona(txtClasificación.getText());
+
+                if (func.insertar(dts)) {
+                    JOptionPane.showMessageDialog(this, "hoil");
+                }
+
                 String sql2 = "INSERT INTO `pct3`.`proveedor` "
-                        + "(`idproveedor`, "
+                        + "("
                         + "`desc_proveedor`, "
                         + "`persona_idpersona`) "
                         + "VALUES "
-                        + "(null, "
+                        + "("
                         + "'" + txtCodigoCliente.getText() + "', "
                         + "(SELECT max(idpersona) FROM pct3.persona))";
-                pst = con.prepareStatement(sql);
-                pst.execute();
-                int in = JOptionPane.showConfirmDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.YES_OPTION);
+                int in = JOptionPane.showConfirmDialog(this, "Guardado con Exito saved", "Proveedor", JOptionPane.YES_OPTION);
                 if (in == 0) {
                     pst = con.prepareStatement(sql2);
                     pst.execute();
@@ -193,7 +205,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         nombreUsuario1 = new javax.swing.JLabel();
         txtCodigoCliente = new javax.swing.JTextField();
         txtCedula = new javax.swing.JFormattedTextField();
-        txtPhone1 = new javax.swing.JFormattedTextField();
+        txtPhone = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setForeground(java.awt.Color.gray);
@@ -349,8 +361,8 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 220, 40));
 
-        txtPhone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        getContentPane().add(txtPhone1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 220, 40));
+        txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 220, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -377,12 +389,12 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(Persona, "Tipo Persona", tipoPersonaSeleccionada, JOptionPane.WARNING_MESSAGE);
                         break;
                 }
-                
+
             }
-            
+
         } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e);
-            
+
         }
     }//GEN-LAST:event_cmbTipoPersonaActionPerformed
 
@@ -441,25 +453,21 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere editar este dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                
                 Statement stmt;
                 stmt = con.createStatement();
-                
                 String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtCedula.getText() + "',`direccion`='" + txtCedula.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_idPersona.getText() + "'";
                 pst = con.prepareStatement(Pru);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
                 txtNombre_Apellidos.setText("");
-                
+
                 if (P == 1) {
                     txtNombre_Apellidos.setText("");
-                    
                 }
             }
-            
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-            
+
         }
     }//GEN-LAST:event_editarActionPerformed
 
@@ -468,7 +476,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         try {
             int P = JOptionPane.showConfirmDialog(null, " Seguro que quiere eliminar ?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-
                 //DELETE FROM `Horario_frm` WHERE `horario_id` = 4
                 String sql = sqlDelete + lbl_idPersona.getText() + "";
                 //String sql =
@@ -478,7 +485,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                 initState();
             }
             initState();
-            
+
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
@@ -515,6 +522,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCodigoCliente;
     private javax.swing.JTextField txtDireccion;
     public static javax.swing.JTextField txtNombre_Apellidos;
-    private javax.swing.JFormattedTextField txtPhone1;
+    private javax.swing.JFormattedTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }

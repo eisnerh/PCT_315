@@ -32,7 +32,7 @@ public class Interfaz_Persona {
 
         String[] titulos = {"ID", "Nombre", "Número Cédula", "Teléfono", "Dirección", "Tipo_Persona"};
 
-        String[] registro = new String[10];
+        String[] registro = new String[5];
 
         totalregistros = 0;
         modelo = new DefaultTableModel(null, titulos);
@@ -47,7 +47,7 @@ public class Interfaz_Persona {
                 + "FROM "
                 + "`persona` "
                 + "WHERE "
-                + "`nombre` like % " + buscar +"%";
+                + "`nombre` like % " + buscar + "%";
 
         try {
             Statement st = conexion.createStatement();
@@ -74,34 +74,33 @@ public class Interfaz_Persona {
     }
 
     public boolean insertar(Modelo_Persona dts) {
-        sSQL = "INSERT INTO `persona`("
-                + "`idpersona`, "
+        sSQL = "INSERT INTO `pct3`.`persona` "
+                + "( "
                 + "`nombre`, "
                 + "`cedula`, "
                 + "`telefono`, "
                 + "`direccion`, "
                 + "`tipo_persona_idtipo_persona`) "
-                + "VALUES ("
-                + "null, "
+                + "VALUES "
+                + "( "
                 + "?, "
                 + "?, "
                 + "?, "
                 + "?, "
-                + "?";
+                + "?)";
         try {
             PreparedStatement pst = conexion.prepareStatement(sSQL);
-            pst.setString(1, dts.getIdpersona());
-            pst.setString(2, dts.getNombre());
-            pst.setString(3, dts.getCedula());
-            pst.setString(4, dts.getTelefono());
-            pst.setString(5, dts.getDireccion());
-            pst.setString(6, dts.getTipo_persona_idtipo_persona());
+            pst.setString(1, dts.getNombre());
+            pst.setString(2, dts.getCedula());
+            pst.setString(3, dts.getTelefono());
+            pst.setString(4, dts.getDireccion());
+            pst.setString(5, dts.getTipo_persona_idtipo_persona());
             int n = pst.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
         }
         return false;
-}
+    }
 
     public boolean editar(Modelo_Persona dts) {
         sSQL = "UPDATE `persona` "
@@ -124,7 +123,7 @@ public class Interfaz_Persona {
             pst.setString(6, dts.getTipo_persona_idtipo_persona());
             int n = pst.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showConfirmDialog(null, e);            
+            JOptionPane.showConfirmDialog(null, e);
         }
         return false;
     }
@@ -136,8 +135,8 @@ public class Interfaz_Persona {
         try {
 
             PreparedStatement pst = conexion.prepareStatement(sSQL);
-            PreparedStatement pst2 = conexion.prepareStatement(sSQL2);            
-            pst.setString(1, dts.getIdpersona());    
+            PreparedStatement pst2 = conexion.prepareStatement(sSQL2);
+            pst.setString(1, dts.getIdpersona());
             pst2.setString(1, dts.getIdpersona());
             int n = pst.executeUpdate();
 
