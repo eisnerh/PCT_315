@@ -25,7 +25,6 @@ public class Interfaz_Productos {
     private final dbConnection myLink = new dbConnection();
     private final Connection conexion = dbConnection.getConnection();
     private String querySQL = "";
-    private String querySQL2 = "";
     public int totalRegistros;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -33,9 +32,9 @@ public class Interfaz_Productos {
     public DefaultTableModel mostrarProveedor(String buscar) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
-        String[] columnas = {"ID Proveedor", "Nombre Proveedor", "Contacto"};
+        String[] columnas = {"ID Proveedor", "Nombre Proveedor", "Contacto", "Teléfono"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
-        String[] registro = new String[3];
+        String[] registro = new String[4];
 
         totalRegistros = 0;
 
@@ -43,7 +42,8 @@ public class Interfaz_Productos {
         querySQL = "SELECT "
                 + "proveedor.idproveedor, "
                 + "proveedor.desc_proveedor, "
-                + "persona.nombre "
+                + "persona.nombre, "
+                + "persona.telefono "
                 + "FROM "
                 + "pct3.proveedor "
                 + "INNER JOIN "
@@ -58,7 +58,8 @@ public class Interfaz_Productos {
                 registro[0] = rs.getString(1);
                 registro[1] = rs.getString(2);
                 registro[2] = rs.getString(3);
-                
+                registro[3] = rs.getString(4);
+
                 totalRegistros++;
                 tableModel.addRow(registro);
             }
@@ -70,12 +71,16 @@ public class Interfaz_Productos {
 
     }
 
-    public DefaultTableModel mostrarProductos(String buscar) {
+    public DefaultTableModel mostrarProductos(String buscar, String fecha) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
-        String[] columnas = {"ID Productos", "Nombre Producto", "Nombre Proveedor", "Contacto", "Teléfono"};
+        String[] columnas = {
+            "ID Productos",
+            "Nombre Producto",
+            "Cantidad",
+            "Número Factura"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
-        String[] registro = new String[5];
+        String[] registro = new String[4];
 
         totalRegistros = 0;
 
@@ -83,17 +88,16 @@ public class Interfaz_Productos {
         querySQL = "SELECT "
                 + "productos.idproductos, "
                 + "productos.nombre_producto, "
-                + "proveedor.desc_proveedor, "
-                + "persona.nombre, persona.telefono "
-                + "FROM pct3.productos "
+                + "productos.cantidad, "
+                + "gasto_operativo.factura_gasto "
+                + "FROM "
+                + "pct3.productos "
                 + "INNER JOIN "
-                + "proveedor "
-                + "ON proveedor.idproveedor = productos.proveedor_idproveedor "
-                + "INNER JOIN "
-                + "persona "
-                + "ON proveedor.persona_idpersona = persona.idpersona "
-                + "where "
-                + "productos.nombre_producto like '%" + buscar + "%';";
+                + "pct3.gasto_operativo ON productos.gasto_operativo_gasto_id = gasto_operativo.gasto_id "
+                + "WHERE "
+                + "gasto_operativo.factura_gasto LIKE '%" + buscar + "%' "
+                + "AND gasto_operativo.fecha_gasto LIKE '%" + fecha + "%' "
+                + "ORDER BY nombre_producto";
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
@@ -103,7 +107,7 @@ public class Interfaz_Productos {
                 registro[1] = rs.getString(2);
                 registro[2] = rs.getString(3);
                 registro[3] = rs.getString(4);
-                registro[4] = rs.getString(5);
+
                 totalRegistros++;
                 tableModel.addRow(registro);
             }
@@ -114,25 +118,35 @@ public class Interfaz_Productos {
         }
 
     }
-    
+
     public boolean insertar(Modelo_Productos dts) {
-        querySQL = "INSERT INTO `pct3`.`productos` "+
-"(`nombre_producto`, "+
-"`proveedor_idproveedor`) "+
-"VALUES " +
-"(?, " +
-"?)";
+        querySQL = "INSERT INTO `pct3`.`productos` "
+                + "(`idproductos`, "
+                + "`nombre_producto`, "
+                + "`proveedor_idproveedor`, "
+                + "`cantidad`, "
+                + "`gasto_operativo_gasto_id`) "
+                + "VALUES "
+                + "(?, "
+                + "?, "
+                + "?,"
+                + "?, "
+                + "?)";
+
         try {
 
             PreparedStatement preparedst = conexion.prepareStatement(querySQL);
-            preparedst.setString(1, dts.getNombreProductos());
-            preparedst.setString(2, dts.getProveedor_idProveedor());
+            preparedst.setString(1, dts.getIdProductos());
+            preparedst.setString(2, dts.getNombreProductos());
+            preparedst.setString(3, dts.getProveedor_idProveedor());
+            preparedst.setString(4, dts.getCantidad());
+            preparedst.setString(5, dts.getGasto_operativo_gasto_id());
             int n = preparedst.executeUpdate();
             return n != 0;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Cábina Duplicado", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
-    
+
 }

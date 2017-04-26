@@ -723,7 +723,7 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
         buttonGroup1.add(Vacio);
         Vacio.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Vacio.setForeground(new java.awt.Color(0, 0, 0));
-        Vacio.setText("Libre");
+        Vacio.setText("Facturar");
         Vacio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VacioActionPerformed(evt);

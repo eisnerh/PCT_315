@@ -20,7 +20,6 @@ public class Frm_BusquedaProveedor extends javax.swing.JInternalFrame {
      */
     public Frm_BusquedaProveedor() {
         initComponents();
-        
         mostrar("");
     }
     
@@ -60,10 +59,10 @@ public class Frm_BusquedaProveedor extends javax.swing.JInternalFrame {
         btnbuscar = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setTitle("Busqueda de Clientes");
+        setTitle("Busqueda de Proveedores");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Clientes"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Proveedores"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,7 +169,7 @@ public class Frm_BusquedaProveedor extends javax.swing.JInternalFrame {
             valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
             nombre=tablalistado.getValueAt(fila, 1).toString();
             Frm_Agregar_Productos.nombreProveedor.setText(nombre);
-            Frm_Agregar_Productos.idProveedor.setText(cod);
+            Frm_Agregar_Productos.txtIDProveedor.setText(cod);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed

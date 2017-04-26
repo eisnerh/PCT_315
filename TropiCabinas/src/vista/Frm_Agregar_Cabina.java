@@ -27,7 +27,6 @@ import static vista.Frm_Agregar_Proveedor.modeloTipo;
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
-
     /**
      * Creates new form Frm_Agregar_Cabina
      */
@@ -440,7 +439,7 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
 
     private void estadoCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoCabinaActionPerformed
         // TODO add your handling code here:
-        
+        estadoCabina.setSelectedIndex(1);
         estado_Cabina = (estadoCabina.getSelectedItem().toString());
     }//GEN-LAST:event_estadoCabinaActionPerformed
 

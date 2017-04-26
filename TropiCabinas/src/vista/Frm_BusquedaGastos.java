@@ -91,10 +91,13 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
         lbltotalregistros = new javax.swing.JLabel();
         lbltotalMono = new javax.swing.JLabel();
 
-        setTitle("Busqueda de Clientes");
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("Gastos Diarios");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Clientes"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Gastos"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

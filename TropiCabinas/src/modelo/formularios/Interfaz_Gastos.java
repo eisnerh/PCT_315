@@ -28,7 +28,6 @@ public class Interfaz_Gastos {
     private final dbConnection myLink = new dbConnection();
     private final Connection conexion = dbConnection.getConnection();
     private String querySQL = "";
-    private String querySQL2 = "";
     public int totalRegistros;
     public float montoRegistros;
     ResultSet rs = null;

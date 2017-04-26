@@ -43,9 +43,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    ResultSet rs2 = null;
     PreparedStatement pst2 = null;
-    DateFormat df = DateFormat.getDateInstance();
     public String Valor;
     private final dbConnection myLink = new dbConnection();
     private final Connection conexion = dbConnection.getConnection();
@@ -57,7 +55,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         nombreEmpleado.setText(Frm_Login.ps_NombreEmpleado);
         idEmpleado.setText(Frm_Login.ps_idEmpleado);
         //idCabina.setVisible(false);
-        fechaActual();
         fechas();
         nuevoNFactura();
         fechaEntrada.setVisible(false);
@@ -80,11 +77,14 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     
     public void nuevoNFactura() {
         try {
-            modeloTurno.removeAllElements(); // eliminamos lo elementos
+            
             Statement stmt;
             stmt = conexion.createStatement();
 
-            String qSQL = "SELECT max(factura_cabina.numero_factura)+1 as N_Factura FROM pct3.factura_cabina;";
+            String qSQL = "SELECT "
+                    + "max(factura_cabina.numero_factura)+1 as N_Factura "
+                    + "FROM "
+                    + "pct3.factura_cabina";
 
             rs = stmt.executeQuery(qSQL);
             while (rs.next()) {
@@ -108,16 +108,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         fechaEntrada.setText(Valor);
     }
 
-    public void fechaActual() {
-        Date hoy;
-        hoy = new Date();
-        String date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
-//        jDateChooser1.setDateFormatString(date);
-//        jDateChooser1.setDate(hoy);
-//        Valor = jDateChooser1.getDateFormatString();
-        System.out.println(Valor);
-        fechaEntrada.setText(Valor);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -170,7 +170,7 @@ public class Frm_BusquedaProveedor1 extends javax.swing.JInternalFrame {
             valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
             nombre=tablalistado.getValueAt(fila, 1).toString();
             Frm_Agregar_Productos.nombreProveedor.setText(nombre);
-            Frm_Agregar_Productos.idProveedor.setText(cod);
+            Frm_Agregar_Productos.txtIDProveedor.setText(cod);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed
