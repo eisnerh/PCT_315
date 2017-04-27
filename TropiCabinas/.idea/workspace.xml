@@ -2,7 +2,136 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="265d148b-24dc-4d0d-bcf9-ef036b89505a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/Frm_NuevaFactura.java" afterPath="$PROJECT_DIR$/src/vista/Frm_NuevaFactura.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/built-jar.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/controller/ConexionDB.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/model/fCabina.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/model/fColaborador.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/model/fComboTipoPersona.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/model/fPersona.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/model/form/mColaborador.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Base$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Base.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Base.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Buscar_Persona_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/Cabina_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/SeleccionarCabina_frm$16.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/SeleccionarCabina_frm$17.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/SeleccionarCabina_frm$18.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/SeleccionarCabina_frm$19.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/SeleccionarCabina_frm$2$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/SeleccionarCabina_frm$20.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/SeleccionarCabina_frm$21.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/SeleccionarCabina_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/frmCabina$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Cabinas/frmCabina.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Colaborador_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Factura_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Form_Factura$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Form_Factura$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Form_Factura$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Form_Factura$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Form_Factura$6.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Form_Factura$7.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Form_Factura$8.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Form_Factura.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Gasto_Operativo_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Horario_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Login_frm$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Login_frm$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Login_frm$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Login_frm$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Login_frm$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Login_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$10.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$6.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$7.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$8.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$9.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm$ActionListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/Principal_frm.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/icons/frmCabina$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/icons/frmCabina.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/persona/Agregar_Usuario_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/persona/Persona_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/persona/Puesto_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/persona/Puesto_frm.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/persona/Tipo_Persona_frm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/persona/Tipo_Persona_frm.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/reportes/ReporteCabinas.jasper" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/build/classes/view/reportes/ReporteCabinas.jrxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/CaTrop.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/README.TXT" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/barbecue-1.5-beta1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-anim.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-awt-util.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-bridge.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-css.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-dom.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-ext.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-gvt.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-parser.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-script.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-svg-dom.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-svggen.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-util.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/batik-xml.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/beansbinding-1.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/castor-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/commons-beanutils-1.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/commons-collections-3.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/commons-digester-2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/commons-javaflow-20060411.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/commons-logging-1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/eclipselink.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/groovy-all-1.7.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/jasperreports-5.6.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/jasperreports-fonts-5.6.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/javax.persistence_2.1.0.v201304241213.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/jaxen-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/jcalendar-1.3.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/jpa.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/png-encoder-1.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/xalan.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/xml-apis-ext.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/dist/lib/xml-apis.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/MySQLDriver/mysql-connector-java-5.1.23-bin.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/absolutelayout/AbsoluteLayout.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/commons-beanutils-1.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/commons-collections-3.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/commons-digester-2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/commons-javaflow-20060411.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/commons-logging-1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/groovy-all-1.7.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/jasperreports-5.6.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/jasperreports-fonts-5.6.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/jcalendar-1.3.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/nblibraries.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/lib/png-encoder-1.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/nbproject/build-impl.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/nbproject/genfiles.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/nbproject/private/private.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/nbproject/private/private.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/nbproject/project.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/model/fColaborador.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/model/fPersona.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/model/form/mColaborador.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/view/Base.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/view/Base.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/view/Principal_frm.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/view/Principal_frm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/view/persona/Puesto_frm.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/view/persona/Puesto_frm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/view/persona/Tipo_Persona_frm.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/view/reportes/ReporteCabinas.jasper" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../CaTrop/src/view/reportes/ReporteCabinas.jrxml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,45 +143,37 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Frm_Login.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/Frm_Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="170">
               <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Frm_NuevaFactura.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Frm_NuevaFactura.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/Frm_NuevaFactura.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="357">
+              <caret line="90" column="10" lean-forward="false" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4185#4215#0" expanded="true" />
-                <element signature="e#13314#13484#0" expanded="true" />
-                <element signature="e#13415#13416#0" expanded="false" />
-                <element signature="e#13473#13474#0" expanded="false" />
-                <element signature="e#13483#13484#0" expanded="true" />
-                <element signature="e#13523#13691#0" expanded="true" />
-                <element signature="e#13621#13622#0" expanded="false" />
-                <element signature="e#13680#13681#0" expanded="false" />
-                <element signature="e#13690#13691#0" expanded="true" />
-                <element signature="e#14325#14489#0" expanded="true" />
-                <element signature="e#14426#14427#0" expanded="false" />
-                <element signature="e#14478#14479#0" expanded="false" />
-                <element signature="e#14488#14489#0" expanded="true" />
-                <element signature="e#14876#14877#0" expanded="false" />
-                <element signature="e#14939#14940#0" expanded="false" />
-                <marker date="1493061595390" expanded="true" signature="2709:2790" ph="SELECT max(f... factura_cabina" />
-                <marker date="1493061595390" expanded="true" signature="23072:23153" ph="SELECT max(f... factura_cabina" />
-                <marker date="1493061595390" expanded="true" signature="23880:24751" ph="INSERT INTO `pct3`.`factura_cabina`... " />
-                <marker date="1493061595390" expanded="true" signature="27216:27315" ph="UPDATE `pct3... " />
+                <marker date="1493168077387" expanded="true" signature="2625:2781" ph="SELECT max(f... factura_cabina" />
+                <marker date="1493168077387" expanded="true" signature="22666:22747" ph="SELECT max(f... factura_cabina" />
+                <marker date="1493168077387" expanded="true" signature="23474:24345" ph="INSERT INTO `pct3`.`factura_cabina`... " />
+                <marker date="1493168077387" expanded="true" signature="26810:26909" ph="UPDATE `pct3... " />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Frm_Agregar_Cabina.form" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/vista/Frm_Agregar_Cabina.form">
+          <provider selected="true" editor-type-id="ui-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -101,6 +222,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -155,15 +278,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modelo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TropiCabinas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TropiCabinas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="nbproject" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -420,6 +559,7 @@
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -589,6 +729,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -653,43 +799,45 @@
       <option name="presentableId" value="Default" />
       <updated>1493059766845</updated>
       <workItem from="1493059839159" duration="1372000" />
+      <workItem from="1493324085627" duration="191000" />
+      <workItem from="1493324865000" duration="112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1372000" />
+    <option name="totallyTimeSpent" value="1675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +853,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/vista/Frm_Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="442">
           <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
           <folding />
         </state>
@@ -713,31 +861,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/Frm_NuevaFactura.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
+        <state relative-caret-position="782">
+          <caret line="46" column="23" lean-forward="false" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1493168077387" expanded="true" signature="2625:2781" ph="SELECT max(f... factura_cabina" />
+            <marker date="1493168077387" expanded="true" signature="22666:22747" ph="SELECT max(f... factura_cabina" />
+            <marker date="1493168077387" expanded="true" signature="23474:24345" ph="INSERT INTO `pct3`.`factura_cabina`... " />
+            <marker date="1493168077387" expanded="true" signature="26810:26909" ph="UPDATE `pct3... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/Frm_Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/Frm_NuevaFactura.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
           <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4185#4215#0" expanded="true" />
-            <element signature="e#13314#13484#0" expanded="true" />
-            <element signature="e#13415#13416#0" expanded="false" />
-            <element signature="e#13473#13474#0" expanded="false" />
-            <element signature="e#13483#13484#0" expanded="true" />
-            <element signature="e#13523#13691#0" expanded="true" />
-            <element signature="e#13621#13622#0" expanded="false" />
-            <element signature="e#13680#13681#0" expanded="false" />
-            <element signature="e#13690#13691#0" expanded="true" />
-            <element signature="e#14325#14489#0" expanded="true" />
-            <element signature="e#14426#14427#0" expanded="false" />
-            <element signature="e#14478#14479#0" expanded="false" />
-            <element signature="e#14488#14489#0" expanded="true" />
-            <element signature="e#14876#14877#0" expanded="false" />
-            <element signature="e#14939#14940#0" expanded="false" />
-            <marker date="1493061595390" expanded="true" signature="2709:2790" ph="SELECT max(f... factura_cabina" />
-            <marker date="1493061595390" expanded="true" signature="23072:23153" ph="SELECT max(f... factura_cabina" />
-            <marker date="1493061595390" expanded="true" signature="23880:24751" ph="INSERT INTO `pct3`.`factura_cabina`... " />
-            <marker date="1493061595390" expanded="true" signature="27216:27315" ph="UPDATE `pct3... " />
+            <marker date="1493168077387" expanded="true" signature="2625:2781" ph="SELECT max(f... factura_cabina" />
+            <marker date="1493168077387" expanded="true" signature="22666:22747" ph="SELECT max(f... factura_cabina" />
+            <marker date="1493168077387" expanded="true" signature="23474:24345" ph="INSERT INTO `pct3`.`factura_cabina`... " />
+            <marker date="1493168077387" expanded="true" signature="26810:26909" ph="UPDATE `pct3... " />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/Frm_Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/Frm_NuevaFactura.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="90" column="10" lean-forward="false" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1493168077387" expanded="true" signature="2625:2781" ph="SELECT max(f... factura_cabina" />
+            <marker date="1493168077387" expanded="true" signature="22666:22747" ph="SELECT max(f... factura_cabina" />
+            <marker date="1493168077387" expanded="true" signature="23474:24345" ph="INSERT INTO `pct3`.`factura_cabina`... " />
+            <marker date="1493168077387" expanded="true" signature="26810:26909" ph="UPDATE `pct3... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/Frm_Agregar_Cabina.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
   </component>
