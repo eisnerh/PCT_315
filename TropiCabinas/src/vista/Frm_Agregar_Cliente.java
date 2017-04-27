@@ -118,7 +118,6 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
             if (rs.next()) {
                 String add1 = rs.getString("idtipo_persona");
                 txtClasificación.setText(add1);
-                
             }
             
         } catch (SQLException | HeadlessException e) {
@@ -140,7 +139,7 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         guardar.setEnabled(false);
         buscar.setEnabled(true);
         editar.setEnabled(false);
-        borrar.setEnabled(false);
+
         
     }
     
@@ -420,7 +419,7 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         guardar.setEnabled(true);
         buscar.setEnabled(false);
         editar.setEnabled(false);
-        borrar.setEnabled(false);
+
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed

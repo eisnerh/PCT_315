@@ -108,8 +108,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         guardar.setEnabled(false);
         buscar.setEnabled(true);
         editar.setEnabled(false);
-        borrar.setEnabled(false);
-
     }
 
     private void agregarPersona() {
@@ -404,7 +402,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         guardar.setEnabled(true);
         buscar.setEnabled(false);
         editar.setEnabled(false);
-        borrar.setEnabled(false);
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed

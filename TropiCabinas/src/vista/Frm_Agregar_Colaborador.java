@@ -7,14 +7,11 @@ package vista;
 
 import controlador.dbConnection;
 import java.awt.HeadlessException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import static vista.Frm_Inicio.escritorio;
@@ -217,8 +214,6 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         guardar.setEnabled(false);
         buscar.setEnabled(true);
         editar.setEnabled(false);
-        borrar.setEnabled(false);
-
     }
     //Metodo para insertar en la Tabla Personas y Colaborador.
     private void agregarPersona() {
@@ -573,7 +568,6 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         guardar.setEnabled(true);
         buscar.setEnabled(false);
         editar.setEnabled(false);
-        borrar.setEnabled(false);
     }//GEN-LAST:event_nuevoActionPerformed
     //Inicio Boton Guardar
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
