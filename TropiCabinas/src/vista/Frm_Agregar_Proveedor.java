@@ -198,7 +198,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         nuevo = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         editar = new javax.swing.JButton();
-        borrar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         lbl_idPersona = new javax.swing.JLabel();
         lbl_id_persona = new javax.swing.JLabel();
@@ -291,14 +290,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
             }
         });
 
-        borrar.setBackground(new java.awt.Color(204, 204, 204));
-        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/dustbin.png"))); // NOI18N
-        borrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borrarActionPerformed(evt);
-            }
-        });
-
         buscar.setBackground(new java.awt.Color(204, 204, 204));
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
         buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -316,9 +307,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                 .addComponent(nuevo)
                 .addGap(18, 18, 18)
                 .addComponent(guardar)
-                .addGap(18, 18, 18)
-                .addComponent(borrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(112, 112, 112)
                 .addComponent(editar)
                 .addGap(24, 24, 24)
                 .addComponent(buscar)
@@ -332,7 +321,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                     .addComponent(buscar)
                     .addComponent(nuevo)
                     .addComponent(guardar)
-                    .addComponent(borrar)
                     .addComponent(editar))
                 .addContainerGap())
         );
@@ -471,26 +459,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_editarActionPerformed
 
-    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
-        // TODO add your handling code here:
-        try {
-            int P = JOptionPane.showConfirmDialog(null, " Seguro que quiere eliminar ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-            if (P == 0) {
-                //DELETE FROM `Horario_frm` WHERE `horario_id` = 4
-                String sql = sqlDelete + lbl_idPersona.getText() + "";
-                //String sql =
-                pst = con.prepareStatement(sql);
-                pst.execute();
-                JOptionPane.showMessageDialog(this, "Successfully deleted", "Record", JOptionPane.INFORMATION_MESSAGE);
-                initState();
-            }
-            initState();
-
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-        }
-    }//GEN-LAST:event_borrarActionPerformed
-
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         Frm_BusquedaProveedor1 form;
         form = new Frm_BusquedaProveedor1();
@@ -502,7 +470,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Persona;
-    private javax.swing.JButton borrar;
     private javax.swing.JButton buscar;
     private javax.swing.JLabel cedula;
     private javax.swing.JLabel clasificación;

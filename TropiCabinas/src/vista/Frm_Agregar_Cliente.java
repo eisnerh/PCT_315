@@ -224,7 +224,6 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         nuevo = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         editar = new javax.swing.JButton();
-        borrar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         lbl_idPersona = new javax.swing.JLabel();
         lbl_id_persona = new javax.swing.JLabel();
@@ -328,14 +327,6 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
             }
         });
 
-        borrar.setBackground(new java.awt.Color(204, 204, 204));
-        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/dustbin.png"))); // NOI18N
-        borrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borrarActionPerformed(evt);
-            }
-        });
-
         buscar.setBackground(new java.awt.Color(204, 204, 204));
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
         buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -354,12 +345,10 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(guardar)
                 .addGap(18, 18, 18)
-                .addComponent(borrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(editar)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(buscar)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +356,6 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(borrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(nuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(guardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -491,25 +479,6 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_editarActionPerformed
 
-    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
-        // TODO add your handling code here:
-        try {
-            int P = JOptionPane.showConfirmDialog(null, " Seguro que quiere eliminar ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-            if (P == 0) {
-                //DELETE FROM `Horario_frm` WHERE `horario_id` = 4
-                String sql = sqlDelete + lbl_idPersona.getText() + "";
-                //String sql =
-                pst = con.prepareStatement(sql);
-                pst.execute();
-                JOptionPane.showMessageDialog(this, "Successfully deleted", "Record", JOptionPane.INFORMATION_MESSAGE);
-                initState();
-            }
-            initState();
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-        }
-    }//GEN-LAST:event_borrarActionPerformed
-
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
         Frm_BusquedaClientes form;
@@ -540,7 +509,6 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Persona;
-    private javax.swing.JButton borrar;
     private javax.swing.JButton buscar;
     private javax.swing.JLabel cedula;
     private javax.swing.JLabel clasificación;

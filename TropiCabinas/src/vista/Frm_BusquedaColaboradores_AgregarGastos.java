@@ -54,10 +54,10 @@ public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JIntern
         lbltotalregistros = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Busqueda de Clientes");
+        setTitle("Busqueda de Colaboradores");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Clientes"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Colaboradores"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

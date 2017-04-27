@@ -158,10 +158,9 @@
                           <Component id="guardar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="editar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="borrar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
@@ -187,10 +186,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="Persona" min="-2" pref="110" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buscar" min="-2" max="-2" attributes="0"/>
-                              <Component id="borrar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="buscar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="clasificación" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -252,19 +248,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="borrar">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icons/CRUD/dustbin.png"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="borrarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buscar">

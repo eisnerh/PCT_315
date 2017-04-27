@@ -47,6 +47,8 @@ public class Frm_Reporte_x_Cabina extends javax.swing.JInternalFrame {
         nombreCabina = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setTitle("Reporte por Cabina");
+
         btnImprimir.setText("Imprimir");
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +89,7 @@ public class Frm_Reporte_x_Cabina extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImprimir)
                     .addComponent(jButton1))
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
