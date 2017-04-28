@@ -695,7 +695,7 @@ public final class Cabina_frm extends javax.swing.JFrame {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
 
         }
