@@ -26,6 +26,58 @@ public class Interfaz_Usuario {
     private String sSQL = "";
     public Integer totalregistros;
 
+    public DefaultTableModel login(String login,String password) {
+        DefaultTableModel modelo;
+
+        String[] titulos = {"usuario", "password", "empleado_id", "nombre","Acceso","tipo_acceso"};
+
+        String[] registro = new String[8];
+
+        totalregistros = 0;
+        modelo = new DefaultTableModel(null, titulos);
+
+        sSQL = "SELECT "
+                + "`usuario`.`usuario`,"
+                + "`usuario`.`password`,"
+                + "`usuario`.`colaborador_empleado_id` AS `empleado_id`,"
+                + "`persona`.`nombre` AS `nombre`,"
+                + "`puesto`.`puesto_id` AS `acceso`,"
+                + "`puesto`.`descripcion_puesto` AS `tipo_acceso`"
+                + "FROM"
+                + "`pct3`.`usuario` AS `usuario`,"
+                + "`pct3`.`colaborador` AS `colaborador`,"
+                + "`pct3`.`persona` AS `persona`,"
+                + "`pct3`.`puesto` AS `puesto`"
+                + "WHERE"
+                + "`usuario`.`colaborador_empleado_id` = `colaborador`.`empleado_id`"
+                + "AND `colaborador`.`persona_idpersona` = `persona`.`idpersona`"
+                + "AND `colaborador`.`puesto_puesto_id` = `puesto`.`puesto_id`"
+                + "AND `usuario`.`usuario` like BINARY '%" + login + "%'"
+                + "AND `usuario`.`password` like BINARY '%" + password + "%'";
+
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while (rs.next()) {
+                registro[0] = rs.getString("usuario");
+                registro[1] = rs.getString("password");
+                registro[2] = rs.getString("empleado_id");
+                registro[3] = rs.getString("nombre");
+                registro[4] = rs.getString("acceso");
+                registro[5] = rs.getString("tipo_acceso");
+                totalregistros = totalregistros + 1;
+                modelo.addRow(registro);
+
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
+
     public DefaultTableModel mostrar(String buscar) {
         DefaultTableModel modelo;
 

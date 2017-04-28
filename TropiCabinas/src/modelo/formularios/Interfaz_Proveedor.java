@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.contructor.Modelo_Persona;
 import modelo.contructor.Modelo_Proveedor;
 
 /**
@@ -34,7 +33,7 @@ public class Interfaz_Proveedor {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
         String[] columnas = {"ID Proveedor", "Nombre Proveedor", "Contacto",
-            "Cédula", "Teléfono", "Tipo Persona"};
+            "C\u00E9dula", "Tel\u00E9fono", "Tipo Persona"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
         String[] registro = new String[7];
 
@@ -45,9 +44,9 @@ public class Interfaz_Proveedor {
                 + "proveedor.idproveedor AS 'ID Proveedor', "
                 + "proveedor.desc_proveedor AS 'Nombre Proveedor', "
                 + "persona.nombre AS 'Nombre Contacto', "
-                + "persona.cedula AS 'Cédula', "
-                + "persona.telefono AS 'Teléfono', "
-                + "persona.direccion AS 'Dirección', "
+                + "persona.cedula AS 'C\u00E9dula', "
+                + "persona.telefono AS 'Tel\u00E9fono', "
+                + "persona.direccion AS 'Direcci\u00F3n', "
                 + "tipo_persona.desc_persona AS 'Tipo Persona' "
                 + "FROM "
                 + "proveedor "
@@ -88,9 +87,9 @@ public class Interfaz_Proveedor {
             "ID Persona",
             "Nombre Proveedor",
             "Contacto",
-            "Cédula",
-            "Teléfono",
-            "Dirección"};
+            "C\u00E9dula",
+            "Tel\u00E9fono",
+            "Direcci\u00F3n"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
         String[] registro = new String[7];
 

@@ -7,17 +7,16 @@ package vista;
 
 import com.sun.glass.events.KeyEvent;
 import controlador.dbConnection;
-import java.awt.HeadlessException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.formularios.Interfaz_Usuario;
 
 /**
  *
@@ -53,9 +52,53 @@ public class Frm_Login extends javax.swing.JFrame {
         con = dbConnection.getConnection();
         //centra la ventana para que se inicie en el centro del escritorio
         this.setLocationRelativeTo(null);
-        //Se carga una imagen para cargar el Login
-        setIconImage(new ImageIcon(getClass().getResource("../Files/Home.png")).getImage());
-        
+    }
+
+    private void mostrar(String login, String password) {
+        try {
+            if (txt_User.getText().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario");
+                txt_User.requestFocus();
+            } else if (txt_Pass.getText().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Ingresar Contrase\u00F1a");
+                txt_Pass.requestFocus();
+            } else {
+            DefaultTableModel modelo;
+            Interfaz_Usuario func = new Interfaz_Usuario();
+            modelo = func.login(login, password);
+            
+
+            if (func.totalregistros > 0) {
+                    Frm_Inicio p = new Frm_Inicio();
+                    p.setVisible(true);
+                    this.dispose();
+                    ps_NombreEmpleado = (modelo.getValueAt(0, 3)).toString();
+                    ps_idEmpleado = (modelo.getValueAt(0, 2)).toString();
+                    ps_descripcion_puesto = (modelo.getValueAt(0, 5)).toString();
+                    Frm_Inicio.Nombre_Empleado.setText(ps_NombreEmpleado);
+                    Frm_Inicio.IdEmpleado.setText(ps_idEmpleado);
+                    Frm_Inicio.lblacceso.setText((modelo.getValueAt(0, 4)).toString());
+                    Frm_Inicio.lblPuesto.setText(ps_descripcion_puesto);
+                    if (Frm_Inicio.lblPuesto.getText().equals("Administrador")) {
+                    } else {
+                        Frm_Inicio.mnuConfiguraciones.setEnabled(false);
+                        Frm_Inicio.mnuHerramientas.setEnabled(false);
+                    }
+                } else {
+                    int opcion = JOptionPane.showConfirmDialog(this, "Usuario o Contrase\u00F1a Incorrecta", "Desea Salir", JOptionPane.YES_NO_OPTION);
+                    if (opcion == 1) { //The ISSUE is here
+                        System.exit(0);
+                    } else {
+                        txt_User.setText("");
+                        txt_Pass.setText("");
+                    }
+                }
+            
+            JOptionPane.showMessageDialog(null, "Total Registros " + Integer.toString(func.totalregistros));
+            }
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(rootPane, e);
+        }
     }
 
     /**
@@ -114,7 +157,7 @@ public class Frm_Login extends javax.swing.JFrame {
                 c1MouseEntered(evt);
             }
         });
-        getContentPane().add(c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
+        getContentPane().add(c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, -1));
 
         lbl_idUsuario.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
         lbl_idUsuario.setText("Usuario:");
@@ -158,7 +201,7 @@ public class Frm_Login extends javax.swing.JFrame {
         // Habilita la tecla enter
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             // Enter was pressed. Your code goes here.
-            executeLogin();
+            mostrar(txt_User.getText(), txt_Pass.getText());
         }
     }//GEN-LAST:event_txt_PassKeyPressed
 
@@ -166,13 +209,13 @@ public class Frm_Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             // Enter was pressed. Your code goes here.
-            executeLogin();
+            mostrar(txt_User.getText(), txt_Pass.getText());
         }
     }//GEN-LAST:event_txt_UserKeyPressed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        executeLogin();
+        mostrar(txt_User.getText(), txt_Pass.getText());
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
@@ -194,137 +237,6 @@ public class Frm_Login extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Frm_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
@@ -345,71 +257,4 @@ public class Frm_Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_Pass;
     private javax.swing.JTextField txt_User;
     // End of variables declaration//GEN-END:variables
-
-    private void executeLogin() {
-        String a = txt_User.getText();
-        String b = String.valueOf(txt_Pass.getPassword());
-        if (a.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Ingresar Usuario");
-            txt_User.requestFocus();
-        } else {
-            if (b.length() == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Ingresar Contraseña");
-                txt_Pass.requestFocus();
-            } else {
-                try {
-                    String str = "SELECT "
-                            + "    `usuario`.`usuario`,"
-                            + "    `usuario`.`password`,"
-                            + "    `usuario`.`colaborador_empleado_id` AS `empleado_id`,"
-                            + "    `persona`.`nombre` AS `nombre`,"
-                            + "    `puesto`.`puesto_id` AS `acceso`,"
-                            + "    `puesto`.`descripcion_puesto` AS `tipo_acceso`"
-                            + "FROM"
-                            + "    `pct3`.`usuario` AS `usuario`,"
-                            + "    `pct3`.`colaborador` AS `colaborador`,"
-                            + "    `pct3`.`persona` AS `persona`,"
-                            + "    `pct3`.`puesto` AS `puesto`"
-                            + "WHERE"
-                            + "		`usuario`.`colaborador_empleado_id` = `colaborador`.`empleado_id`"
-                            + "        AND `colaborador`.`persona_idpersona` = `persona`.`idpersona`"
-                            + "        and `colaborador`.`puesto_puesto_id` = `puesto`.`puesto_id`"
-                            + "        AND `usuario`.`usuario` = BINARY '" + a + "'"
-                            + "        AND `usuario`.`password` = BINARY '" + b + "'";
-                    pst = con.prepareStatement(str);
-                    rs = pst.executeQuery();
-                    if (rs.next()) {
-                        String nombre_persona = rs.getString("nombre");
-                        String id_colaborador = rs.getString("empleado_id");
-                        String acceso = rs.getString("acceso");
-                        ps_NombreEmpleado = rs.getString("nombre");
-                        ps_idEmpleado = rs.getString("empleado_id");
-                        ps_descripcion_puesto = rs.getString(6);
-                        Frm_Inicio p = new Frm_Inicio();
-                        p.setVisible(true);
-                        this.dispose();
-                        Frm_Inicio.Nombre_Empleado.setText(nombre_persona);
-                        Frm_Inicio.IdEmpleado.setText(id_colaborador);
-                        Frm_Inicio.lblacceso.setText(acceso);
-                        Frm_Inicio.lblPuesto.setText(ps_descripcion_puesto);
-                        if (Frm_Inicio.lblPuesto.getText().equals("Administrador")) {
-                        } else {
-                            Frm_Inicio.mnuConfiguraciones.setEnabled(false);
-                            Frm_Inicio.mnuHerramientas.setEnabled(false);
-                        }
-                    } else {
-                        int opcion = JOptionPane.showConfirmDialog(this, "Usuario o Contraseña Incorrecta", "Desea Salir", JOptionPane.YES_NO_OPTION);
-                        if (opcion == 1) { //The ISSUE is here
-                            System.exit(0);
-                        } else {
-                            txt_User.setText("");
-                            txt_Pass.setText("");
-                        }
-                    }
-
-                } catch (SQLException | HeadlessException e) {
-                }
-            }
-        }
-    }
 }
