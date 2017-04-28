@@ -27,8 +27,6 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
      */
     private final dbConnection myLink = new dbConnection();
     private final Connection conexion = dbConnection.getConnection();
-    private String querySQL = "";
-    private String querySQL2 = "";
     public int totalRegistros;
     public float montoRegistros;
     ResultSet rs = null;
@@ -55,9 +53,10 @@ public class Frm_BusquedaGastos extends javax.swing.JInternalFrame {
                     + "WHERE "
                     + "    gasto_operativo.fecha_gasto = CURDATE();";
             Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery(querySQL2);
-            while (rs.next()) {
-                lbltotalMono.setText("Monto Pagado por Gastos ¢ " + rs.getString(1));
+            ResultSet resultSet;
+            resultSet = st.executeQuery(querySQL2);
+            while (resultSet.next()) {
+                lbltotalMono.setText("Monto Pagado por Gastos ¢ " + resultSet.getString(1));
             }
             
             

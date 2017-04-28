@@ -13,22 +13,22 @@ import modelo.formularios.Interfaz_Proveedor;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Frm_BusquedaProveedor1 extends javax.swing.JInternalFrame {
+public class Frm_BusquedaAgregarProveedor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmBusquedaClientes
      */
-    public Frm_BusquedaProveedor1() {
+    public Frm_BusquedaAgregarProveedor() {
         initComponents();
-        
+
         mostrar("");
     }
-    
+
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
             Interfaz_Proveedor func = new Interfaz_Proveedor();
-            modelo = func.mostrarProveedor(buscar);
+            modelo = func.BusquedaAgregarProveedor(buscar);
             tablalistado.setModel(modelo);
             ocultar_columnas();
             lbltotalregistros.setText("Total Registros " + Integer.toString(func.totalRegistros));
@@ -36,11 +36,14 @@ public class Frm_BusquedaProveedor1 extends javax.swing.JInternalFrame {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
-    
+
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
 
     /**
@@ -60,6 +63,9 @@ public class Frm_BusquedaProveedor1 extends javax.swing.JInternalFrame {
         btnbuscar = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setTitle("Busqueda de Proveedores");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -77,9 +83,6 @@ public class Frm_BusquedaProveedor1 extends javax.swing.JInternalFrame {
             }
         ));
         tablalistado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablalistadoMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tablalistadoMousePressed(evt);
             }
@@ -155,22 +158,25 @@ public class Frm_BusquedaProveedor1 extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
-
-    }//GEN-LAST:event_tablalistadoMouseClicked
-
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
-            int fila= tablalistado.getSelectedRow();
-            String cod;
-            String valor;
-            String nombre;
-            cod=tablalistado.getValueAt(fila, 0).toString();
-            valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
-            nombre=tablalistado.getValueAt(fila, 1).toString();
-            Frm_Agregar_Productos.nombreProveedor.setText(nombre);
-            Frm_Agregar_Productos.txtIDProveedor.setText(cod);
+            int fila = tablalistado.getSelectedRow();
+            String idproveedor, idpersona, desc_proveedor, nombre, cedula, telefono, direccion;
+            idproveedor = tablalistado.getValueAt(fila, 0).toString();
+            idpersona = tablalistado.getValueAt(fila, 1).toString();
+            desc_proveedor = tablalistado.getValueAt(fila, 2).toString();
+            nombre = tablalistado.getValueAt(fila, 3).toString();
+            cedula = tablalistado.getValueAt(fila, 4).toString();
+            telefono = tablalistado.getValueAt(fila, 5).toString();
+            direccion = tablalistado.getValueAt(fila, 6).toString();
+            Frm_Agregar_Proveedor.IdProveedor = idproveedor;
+            Frm_Agregar_Proveedor.IdPersona = idpersona;
+            Frm_Agregar_Proveedor.txtCodigoCliente.setText(desc_proveedor);
+            Frm_Agregar_Proveedor.txtNombre_Apellidos.setText(nombre);
+            Frm_Agregar_Proveedor.txtCedula.setText(cedula);
+            Frm_Agregar_Proveedor.txtPhone.setText(telefono);
+            Frm_Agregar_Proveedor.txtDireccion.setText(direccion);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed

@@ -62,7 +62,6 @@ public class Interfaz_Persona {
                 registro[5] = rs.getString("tipo_persona_idtipo_persona");
                 totalregistros = totalregistros + 1;
                 modelo.addRow(registro);
-
             }
             return modelo;
 
@@ -105,23 +104,22 @@ public class Interfaz_Persona {
     public boolean editar(Modelo_Persona dts) {
         sSQL = "UPDATE `persona` "
                 + "SET "
-                + "`nombre`=?,"
-                + "`cedula`=?,"
-                + "`telefono`=?,"
-                + "`direccion`=?,"
-                + "`tipo_persona_idtipo_persona`=? "
+                + "`nombre` = ?, "
+                + "`cedula` = ?, "
+                + "`telefono` = ?,"
+                + "`direccion` = ? "
                 + "WHERE "
                 + "`idpersona` = ?";
         try {
 
             PreparedStatement pst = conexion.prepareStatement(sSQL);
-            pst.setString(1, dts.getIdpersona());
-            pst.setString(2, dts.getNombre());
-            pst.setString(3, dts.getCedula());
-            pst.setString(4, dts.getTelefono());
-            pst.setString(5, dts.getDireccion());
-            pst.setString(6, dts.getTipo_persona_idtipo_persona());
-            int n = pst.executeUpdate();
+            pst.setString(1, dts.getNombre());
+            pst.setString(2, dts.getCedula());
+            pst.setString(3, dts.getTelefono());
+            pst.setString(4, dts.getDireccion());
+            //idpersona
+            pst.setString(5, dts.getIdpersona());
+            pst.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
         }
@@ -153,5 +151,35 @@ public class Interfaz_Persona {
             JOptionPane.showConfirmDialog(null, e);
             return false;
         }
+    }
+
+    public String getNumeroCodigo() {
+        String NumeroCodigo = null;
+        sSQL = "SELECT max(idpersona) as numeroPersona FROM pct3.persona";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                NumeroCodigo = rs.getString(1);
+            }
+            return NumeroCodigo;
+        } catch (SQLException e) {
+        }
+        return null;
+    }
+
+    public String SeleccionarTipoPersona() {
+        String DescripcionPersona = null;
+        sSQL = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` where `desc_persona` = 'Proveedor'";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                DescripcionPersona = rs.getString(1);
+            }
+            return DescripcionPersona;
+        } catch (SQLException e) {
+        }
+        return null;
     }
 }
