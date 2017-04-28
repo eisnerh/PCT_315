@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,38 +24,25 @@ public class dbConnection {
     public static Connection getConnection() {
         Properties props;
         props = new Properties();
-        FileInputStream fis1 = null;
+        FileInputStream fis1;
         Connection con = null;
-
         try {
-<<<<<<< HEAD:TropiCabinas/src/controlador/DBConnection.java
-            File data1 = new File("C:\\Users\\treznor\\Desktop\\NEW\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
-            File data2 = new File("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
-            File data3 = new File("C:\\Users\\treznor\\Desktop\\NEW\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
+            File data1 = new File("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
             if (!data1.exists()) {
-                System.out.println("File 1 doesn't exist");
+                JOptionPane.showMessageDialog(null, "Archivo de propiedades para conexi\u00F3n no existe", "Error",JOptionPane.ERROR_MESSAGE);
                 System.exit(1);
-            } else if (data1.exists()) {
-                System.out.println("File 1 exist");
-                fis1 = new FileInputStream("C:\\Users\\treznor\\Desktop\\NEW\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
-=======
-            File data1 = new File("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
-            if (!data1.exists()) {  
-                System.exit(1);
-            } else if (data1.exists()) {
-                fis1 = new FileInputStream("C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
->>>>>>> develop:TropiCabinas/src/controlador/dbConnection.java
-                props.load(fis1);
-                // load the Driver Class
-                Class.forName(props.getProperty("DB_DRIVER_CLASS"));
-                // create the connection now
-                con = DriverManager.getConnection(props.getProperty("DB_URL"),
-                        props.getProperty("DB_USERNAME"),
-                        props.getProperty("DB_PASSWORD"));
             }
-
-        } catch (IOException | ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
+            else if (data1.exists()) {
+                fis1 = new FileInputStream("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
+                props.load(fis1);
+                //Cargar la Tipo de Controlador
+Class.forName(props.getProperty("DB_DRIVER_CLASS"));
+// Crea la conexión ahora
+con = DriverManager.getConnection(props.getProperty("DB_URL"),
+props.getProperty("DB_USERNAME"),
+props.getProperty("DB_PASSWORD"));
+            }
+        } catch (HeadlessException | IOException | ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return con;
