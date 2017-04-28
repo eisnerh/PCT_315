@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection;
+import controlador.dbConnection;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.contructor.Modelo_Cabina;
-import modelo.formularios.Form_Cabina;
+import modelo.formularios.Interfaz_Cabina;
+import static vista.Frm_Agregar_Proveedor.modeloTipo;
 
 /**
  *
@@ -26,24 +27,20 @@ import modelo.formularios.Form_Cabina;
  * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
-
     /**
      * Creates new form Frm_Agregar_Cabina
      */
-    Connection connection = DBConnection.getConnection();
+    Connection connection = dbConnection.getConnection();
     ResultSet rs = null;
     PreparedStatement pst = null;
     ResultSet rs2 = null;
-    PreparedStatement pst2 = null;
-
-    private String id_Persona;
-    private String estado_Cabina;
+    PreparedStatement pst2 = null; 
+    public String estado_Cabina;
     static DefaultComboBoxModel modeloEstado = new DefaultComboBoxModel();
     static DefaultComboBoxModel modeloTipo = new DefaultComboBoxModel();
     public Frm_Agregar_Cabina() {
         initComponents();
         cabina_di.setVisible(false);
-        
         this.setSize(623, 445);
         comboEstado();
         comboTipoCabina();
@@ -51,7 +48,6 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         estado_Cabina = estadoCabina.getSelectedItem().toString();
         EstadoCabina.setText(estadoCabina.getSelectedItem().toString());
         TipoCabina.setText(tipoCabina.getSelectedItem().toString());
-        
         Get_Data();
     }
     
@@ -66,6 +62,10 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 modeloTipo.addElement(rs.getString("tipoCabina"));
                 txtPrecio.setText(rs.getString("precio"));
+                //Se consulta si el tipo de persona corresponde al valor predefinido
+                if (rs.getString("tipoCabina").equals("Sencilla")) {
+                    modeloTipo.setSelectedItem(rs.getString("tipoCabina"));
+                }
             }
             tipoCabina.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
 
@@ -85,6 +85,10 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             rs = stmt.executeQuery(queryComboEstado);
             while (rs.next()) {
                 modeloEstado.addElement(rs.getString(1));
+                //Se consulta si el tipo de persona corresponde al valor predefinido
+                if (rs.getString(1).equals("Libre")) {
+                    modeloTipo.setSelectedItem(rs.getString(1));
+                }
             }
 
             estadoCabina.setModel(modeloEstado); // seteamos el modelo y se cargan los datos
@@ -97,7 +101,7 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
     public void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            Form_Cabina func = new Form_Cabina();
+            Interfaz_Cabina func = new Interfaz_Cabina();
             modelo = func.mostrarCabina(buscar);
 
             tablaCabina.setModel(modelo);
@@ -163,11 +167,9 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
-        Salir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCabina = new javax.swing.JTable();
@@ -286,16 +288,6 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 5, 1, 1));
 
-        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Salir.png"))); // NOI18N
-        Salir.setText("Salir");
-        Salir.setToolTipText("Nueva Cabina");
-        Salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Salir);
-
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
         btnGuardar.setToolTipText("Guardar Cabina");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -322,15 +314,6 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btnEditar);
-
-        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Salir.png"))); // NOI18N
-        btnVolver.setToolTipText("Eliminar Cabina");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnVolver);
 
         tablaCabina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -454,77 +437,9 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbLibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLibreActionPerformed
-        // TODO add your handling code here:
-
-        if (txtNombreCabina.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un Número de Habitación");
-            txtNombreCabina.requestFocus();
-            return;
-        }
-        if(estado_Cabina.length() == 0)
-        {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
-            estadoCabina.requestFocus();
-            return;
-        }
-
-        if (TipoCabina.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un precio diario para la Habitación Habitación");
-            tipoCabina.requestFocus();
-            return;
-        }
-
-        if (txtPrecio.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una Precio para la Habitación Habitación");
-            txtPrecio.requestFocus();
-            return;
-        }
-
-        Modelo_Cabina dts = new Modelo_Cabina();
-        Form_Cabina func = new Form_Cabina();
-
-        dts.setId_cabina(cabina_di.getText());
-        func.desocupar(dts);
-        JOptionPane.showMessageDialog(rootPane, "El estado actual de la cabina '" + txtNombreCabina.getText() + "' ahora es Libre");
-        mostrar("");
-    }//GEN-LAST:event_cmbLibreActionPerformed
-
-    private void cmbOcupadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOcupadoActionPerformed
-        // TODO add your handling code here:
-        if (txtNombreCabina.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un Número de Habitación");
-            txtNombreCabina.requestFocus();
-            return;
-        }
-        if (estado_Cabina.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
-            estadoCabina.requestFocus();
-            return;
-        }
-
-        if (TipoCabina.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un precio diario para la Habitación Habitación");
-            tipoCabina.requestFocus();
-            return;
-        }
-
-        if (txtPrecio.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una Precio para la Habitación Habitación");
-            txtPrecio.requestFocus();
-            return;
-        }
-        Modelo_Cabina dts = new Modelo_Cabina();
-        Form_Cabina func = new Form_Cabina();
-
-        dts.setId_cabina(cabina_di.getText());
-        func.ocupar(dts);
-        JOptionPane.showMessageDialog(rootPane, "El estado actual de la cabina '" + txtNombreCabina.getText() + "' ahora es 'Ocupado'");
-        mostrar("");
-    }//GEN-LAST:event_cmbOcupadoActionPerformed
-
     private void estadoCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoCabinaActionPerformed
         // TODO add your handling code here:
+        estadoCabina.setSelectedIndex(1);
         estado_Cabina = (estadoCabina.getSelectedItem().toString());
     }//GEN-LAST:event_estadoCabinaActionPerformed
 
@@ -545,13 +460,9 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
                 TipoCabina.setText(add1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AgregarCabina_frm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frm_Agregar_Cabina.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tipoCabinaActionPerformed
-
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_SalirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (txtNombreCabina.getText().length() == 0) {
@@ -578,7 +489,7 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         }
 
         Modelo_Cabina dts = new Modelo_Cabina();
-        Form_Cabina func = new Form_Cabina();
+        Interfaz_Cabina func = new Interfaz_Cabina();
 
         dts.setId_cabina(null);
 
@@ -625,7 +536,7 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             return;
         }
         Modelo_Cabina dts = new Modelo_Cabina();
-        Form_Cabina func = new Form_Cabina();
+        Interfaz_Cabina func = new Interfaz_Cabina();
 
         dts.setId_cabina(null);
 
@@ -645,7 +556,7 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
     private void tablaCabinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCabinaMouseClicked
         // TODO add your handling code here:
         try {
-            connection = DBConnection.getConnection();
+            connection = dbConnection.getConnection();
             int row = tablaCabina.getSelectedRow();
             String tabla_click = tablaCabina.getModel().getValueAt(row, 0).toString();
             String sql = "SELECT * FROM `cabina` WHERE `descripcion_cabina` = '" + tabla_click + "'";
@@ -685,7 +596,13 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
 
-            String sql_persona = "SELECT * FROM `cabina` WHERE `descripcion_cabina` LIKE '%" + Buscar_NombreCabina.getText() + "%'";
+            String sql_persona = "SELECT "
+                    + "* "
+                    + "FROM "
+                    + "`cabina` "
+                    + "WHERE "
+                    + "`descripcion_cabina` LIKE '%" + Buscar_NombreCabina.getText() + "%' "
+                    + "ORDER BY `descripcion_cabina` ASC";
             pst = connection.prepareStatement(sql_persona);
             rs = pst.executeQuery();
             if (rs.next()) {
@@ -710,21 +627,83 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_Buscar_NombreCabinaKeyReleased
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    private void cmbOcupadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOcupadoActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
+        if (txtNombreCabina.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un Número de Habitación");
+            txtNombreCabina.requestFocus();
+            return;
+        }
+        if (estado_Cabina.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
+            estadoCabina.requestFocus();
+            return;
+        }
+
+        if (TipoCabina.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un precio diario para la Habitación Habitación");
+            tipoCabina.requestFocus();
+            return;
+        }
+
+        if (txtPrecio.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una Precio para la Habitación Habitación");
+            txtPrecio.requestFocus();
+            return;
+        }
+        Modelo_Cabina dts = new Modelo_Cabina();
+        Interfaz_Cabina func = new Interfaz_Cabina();
+
+        dts.setId_cabina(cabina_di.getText());
+        func.ocupar(dts);
+        JOptionPane.showMessageDialog(rootPane, "El estado actual de la cabina '" + txtNombreCabina.getText() + "' ahora es 'Ocupado'");
+        mostrar("");
+    }//GEN-LAST:event_cmbOcupadoActionPerformed
+
+    private void cmbLibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLibreActionPerformed
+        // TODO add your handling code here:
+
+        if (txtNombreCabina.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un Número de Habitación");
+            txtNombreCabina.requestFocus();
+            return;
+        }
+        if(estado_Cabina.length() == 0)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una descripción para la Habitación Habitación");
+            estadoCabina.requestFocus();
+            return;
+        }
+
+        if (TipoCabina.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar un precio diario para la Habitación Habitación");
+            tipoCabina.requestFocus();
+            return;
+        }
+
+        if (txtPrecio.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Debes ingresar una Precio para la Habitación Habitación");
+            txtPrecio.requestFocus();
+            return;
+        }
+
+        Modelo_Cabina dts = new Modelo_Cabina();
+        Interfaz_Cabina func = new Interfaz_Cabina();
+
+        dts.setId_cabina(cabina_di.getText());
+        func.desocupar(dts);
+        JOptionPane.showMessageDialog(rootPane, "El estado actual de la cabina '" + txtNombreCabina.getText() + "' ahora es Libre");
+        mostrar("");
+    }//GEN-LAST:event_cmbLibreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Buscar_NombreCabina;
     private javax.swing.JLabel EstadoCabina;
-    private javax.swing.JButton Salir;
     private javax.swing.JLabel TipoCabina;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel cabina_di;
     private javax.swing.JRadioButton cmbLibre;
     private javax.swing.JRadioButton cmbOcupado;

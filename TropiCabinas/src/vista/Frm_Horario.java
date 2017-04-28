@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.DBConnection;
+import controlador.dbConnection;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import modelo.contructor.Modelo_Horario;
-import modelo.formularios.Form_Horario;
+import modelo.formularios.Interfaz_Horario;
 
 /**
  *
@@ -27,8 +27,8 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
     /**
      * Creates new form Frm_Horario
      */
-    private final DBConnection myLink = new DBConnection();
-    private final Connection conexion = DBConnection.getConnection();
+    private final dbConnection myLink = new dbConnection();
+    private final Connection conexion = dbConnection.getConnection();
     private final String sSQL = "";
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -273,7 +273,7 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
         }
 
         Modelo_Horario dts = new Modelo_Horario();
-        Form_Horario func = new Form_Horario();
+        Interfaz_Horario func = new Interfaz_Horario();
         dts.setDescripcionHorario(txtDescripcionHorario.getText());
         if (func.insertar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "el cliente fue registrado satisfactoriamente");
@@ -289,14 +289,12 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
             txtDescripcionHorario.requestFocus();
             return;
         }
-
         Modelo_Horario dts = new Modelo_Horario();
-        Form_Horario func = new Form_Horario();
+        Interfaz_Horario func = new Interfaz_Horario();
         dts.setDescripcionHorario(txtDescripcionHorario.getText());
 
         if (func.editar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "El Horario fue editado satisfactoriamente");
-
         }
         txtDescripcionHorario.setText("");
 
@@ -307,16 +305,12 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (!txtDescripcionHorario.getText().equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el dato?", "Confirmar", JOptionPane.YES_NO_OPTION, 2);
-
             if (confirmacion == 0) {
                 Modelo_Horario dts = new Modelo_Horario();
-                Form_Horario func = new Form_Horario();
-
+                Interfaz_Horario func = new Interfaz_Horario();
                 dts.setDescripcionHorario(txtDescripcionHorario.getText());
                 func.eliminar(dts);
-
             }
-
         }
         txtDescripcionHorario.setText("");
     }//GEN-LAST:event_btnBorrarActionPerformed
