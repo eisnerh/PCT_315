@@ -29,6 +29,7 @@ public class Frm_Reporte_x_Cabina extends javax.swing.JInternalFrame {
      * Creates new form Frm_Reporte_x_Cabina
      */
     Connection con = null;
+
     public Frm_Reporte_x_Cabina() {
         initComponents();
         con = dbConnection.getConnection();
@@ -121,7 +122,6 @@ public class Frm_Reporte_x_Cabina extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImprimir;

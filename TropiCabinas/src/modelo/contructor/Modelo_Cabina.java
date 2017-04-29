@@ -10,6 +10,7 @@ package modelo.contructor;
  * @author ace
  */
 public class Modelo_Cabina {
+
     private String id_cabina;
     private String descripcionCabina;
     private String estado_cabina;
@@ -23,10 +24,9 @@ public class Modelo_Cabina {
         this.precio = precio;
         this.tipo_cabina = tipo_cabina;
     }
-    
-    public Modelo_Cabina()
-    {
-        
+
+    public Modelo_Cabina() {
+
     }
 
     public String getId_cabina() {

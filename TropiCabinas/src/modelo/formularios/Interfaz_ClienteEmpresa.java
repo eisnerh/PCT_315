@@ -32,38 +32,53 @@ public class Interfaz_ClienteEmpresa {
     ResultSet rs = null;
     PreparedStatement pst = null;
 
-    public DefaultTableModel mostrarCabina(String buscar) {
+    public DefaultTableModel mostrarPersonaCliente(String buscar) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
-        String[] columnas = {"descripcion_cabina", "estado_cabina", "precio", "tipo_cabina"};
+        String[] columnas = {
+            "ID Persona",
+            "Nombre Cliente",
+            "Cédula",
+            "Teléfono",
+            "Dirección",
+            "Empresa",
+            "Estado"
+        };
         //creación de un array para definir los registros que se incluiran por medio del codigo
-        String[] registro = new String[4];
+        String[] registro = new String[7];
 
         totalRegistros = 0;
 
         tableModel = new DefaultTableModel(null, columnas);
-        querySQL = "SELECT "
-                + "`descripcion_cabina`, "
-                + "`estado_cabina`, "
-                + "`precio`, "
-                + "`tipo_cabina` "
-                + "FROM "
-                + "`cabina` "
-                + "WHERE "
-                + "`descripcion_cabina` "
-                + "LIKE '%" 
-                + buscar 
-                + "%' "
-                + "ORDER BY `descripcion_cabina`";
+        querySQL = "SELECT \n"
+                + "    persona.idpersona,\n"
+                + "    persona.nombre,\n"
+                + "    persona.cedula,\n"
+                + "    persona.telefono,\n"
+                + "    persona.direccion,\n"
+                + "    cliente_empresa.codigo_cliente,\n"
+                + "    IF(cliente_empresa.estado_cliente = 0,\n"
+                + "        'Activo',\n"
+                + "        'Betado') AS estado\n"
+                + "FROM\n"
+                + "    pct3.persona\n"
+                + "        INNER JOIN\n"
+                + "    pct3.cliente_empresa ON persona.idpersona = cliente_empresa.persona_idpersona\n"
+                + "WHERE\n"
+                + "    nombre LIKE '%" + buscar + "%'\n"
+                + "ORDER BY codigo_cliente";
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
 
             while (rs.next()) {
-                registro[0] = rs.getString("descripcion_cabina");
-                registro[1] = rs.getString("estado_cabina");
-                registro[2] = rs.getString("precio");
-                registro[3] = rs.getString("tipo_cabina");
+                registro[0] = rs.getString("idpersona");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("cedula");
+                registro[3] = rs.getString("telefono");
+                registro[4] = rs.getString("direccion");
+                registro[5] = rs.getString("codigo_cliente");
+                registro[6] = rs.getString("estado");
                 totalRegistros++;
                 tableModel.addRow(registro);
             }
@@ -108,27 +123,21 @@ public class Interfaz_ClienteEmpresa {
         }
     }
 
-    public boolean insertar(Modelo_Cabina dts) {
-        querySQL = "INSERT INTO `cabina`"
-                + "(`cabina_id`, "
-                + "`descripcion_cabina`, "
-                + "`estado_cabina`, "
-                + "`precio`, "
-                + "`tipo_cabina`) "
+    public boolean insertarCliente(Modelo_ClienteEmpresa dts) {
+        querySQL = "INSERT INTO `pct3`.`cliente_empresa`\n"
+                + "( "
+                + "`codigo_cliente`, "
+                + "`estado_cliente`, "
+                + "`persona_idpersona`) "
                 + "VALUES "
-                + "(?, "
+                + "( "
                 + "?, "
-                + "?, "
-                + "?,"
-                + "?)";
+                + "0, "
+                + "(SELECT max(idpersona) FROM pct3.persona))";
         try {
 
             PreparedStatement preparedst = conexion.prepareStatement(querySQL);
-            preparedst.setString(1, dts.getId_cabina());
-            preparedst.setString(2, dts.getDescripcionCabina());
-            preparedst.setString(3, dts.getEstado_cabina());
-            preparedst.setString(4, dts.getPrecio());
-            preparedst.setString(5, dts.getTipo_cabina());
+            preparedst.setString(1, dts.getCodigo_cliente());
 
             int n = preparedst.executeUpdate();
 
@@ -140,15 +149,17 @@ public class Interfaz_ClienteEmpresa {
         }
     }
 
-    public boolean editar(Modelo_Cabina dts) {
-        querySQL = "UPDATE `cabina` SET `descripcion_cabina`= ?,`estado_cabina`= ?,`precio`= ?,`tipo_cabina`= ? WHERE `cabina_id` = ?";
+    public boolean editar(Modelo_ClienteEmpresa dts) {
+        querySQL = "UPDATE `pct3`.`cliente_empresa`\n"
+                + "SET\n"
+                + "`codigo_cliente` = ?,\n"
+                + "WHERE `empresa_id` = ?";
 
         try {
             PreparedStatement preparedST = conexion.prepareStatement(querySQL);
-            preparedST.setString(1, dts.getDescripcionCabina());
-            preparedST.setString(2, dts.getEstado_cabina());
-            preparedST.setString(3, dts.getPrecio());
-            preparedST.setString(4, dts.getTipo_cabina());
+            preparedST.setString(1, dts.getCodigo_cliente());
+
+            preparedST.setString(2, dts.getEmpresa_id());
 
             int n = preparedST.executeUpdate();
 
@@ -170,7 +181,7 @@ public class Interfaz_ClienteEmpresa {
             PreparedStatement preparedST = conexion.prepareStatement(querySQL);
 
             preparedST.setString(1, dts.getId_cabina());
-
+            preparedST.setString(2, dts.getId_cabina());
             int n = preparedST.executeUpdate();
 
             return n != 0;
@@ -238,7 +249,7 @@ public class Interfaz_ClienteEmpresa {
 
     /**
      *
-     * @return 
+     * @return
      */
     public String nuevoCodigo() {
         querySQL = "SELECT "
@@ -274,11 +285,11 @@ public class Interfaz_ClienteEmpresa {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
             while (rs.next()) {
-                Codice = rs.getString(1);   
-            } 
+                Codice = rs.getString(1);
+            }
         } catch (SQLException sqle) {
             JOptionPane.showConfirmDialog(null, sqle);
-            
+
         }
         return false;
     }

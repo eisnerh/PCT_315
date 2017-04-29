@@ -3,23 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package modelo.contructor;
 
 /**
- * 
+ *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
 public class Modelo_Puesto {
-    
+
     private String puesto_id;
     private String descripcion_puesto;
     private String pago_hora_sencilla;
     private String pago_hora_extra;
-    
-    public Modelo_Puesto()
-    {
-        
+
+    public Modelo_Puesto() {
+
     }
 
     public Modelo_Puesto(String puesto_id, String descripcion_puesto, String pago_hora_sencilla, String pago_hora_extra) {
@@ -60,7 +58,5 @@ public class Modelo_Puesto {
     public void setPago_hora_extra(String pago_hora_extra) {
         this.pago_hora_extra = pago_hora_extra;
     }
-    
-    
 
 }

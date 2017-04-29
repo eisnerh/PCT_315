@@ -199,7 +199,6 @@ public class Frm_BusquedaClientes_Switch extends javax.swing.JInternalFrame {
         mostrar(txtbuscar.getText());
     }//GEN-LAST:event_btnbuscarActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;
     private javax.swing.JLabel jLabel9;

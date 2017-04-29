@@ -61,8 +61,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         jPanel1.setVisible(false);
     }
 
-    private void obtenerFecha()
-    {
+    private void obtenerFecha() {
         Calendar cal;
         int d, m, a;
         cal = jDateChooser1.getCalendar();
@@ -74,10 +73,10 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         fechaEntrada.setText(s);
         JOptionPane.showMessageDialog(this, s);
     }
-    
+
     public void nuevoNFactura() {
         try {
-            
+
             Statement stmt;
             stmt = conexion.createStatement();
 
@@ -107,7 +106,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         Valor = date;
         fechaEntrada.setText(Valor);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -486,36 +484,34 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 stmt = con.createStatement();
                 pst = con.prepareStatement(queryFacturar);
                 pst.execute();
-                
-                
-                    if (!numeroFactura.getText().equals("") && !idEmpleado.getText().equals("")) {
-                        Map p = new HashMap();
-                        p.put("facturaNumero", numeroFactura.getText());
-                        p.put("idEmpleado", idEmpleado.getText());
-                        JasperReport report;
-                        JasperPrint print;
-                        
-                        try {
-                            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                                    + "/src/vista/reportes/N_Factura.jrxml");
-                            print = JasperFillManager.fillReport(report, p, con);
-                            JasperViewer view = new JasperViewer(print, false);
-                            view.setTitle("Reporte por Cábina");
-                            view.setVisible(true);
-                            
-                        } catch (JRException e) {
-                            JOptionPane.showMessageDialog(this, e);
-                        }
-                    
-                
-                Precio.setText("");
-                CantidadDias.setText("");
 
-                Frm_Seleccionar_Cabina cabina_frm = new Frm_Seleccionar_Cabina();
-                this.hide();
-                cabina_frm.setVisible(true);
+                if (!numeroFactura.getText().equals("") && !idEmpleado.getText().equals("")) {
+                    Map p = new HashMap();
+                    p.put("facturaNumero", numeroFactura.getText());
+                    p.put("idEmpleado", idEmpleado.getText());
+                    JasperReport report;
+                    JasperPrint print;
 
-                try {
+                    try {
+                        report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                                + "/src/vista/reportes/N_Factura.jrxml");
+                        print = JasperFillManager.fillReport(report, p, con);
+                        JasperViewer view = new JasperViewer(print, false);
+                        view.setTitle("Reporte por Cábina");
+                        view.setVisible(true);
+
+                    } catch (JRException e) {
+                        JOptionPane.showMessageDialog(this, e);
+                    }
+
+                    Precio.setText("");
+                    CantidadDias.setText("");
+
+                    Frm_Seleccionar_Cabina cabina_frm = new Frm_Seleccionar_Cabina();
+                    this.hide();
+                    cabina_frm.setVisible(true);
+
+                    try {
                         con = dbConnection.getConnection();
                         Statement statement;
                         statement = con.createStatement();
@@ -524,15 +520,15 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                         pst.execute();
                         JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
 
-                } catch (HeadlessException | SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
+                    } catch (HeadlessException | SQLException ex) {
+                        JOptionPane.showMessageDialog(null, ex);
+                    }
                 }
-            }
-            if (P == 1) {
-                Frm_Seleccionar_Cabina cabina_frm = new Frm_Seleccionar_Cabina();
-                this.hide();
-                cabina_frm.setVisible(true);
-            }
+                if (P == 1) {
+                    Frm_Seleccionar_Cabina cabina_frm = new Frm_Seleccionar_Cabina();
+                    this.hide();
+                    cabina_frm.setVisible(true);
+                }
             }
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
@@ -550,17 +546,15 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     private void txtNombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteKeyPressed
 
-
     }//GEN-LAST:event_txtNombreClienteKeyPressed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         // TODO add your handling code here:
-        Frm_BusquedaClientes form = new Frm_BusquedaClientes();
+        Frm_BusquedaAgregarClientes form = new Frm_BusquedaAgregarClientes();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField CantidadDias;

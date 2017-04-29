@@ -20,10 +20,10 @@ public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JIntern
      */
     public Frm_BusquedaColaboradores_AgregarGastos() {
         initComponents();
-        
+
         mostrar("");
     }
-    
+
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
@@ -156,11 +156,11 @@ public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JIntern
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
-            int fila= tablalistado.getSelectedRow();
+            int fila = tablalistado.getSelectedRow();
             String cod;
             String nombre;
-            cod=tablalistado.getValueAt(fila, 0).toString();
-            nombre=tablalistado.getValueAt(fila, 1).toString();
+            cod = tablalistado.getValueAt(fila, 0).toString();
+            nombre = tablalistado.getValueAt(fila, 1).toString();
             Frm_Agregar_Usuario.idColaborador.setText(cod);
             Frm_Agregar_Usuario.nombreColaborador.setText(nombre);
 
@@ -177,7 +177,6 @@ public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JIntern
         // TODO add your handling code here:
         mostrar(txtbuscar.getText());
     }//GEN-LAST:event_btnbuscarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;

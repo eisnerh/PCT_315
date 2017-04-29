@@ -38,7 +38,7 @@ public class Interfaz_Factura {
                 + "`factura_cabina`.`numero_factura`"
                 + "FROM `pct3`.`factura_cabina`"
                 + "WHERE "
-                + "`factura_cabina`.`numero_factura` = '"+ Buscar +"'"
+                + "`factura_cabina`.`numero_factura` = '" + Buscar + "'"
                 + "order by `factura_cabina`.`numero_factura`;";
         try {
             Statement st = conexion.createStatement();

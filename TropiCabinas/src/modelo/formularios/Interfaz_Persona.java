@@ -182,4 +182,19 @@ public class Interfaz_Persona {
         }
         return null;
     }
+
+    public String SeleccionarCliente() {
+        String DescripcionPersona = null;
+        sSQL = "SELECT `idtipo_persona`, `desc_persona` FROM `tipo_persona` where `desc_persona` = 'Cliente'";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                DescripcionPersona = rs.getString(1);
+            }
+            return DescripcionPersona;
+        } catch (SQLException e) {
+        }
+        return null;
+    }
 }

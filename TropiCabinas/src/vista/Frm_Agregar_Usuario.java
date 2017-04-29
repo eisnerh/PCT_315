@@ -215,9 +215,8 @@ public class Frm_Agregar_Usuario extends javax.swing.JInternalFrame {
         if (func.editar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "Tipo de Persona editado satisfactoriamente");
         }
-        
-    }//GEN-LAST:event_btnEditarColaboradorActionPerformed
 
+    }//GEN-LAST:event_btnEditarColaboradorActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarColaborador;

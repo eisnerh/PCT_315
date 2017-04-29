@@ -15,11 +15,10 @@ public class Modelo_Proveedor {
     private String desc_proveedor;
     private String persona_idpersona;
 
-    public Modelo_Proveedor()
-    {
-        
+    public Modelo_Proveedor() {
+
     }
-    
+
     public Modelo_Proveedor(String idproveedor, String desc_proveedor, String persona_idpersona) {
         this.idproveedor = idproveedor;
         this.desc_proveedor = desc_proveedor;
@@ -49,6 +48,5 @@ public class Modelo_Proveedor {
     public void setPersona_idpersona(String persona_idpersona) {
         this.persona_idpersona = persona_idpersona;
     }
-    
-    
+
 }

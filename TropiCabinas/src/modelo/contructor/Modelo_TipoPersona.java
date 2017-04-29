@@ -3,25 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package modelo.contructor;
 
 /**
- * 
+ *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class Modelo_TipoPersona {
-    
+
     private int idtipo_persona;
 
     private String desc_persona;
-    
-    public Modelo_TipoPersona()
-    {
-        
+
+    public Modelo_TipoPersona() {
+
     }
-    
-        public Modelo_TipoPersona(int idtipo_persona, String desc_persona) {
+
+    public Modelo_TipoPersona(int idtipo_persona, String desc_persona) {
         this.idtipo_persona = idtipo_persona;
         this.desc_persona = desc_persona;
     }
@@ -41,6 +39,5 @@ public class Modelo_TipoPersona {
     public void setDesc_persona(String desc_persona) {
         this.desc_persona = desc_persona;
     }
-        
 
 }

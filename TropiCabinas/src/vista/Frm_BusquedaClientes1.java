@@ -20,10 +20,10 @@ public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
      */
     public Frm_BusquedaClientes1() {
         initComponents();
-        
+
         mostrar("");
     }
-    
+
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
@@ -36,7 +36,7 @@ public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
-    
+
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
@@ -162,13 +162,13 @@ public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
-            int fila= tablalistado.getSelectedRow();
+            int fila = tablalistado.getSelectedRow();
             String cod;
             String valor;
             String nombre;
-            cod=tablalistado.getValueAt(fila, 0).toString();
-            valor=tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
-            nombre=tablalistado.getValueAt(fila, 1).toString();
+            cod = tablalistado.getValueAt(fila, 0).toString();
+            valor = tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
+            nombre = tablalistado.getValueAt(fila, 1).toString();
             Frm_GrupoCabinasxCliente.nombreCliente.setText(nombre);
             Frm_GrupoCabinasxCliente.idCliente.setText(cod);
             this.dispose();
@@ -184,7 +184,6 @@ public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         mostrar(txtbuscar.getText());
     }//GEN-LAST:event_btnbuscarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;

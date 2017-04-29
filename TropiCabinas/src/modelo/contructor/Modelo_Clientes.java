@@ -3,23 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package modelo.contructor;
 
 /**
- * 
+ *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
 public class Modelo_Clientes {
-    
+
     private String empresa_id;
     private String codigo_cliente;
     private String nombre;
     private String desc_persona;
-    
-    public Modelo_Clientes()
-    {
-        
+
+    public Modelo_Clientes() {
+
     }
 
     public Modelo_Clientes(String empresa_id, String codigo_cliente, String nombre, String desc_persona) {
@@ -60,5 +58,5 @@ public class Modelo_Clientes {
     public void setDesc_persona(String desc_persona) {
         this.desc_persona = desc_persona;
     }
-    
+
 }

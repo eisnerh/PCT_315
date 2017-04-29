@@ -63,12 +63,11 @@ public class Frm_Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Ingresar Contrase\u00F1a");
                 txt_Pass.requestFocus();
             } else {
-            DefaultTableModel modelo;
-            Interfaz_Usuario func = new Interfaz_Usuario();
-            modelo = func.login(login, password);
-            
+                DefaultTableModel modelo;
+                Interfaz_Usuario func = new Interfaz_Usuario();
+                modelo = func.login(login, password);
 
-            if (func.totalregistros > 0) {
+                if (func.totalregistros > 0) {
                     Frm_Inicio p = new Frm_Inicio();
                     p.setVisible(true);
                     this.dispose();

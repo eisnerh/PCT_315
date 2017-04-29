@@ -178,6 +178,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
 
         }
     }
+
     //Inicio metodo TipoPersona
     private void TipoPersona() {
         try {
@@ -215,6 +216,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         buscar.setEnabled(true);
         editar.setEnabled(false);
     }
+
     //Metodo para insertar en la Tabla Personas y Colaborador.
     private void agregarPersona() {
         try {
@@ -588,7 +590,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
                 Frm_Agregar_Proveedor agregar_Proveedor = new Frm_Agregar_Proveedor();
                 escritorio.add(agregar_Proveedor);
                 agregar_Proveedor.toFront();
-                agregar_Proveedor .setVisible(true);
+                agregar_Proveedor.setVisible(true);
                 break;
             default:
                 agregarPersona();
@@ -647,7 +649,6 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
 //        }
     }//GEN-LAST:event_txtPhoneKeyPressed
 
-
     private void cmbPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPuestoActionPerformed
         TipoPersona();
     }//GEN-LAST:event_cmbPuestoActionPerformed
@@ -655,7 +656,6 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
     private void cmbHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHorarioActionPerformed
         TipoTurno();
     }//GEN-LAST:event_cmbHorarioActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Persona;

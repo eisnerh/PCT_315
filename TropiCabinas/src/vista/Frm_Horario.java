@@ -360,7 +360,6 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtDescripcionHorarioFocusLost
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Combo_turno;
     private javax.swing.JButton btnBorrar;

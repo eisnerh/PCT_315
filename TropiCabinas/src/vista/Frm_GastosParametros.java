@@ -29,6 +29,7 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
      * Creates new form Frm_GastosParametros
      */
     Connection con = null;
+
     public Frm_GastosParametros() {
         initComponents();
         con = dbConnection.getConnection();
@@ -112,7 +113,7 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (!Fecha1.getText().equals("")) {
             Map p = new HashMap();
-            
+
             p.put("fecha1", Fecha1.getText());
             p.put("fecha2", Fecha2.getText());
             JasperReport report;
@@ -132,7 +133,6 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnImprimirReporteGastosActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Fecha1;

@@ -74,7 +74,7 @@ public class Interfaz_Puesto {
 
             PreparedStatement ps;
             ps = conexion.prepareStatement(sSQL);
-            
+
             ps.setString(1, dts.getDescripcion_puesto());
             ps.setString(2, dts.getPago_hora_sencilla());
             ps.setString(3, dts.getPago_hora_extra());

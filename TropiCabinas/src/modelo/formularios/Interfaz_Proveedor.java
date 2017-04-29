@@ -165,7 +165,7 @@ public class Interfaz_Proveedor {
             statement.setString(1, dts.getDesc_proveedor());
             //idproveedor
             statement.setString(2, dts.getIdproveedor());
-            
+
             statement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);

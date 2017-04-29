@@ -45,12 +45,11 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
         initComponents();
         nombreColaborador.setText(Frm_Inicio.Nombre_Empleado.getText());
         idColaborador.setText(Frm_Inicio.IdEmpleado.getText());
-        
+
         mostrar("", "");
     }
-    
-    private void ObtenerFecha()
-    {
+
+    private void ObtenerFecha() {
         Calendar cal;
         int d, m, a;
         cal = fechaGasto.getCalendar();
@@ -334,7 +333,6 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_btnBuscarProveedorActionPerformed
-
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:

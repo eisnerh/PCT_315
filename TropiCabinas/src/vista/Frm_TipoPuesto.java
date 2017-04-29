@@ -251,7 +251,7 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
 
         Modelo_Puesto dts = new Modelo_Puesto();
         Interfaz_Puesto func = new Interfaz_Puesto();
-        
+
         dts.setDescripcion_puesto(txt_Puesto.getText());
         dts.setPago_hora_sencilla(txt_MontoHS.getText());
         dts.setPago_hora_extra(txt_MontoHE.getText());
@@ -334,7 +334,7 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
 
     private void comboTipoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoPersonaActionPerformed
         // TODO add your handling code here:
-        
+
         try {
             String sql = "SELECT puesto_id, descripcion_puesto FROM puesto where descripcion_puesto = '" + comboTipoPersona.getSelectedItem().toString() + "'";
             pst = conexion.prepareStatement(sql);
@@ -344,8 +344,9 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
                 String add2 = rs.getString("descripcion_puesto");
                 var1 = add1;
                 txt_Puesto.setText(add2);
-            }else
-                var1= "";
+            } else {
+                var1 = "";
+            }
             txt_Puesto.setText("");
 
         } catch (SQLException e) {
@@ -385,7 +386,6 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
 
         }
     }//GEN-LAST:event_txt_MontoHSFocusLost
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;

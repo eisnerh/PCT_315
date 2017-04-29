@@ -95,11 +95,10 @@ public class Interfaz_Cabina {
         }
     }
 
-    public String ComboTipoCabina()
-    {
+    public String ComboTipoCabina() {
         querySQL = "SELECT distinct tipo_cabina as tipoCabina, precio FROM pct3.cabina AS cabina ORDER BY tipo_cabina ASC";
         try {
-            
+
             Statement st = conexion.createStatement();
             ResultSet resultS = st.executeQuery(querySQL);
 
@@ -114,10 +113,9 @@ public class Interfaz_Cabina {
             JOptionPane.showConfirmDialog(null, e);
             return null;
         }
-        
+
     }
-    
-    
+
     public boolean insertar(Modelo_Cabina dts) {
         querySQL = "INSERT INTO `cabina`(`cabina_id`,`descripcion_cabina`, `estado_cabina`, `precio`, `tipo_cabina`) VALUES (?,?,?,?,?)";
         try {
@@ -155,7 +153,7 @@ public class Interfaz_Cabina {
             preparedST.setString(4, dts.getTipo_cabina());
 
             preparedST.setString(5, dts.getId_cabina());
-            
+
             int n = preparedST.executeUpdate();
 
             return n != 0;

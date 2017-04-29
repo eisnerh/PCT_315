@@ -27,8 +27,8 @@ public class Frm_R_ImprimirFactura extends javax.swing.JInternalFrame {
     /**
      * Creates new form Frm_R_ImprimirFactura
      */
-    
     Connection con = null;
+
     public Frm_R_ImprimirFactura() {
         initComponents();
         con = dbConnection.getConnection();
@@ -133,7 +133,6 @@ public class Frm_R_ImprimirFactura extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel idColaborador;

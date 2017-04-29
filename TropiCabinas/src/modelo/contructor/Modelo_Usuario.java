@@ -3,22 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package modelo.contructor;
 
 /**
- * 
+ *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
 public class Modelo_Usuario {
+
     private String idUsuario;
     private String Usuario;
     private String Password;
     private String Colaborador_empleado_id;
-    
-    public Modelo_Usuario()
-    {
-        
+
+    public Modelo_Usuario() {
+
     }
 
     public Modelo_Usuario(String idUsuario, String Usuario, String Password, String Colaborador_empleado_id) {

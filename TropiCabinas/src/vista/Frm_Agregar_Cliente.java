@@ -14,13 +14,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 import modelo.contructor.Modelo_ClienteEmpresa;
-import modelo.contructor.Modelo_Usuario;
+import modelo.contructor.Modelo_Persona;
 import modelo.formularios.Interfaz_ClienteEmpresa;
-import modelo.formularios.Interfaz_Usuario;
-import static vista.Frm_Agregar_Usuario.idColaborador;
+import modelo.formularios.Interfaz_Persona;
 import static vista.Frm_Inicio.escritorio;
 
 /**
@@ -42,111 +39,54 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
     String sqlSelect_Valor;
     String sqlInsert;
     String sqlDelete;
-    
+
     private String id_Persona;
 
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipo;
-    
+
     public Frm_Agregar_Cliente() {
         initComponents();
         con = dbConnection.getConnection();
-        sqlSelect = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` order BY `nombre`";
-        sqlSelect_Valor = "SELECT `idpersona`, `nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona` FROM `persona` WHERE `nombre` = '";
-        sqlInsert = "INSERT INTO `persona`(`nombre`, `cedula`, `telefono`, `direccion`, `tipo_persona_idtipo_persona`) VALUES ('";
-        sqlDelete = "DELETE FROM `persona` WHERE `idpersona` = ";
         //txtClasificación es no visible para la obtencion del id del tipo de persona.
         txtClasificación.setVisible(false);
         modeloTipo = new DefaultComboBoxModel();
-        llena_combo(); // llenar los datos al ejecutar el programa
         //Busca el ID del tipo de persona.
         TipoPersona();
     }
-    
-    public void getNumeroCodigo() {
-        try {
-            txtCodigoCliente.setText("");
-            lbl_idPersona.setText("");
-            Statement stmt;
-            stmt = con.createStatement();
-            String queryCuentaCliente = "SELECT max(idpersona) as numeroPersona FROM pct3.persona;";
-            rs = stmt.executeQuery(queryCuentaCliente);
-            while (rs.next()) {
-                int numero = rs.getInt("numeroPersona");
-                lbl_idPersona.setText(Integer.toString(numero + 1));
-            }
-            txtCodigoCliente.setText(txtNombre_Apellidos.getText() + lbl_idPersona.getText());
-            cmbTipoPersona.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-        }
+
+    private void limpiar() {
+        txtNombre_Apellidos.setText("");
+        txtCedula.setText("");
+        txtPhone.setText("");
+        txtDireccion.setText("");
+        txtCodigoCliente.setText("");
     }
 
-    //Llena el JComboBox con los datos almacenados en la BD para Tipo Persona
-    //Inicio del Metodo Llena_Combo
-    public final void llena_combo() { // static para poder llamarlo desde el otro frame o JDialog
-        try {
-            modeloTipo.removeAllElements(); // eliminamos lo elementos
-            Statement stmt;
-            stmt = con.createStatement();
-            String queryComboEstado = "SELECT `desc_persona` FROM `tipo_persona`";
-            rs = stmt.executeQuery(queryComboEstado);
-            while (rs.next()) {
-                modeloTipo.addElement(rs.getString("desc_persona"));
-                //Se consulta si el tipo de persona corresponde al valor predefinido
-                if (rs.getString("desc_persona").equals("Cliente")) {
-                    modeloTipo.setSelectedItem(rs.getString("desc_persona"));
-                }
-            }
-            cmbTipoPersona.setModel(modeloTipo); // seteamos el modelo y se cargan los datos
-        } catch (HeadlessException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
-        }
+    public void getNumeroCodigo() {
+        String NuevoNumero;
+        txtCodigoCliente.setText("");
+        lbl_idPersona.setText("");
+        Interfaz_Persona func = new Interfaz_Persona();
+        NuevoNumero = func.getNumeroCodigo();
+        txtCodigoCliente.setText(txtNombre_Apellidos.getText() + NuevoNumero);
     }
-    //Inicio del Metodo Tipo Persona
 
     private void TipoPersona() {
-        try {
-            String sqlConsulta_TPersona = "SELECT "
-                    + "`idtipo_persona`, "
-                    + "`desc_persona` "
-                    + "FROM "
-                    + "`tipo_persona` "
-                    + "WHERE `desc_persona` = '" + cmbTipoPersona.getSelectedItem() + "'";
-            pst = con.prepareStatement(sqlConsulta_TPersona);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String add1 = rs.getString("idtipo_persona");
-                txtClasificación.setText(add1);
-            }
-            
-        } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e);
-            
-        }
-    }
-    
-    private void initState() {
-        txtNombre_Apellidos.setEnabled(false);
-        txtDireccion.setEnabled(false);
-        txtPhone.setEnabled(false);
-        txtClasificación.setEnabled(false);
-        txtCedula.setEnabled(false);
-        cmbTipoPersona.setEnabled(false);
-        lbl_idPersona.setText("");
-        txtNombre_Apellidos.setText("");
-        nuevo.setEnabled(true);
-        guardar.setEnabled(false);
-        buscar.setEnabled(true);
-        editar.setEnabled(false);
 
-        
+        String Clasificación;
+        txtClasificación.setText("");
+        Interfaz_Persona func = new Interfaz_Persona();
+        Clasificación = func.SeleccionarCliente();
+        txtClasificación.setText(Clasificación);
+
     }
-    
+
     private void agregarPersona() {
         try {
-            int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
-            if (P == 0) {
+            int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmaci\u00F3n", JOptionPane.YES_NO_OPTION);
+            if (P == 1) {
+                this.dispose();
                 if (txtNombre_Apellidos.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -156,42 +96,45 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
                     return;
                 }
                 if (txtPhone.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa el número de Teléfono o Celular ", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Favor ingresa el n\u00FAmero de Tel\u00E9fono o Celular ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (txtClasificación.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa la clasificación de la persona ", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Favor ingresa la clasificaci\u00F3n de la persona ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (txtCedula.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Favor ingresa el número de cédula!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Favor ingresa el n\u00FAmero de c\u00E9dula!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+
                 Statement stmt;
                 stmt = con.createStatement();
-                
-            }
-            if (P == 0 || P == 1) {
-                String sql = sqlInsert + txtNombre_Apellidos.getText() + "','" + txtCedula.getText() + "','" + txtPhone.getText() + "','" + txtDireccion.getText() + "','" + txtClasificación.getText() + "')";
-                String sql2 = "INSERT INTO `pct3`.`cliente_empresa` "
-                        + "(`empresa_id`, "
-                        + "`codigo_cliente`, "
-                        + "`estado_cliente`, "
-                        + "`persona_idpersona`) "
-                        + "VALUES "
-                        + "(null, "
-                        + "'" + txtCodigoCliente.getText() + "', "
-                        + "0 ,"
-                        + "(SELECT max(idpersona) FROM pct3.persona))";
-                pst = con.prepareStatement(sql);
-                pst.execute();
-                int in = JOptionPane.showConfirmDialog(this, "Guardado con Exito saved", "Gasto Operativo", JOptionPane.YES_OPTION);
-                if (in == 0) {
-                    pst = con.prepareStatement(sql2);
-                    pst.execute();
-                }
-                
+
+                //Inicio de la Función para Agregar Persona
+                Modelo_Persona dtsPersona = new Modelo_Persona();
+                Interfaz_Persona func = new Interfaz_Persona();
+                dtsPersona.setNombre(txtNombre_Apellidos.getText());
+                dtsPersona.setCedula(txtCedula.getText());
+                dtsPersona.setTelefono(txtPhone.getText());
+                dtsPersona.setDireccion(txtDireccion.getText());
+                dtsPersona.setTipo_persona_idtipo_persona(txtClasificación.getText());
+                func.insertar(dtsPersona);
+                //Fin Agregar Persona
+
+                //Inicio de la Función para Agregar Cliente
+                Modelo_ClienteEmpresa dtsClientes = new Modelo_ClienteEmpresa();
+                Interfaz_ClienteEmpresa funcInterfaz_Clientes = new Interfaz_ClienteEmpresa();
+                dtsClientes.setCodigo_cliente(txtCodigoCliente.getText());
+
+                funcInterfaz_Clientes.insertarCliente(dtsClientes);
+                //Fin Agregar Proveedor
+
+                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Cliente", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+
+            } else {
+                limpiar();
             }
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
@@ -208,28 +151,26 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         txtNombre_Apellidos = new javax.swing.JTextField();
-        cedula = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         nombreUsuario = new javax.swing.JLabel();
         direccion = new javax.swing.JLabel();
         telefono = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
-        cmbTipoPersona = new javax.swing.JComboBox<>();
         txtClasificación = new javax.swing.JTextField();
         nombreApellidos = new javax.swing.JLabel();
-        clasificación = new javax.swing.JLabel();
         Persona = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         nuevo = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         editar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
+        cedula = new javax.swing.JLabel();
         lbl_idPersona = new javax.swing.JLabel();
         lbl_id_persona = new javax.swing.JLabel();
         nombreUsuario1 = new javax.swing.JLabel();
         txtCodigoCliente = new javax.swing.JTextField();
-        txtCedula = new javax.swing.JFormattedTextField();
         txtPhone = new javax.swing.JFormattedTextField();
+        txtCedula = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setForeground(java.awt.Color.gray);
@@ -240,12 +181,7 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
 
         txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtNombre_Apellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 360, 40));
-
-        cedula.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
-        cedula.setForeground(java.awt.Color.darkGray);
-        cedula.setText("Cedula");
-        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 82, -1, -1));
+        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 360, 30));
 
         jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
@@ -271,31 +207,16 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         txtDireccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 440, 40));
 
-        cmbTipoPersona.setFont(new java.awt.Font("Dialog", 1, 16));
-        cmbTipoPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbTipoPersona.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        cmbTipoPersona.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTipoPersonaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cmbTipoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 291, 200, 40));
-
         txtClasificación.setEditable(false);
         txtClasificación.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtClasificación.setToolTipText("");
         txtClasificación.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 290, 20, 40));
+        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 20, 40));
 
         nombreApellidos.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         nombreApellidos.setForeground(java.awt.Color.darkGray);
         nombreApellidos.setText("Nombre y Apellidos");
         getContentPane().add(nombreApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 82, -1, -1));
-
-        clasificación.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
-        clasificación.setForeground(java.awt.Color.darkGray);
-        clasificación.setText("Clasificación");
-        getContentPane().add(clasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
         Persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Persona.setForeground(java.awt.Color.darkGray);
@@ -334,6 +255,10 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
             }
         });
 
+        cedula.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        cedula.setForeground(java.awt.Color.darkGray);
+        cedula.setText("Cedula");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -348,6 +273,10 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(buscar)
                 .addContainerGap(229, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cedula)
+                .addGap(196, 196, 196))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,7 +287,8 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
                     .addComponent(nuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(guardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(cedula))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
@@ -376,12 +306,19 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         nombreUsuario1.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         nombreUsuario1.setForeground(java.awt.Color.darkGray);
         nombreUsuario1.setText("Código Usuario");
-        getContentPane().add(nombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 251, -1, -1));
+        getContentPane().add(nombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        txtCodigoCliente.setEditable(false);
         txtCodigoCliente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtCodigoCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 290, 200, 40));
+        getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 520, 40));
+
+        txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtPhone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPhoneFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 210, 40));
 
         txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -389,129 +326,73 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
                 txtCedulaFocusLost(evt);
             }
         });
-        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 270, 40));
-
-        txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 240, 40));
+        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 270, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbTipoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPersonaActionPerformed
-        TipoPersona();
-    }//GEN-LAST:event_cmbTipoPersonaActionPerformed
-
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         // TODO add your handling code here:
-        txtNombre_Apellidos.setEnabled(true);
-        txtDireccion.setEnabled(true);
-        txtPhone.setEnabled(true);
-        txtClasificación.setEnabled(true);
-        txtCedula.setEnabled(true);
-        cmbTipoPersona.setEnabled(true);
-        lbl_idPersona.setText("");
-        txtNombre_Apellidos.setText("");
-        txtPhone.setText("");
-        txtClasificación.setText("");
-        txtPhone.setText("");
-        txtNombre_Apellidos.requestDefaultFocus();
-        nuevo.setEnabled(false);
-        guardar.setEnabled(true);
-        buscar.setEnabled(false);
-        editar.setEnabled(false);
+        limpiar();
 
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         //Variable que almacena el tipo de persona
-        String tipoPersonaSeleccionada;
-        tipoPersonaSeleccionada = (String) cmbTipoPersona.getSelectedItem();
-        //Se consulta si es Empleado o Proveedor, si son diferentes abren el form correspondiente
-        switch (tipoPersonaSeleccionada) {
-            case "Empleado":
-                this.dispose();
-                JOptionPane.showMessageDialog(this, "Abriremos el Formulario para agregar Colaborador");
-                Frm_Agregar_Colaborador agregarColaborador = new Frm_Agregar_Colaborador();
-                escritorio.add(agregarColaborador);
-                agregarColaborador.toFront();
-                agregarColaborador.setVisible(true);
-                break;
-            case "Proveedor":
-                this.dispose();
-                JOptionPane.showMessageDialog(this, "Abriremos el Formulario para agregar Proveedores");
-                Frm_Agregar_Proveedor agregar_Proveedor = new Frm_Agregar_Proveedor();
-                escritorio.add(agregar_Proveedor);
-                agregar_Proveedor.toFront();
-                agregar_Proveedor.setVisible(true);
-                break;
-            default:
-                agregarPersona();
-                break;
-        }
+
+        agregarPersona();
     }//GEN-LAST:event_guardarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         // TODO add your handling code here:
 
         try {
-            int P = JOptionPane.showConfirmDialog(null, " Quiere editar este dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            int P = JOptionPane.showConfirmDialog(null, " Quiere editar este dato ?", "Confirmaci\u00F3n", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
-                
+
                 Statement stmt;
                 stmt = con.createStatement();
-                
+
                 String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtPhone.getText() + "',`direccion`='" + txtPhone.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_idPersona.getText() + "'";
                 pst = con.prepareStatement(Pru);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
                 txtNombre_Apellidos.setText("");
-                
+
                 if (P == 1) {
                     txtNombre_Apellidos.setText("");
-                    
+
                 }
             }
-            
+
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
-            
+
         }
     }//GEN-LAST:event_editarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-        Frm_BusquedaClientes form;
-        form = new Frm_BusquedaClientes();
+        Frm_BusquedaAgregarClientes form;
+        form = new Frm_BusquedaAgregarClientes();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_buscarActionPerformed
 
+    private void txtPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusLost
+        // TODO add your handling code here:
+        getNumeroCodigo();
+    }//GEN-LAST:event_txtPhoneFocusLost
+
     private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
         // TODO add your handling code here:
-        String querySQL = "SELECT "
-                + "MAX(empresa_id) + 1 AS nuevo "
-                + "FROM "
-                + "pct3.cliente_empresa";
-        try {
-            Statement st = con.createStatement();
-            rs = st.executeQuery(querySQL);
-            while (rs.next()) {
-                String add1 = rs.getString(1);
-                txtCodigoCliente.setText(txtNombre_Apellidos.getText() + add1);
-            }
-        } catch (SQLException e) {
-            JOptionPane.showConfirmDialog(rootPane, e);
-        }
     }//GEN-LAST:event_txtCedulaFocusLost
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Persona;
     private javax.swing.JButton buscar;
     private javax.swing.JLabel cedula;
-    private javax.swing.JLabel clasificación;
-    private javax.swing.JComboBox<String> cmbTipoPersona;
     private javax.swing.JLabel direccion;
     private javax.swing.JButton editar;
     private javax.swing.JButton guardar;

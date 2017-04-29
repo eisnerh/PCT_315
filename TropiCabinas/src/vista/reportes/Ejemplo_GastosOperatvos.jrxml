@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9d67ab3-f6e3-4cac-95e2-695c64666893">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
-	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
-	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
-	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
-	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
-		<conditionalStyle>
-			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
-			<style mode="Opaque" backcolor="#F0EFEF"/>
-		</conditionalStyle>
-	</style>
-	<parameter name="fecha1" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="fecha2" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<queryString>
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+    <style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+    <style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+    <style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+    <style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+            <style mode="Opaque" backcolor="#F0EFEF"/>
+        </conditionalStyle>
+    </style>
+    <parameter name="fecha1" class="java.lang.String">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <parameter name="fecha2" class="java.lang.String">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <queryString>
 		<![CDATA[SELECT
      gasto_operativo.`tipo_gasto` AS "Tipo Gasto",
      gasto_operativo.`monto_gasto` AS "Monto",
@@ -28,198 +28,198 @@
      gasto_operativo.`colaborador_empleado_id` AS "ID"
 FROM
      `gasto_operativo` gasto_operativo where fecha_gasto between cast($P{fecha1} as date) and cast($P{fecha2} as date);]]>
-	</queryString>
-	<field name="Tipo Gasto" class="java.lang.String"/>
-	<field name="Monto" class="java.lang.Integer"/>
-	<field name="Fecha" class="java.sql.Date"/>
-	<field name="Número Factura" class="java.lang.String"/>
-	<field name="ID" class="java.lang.Long"/>
-	<variable name="Monto Total_1" class="java.math.BigDecimal" resetType="Group" resetGroup="Número Factura" calculation="Sum">
-		<variableExpression><![CDATA[$F{Monto Total}]]></variableExpression>
-	</variable>
-	<variable name="Monto_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
-		<variableExpression><![CDATA[$F{Monto}]]></variableExpression>
-	</variable>
-	<group name="Número Factura">
-		<groupExpression><![CDATA[$F{Número Factura}]]></groupExpression>
-		<groupHeader>
-			<band height="37">
-				<frame>
-					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#000000" uuid="d689618f-dac9-4d8c-8b79-6528eba1016d"/>
-					<textField isStretchWithOverflow="true">
-						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="0" width="479" height="24" forecolor="#FFFFFF" uuid="11e45b16-f8bd-45f2-b0d0-351c3779e2ae"/>
-						<textElement>
-							<font isBold="false"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$F{Número Factura}]]></textFieldExpression>
-					</textField>
-				</frame>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band height="6">
-				<textField>
-					<reportElement x="259" y="26" width="100" height="20" uuid="8924f464-e606-482d-ac3c-5d0dde11885f"/>
-					<textFieldExpression><![CDATA[$V{Monto_1}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupFooter>
-	</group>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band height="132" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="ba5217fe-3099-4d06-a72b-f1a7e4cf03a5"/>
-				<staticText>
-					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="371a041f-5a59-4288-88b9-32aa38f12700"/>
-					<textElement>
-						<font isBold="false"/>
-					</textElement>
-					<text><![CDATA[Control de Gastos]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="SubTitle" x="157" y="66" width="249" height="29" uuid="60b0d903-3bdb-4749-bc49-2df500d92fbd"/>
-					<textElement>
-						<font size="22" isBold="false"/>
-					</textElement>
-					<text><![CDATA[Cábinas el Trópico]]></text>
-				</staticText>
-			</frame>
-			<frame>
-				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="51075efc-66b2-44a7-b37c-8713cb9da54f"/>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="2b880839-b198-4a88-86b4-5d203529e4fa"/>
-					<textElement textAlignment="Right">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
-			</frame>
-			<image>
-				<reportElement x="451" y="11" width="112" height="111" uuid="fa6a5df8-095d-4ae9-adb4-c1fb2e74cb48"/>
-				<imageExpression><![CDATA["C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\Files\\hh-logo-house.jpg"]]></imageExpression>
-			</image>
-		</band>
-	</title>
-	<pageHeader>
-		<band splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="26" splitType="Stretch">
-			<staticText>
-				<reportElement style="Column header" x="0" y="7" width="138" height="18" forecolor="#000000" uuid="c8ce963f-aa96-4fc5-a2bb-d85f390a276b"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Tipo Gasto]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="138" y="7" width="138" height="18" forecolor="#000000" uuid="9d5f359b-a128-4922-8fad-9513c4c2de33"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Monto]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="276" y="7" width="138" height="18" forecolor="#000000" uuid="e3390f3b-b1b2-46a0-8b40-938ae944bb65"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Fecha]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="414" y="7" width="138" height="18" forecolor="#000000" uuid="2e39e9ba-cee8-489e-a5c9-86ce2e1ac27a"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[ID]]></text>
-			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="18" splitType="Stretch">
-			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="b62dc0b0-1b99-4d69-859e-330a601914f1"/>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="138" height="18" uuid="b73fa499-a586-4bcd-a743-ac536a7c133a"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{Tipo Gasto}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="138" y="0" width="138" height="18" uuid="3c128b94-9774-4e75-beaa-e29c9bb197b6"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{Monto}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="276" y="0" width="138" height="18" uuid="9b57a277-9620-4981-86aa-8d1c05c747c0"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="414" y="0" width="138" height="18" uuid="1622a878-9220-46bb-afeb-1c85c1d30ca9"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
-				</textField>
-			</frame>
-		</band>
-	</detail>
-	<columnFooter>
-		<band height="7" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="78600943-938d-4084-8951-45ab5a908ec7"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-			<textField>
-				<reportElement x="145" y="16" width="100" height="20" uuid="4497187b-b611-43c6-8658-48ca38971a86"/>
-				<textFieldExpression><![CDATA[$F{Monto Total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="357" y="21" width="100" height="20" uuid="e2436e3c-f34a-49cd-ba72-1a6fd3ed42a9"/>
-				<textFieldExpression><![CDATA[$V{Monto Total_1}]]></textFieldExpression>
-			</textField>
-		</band>
-	</columnFooter>
-	<pageFooter>
-		<band height="25" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="a7547ea5-1923-4d44-ae41-fa2c467b5a37"/>
-				<textField evaluationTime="Report">
-					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="f7c1b600-fab9-4e7b-8eb5-e980373733c3"/>
-					<textElement verticalAlignment="Middle">
-						<font size="10" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="16893f0d-b63e-492b-88b8-4f2036eaecdb"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font size="10" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-				</textField>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="f88de480-6793-4d3c-b31d-dedbcf23ffcc"/>
-					<textElement verticalAlignment="Middle">
-						<font size="10" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
-			</frame>
-		</band>
-	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
-	</summary>
+    </queryString>
+    <field name="Tipo Gasto" class="java.lang.String"/>
+    <field name="Monto" class="java.lang.Integer"/>
+    <field name="Fecha" class="java.sql.Date"/>
+    <field name="Número Factura" class="java.lang.String"/>
+    <field name="ID" class="java.lang.Long"/>
+    <variable name="Monto Total_1" class="java.math.BigDecimal" resetType="Group" resetGroup="Número Factura" calculation="Sum">
+        <variableExpression><![CDATA[$F{Monto Total}]]></variableExpression>
+    </variable>
+    <variable name="Monto_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+        <variableExpression><![CDATA[$F{Monto}]]></variableExpression>
+    </variable>
+    <group name="Número Factura">
+        <groupExpression><![CDATA[$F{Número Factura}]]></groupExpression>
+        <groupHeader>
+            <band height="37">
+                <frame>
+                    <reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#000000" uuid="d689618f-dac9-4d8c-8b79-6528eba1016d"/>
+                    <textField isStretchWithOverflow="true">
+                        <reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="0" width="479" height="24" forecolor="#FFFFFF" uuid="11e45b16-f8bd-45f2-b0d0-351c3779e2ae"/>
+                        <textElement>
+                            <font isBold="false"/>
+                        </textElement>
+                        <textFieldExpression><![CDATA[$F{Número Factura}]]></textFieldExpression>
+                    </textField>
+                </frame>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band height="6">
+                <textField>
+                    <reportElement x="259" y="26" width="100" height="20" uuid="8924f464-e606-482d-ac3c-5d0dde11885f"/>
+                    <textFieldExpression><![CDATA[$V{Monto_1}]]></textFieldExpression>
+                </textField>
+            </band>
+        </groupFooter>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="132" splitType="Stretch">
+            <frame>
+                <reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="ba5217fe-3099-4d06-a72b-f1a7e4cf03a5"/>
+                <staticText>
+                    <reportElement style="Title" x="0" y="0" width="370" height="66" uuid="371a041f-5a59-4288-88b9-32aa38f12700"/>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Control de Gastos]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement style="SubTitle" x="157" y="66" width="249" height="29" uuid="60b0d903-3bdb-4749-bc49-2df500d92fbd"/>
+                    <textElement>
+                        <font size="22" isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Cábinas el Trópico]]></text>
+                </staticText>
+            </frame>
+            <frame>
+                <reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="51075efc-66b2-44a7-b37c-8713cb9da54f"/>
+                <textField pattern="EEEEE dd MMMMM yyyy">
+                    <reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="2b880839-b198-4a88-86b4-5d203529e4fa"/>
+                    <textElement textAlignment="Right">
+                        <font size="12"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+                </textField>
+            </frame>
+            <image>
+                <reportElement x="451" y="11" width="112" height="111" uuid="fa6a5df8-095d-4ae9-adb4-c1fb2e74cb48"/>
+                <imageExpression><![CDATA["C:\\Users\\eisne\\PCT_315\\TropiCabinas\\src\\Files\\hh-logo-house.jpg"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+    <pageHeader>
+        <band splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="26" splitType="Stretch">
+            <staticText>
+                <reportElement style="Column header" x="0" y="7" width="138" height="18" forecolor="#000000" uuid="c8ce963f-aa96-4fc5-a2bb-d85f390a276b"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Tipo Gasto]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="138" y="7" width="138" height="18" forecolor="#000000" uuid="9d5f359b-a128-4922-8fad-9513c4c2de33"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Monto]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="276" y="7" width="138" height="18" forecolor="#000000" uuid="e3390f3b-b1b2-46a0-8b40-938ae944bb65"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Fecha]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="414" y="7" width="138" height="18" forecolor="#000000" uuid="2e39e9ba-cee8-489e-a5c9-86ce2e1ac27a"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="18" splitType="Stretch">
+            <frame>
+                <reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="b62dc0b0-1b99-4d69-859e-330a601914f1"/>
+                <textField isStretchWithOverflow="true">
+                    <reportElement style="Detail" positionType="Float" x="0" y="0" width="138" height="18" uuid="b73fa499-a586-4bcd-a743-ac536a7c133a"/>
+                    <textElement>
+                        <font size="14"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{Tipo Gasto}]]></textFieldExpression>
+                </textField>
+                <textField isStretchWithOverflow="true">
+                    <reportElement style="Detail" positionType="Float" x="138" y="0" width="138" height="18" uuid="3c128b94-9774-4e75-beaa-e29c9bb197b6"/>
+                    <textElement>
+                        <font size="14"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{Monto}]]></textFieldExpression>
+                </textField>
+                <textField isStretchWithOverflow="true">
+                    <reportElement style="Detail" positionType="Float" x="276" y="0" width="138" height="18" uuid="9b57a277-9620-4981-86aa-8d1c05c747c0"/>
+                    <textElement>
+                        <font size="14"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+                </textField>
+                <textField isStretchWithOverflow="true">
+                    <reportElement style="Detail" positionType="Float" x="414" y="0" width="138" height="18" uuid="1622a878-9220-46bb-afeb-1c85c1d30ca9"/>
+                    <textElement>
+                        <font size="14"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+                </textField>
+            </frame>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="7" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="78600943-938d-4084-8951-45ab5a908ec7"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+            <textField>
+                <reportElement x="145" y="16" width="100" height="20" uuid="4497187b-b611-43c6-8658-48ca38971a86"/>
+                <textFieldExpression><![CDATA[$F{Monto Total}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="357" y="21" width="100" height="20" uuid="e2436e3c-f34a-49cd-ba72-1a6fd3ed42a9"/>
+                <textFieldExpression><![CDATA[$V{Monto Total_1}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnFooter>
+    <pageFooter>
+        <band height="25" splitType="Stretch">
+            <frame>
+                <reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="a7547ea5-1923-4d44-ae41-fa2c467b5a37"/>
+                <textField evaluationTime="Report">
+                    <reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="f7c1b600-fab9-4e7b-8eb5-e980373733c3"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="10" isBold="false"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="16893f0d-b63e-492b-88b8-4f2036eaecdb"/>
+                    <textElement textAlignment="Right" verticalAlignment="Middle">
+                        <font size="10" isBold="false"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+                </textField>
+                <textField pattern="EEEEE dd MMMMM yyyy">
+                    <reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="f88de480-6793-4d3c-b31d-dedbcf23ffcc"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="10" isBold="false"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+                </textField>
+            </frame>
+        </band>
+    </pageFooter>
+    <summary>
+        <band splitType="Stretch"/>
+    </summary>
 </jasperReport>

@@ -32,11 +32,11 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
      * Creates new form Frm_GrupoCabinasxCliente
      */
     Connection con = null;
-    
+
     public Frm_GrupoCabinasxCliente() {
         initComponents();
         con = dbConnection.getConnection();
-        
+
     }
 
     /**
@@ -203,7 +203,6 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel idCliente;

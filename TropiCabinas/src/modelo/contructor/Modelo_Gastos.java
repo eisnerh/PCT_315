@@ -18,10 +18,10 @@ public class Modelo_Gastos {
     private String Factura_Gasto;
     private String Colaborador_EmpleadoID;
 
-    public Modelo_Gastos()
-    {
-        
+    public Modelo_Gastos() {
+
     }
+
     public Modelo_Gastos(String GastoID, String Tipo_Gasto, String Monto_Gasto, String Fecha_Gasto, String Factura_Gasto, String Colaborador_EmpleadoID) {
         this.GastoID = GastoID;
         this.Tipo_Gasto = Tipo_Gasto;

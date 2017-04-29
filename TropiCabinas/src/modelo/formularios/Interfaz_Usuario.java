@@ -26,10 +26,10 @@ public class Interfaz_Usuario {
     private String sSQL = "";
     public Integer totalregistros;
 
-    public DefaultTableModel login(String login,String password) {
+    public DefaultTableModel login(String login, String password) {
         DefaultTableModel modelo;
 
-        String[] titulos = {"usuario", "password", "empleado_id", "nombre","Acceso","tipo_acceso"};
+        String[] titulos = {"usuario", "password", "empleado_id", "nombre", "Acceso", "tipo_acceso"};
 
         String[] registro = new String[8];
 

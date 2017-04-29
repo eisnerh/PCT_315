@@ -74,16 +74,14 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, ex);
         }
     }
-    
-    
+
     void ocultar_columnas() {
         tablaCabina.getColumnModel().getColumn(0).setMaxWidth(0);
         tablaCabina.getColumnModel().getColumn(0).setMinWidth(0);
         tablaCabina.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
-    
-    public void limpiar()
-    {
+
+    public void limpiar() {
         cabina_di.setText("");
         txtNombreCabina.setText("");
         txtPrecio.setText("");
@@ -529,7 +527,7 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             mostrarCabina("");
         }
         limpiar();
-        
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void mostrarCabina(String buscar) {
@@ -634,7 +632,6 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         mostrarCabina(Buscar_NombreCabina.getText());
     }//GEN-LAST:event_Buscar_NombreCabinaKeyPressed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Buscar_NombreCabina;

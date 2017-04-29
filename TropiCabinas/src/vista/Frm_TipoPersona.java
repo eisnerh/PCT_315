@@ -36,7 +36,7 @@ public class Frm_TipoPersona extends javax.swing.JInternalFrame {
     //declaración del modelo para Turno u Horario
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipoPersona;
-    
+
     public String var1 = "";
 
     public Frm_TipoPersona() {
@@ -226,7 +226,7 @@ public class Frm_TipoPersona extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
+
         try {
             if (txt_Tipo_Persona.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Favor ingresa un tipo de persona", "Error", JOptionPane.ERROR_MESSAGE);
@@ -291,7 +291,7 @@ public class Frm_TipoPersona extends javax.swing.JInternalFrame {
 
     private void txt_Tipo_PersonaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_Tipo_PersonaFocusLost
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txt_Tipo_PersonaFocusLost
 
     private void txt_Tipo_PersonaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_Tipo_PersonaKeyPressed
@@ -320,7 +320,6 @@ public class Frm_TipoPersona extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_comboTipoPersonaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;

@@ -87,7 +87,7 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
                                     JOptionPane.YES_NO_OPTION,
                                     JOptionPane.QUESTION_MESSAGE,
                                     null, // null para icono por defecto.
-                                    new Object[]{"Liberar Cabina","Cancelar"}, // null para YES, NO y CANCEL
+                                    new Object[]{"Liberar Cabina", "Cancelar"}, // null para YES, NO y CANCEL
                                     "Cancelar");
                             if (seleccion == 0) {
                                 try {
@@ -866,7 +866,6 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_SalirActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Dobles;

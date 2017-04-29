@@ -17,7 +17,6 @@ public class Modelo_Persona {
     private String telefono;
     private String direccion;
     private String tipo_persona_idtipo_persona;
-    
 
     public Modelo_Persona() {
 
@@ -80,5 +79,4 @@ public class Modelo_Persona {
         this.tipo_persona_idtipo_persona = tipo_persona_idtipo_persona;
     }
 
-    
 }

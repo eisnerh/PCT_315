@@ -29,18 +29,17 @@ public class dbConnection {
         try {
             File data1 = new File("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
             if (!data1.exists()) {
-                JOptionPane.showMessageDialog(null, "Archivo de propiedades para conexi\u00F3n no existe", "Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Archivo de propiedades para conexi\u00F3n no existe", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(1);
-            }
-            else if (data1.exists()) {
+            } else if (data1.exists()) {
                 fis1 = new FileInputStream("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
                 props.load(fis1);
                 //Cargar la Tipo de Controlador
-Class.forName(props.getProperty("DB_DRIVER_CLASS"));
+                Class.forName(props.getProperty("DB_DRIVER_CLASS"));
 // Crea la conexión ahora
-con = DriverManager.getConnection(props.getProperty("DB_URL"),
-props.getProperty("DB_USERNAME"),
-props.getProperty("DB_PASSWORD"));
+                con = DriverManager.getConnection(props.getProperty("DB_URL"),
+                        props.getProperty("DB_USERNAME"),
+                        props.getProperty("DB_PASSWORD"));
             }
         } catch (HeadlessException | IOException | ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);

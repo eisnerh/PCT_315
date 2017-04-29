@@ -186,7 +186,7 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
         a = cal.get(Calendar.YEAR) - 1900;
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = formatter.format(fechaGasto.getDate());
-        
+
         JOptionPane.showMessageDialog(this, s);
         //Fin Fecha
         Modelo_Gastos dts;
@@ -212,7 +212,6 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarProveedor;

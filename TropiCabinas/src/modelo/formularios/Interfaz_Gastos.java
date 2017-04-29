@@ -66,11 +66,11 @@ public class Interfaz_Gastos {
                 + "persona ON colaborador.persona_idpersona = persona.idpersona "
                 + "where gasto_operativo.factura_gasto like '%" + buscar + "%'"
                 + "and gasto_operativo.fecha_gasto = curdate()";
-        
+
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
-            
+
             while (rs.next()) {
                 registro[0] = rs.getString(1);
                 registro[1] = rs.getString(2);

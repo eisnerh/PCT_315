@@ -10,7 +10,7 @@ package modelo.contructor;
  * @author Eisner Lopez Acevedo <eisner.lopez at gmail.com>
  */
 public class Modelo_Productos {
-    
+
     private String idProductos;
     private String nombreProductos;
     private String proveedor_idProveedor;
@@ -24,12 +24,11 @@ public class Modelo_Productos {
         this.cantidad = cantidad;
         this.gasto_operativo_gasto_id = gasto_operativo_gasto_id;
     }
-    
-    public Modelo_Productos()
-    {
-        
+
+    public Modelo_Productos() {
+
     }
-    
+
     public String getIdProductos() {
         return idProductos;
     }
@@ -69,7 +68,5 @@ public class Modelo_Productos {
     public void setGasto_operativo_gasto_id(String gasto_operativo_gasto_id) {
         this.gasto_operativo_gasto_id = gasto_operativo_gasto_id;
     }
-    
-    
-    
+
 }

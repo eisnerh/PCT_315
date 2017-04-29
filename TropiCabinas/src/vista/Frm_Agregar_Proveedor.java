@@ -6,18 +6,13 @@
 package vista;
 
 import controlador.dbConnection;
-import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import modelo.contructor.Modelo_Horario;
 import modelo.contructor.Modelo_Persona;
 import modelo.contructor.Modelo_Proveedor;
-import modelo.formularios.Interfaz_Horario;
 import modelo.formularios.Interfaz_Persona;
 import modelo.formularios.Interfaz_Proveedor;
 import static vista.Frm_Inicio.escritorio;
@@ -84,7 +79,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
 
     private void agregarPersona() {
 
-        int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmaci\u00F3n", JOptionPane.YES_NO_OPTION);
         if (P == 1) {
             this.dispose();
             if (txtNombre_Apellidos.getText().equals("")) {
@@ -96,15 +91,15 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
                 return;
             }
             if (txtPhone.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Favor ingresa el número de Teléfono o Celular ", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Favor ingresa el n\u00FAmero de Tel\u00E9fono o Celular ", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtCodigoCliente.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Favor ingresa la clasificación de la persona ", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Favor ingresa la clasificaci\u00F3n de la persona ", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtCedula.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Favor ingresa el número de cédula!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Favor ingresa el n\u00FAmero de c\u00E9dula!", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             //Inicio de la Función para Agregar Persona
@@ -172,7 +167,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
 
         txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtNombre_Apellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 360, 40));
+        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 360, 40));
 
         cedula.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         cedula.setForeground(java.awt.Color.darkGray);
@@ -196,7 +191,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         txtClasificación.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtClasificación.setToolTipText("");
         txtClasificación.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 20, 40));
+        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 20, 40));
 
         nombreApellidos.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         nombreApellidos.setForeground(java.awt.Color.darkGray);
@@ -277,12 +272,12 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         lbl_idPersona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         lbl_idPersona.setForeground(java.awt.Color.darkGray);
         lbl_idPersona.setText("jLabel1");
-        getContentPane().add(lbl_idPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        getContentPane().add(lbl_idPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
         lbl_id_persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         lbl_id_persona.setForeground(java.awt.Color.darkGray);
         lbl_id_persona.setText("lblIdPersona");
-        getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
+        getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, -1, -1));
 
         nombreUsuario1.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         nombreUsuario1.setForeground(java.awt.Color.darkGray);
@@ -294,7 +289,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 440, 40));
 
         txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 220, 40));
+        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 220, 40));
 
         txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 220, 40));
@@ -317,26 +312,25 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         //Editar Persona
         Modelo_Persona dtsPersona = new Modelo_Persona();
         Interfaz_Persona funcPersona = new Interfaz_Persona();
-        
+
         dtsPersona.setNombre(txtNombre_Apellidos.getText());
         dtsPersona.setCedula(txtCedula.getText());
         dtsPersona.setTelefono(txtPhone.getText());
         dtsPersona.setDireccion(txtDireccion.getText());
-        
+
         dtsPersona.setIdpersona(IdPersona);
         if (funcPersona.editar(dtsPersona)) {
-            
+
         }
         //Fin Editar Persona
         //Editar Proveedor
         Modelo_Proveedor dtsProveedor = new Modelo_Proveedor();
         Interfaz_Proveedor funcProveedor = new Interfaz_Proveedor();
-        
+
         dtsProveedor.setDesc_proveedor(txtCodigoCliente.getText());
         dtsProveedor.setIdproveedor(IdProveedor);
-        if (funcProveedor.editar(dtsProveedor))
-        {
-            
+        if (funcProveedor.editar(dtsProveedor)) {
+
         }
         //Fin Editar Proveedor
 //        // TODO add your handling code here:
@@ -367,7 +361,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_buscarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Persona;
