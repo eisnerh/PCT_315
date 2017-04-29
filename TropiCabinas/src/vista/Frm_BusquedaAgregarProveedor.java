@@ -69,7 +69,7 @@ public class Frm_BusquedaAgregarProveedor extends javax.swing.JInternalFrame {
         setTitle("Busqueda de Proveedores");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Colaboradores"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Proveedores"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

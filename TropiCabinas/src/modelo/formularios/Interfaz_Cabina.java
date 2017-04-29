@@ -33,23 +33,24 @@ public class Interfaz_Cabina {
     public DefaultTableModel mostrarCabina(String buscar) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
-        String[] columnas = {"descripcion_cabina", "estado_cabina", "precio", "tipo_cabina"};
+        String[] columnas = {"ID Cabina", "N\u00FAmero Cabina", "Estado Cabina", "Precio", "Tipo Cabina"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
-        String[] registro = new String[4];
+        String[] registro = new String[5];
 
         totalRegistros = 0;
 
         tableModel = new DefaultTableModel(null, columnas);
-        querySQL = "SELECT `descripcion_cabina`, `estado_cabina`, `precio`, `tipo_cabina` FROM `cabina` WHERE `descripcion_cabina` LIKE '%" + buscar + "%' ORDER BY `descripcion_cabina`";
+        querySQL = "SELECT `cabina_id`,`descripcion_cabina`, `estado_cabina`, `precio`, `tipo_cabina` FROM `cabina` WHERE `descripcion_cabina` LIKE '%" + buscar + "%' ORDER BY `descripcion_cabina`";
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
 
             while (rs.next()) {
-                registro[0] = rs.getString("descripcion_cabina");
-                registro[1] = rs.getString("estado_cabina");
-                registro[2] = rs.getString("precio");
-                registro[3] = rs.getString("tipo_cabina");
+                registro[0] = rs.getString("cabina_id");
+                registro[1] = rs.getString("descripcion_cabina");
+                registro[2] = rs.getString("estado_cabina");
+                registro[3] = rs.getString("precio");
+                registro[4] = rs.getString("tipo_cabina");
                 totalRegistros++;
                 tableModel.addRow(registro);
             }
@@ -64,7 +65,7 @@ public class Interfaz_Cabina {
     public DefaultTableModel mostrarvista(String buscar) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
-        String[] columnas = {"id","descripcion_cabina", "estado_cabina", "precio", "tipo_cabina"};
+        String[] columnas = {"id", "descripcion_cabina", "estado_cabina", "precio", "tipo_cabina"};
         //creación de un array para definir los registros que se incluiran por medio del codigo
         String[] registro = new String[5];
 
@@ -94,6 +95,29 @@ public class Interfaz_Cabina {
         }
     }
 
+    public String ComboTipoCabina()
+    {
+        querySQL = "SELECT distinct tipo_cabina as tipoCabina, precio FROM pct3.cabina AS cabina ORDER BY tipo_cabina ASC";
+        try {
+            
+            Statement st = conexion.createStatement();
+            ResultSet resultS = st.executeQuery(querySQL);
+
+            while (resultS.next()) {
+                String tipoCabina = resultS.getString(1);
+                String Precio = resultS.getString(2);
+                totalRegistros++;
+            }
+            return String.valueOf(totalRegistros);
+
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+        
+    }
+    
+    
     public boolean insertar(Modelo_Cabina dts) {
         querySQL = "INSERT INTO `cabina`(`cabina_id`,`descripcion_cabina`, `estado_cabina`, `precio`, `tipo_cabina`) VALUES (?,?,?,?,?)";
         try {
@@ -116,7 +140,12 @@ public class Interfaz_Cabina {
     }
 
     public boolean editar(Modelo_Cabina dts) {
-        querySQL = "UPDATE `cabina` SET `descripcion_cabina`= ?,`estado_cabina`= ?,`precio`= ?,`tipo_cabina`= ? WHERE `cabina_id` = ?";
+        querySQL = "UPDATE `cabina` SET "
+                + "`descripcion_cabina`= ?,"
+                + "`estado_cabina`= ?,"
+                + "`precio`= ?,"
+                + "`tipo_cabina`= ? "
+                + "WHERE `cabina_id` = ?";
 
         try {
             PreparedStatement preparedST = conexion.prepareStatement(querySQL);
@@ -125,6 +154,8 @@ public class Interfaz_Cabina {
             preparedST.setString(3, dts.getPrecio());
             preparedST.setString(4, dts.getTipo_cabina());
 
+            preparedST.setString(5, dts.getId_cabina());
+            
             int n = preparedST.executeUpdate();
 
             return n != 0;

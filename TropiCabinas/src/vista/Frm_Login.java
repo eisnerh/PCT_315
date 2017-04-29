@@ -93,8 +93,6 @@ public class Frm_Login extends javax.swing.JFrame {
                         txt_Pass.setText("");
                     }
                 }
-            
-            JOptionPane.showMessageDialog(null, "Total Registros " + Integer.toString(func.totalregistros));
             }
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
