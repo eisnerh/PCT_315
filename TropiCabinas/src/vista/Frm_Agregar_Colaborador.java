@@ -12,6 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import static vista.Frm_Inicio.escritorio;
@@ -37,6 +40,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
     String sqlDelete;
 
     private String id_Persona;
+    public String Fecha, Fecha2;
 
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipoPersona;
@@ -155,6 +159,33 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
 
         }
     }
+    
+    private void obtenerFecha() {
+        Calendar cal;
+        int d, m, a;
+        
+        cal = txtContrato.getCalendar();
+        
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(txtContrato.getDate());
+        
+        Fecha = s;
+        JOptionPane.showMessageDialog(this, s);
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        
+        Calendar cal2;
+        int d2, m2, a2;
+        cal2 = txtDespido.getCalendar();
+        Format formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+        String r = formatter.format(txtDespido.getDate());
+        Fecha2 = r;
+        JOptionPane.showMessageDialog(this, s);
+    }
 
     //Metodo TipoTurno
     private void TipoTurno() {
@@ -219,6 +250,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
 
     //Metodo para insertar en la Tabla Personas y Colaborador.
     private void agregarPersona() {
+        obtenerFecha();
         try {
             int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
@@ -246,7 +278,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
                 stmt = con.createStatement();
             }
             if (P == 0 || P == 1) {
-                txtFechaDespido.setText("0000-00-00");
+                
                 String sql = sqlInsert
                         + txtNombre_Apellidos.getText()
                         + "','" + txtCedula.getText()
@@ -260,8 +292,8 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
                         + "`persona_idpersona`, "
                         + "`puesto_puesto_id`, "
                         + "`horario_horario_id`) "
-                        + "VALUES ('" + txtFechaContrato.getText() + "', "
-                        + "'" + txtFechaDespido.getText() + "', "
+                        + "VALUES ('" + Fecha + "', "
+                        + "'" + Fecha2 + "', "
                         + "(SELECT max(idpersona) FROM pct3.persona), "
                         + "'" + lbl_idPuesto.getText() + "', '" + lbl_idHorario.getText() + "');";
                 pst = con.prepareStatement(sql);
@@ -303,7 +335,6 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         clasificación = new javax.swing.JLabel();
         cmbTipoPersona = new javax.swing.JComboBox<>();
         nombreUsuario1 = new javax.swing.JLabel();
-        txtFechaContrato = new javax.swing.JTextField();
         txtObservarciones = new javax.swing.JTextField();
         direccion1 = new javax.swing.JLabel();
         cmbPuesto = new javax.swing.JComboBox<>();
@@ -312,9 +343,10 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         cmbHorario = new javax.swing.JComboBox<>();
         lbl_idHorario = new javax.swing.JLabel();
         nombreUsuario2 = new javax.swing.JLabel();
-        txtFechaDespido = new javax.swing.JTextField();
         lbl_idPuesto = new javax.swing.JLabel();
         txtClasificación = new javax.swing.JLabel();
+        txtContrato = new com.toedter.calendar.JDateChooser();
+        txtDespido = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setForeground(java.awt.Color.gray);
@@ -442,9 +474,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(cmbTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(buscar)))
+                    .addComponent(buscar))
                 .addContainerGap(230, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -477,10 +507,6 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         nombreUsuario1.setForeground(java.awt.Color.darkGray);
         nombreUsuario1.setText("Fecha Contrato");
         getContentPane().add(nombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
-
-        txtFechaContrato.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtFechaContrato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 200, 40));
 
         txtObservarciones.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtObservarciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -531,10 +557,6 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         nombreUsuario2.setText("Fecha Despido:");
         getContentPane().add(nombreUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, -1));
 
-        txtFechaDespido.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtFechaDespido.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtFechaDespido, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 200, 40));
-
         lbl_idPuesto.setFont(new java.awt.Font("Roboto Black", 1, 8)); // NOI18N
         lbl_idPuesto.setForeground(new java.awt.Color(238, 238, 238));
         lbl_idPuesto.setText("Puesto: ");
@@ -543,6 +565,8 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         txtClasificación.setForeground(new java.awt.Color(238, 238, 238));
         txtClasificación.setText("jLabel1");
         getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, -1, -1));
+        getContentPane().add(txtContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 200, 40));
+        getContentPane().add(txtDespido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 200, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -681,9 +705,9 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel telefono;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JLabel txtClasificación;
+    private com.toedter.calendar.JDateChooser txtContrato;
+    private com.toedter.calendar.JDateChooser txtDespido;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtFechaContrato;
-    private javax.swing.JTextField txtFechaDespido;
     public static javax.swing.JTextField txtNombre_Apellidos;
     private javax.swing.JTextField txtObservarciones;
     private javax.swing.JTextField txtPhone;

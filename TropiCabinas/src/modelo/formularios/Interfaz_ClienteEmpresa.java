@@ -38,14 +38,15 @@ public class Interfaz_ClienteEmpresa {
         String[] columnas = {
             "ID Persona",
             "Nombre Cliente",
-            "Cédula",
-            "Teléfono",
-            "Dirección",
+            "C\u00E9dula",
+            "Tel\u00E9fono",
+            "Direcci\u00F3n",
+            "ID Empresa",
             "Empresa",
             "Estado"
         };
         //creación de un array para definir los registros que se incluiran por medio del codigo
-        String[] registro = new String[7];
+        String[] registro = new String[8];
 
         totalRegistros = 0;
 
@@ -56,6 +57,7 @@ public class Interfaz_ClienteEmpresa {
                 + "    persona.cedula,\n"
                 + "    persona.telefono,\n"
                 + "    persona.direccion,\n"
+                + "    cliente_empresa.empresa_id,\n"
                 + "    cliente_empresa.codigo_cliente,\n"
                 + "    IF(cliente_empresa.estado_cliente = 0,\n"
                 + "        'Activo',\n"
@@ -66,7 +68,7 @@ public class Interfaz_ClienteEmpresa {
                 + "    pct3.cliente_empresa ON persona.idpersona = cliente_empresa.persona_idpersona\n"
                 + "WHERE\n"
                 + "    nombre LIKE '%" + buscar + "%'\n"
-                + "ORDER BY codigo_cliente";
+                + "ORDER BY codigo_cliente;";
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
@@ -77,8 +79,9 @@ public class Interfaz_ClienteEmpresa {
                 registro[2] = rs.getString("cedula");
                 registro[3] = rs.getString("telefono");
                 registro[4] = rs.getString("direccion");
-                registro[5] = rs.getString("codigo_cliente");
-                registro[6] = rs.getString("estado");
+                registro[5] = rs.getString("empresa_id");
+                registro[6] = rs.getString("codigo_cliente");
+                registro[7] = rs.getString("estado");
                 totalRegistros++;
                 tableModel.addRow(registro);
             }

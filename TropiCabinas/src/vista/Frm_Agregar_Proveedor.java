@@ -332,26 +332,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         if (funcProveedor.editar(dtsProveedor)) {
 
         }
-        //Fin Editar Proveedor
-//        // TODO add your handling code here:
-//        try {
-//            int P = JOptionPane.showConfirmDialog(null, " Quiere editar este dato ?", "Confirmación", JOptionPane.YES_NO_OPTION);
-//            if (P == 0) {
-//                Statement stmt;
-//                stmt = con.createStatement();
-//                String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtCedula.getText() + "',`direccion`='" + txtCedula.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_idPersona.getText() + "'";
-//                pst = con.prepareStatement(Pru);
-//                pst.execute();
-//                JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
-//                txtNombre_Apellidos.setText("");
-//                if (P == 1) {
-//                    txtNombre_Apellidos.setText("");
-//                }
-//            }
-//        } catch (HeadlessException | SQLException ex) {
-//            JOptionPane.showMessageDialog(this, ex);
-//
-//        }
     }//GEN-LAST:event_editarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed

@@ -405,11 +405,11 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel nombreUsuario1;
     private javax.swing.JButton nuevo;
     private javax.swing.JLabel telefono;
-    private javax.swing.JFormattedTextField txtCedula;
+    public static javax.swing.JFormattedTextField txtCedula;
     private javax.swing.JTextField txtClasificación;
-    private javax.swing.JTextField txtCodigoCliente;
-    private javax.swing.JTextField txtDireccion;
+    public static javax.swing.JTextField txtCodigoCliente;
+    public static javax.swing.JTextField txtDireccion;
     public static javax.swing.JTextField txtNombre_Apellidos;
-    private javax.swing.JFormattedTextField txtPhone;
+    public static javax.swing.JFormattedTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }

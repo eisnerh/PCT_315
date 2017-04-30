@@ -73,6 +73,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         mnuFacturaCliente = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -257,6 +258,14 @@ public class Frm_Inicio extends javax.swing.JFrame {
             }
         });
         mnuconsultas.add(jMenuItem10);
+
+        jMenuItem13.setText("jMenuItem13");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(jMenuItem13);
 
         menuBar.add(mnuconsultas);
 
@@ -569,6 +578,23 @@ public class Frm_Inicio extends javax.swing.JFrame {
         Busqueda.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        JasperReport report;
+        JasperPrint print;
+        try {
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/vista/reportes/Betados.jrxml");
+            print = JasperFillManager.fillReport(report, null, con);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Lista de Productos por Proveedor");
+            view.setVisible(true);
+
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -617,6 +643,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
