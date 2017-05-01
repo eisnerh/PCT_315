@@ -8,6 +8,9 @@ package vista;
 import controlador.dbConnection;
 import java.io.File;
 import java.sql.Connection;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -17,7 +20,6 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
-import org.apache.commons.collections.map.HashedMap;
 
 /**
  *
@@ -29,10 +31,31 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
      * Creates new form Frm_GastosParametros
      */
     Connection con = null;
-
+    public String fecha1, fecha2;
     public Frm_GastosParametros() {
         initComponents();
         con = dbConnection.getConnection();
+    }
+    
+    private void obtenerFechas() {
+        Calendar cal;
+        int d, m, a;
+        cal = Fecha1.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        fecha1 = formatter.format(Fecha1.getDate());
+        JOptionPane.showMessageDialog(this, fecha1);
+        Calendar cal2;
+        int d2, m2, a2;
+        cal = Fecha2.getCalendar();
+        d2 = cal.get(Calendar.DAY_OF_MONTH);
+        m2 = cal.get(Calendar.MONTH);
+        a2 = cal.get(Calendar.YEAR) - 1900;
+        Format formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+        fecha2 = formatter2.format(Fecha2.getDate());
+        JOptionPane.showMessageDialog(this, fecha2);
     }
 
     /**
@@ -47,8 +70,8 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnImprimirReporteGastos = new javax.swing.JButton();
-        Fecha1 = new javax.swing.JTextField();
-        Fecha2 = new javax.swing.JTextField();
+        Fecha1 = new com.toedter.calendar.JDateChooser();
+        Fecha2 = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setTitle("Reporte de Gastos");
@@ -70,52 +93,46 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnImprimirReporteGastos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2)
+                        .addGap(125, 125, 125)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(btnImprimirReporteGastos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Fecha2, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Fecha1, Fecha2, btnImprimirReporteGastos});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Fecha1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(Fecha2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
                 .addComponent(btnImprimirReporteGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Fecha1, Fecha2, btnImprimirReporteGastos});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnImprimirReporteGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirReporteGastosActionPerformed
         // TODO add your handling code here:
-        if (!Fecha1.getText().equals("")) {
+        obtenerFechas();
             Map p = new HashMap();
 
-            p.put("fecha1", Fecha1.getText());
-            p.put("fecha2", Fecha2.getText());
+            p.put("fecha1", fecha1);
+            p.put("fecha2", fecha2);
             JasperReport report;
             JasperPrint print;
 
@@ -131,12 +148,12 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
             } catch (JRException e) {
                 JOptionPane.showMessageDialog(this, e);
             }
-        }
+        
     }//GEN-LAST:event_btnImprimirReporteGastosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Fecha1;
-    private javax.swing.JTextField Fecha2;
+    private com.toedter.calendar.JDateChooser Fecha1;
+    private com.toedter.calendar.JDateChooser Fecha2;
     private javax.swing.JButton btnImprimirReporteGastos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
