@@ -131,7 +131,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         lblCantDias = new javax.swing.JLabel();
         CantidadDias = new javax.swing.JFormattedTextField();
         fechaSalida = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
         Precio = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
@@ -274,8 +274,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         fechaSalida.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Salida"));
         jPanel4.add(fechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 176, 50));
 
-        jLabel1.setText("Precio:");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 176, 28));
+        lblPrecio.setText("Precio:");
+        jPanel4.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 176, 28));
 
         Precio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0"))));
         Precio.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -472,6 +472,10 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
                 con = dbConnection.getConnection();
+                if(numeroFactura.getText().equals(""))
+                {
+                    numeroFactura.setText("1");
+                }
                 if (CantidadDias.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de días a hospedarse ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -550,7 +554,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         // TODO add your handling code here:
-        Frm_BusquedaAgregarClientes form = new Frm_BusquedaAgregarClientes();
+        Frm_BusquedaClientes1 form = new Frm_BusquedaClientes1();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
@@ -568,13 +572,13 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel idEmpleado;
     private javax.swing.JLabel impuesto;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblCantDias;
+    private javax.swing.JLabel lblPrecio;
     public static javax.swing.JLabel lbl_IdClienteEmpresa;
     public static javax.swing.JLabel nCabina;
     public static javax.swing.JLabel nombreCliente;

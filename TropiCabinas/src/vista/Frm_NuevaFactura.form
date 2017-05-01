@@ -350,7 +350,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblPrecio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Precio:"/>
           </Properties>

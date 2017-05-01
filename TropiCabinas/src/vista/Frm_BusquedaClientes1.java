@@ -164,13 +164,11 @@ public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
         if (evt.getClickCount() == 2) {
             int fila = tablalistado.getSelectedRow();
             String cod;
-            String valor;
             String nombre;
             cod = tablalistado.getValueAt(fila, 0).toString();
-            valor = tablalistado.getValueAt(fila, 1).toString() + " " + tablalistado.getValueAt(fila, 2).toString();
             nombre = tablalistado.getValueAt(fila, 1).toString();
-            Frm_GrupoCabinasxCliente.nombreCliente.setText(nombre);
-            Frm_GrupoCabinasxCliente.idCliente.setText(cod);
+            Frm_NuevaFactura.txtNombreCliente.setText(nombre);
+            Frm_NuevaFactura.lbl_IdClienteEmpresa.setText(cod);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed
