@@ -67,8 +67,8 @@ public class Interfaz_ClienteEmpresa {
                 + "        INNER JOIN\n"
                 + "    pct3.cliente_empresa ON persona.idpersona = cliente_empresa.persona_idpersona\n"
                 + "WHERE\n"
-                + "    nombre LIKE '%" + buscar + "%'\n"
-                + "ORDER BY codigo_cliente;";
+                + "    nombre LIKE '%" + buscar + "%' and cliente_empresa.estado_cliente = '0' "
+                + "ORDER BY cliente_empresa.codigo_cliente;";
         try {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(querySQL);
@@ -202,12 +202,10 @@ public class Interfaz_ClienteEmpresa {
         try {
             PreparedStatement preparedST = conexion.prepareStatement(querySQL);
 
-            preparedST.setString(1, dts.getEmpresa_id());
-
+            preparedST.setString(1, dts.getEstado_cliente());
+            preparedST.setString(2, dts.getEmpresa_id());
             int n = preparedST.executeUpdate();
-
             return n != 0;
-
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
             return false;

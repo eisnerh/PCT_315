@@ -128,7 +128,7 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         cmbOcupado = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        cabina_di = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNombreCabina = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -150,7 +150,6 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         lbltotalregistros = new javax.swing.JLabel();
         EstadoCabina = new javax.swing.JLabel();
         TipoCabina = new javax.swing.JLabel();
-        cabina_di = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -174,9 +173,9 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/racing.png"))); // NOI18N
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/blocked.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -187,9 +186,9 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbOcupado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmbLibre)
                 .addGap(14, 14, 14))
         );
@@ -198,22 +197,22 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cmbOcupado)
-                            .addComponent(cmbLibre))
-                        .addGap(22, 22, 22))))
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(cmbOcupado)
+                        .addComponent(cmbLibre)
+                        .addComponent(jLabel6)))
+                .addGap(21, 21, 21))
         );
 
         jPanel2.add(jPanel4);
-        jPanel2.add(jLabel8);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        cabina_di.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cabina_di.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cabina_di.setText("cabina_id");
+        jPanel2.add(cabina_di);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nombre Cabina:");
         jPanel2.add(jLabel2);
@@ -221,11 +220,12 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         txtNombreCabina.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jPanel2.add(txtNombreCabina);
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Estado Actual de la Cábina:");
         jPanel2.add(jLabel3);
 
+        cmbEstadoCabina.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         cmbEstadoCabina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbEstadoCabina.setSelectedIndex(-1);
         cmbEstadoCabina.addActionListener(new java.awt.event.ActionListener() {
@@ -235,11 +235,12 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         });
         jPanel2.add(cmbEstadoCabina);
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Tipo Cabina");
         jPanel2.add(jLabel5);
 
+        cmbTipoCabina.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         cmbTipoCabina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbTipoCabina.setSelectedIndex(-1);
         cmbTipoCabina.addActionListener(new java.awt.event.ActionListener() {
@@ -249,18 +250,18 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         });
         jPanel2.add(cmbTipoCabina);
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Precio");
         jPanel2.add(jLabel4);
 
-        txtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0.###"))));
-        txtPrecio.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtPrecio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jPanel2.add(txtPrecio);
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 5, 1, 1));
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/save-icon-silhouette.png"))); // NOI18N
         btnGuardar.setToolTipText("Guardar Cabina");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,7 +270,7 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnGuardar);
 
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/searching-magnifying-glass.png"))); // NOI18N
         btnNuevo.setToolTipText("Buscar Cabina");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,7 +279,7 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnNuevo);
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/edit.png"))); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/edit.png"))); // NOI18N
         btnEditar.setToolTipText("Editar Cabina");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,6 +288,8 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnEditar);
 
+        tablaCabina.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tablaCabina.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tablaCabina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -305,14 +308,14 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tablaCabina);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/volver.png"))); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/volver.png"))); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Buscar");
 
         Buscar_NombreCabina.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -322,7 +325,8 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             }
         });
 
-        lbltotalregistros.setText("jLabel9");
+        lbltotalregistros.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbltotalregistros.setText("Total Registros");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -337,21 +341,21 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Buscar_NombreCabina)
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbltotalregistros)
                 .addGap(188, 188, 188))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addComponent(jButton7)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Buscar_NombreCabina)
                     .addComponent(jLabel1))
@@ -362,11 +366,8 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        TipoCabina.setText("jLabel6");
-
-        cabina_di.setFont(new java.awt.Font("Dialog", 3, 16)); // NOI18N
-        cabina_di.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cabina_di.setText("cabina_id");
+        TipoCabina.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        TipoCabina.setText("TipoCabina");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -374,19 +375,16 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(EstadoCabina)
-                        .addGap(268, 268, 268)
-                        .addComponent(TipoCabina)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cabina_di, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(EstadoCabina)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TipoCabina))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(106, 106, 106)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -397,16 +395,15 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(29, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(EstadoCabina)
-                            .addComponent(TipoCabina)
-                            .addComponent(cabina_di, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TipoCabina))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -653,7 +650,6 @@ public final class Frm_Agregar_Cabina extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

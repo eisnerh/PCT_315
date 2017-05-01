@@ -282,8 +282,6 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         editar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         Persona = new javax.swing.JLabel();
-        nombreApellidos = new javax.swing.JLabel();
-        txtNombre_Apellidos = new javax.swing.JTextField();
         lblFechaContrato = new javax.swing.JLabel();
         txtObservarciones = new javax.swing.JTextField();
         direccion1 = new javax.swing.JLabel();
@@ -301,6 +299,8 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         txtFechaDespido = new javax.swing.JLabel();
         txtFechaContrato = new javax.swing.JLabel();
         lbl_idColaborador = new javax.swing.JLabel();
+        txtNombre_Apellidos = new javax.swing.JTextField();
+        nombreApellidos = new javax.swing.JLabel();
 
         setClosable(true);
         setForeground(java.awt.Color.gray);
@@ -309,27 +309,27 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         setTitle("Agregar Colaborador");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cedula.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        cedula.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         cedula.setForeground(java.awt.Color.darkGray);
         cedula.setText("Cedula");
-        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
-        direccion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        direccion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         direccion.setForeground(java.awt.Color.darkGray);
         direccion.setText("Direccion");
         getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
-        telefono.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        telefono.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         telefono.setForeground(java.awt.Color.darkGray);
         telefono.setText("Télefono o Celular");
-        getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, -1));
+        getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
 
-        txtDireccion.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtDireccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 440, 40));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
-        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/multiple_accounts.png"))); // NOI18N
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/multiple_accounts.png"))); // NOI18N
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoActionPerformed(evt);
@@ -337,7 +337,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         });
 
         guardar.setBackground(new java.awt.Color(204, 204, 204));
-        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/document_save.png"))); // NOI18N
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/save-icon-silhouette.png"))); // NOI18N
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
@@ -345,7 +345,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         });
 
         editar.setBackground(new java.awt.Color(204, 204, 204));
-        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/edit.png"))); // NOI18N
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/edit.png"))); // NOI18N
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
@@ -353,7 +353,8 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         });
 
         buscar.setBackground(new java.awt.Color(204, 204, 204));
-        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/searching-magnifying-glass.png"))); // NOI18N
+        buscar.setToolTipText("Buscar");
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
@@ -365,35 +366,20 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         Persona.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/empleados.png"))); // NOI18N
 
-        nombreApellidos.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
-        nombreApellidos.setForeground(java.awt.Color.darkGray);
-        nombreApellidos.setText("Nombre y Apellidos");
-
-        txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        txtNombre_Apellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(nuevo)
-                        .addGap(18, 18, 18)
-                        .addComponent(guardar)
-                        .addGap(18, 18, 18)
-                        .addComponent(editar)
-                        .addGap(18, 18, 18)
-                        .addComponent(buscar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(nombreApellidos))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtNombre_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addContainerGap(150, Short.MAX_VALUE)
+                .addComponent(nuevo)
+                .addGap(18, 18, 18)
+                .addComponent(guardar)
+                .addGap(18, 18, 18)
+                .addComponent(editar)
+                .addGap(18, 18, 18)
+                .addComponent(buscar)
+                .addGap(96, 96, 96)
                 .addComponent(Persona, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -401,37 +387,34 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Persona, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nuevo)
                             .addComponent(guardar)
                             .addComponent(editar)
-                            .addComponent(buscar))
-                        .addGap(16, 16, 16)
-                        .addComponent(nombreApellidos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNombre_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Persona, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                            .addComponent(buscar))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 170));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 110));
 
-        lblFechaContrato.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        lblFechaContrato.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblFechaContrato.setForeground(java.awt.Color.darkGray);
         lblFechaContrato.setText("Fecha Contrato");
-        getContentPane().add(lblFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
+        getContentPane().add(lblFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, -1));
 
-        txtObservarciones.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txtObservarciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtObservarciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtObservarciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 440, 40));
 
-        direccion1.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        direccion1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         direccion1.setForeground(java.awt.Color.darkGray);
         direccion1.setText("Observaciones");
         getContentPane().add(direccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
-        cmbPuesto.setFont(new java.awt.Font("Dialog", 1, 16));
+        cmbPuesto.setFont(new java.awt.Font("Dialog", 1, 14));
         cmbPuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbPuesto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         cmbPuesto.addActionListener(new java.awt.event.ActionListener() {
@@ -441,17 +424,17 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         });
         getContentPane().add(cmbPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 200, 40));
 
-        lblPuesto.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        lblPuesto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblPuesto.setForeground(java.awt.Color.darkGray);
         lblPuesto.setText("Puesto");
-        getContentPane().add(lblPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, -1, -1));
+        getContentPane().add(lblPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
 
-        lblHorario.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        lblHorario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblHorario.setForeground(java.awt.Color.darkGray);
         lblHorario.setText("Horario");
-        getContentPane().add(lblHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, -1, -1));
+        getContentPane().add(lblHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, -1, -1));
 
-        cmbHorario.setFont(new java.awt.Font("Dialog", 1, 16));
+        cmbHorario.setFont(new java.awt.Font("Dialog", 1, 14));
         cmbHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbHorario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         cmbHorario.addActionListener(new java.awt.event.ActionListener() {
@@ -462,30 +445,35 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         getContentPane().add(cmbHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 200, 40));
 
         lbl_idHorario.setBackground(new java.awt.Color(0, 0, 0));
-        lbl_idHorario.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        lbl_idHorario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbl_idHorario.setForeground(new java.awt.Color(0, 0, 0));
         lbl_idHorario.setText("Horario: ");
         getContentPane().add(lbl_idHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, -1));
 
         lbl_idPuesto.setBackground(new java.awt.Color(0, 0, 0));
-        lbl_idPuesto.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        lbl_idPuesto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbl_idPuesto.setForeground(new java.awt.Color(0, 0, 0));
         lbl_idPuesto.setText("Puesto: ");
         getContentPane().add(lbl_idPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
-        getContentPane().add(txtContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 200, 40));
+
+        txtContrato.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        getContentPane().add(txtContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 200, 40));
 
         txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 260, 40));
+        txtCedula.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 260, 40));
 
         txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 190, 40));
+        txtPhone.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 190, 40));
 
         lbl_IDPersona.setBackground(new java.awt.Color(0, 0, 0));
-        lbl_IDPersona.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        lbl_IDPersona.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbl_IDPersona.setForeground(new java.awt.Color(0, 0, 0));
         lbl_IDPersona.setText("Persona:");
         getContentPane().add(lbl_IDPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
 
+        optDespedido.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         optDespedido.setText("Despedido");
         optDespedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -494,17 +482,28 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         });
         getContentPane().add(optDespedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 190, 50));
 
+        txtFechaDespido.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         txtFechaDespido.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Despido"));
         getContentPane().add(txtFechaDespido, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, 190, 60));
 
+        txtFechaContrato.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         txtFechaContrato.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha Contrato"));
         getContentPane().add(txtFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 190, 60));
 
         lbl_idColaborador.setBackground(new java.awt.Color(0, 0, 0));
-        lbl_idColaborador.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        lbl_idColaborador.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbl_idColaborador.setForeground(new java.awt.Color(0, 0, 0));
         lbl_idColaborador.setText("Colaborador:");
         getContentPane().add(lbl_idColaborador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
+
+        txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtNombre_Apellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 360, 40));
+
+        nombreApellidos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        nombreApellidos.setForeground(java.awt.Color.darkGray);
+        nombreApellidos.setText("Nombre y Apellidos");
+        getContentPane().add(nombreApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

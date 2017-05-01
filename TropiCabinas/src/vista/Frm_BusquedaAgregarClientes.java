@@ -70,6 +70,7 @@ public class Frm_BusquedaAgregarClientes extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Clientes"));
 
+        tablalistado.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -91,8 +92,10 @@ public class Frm_BusquedaAgregarClientes extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(tablalistado);
 
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setText("Buscar");
 
+        txtbuscar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtbuscarKeyTyped(evt);
@@ -100,6 +103,7 @@ public class Frm_BusquedaAgregarClientes extends javax.swing.JInternalFrame {
         });
 
         btnbuscar.setBackground(new java.awt.Color(51, 51, 51));
+        btnbuscar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnbuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/buscar.png"))); // NOI18N
         btnbuscar.setText("Buscar");

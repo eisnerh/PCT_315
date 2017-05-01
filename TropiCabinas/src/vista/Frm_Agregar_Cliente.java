@@ -35,13 +35,6 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
     PreparedStatement pst = null;
     ResultSet rs2 = null;
     PreparedStatement pst2 = null;
-    String sqlSelect;
-    String sqlSelect_Valor;
-    String sqlInsert;
-    String sqlDelete;
-
-    private String id_Persona;
-
     //declarar static e instanciarla en tu contructor`
     static DefaultComboBoxModel modeloTipo;
 
@@ -132,18 +125,14 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
                 dtsPersona.setTipo_persona_idtipo_persona(txtClasificación.getText());
                 func.insertar(dtsPersona);
                 //Fin Agregar Persona
-
                 //Inicio de la Función para Agregar Cliente
                 Modelo_ClienteEmpresa dtsClientes = new Modelo_ClienteEmpresa();
                 Interfaz_ClienteEmpresa funcInterfaz_Clientes = new Interfaz_ClienteEmpresa();
                 dtsClientes.setCodigo_cliente(txtCodigoCliente.getText());
-
                 funcInterfaz_Clientes.insertarCliente(dtsClientes);
                 //Fin Agregar Proveedor
-
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Cliente", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
-
             } else {
                 limpiar();
             }
@@ -318,14 +307,14 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 210, 30));
 
         txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCedulaFocusLost(evt);
-            }
-        });
         getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 270, 30));
 
         jCheckBox1.setText("Betar Cliente");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 160, 30));
 
         nombreApellidos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -350,12 +339,10 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         // TODO add your handling code here:
         limpiar();
-
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         //Variable que almacena el tipo de persona
-
         agregarPersona();
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -401,9 +388,17 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         getNumeroCodigo();
     }//GEN-LAST:event_txtPhoneFocusLost
 
-    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaFocusLost
+        //Editar Colaborador
+        Modelo_ClienteEmpresa dtsEmpresa = new Modelo_ClienteEmpresa();
+        Interfaz_ClienteEmpresa funcEmpresa = new Interfaz_ClienteEmpresa();
+        dtsEmpresa.setEstado_cliente("1");
+        //ID'S
+        dtsEmpresa.setEmpresa_id(lbl_idCliente.getText());
+        if (funcEmpresa.betado(dtsEmpresa)) {
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Persona;
