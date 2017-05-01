@@ -186,7 +186,7 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
         a = cal.get(Calendar.YEAR) - 1900;
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = formatter.format(fechaGasto.getDate());
-
+        String numeroFacturaPlanilla;
         JOptionPane.showMessageDialog(this, s);
         //Fin Fecha
         Modelo_Gastos dts;
@@ -198,6 +198,8 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
             func = new Interfaz_Gastos();
         } catch (Exception e) {
         }
+        numeroFacturaPlanilla = d + m + a + idColaborador.getText();
+        txtFacturaN.setText(numeroFacturaPlanilla);
         dts.setTipo_Gasto("Planilla de " + txtTipoGasto.getText());
         dts.setMonto_Gasto(txtMonto.getText());
         dts.setFecha_Gasto(s);
@@ -226,6 +228,6 @@ public class Frm_Agregar_Gastos extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel nombreColaborador;
     private javax.swing.JFormattedTextField txtFacturaN;
     private javax.swing.JFormattedTextField txtMonto;
-    private javax.swing.JTextField txtTipoGasto;
+    public static javax.swing.JTextField txtTipoGasto;
     // End of variables declaration//GEN-END:variables
 }

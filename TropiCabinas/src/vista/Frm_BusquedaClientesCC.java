@@ -13,12 +13,15 @@ import modelo.formularios.Interfaz_Clientes;
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
+public class Frm_BusquedaClientesCC extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmBusquedaClientes
+     * 
+     * Este formulario de busquedas es para el reporte de imprimir una factura
+     * una cantidad de cabinas alquiladas por el mismo cliente 
      */
-    public Frm_BusquedaClientes1() {
+    public Frm_BusquedaClientesCC() {
         initComponents();
 
         mostrar("");
@@ -167,8 +170,8 @@ public class Frm_BusquedaClientes1 extends javax.swing.JInternalFrame {
             String nombre;
             cod = tablalistado.getValueAt(fila, 0).toString();
             nombre = tablalistado.getValueAt(fila, 1).toString();
-            Frm_NuevaFactura.txtNombreCliente.setText(nombre);
-            Frm_NuevaFactura.lbl_IdClienteEmpresa.setText(cod);
+            Frm_GrupoCabinasxCliente.txtnombreCliente.setText(nombre);
+            Frm_GrupoCabinasxCliente.txtidCliente.setText(cod);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed

@@ -540,7 +540,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         // TODO add your handling code here:
-        Frm_BusquedaClientes1 form = new Frm_BusquedaClientes1();
+        Frm_BusquedaClientes_Factura form = new Frm_BusquedaClientes_Factura();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);

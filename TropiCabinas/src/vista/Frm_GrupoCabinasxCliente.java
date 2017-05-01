@@ -50,7 +50,7 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
 
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        nombreCliente = new javax.swing.JTextField();
+        txtnombreCliente = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -58,7 +58,7 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
         nombreEmpleado = new javax.swing.JLabel();
         idEmpleado = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        idCliente = new javax.swing.JLabel();
+        txtidCliente = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -88,7 +88,7 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        idCliente.setForeground(new java.awt.Color(238, 238, 238));
+        txtidCliente.setForeground(new java.awt.Color(238, 238, 238));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,7 +111,7 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
                                         .addComponent(jButton2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nombreCliente)
+                                        .addComponent(txtnombreCliente)
                                         .addGap(36, 36, 36)))
                                 .addComponent(jButton1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -123,7 +123,7 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtidCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -142,7 +142,7 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
@@ -150,7 +150,7 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
                     .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtidCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
 
@@ -167,20 +167,20 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = formatter.format(jDateChooser1.getDate());
         String fecha1 = s;
-        JOptionPane.showMessageDialog(this, s);
+        //Fin fecha 1
         cal2 = jDateChooser2.getCalendar();
         d2 = cal2.get(Calendar.DAY_OF_MONTH);
         m2 = cal2.get(Calendar.MONTH);
         a2 = cal2.get(Calendar.YEAR) - 1900;
         Format format = new SimpleDateFormat("yyyy-MM-dd");
         String s2 = format.format(jDateChooser2.getDate());
-        JOptionPane.showMessageDialog(this, s2);
+        //Fin Fecha 2
         if (!idEmpleado.getText().equals("") && !nombreEmpleado.getText().equals("")) {
             Map p = new HashMap();
             p.put("empleadoID", idEmpleado.getText());
             p.put("Fecha1", s);
             p.put("Fecha2", s2);
-            p.put("Empresa_ID", idCliente.getText());
+            p.put("Empresa_ID", txtidCliente.getText());
             JasperReport report;
             JasperPrint print;
             try {
@@ -198,14 +198,13 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Frm_BusquedaClientes1 form = new Frm_BusquedaClientes1();
+        Frm_BusquedaClientes_FacturaCCC form = new Frm_BusquedaClientes_FacturaCCC();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel idCliente;
     public static javax.swing.JLabel idEmpleado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -214,7 +213,8 @@ public class Frm_GrupoCabinasxCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    public static javax.swing.JTextField nombreCliente;
     public static javax.swing.JLabel nombreEmpleado;
+    public static javax.swing.JLabel txtidCliente;
+    public static javax.swing.JTextField txtnombreCliente;
     // End of variables declaration//GEN-END:variables
 }

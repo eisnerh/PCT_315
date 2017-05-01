@@ -92,6 +92,7 @@ public class Interfaz_ClienteEmpresa {
         }
 
     }
+    
 
     public DefaultTableModel mostrarvista(String buscar) {
         DefaultTableModel tableModel;

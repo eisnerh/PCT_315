@@ -7,18 +7,21 @@ package vista;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.formularios.Interfaz_Usuario;
+import modelo.formularios.Interfaz_Clientes;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JInternalFrame {
+public class Frm_BusquedaClientes_Factura extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmBusquedaClientes
+     * 
+     * Este formulario de busquedas es para el reporte de imprimir una factura
+     * una cantidad de cabinas alquiladas por el mismo cliente 
      */
-    public Frm_BusquedaColaboradores_AgregarGastos() {
+    public Frm_BusquedaClientes_Factura() {
         initComponents();
 
         mostrar("");
@@ -27,13 +30,20 @@ public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JIntern
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            Interfaz_Usuario func = new Interfaz_Usuario();
-            modelo = func.mostrarColaborador(buscar);
+            Interfaz_Clientes func = new Interfaz_Clientes();
+            modelo = func.mostrar(buscar);
             tablalistado.setModel(modelo);
+            ocultar_columnas();
             lbltotalregistros.setText("Total Registros " + Integer.toString(func.totalregistros));
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
+    }
+
+    void ocultar_columnas() {
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
 
     /**
@@ -53,11 +63,10 @@ public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JIntern
         btnbuscar = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setClosable(true);
-        setTitle("Busqueda de Colaboradores");
+        setTitle("Busqueda de Clientes");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Colaboradores"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Clientes"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -161,7 +170,8 @@ public class Frm_BusquedaColaboradores_AgregarGastos extends javax.swing.JIntern
             String nombre;
             cod = tablalistado.getValueAt(fila, 0).toString();
             nombre = tablalistado.getValueAt(fila, 1).toString();
-            Frm_Agregar_Gastos.txtTipoGasto.setText(nombre);
+            Frm_NuevaFactura.txtNombreCliente.setText(nombre);
+            Frm_NuevaFactura.lbl_IdClienteEmpresa.setText(cod);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed
