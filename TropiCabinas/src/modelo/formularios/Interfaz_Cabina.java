@@ -17,7 +17,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author ace
+ * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public class Interfaz_Cabina {
 

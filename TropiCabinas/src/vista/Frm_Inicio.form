@@ -318,6 +318,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Acerca de..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemAcercaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemAyuda">
               <Properties>

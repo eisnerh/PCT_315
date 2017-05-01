@@ -7,7 +7,8 @@ package modelo.contructor;
 
 /**
  *
- * @author Eisner Lopez Acevedo <eisner.lopez at gmail.com>
+ * @author Eisner López Acevedo <eisner.lopez at gmail.com>
+ * @author Cesar Gonzalez Salas <cgonzalez816 at gmail.com>
  */
 public class Modelo_Productos {
 

@@ -341,6 +341,11 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
         itemAcerca.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         itemAcerca.setText("Acerca de...");
+        itemAcerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAcercaActionPerformed(evt);
+            }
+        });
         mnuAyuda.add(itemAcerca);
 
         itemAyuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
@@ -593,6 +598,14 @@ public class Frm_Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void itemAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAcercaActionPerformed
+        // TODO add your handling code here:
+        FrmAcerca frmAcerca = new FrmAcerca();
+        escritorio.add(frmAcerca);
+        frmAcerca.toFront();
+        frmAcerca.setVisible(true);
+    }//GEN-LAST:event_itemAcercaActionPerformed
 
     /**
      * @param args the command line arguments
