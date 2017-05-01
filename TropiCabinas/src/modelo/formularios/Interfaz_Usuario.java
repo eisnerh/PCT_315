@@ -52,8 +52,9 @@ public class Interfaz_Usuario {
                 + "`usuario`.`colaborador_empleado_id` = `colaborador`.`empleado_id`"
                 + "AND `colaborador`.`persona_idpersona` = `persona`.`idpersona`"
                 + "AND `colaborador`.`puesto_puesto_id` = `puesto`.`puesto_id`"
-                + "AND `usuario`.`usuario` like BINARY '%" + login + "%'"
-                + "AND `usuario`.`password` like BINARY '%" + password + "%'";
+                + "AND `usuario`.`usuario` = BINARY '" + login + "'"
+                + "AND `usuario`.`password` = BINARY '" + password + "'"
+                + "AND colaborador.fecha_despido IS NULL";
 
         try {
             Statement st = conexion.createStatement();

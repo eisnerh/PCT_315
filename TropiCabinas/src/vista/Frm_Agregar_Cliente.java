@@ -53,6 +53,7 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         modeloTipo = new DefaultComboBoxModel();
         //Busca el ID del tipo de persona.
         TipoPersona();
+        labelsInvisibles();
     }
 
     private void limpiar() {
@@ -62,11 +63,21 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         txtDireccion.setText("");
         txtCodigoCliente.setText("");
     }
+    
+    private void labelsInvisibles()
+    {
+        boolean valor = false;
+        jLabel4.setVisible(valor);
+        lbl_idCliente.setVisible(valor);
+        nombreUsuario.setVisible(valor);
+        lbl_id_persona.setVisible(valor);
+        txtClasificación.setVisible(valor);
+    }
 
     public void getNumeroCodigo() {
         String NuevoNumero;
         txtCodigoCliente.setText("");
-        lbl_idPersona.setText("");
+        lbl_idCliente.setText("");
         Interfaz_Persona func = new Interfaz_Persona();
         NuevoNumero = func.getNumeroCodigo();
         txtCodigoCliente.setText(txtNombre_Apellidos.getText() + NuevoNumero);
@@ -165,7 +176,7 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         editar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         cedula = new javax.swing.JLabel();
-        lbl_idPersona = new javax.swing.JLabel();
+        lbl_idCliente = new javax.swing.JLabel();
         lbl_id_persona = new javax.swing.JLabel();
         nombreUsuario1 = new javax.swing.JLabel();
         txtCodigoCliente = new javax.swing.JTextField();
@@ -186,12 +197,14 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(238, 238, 238));
         jLabel4.setText("CodigoCliente");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 343, -1, -1));
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, -1, -1));
 
         nombreUsuario.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         nombreUsuario.setForeground(new java.awt.Color(238, 238, 238));
         nombreUsuario.setText("CodigoClasificación");
-        getContentPane().add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 343, -1, -1));
+        nombreUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, -1, -1));
 
         direccion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         direccion.setForeground(java.awt.Color.darkGray);
@@ -210,8 +223,8 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         txtClasificación.setEditable(false);
         txtClasificación.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtClasificación.setToolTipText("");
-        txtClasificación.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 20, 40));
+        txtClasificación.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 20, 40));
 
         nombreApellidos.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         nombreApellidos.setForeground(java.awt.Color.darkGray);
@@ -221,6 +234,7 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
         Persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Persona.setForeground(java.awt.Color.darkGray);
         Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Market-Research.png"))); // NOI18N
+        Persona.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 130, 110));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
@@ -293,15 +307,17 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
 
-        lbl_idPersona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
-        lbl_idPersona.setForeground(new java.awt.Color(238, 238, 238));
-        lbl_idPersona.setText("jLabel1");
-        getContentPane().add(lbl_idPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        lbl_idCliente.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        lbl_idCliente.setForeground(new java.awt.Color(238, 238, 238));
+        lbl_idCliente.setText("jLabel1");
+        lbl_idCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(lbl_idCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, -1, -1));
 
         lbl_id_persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         lbl_id_persona.setForeground(new java.awt.Color(238, 238, 238));
         lbl_id_persona.setText("lblIdPersona");
-        getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
+        lbl_id_persona.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
 
         nombreUsuario1.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
         nombreUsuario1.setForeground(java.awt.Color.darkGray);
@@ -353,7 +369,7 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
                 Statement stmt;
                 stmt = con.createStatement();
 
-                String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtPhone.getText() + "',`direccion`='" + txtPhone.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_idPersona.getText() + "'";
+                String Pru = "UPDATE `persona` SET `nombre` = '" + txtNombre_Apellidos.getText() + "',`cedula` = '" + txtCedula.getText() + "', `telefono` = '" + txtPhone.getText() + "',`direccion`='" + txtPhone.getText() + "',`tipo_persona_idtipo_persona`='" + txtClasificación.getText() + "' WHERE `idpersona`='" + lbl_idCliente.getText() + "'";
                 pst = con.prepareStatement(Pru);
                 pst.execute();
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
@@ -398,8 +414,8 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbl_idPersona;
-    private javax.swing.JLabel lbl_id_persona;
+    public static javax.swing.JLabel lbl_idCliente;
+    public static javax.swing.JLabel lbl_id_persona;
     private javax.swing.JLabel nombreApellidos;
     public static javax.swing.JLabel nombreUsuario;
     public static javax.swing.JLabel nombreUsuario1;

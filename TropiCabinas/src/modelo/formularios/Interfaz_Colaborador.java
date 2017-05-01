@@ -14,7 +14,6 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.contructor.Modelo_Colaborador;
-import modelo.contructor.Modelo_Proveedor;
 
 /**
  *
@@ -110,7 +109,6 @@ public class Interfaz_Colaborador {
         querySQL = "INSERT INTO `pct3`.`colaborador` "
                 + "( "
                 + "`fecha_contrato`, "
-                + "`fecha_despido`, "
                 + "`observaciones`, "
                 + "`persona_idpersona`, "
                 + "`puesto_puesto_id`, "
@@ -118,7 +116,6 @@ public class Interfaz_Colaborador {
                 + "VALUES "
                 + "( "
                 + "?, "
-                + "0000-00-00, "
                 + "?, "
                 + "(SELECT max(idpersona) FROM pct3.persona), "
                 + "?, "
@@ -128,6 +125,7 @@ public class Interfaz_Colaborador {
             statement = conexion.prepareStatement(querySQL);
             statement.setString(1, dts.getFecha_contrato());
             statement.setString(2, dts.getObservaciones());
+            
             statement.setString(3, dts.getPuesto_puesto_id());
             statement.setString(4, dts.getHorario_horario_id());
             statement.executeUpdate();

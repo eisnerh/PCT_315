@@ -82,11 +82,11 @@ public class Frm_BusquedaAgregarClientes extends javax.swing.JInternalFrame {
             }
         ));
         tablalistado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablalistadoMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tablalistadoMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablalistadoMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(tablalistado);
@@ -126,8 +126,8 @@ public class Frm_BusquedaAgregarClientes extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(97, 97, 97)
-                                .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83)
+                                .addComponent(btnbuscar)
                                 .addGap(26, 26, 26)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -168,21 +168,21 @@ public class Frm_BusquedaAgregarClientes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
             int fila = tablalistado.getSelectedRow();
-            String idCliente, idpersona, desc_proveedor, nombre, cedula, telefono, direccion;
-            idCliente = tablalistado.getValueAt(fila, 0).toString();
-            idpersona = tablalistado.getValueAt(fila, 1).toString();
-            desc_proveedor = tablalistado.getValueAt(fila, 2).toString();
-            nombre = tablalistado.getValueAt(fila, 3).toString();
-            cedula = tablalistado.getValueAt(fila, 4).toString();
-            telefono = tablalistado.getValueAt(fila, 5).toString();
-            direccion = tablalistado.getValueAt(fila, 6).toString();
-            Frm_Agregar_Proveedor.IdProveedor = idCliente;
-            Frm_Agregar_Proveedor.IdPersona = idpersona;
-            Frm_Agregar_Proveedor.txtCodigoCliente.setText(desc_proveedor);
-            Frm_Agregar_Proveedor.txtNombre_Apellidos.setText(nombre);
-            Frm_Agregar_Proveedor.txtCedula.setText(cedula);
-            Frm_Agregar_Proveedor.txtPhone.setText(telefono);
-            Frm_Agregar_Proveedor.txtDireccion.setText(direccion);
+            String idCliente, idpersona, cedula, nombre, descCliente, telefono, direccion;
+            idpersona = tablalistado.getValueAt(fila, 0).toString();
+            nombre = tablalistado.getValueAt(fila, 1).toString();
+            cedula = tablalistado.getValueAt(fila, 2).toString();
+            telefono = tablalistado.getValueAt(fila, 3).toString();
+            direccion = tablalistado.getValueAt(fila, 4).toString();
+            idCliente = tablalistado.getValueAt(fila, 5).toString();
+            descCliente = tablalistado.getValueAt(fila, 6).toString();
+            Frm_Agregar_Cliente.lbl_id_persona.setText(idCliente);
+            Frm_Agregar_Cliente.lbl_idCliente.setText(idpersona);
+            Frm_Agregar_Cliente.txtCodigoCliente.setText(descCliente);
+            Frm_Agregar_Cliente.txtNombre_Apellidos.setText(nombre);
+            Frm_Agregar_Cliente.txtCedula.setText(cedula);
+            Frm_Agregar_Cliente.txtPhone.setText(telefono);
+            Frm_Agregar_Cliente.txtDireccion.setText(direccion);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed
