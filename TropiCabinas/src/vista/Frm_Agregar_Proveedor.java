@@ -307,7 +307,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_guardarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        JOptionPane.showMessageDialog(this, IdPersona + ", " + IdProveedor);
+
         //Editar Persona
         Modelo_Persona dtsPersona = new Modelo_Persona();
         Interfaz_Persona funcPersona = new Interfaz_Persona();

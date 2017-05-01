@@ -192,8 +192,8 @@ public class Frm_Agregar_Usuario extends javax.swing.JInternalFrame {
 
     private void btnBuscarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarColaboradorActionPerformed
         // TODO add your handling code here:
-        Frm_BusquedaAgregarColaboradores form;
-        form = new Frm_BusquedaAgregarColaboradores();
+        Frm_BusquedaUsuarioColaboradores form;
+        form = new Frm_BusquedaUsuarioColaboradores();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);

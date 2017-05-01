@@ -14,6 +14,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.contructor.Modelo_Productos;
+import modelo.contructor.Modelo_Puesto;
 
 /**
  *
@@ -97,6 +98,7 @@ public class Interfaz_Productos {
                 + "WHERE "
                 + "gasto_operativo.factura_gasto LIKE '%" + buscar + "%' "
                 + "AND gasto_operativo.fecha_gasto LIKE '%" + fecha + "%' "
+                + "AND productos.cant > 0 "
                 + "ORDER BY nombre_producto";
         try {
             Statement st = conexion.createStatement();
@@ -147,6 +149,20 @@ public class Interfaz_Productos {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+    }
+    
+    public boolean editar(Modelo_Productos dts) {
+        querySQL = "UPDATE `pct3`.`productos` SET `cant`= ? WHERE `idproductos`= ?";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(querySQL);
+            ps.setString(1, dts.getCantidad());
+            ps.setString(2, dts.getIdProductos());
+            int n;
+            n = ps.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, e, "Corregir", JOptionPane.YES_NO_OPTION);
+        }
+        return false;
     }
 
 }

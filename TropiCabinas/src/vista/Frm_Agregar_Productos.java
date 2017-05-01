@@ -19,9 +19,16 @@ import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.contructor.Modelo_Gastos;
+import modelo.contructor.Modelo_Persona;
 import modelo.contructor.Modelo_Productos;
 import modelo.formularios.Interfaz_Gastos;
+import modelo.formularios.Interfaz_Persona;
 import modelo.formularios.Interfaz_Productos;
+import static vista.Frm_Agregar_Proveedor.IdPersona;
+import static vista.Frm_Agregar_Proveedor.txtCedula;
+import static vista.Frm_Agregar_Proveedor.txtDireccion;
+import static vista.Frm_Agregar_Proveedor.txtNombre_Apellidos;
+import static vista.Frm_Agregar_Proveedor.txtPhone;
 import static vista.Frm_Inicio.escritorio;
 
 /**
@@ -130,6 +137,11 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblListadoProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblListadoProductosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblListadoProductos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -389,6 +401,29 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Producto Creado Exitosamente");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tblListadoProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListadoProductosMousePressed
+        
+        if (evt.getClickCount() == 2) {
+            int fila = tblListadoProductos.getSelectedRow();
+            String idProductos;
+            int Cantidad = Integer.parseInt(tblListadoProductos.getValueAt(fila, 2).toString());
+            
+            idProductos = tblListadoProductos.getValueAt(fila, 0).toString();
+            JOptionPane.showMessageDialog(null, String.format("%s - %s", idProductos, String.valueOf(Cantidad)));
+        //Editar Cantidad de Productos
+        Modelo_Productos dtsProductos = new Modelo_Productos();
+        Interfaz_Productos funProductos = new Interfaz_Productos();
+
+        dtsProductos.setCantidad(String.valueOf(Cantidad - 1));
+        dtsProductos.setIdProductos(idProductos);
+        
+        if (funProductos.editar(dtsProductos)) {
+            
+        }
+        mostrar("", "");
+        }
+    }//GEN-LAST:event_tblListadoProductosMousePressed
 
     public void nuevoNFactura() {
         Calendar cal;

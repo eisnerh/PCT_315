@@ -23,7 +23,6 @@ public class Interfaz_Puesto {
     private final dbConnection myLink = new dbConnection();
     private final Connection conexion = dbConnection.getConnection();
     private String sSQL = "";
-    private String sSQL2 = "";
     public Integer totalregistros;
 
     public int totalRegistros;

@@ -54,8 +54,6 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         nCabina.setText(Frm_Seleccionar_Cabina.ps_nombreCabina);
         nombreEmpleado.setText(Frm_Login.ps_NombreEmpleado);
         idEmpleado.setText(Frm_Login.ps_idEmpleado);
-        //idCabina.setVisible(false);
-        fechas();
         nuevoNFactura();
         fechaEntrada.setVisible(false);
         jPanel1.setVisible(false);
@@ -76,35 +74,24 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
 
     public void nuevoNFactura() {
         try {
-
             Statement stmt;
             stmt = conexion.createStatement();
-
             String qSQL = "SELECT "
                     + "max(factura_cabina.numero_factura)+1 as N_Factura "
                     + "FROM "
                     + "pct3.factura_cabina";
-
             rs = stmt.executeQuery(qSQL);
             while (rs.next()) {
                 numeroFactura.setText(rs.getString(1));
+                if(numeroFactura.getText().equals(""))
+                {
+                    numeroFactura.setText("1");
+                }
             }
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-    }
-
-    public void fechas() {
-        Date h = new Date();
-        SimpleDateFormat formato_Fecha;
-        formato_Fecha = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
-        String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-        SimpleDateFormat formato_Hora;
-        formato_Hora = new SimpleDateFormat("HH:mm:ss a", Locale.getDefault());
-        //formato_Fecha.format(h)) Imprime el tiempo formateado 
-        Valor = date;
-        fechaEntrada.setText(Valor);
     }
 
     /**
@@ -425,12 +412,14 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             modeloTurno.removeAllElements(); // eliminamos lo elementos
             Statement stmt;
             stmt = conexion.createStatement();
-
             String qSQL = "SELECT max(factura_cabina.numero_factura)+1 as N_Factura FROM pct3.factura_cabina;";
-
             rs = stmt.executeQuery(qSQL);
             while (rs.next()) {
                 numeroFactura.setText(rs.getString(1));
+                if (numeroFactura.getText().equals(""))
+                {
+                    numeroFactura.setText("1");
+                }
             }
 
         } catch (HeadlessException | SQLException ex) {
@@ -472,10 +461,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
                 con = dbConnection.getConnection();
-                if(numeroFactura.getText().equals(""))
-                {
-                    numeroFactura.setText("1");
-                }
+
                 if (CantidadDias.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de días a hospedarse ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
