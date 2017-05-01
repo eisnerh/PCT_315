@@ -292,7 +292,7 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
         Modelo_Horario dts = new Modelo_Horario();
         Interfaz_Horario func = new Interfaz_Horario();
         dts.setDescripcionHorario(txtDescripcionHorario.getText());
-
+        dts.setHorarioId(var1);
         if (func.editar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "El Horario fue editado satisfactoriamente");
         }
@@ -325,7 +325,6 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
             if (rs.next()) {
                 String add1 = rs.getString("horario_id");
                 String add2 = rs.getString("descripcion_horario");
-
                 var1 = add1;
                 txtDescripcionHorario.setText(add2);
 

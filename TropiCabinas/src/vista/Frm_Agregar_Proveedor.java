@@ -78,7 +78,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
     }
 
     private void agregarPersona() {
-
         int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmaci\u00F3n", JOptionPane.YES_NO_OPTION);
         if (P == 1) {
             this.dispose();

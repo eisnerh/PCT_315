@@ -57,15 +57,15 @@ public class Frm_Inicio extends javax.swing.JFrame {
         lblPuesto = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mnusisreserva = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         mnuarchivo = new javax.swing.JMenu();
+        aboutMenuItem = new javax.swing.JMenuItem();
         itemAgregarCabina = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         mnureservas = new javax.swing.JMenu();
         itemDisponibles = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         mnuconsultas = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         lista_x_cabina = new javax.swing.JMenuItem();
         mnuClientes = new javax.swing.JMenuItem();
@@ -122,29 +122,22 @@ public class Frm_Inicio extends javax.swing.JFrame {
         mnusisreserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Inicio.png"))); // NOI18N
         mnusisreserva.setMnemonic('f');
         mnusisreserva.setText("TropiCabinas");
-
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/wallet_64px.png"))); // NOI18N
-        jMenuItem11.setText("Gastos Operativos");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        mnusisreserva.add(jMenuItem11);
-
-        jMenuItem12.setText("Lista de Gastos Diarios");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
-            }
-        });
-        mnusisreserva.add(jMenuItem12);
-
         menuBar.add(mnusisreserva);
 
         mnuarchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Archivo.png"))); // NOI18N
         mnuarchivo.setMnemonic('e');
         mnuarchivo.setText("Archivo");
+
+        aboutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clientes.png"))); // NOI18N
+        aboutMenuItem.setMnemonic('a');
+        aboutMenuItem.setText("Clientes");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+        mnuarchivo.add(aboutMenuItem);
 
         itemAgregarCabina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         itemAgregarCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/1-39-128.png"))); // NOI18N
@@ -156,6 +149,15 @@ public class Frm_Inicio extends javax.swing.JFrame {
             }
         });
         mnuarchivo.add(itemAgregarCabina);
+
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/wallet_64px.png"))); // NOI18N
+        jMenuItem11.setText("Gastos Operativos");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        mnuarchivo.add(jMenuItem11);
 
         menuBar.add(mnuarchivo);
 
@@ -174,17 +176,6 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         mnureservas.add(itemDisponibles);
 
-        aboutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clientes.png"))); // NOI18N
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("Clientes");
-        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuItemActionPerformed(evt);
-            }
-        });
-        mnureservas.add(aboutMenuItem);
-
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/pagos.png"))); // NOI18N
         jMenuItem1.setText("Productos");
@@ -199,6 +190,14 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
         mnuconsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Consultas.png"))); // NOI18N
         mnuconsultas.setText("Consultas");
+
+        jMenuItem12.setText("Lista de Gastos Diarios");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(jMenuItem12);
 
         jMenuItem4.setText("Lista de Cabinas");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {

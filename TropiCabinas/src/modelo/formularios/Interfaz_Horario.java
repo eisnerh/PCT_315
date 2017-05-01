@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.contructor.Modelo_Horario;
@@ -78,8 +79,9 @@ public class Interfaz_Horario {
         querySQL = "UPDATE `horario` SET `descripcion_horario` = ? WHERE `horario`.`horario_id` = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(querySQL);
-            ps.setString(1, dts.getHorarioId());
-            ps.setString(2, dts.getDescripcionHorario());
+            
+            ps.setString(1, dts.getDescripcionHorario());
+            ps.setString(2, dts.getHorarioId());
             int n;
             n = ps.executeUpdate();
         } catch (SQLException e) {
@@ -98,5 +100,25 @@ public class Interfaz_Horario {
             JOptionPane.showConfirmDialog(null, e);
         }
         return false;
+    }
+    
+    public DefaultComboBoxModel llena_Horario()
+    {
+        DefaultComboBoxModel modeloHorario = null;
+        querySQL = "SELECT * FROM pct3.horario";
+                try {
+            Statement st = conexion.createStatement();
+            resultSets = st.executeQuery(querySQL);
+            while (resultSets.next()) {
+                modeloHorario.addElement(resultSets.getString("descripcion_horario"));
+                if (resultSets.getString("descripcion_horario").equals("Diurno")) {
+                    modeloHorario.setSelectedItem(resultSets.getString("descripcion_horario"));
+                }
+            }
+            //return tableModel;
+        } catch (SQLException sqle) {
+            JOptionPane.showConfirmDialog(null, sqle);
+        }
+        return modeloHorario;
     }
 }

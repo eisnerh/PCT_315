@@ -7,33 +7,49 @@ package vista;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.formularios.Interfaz_Usuario;
+import modelo.formularios.Interfaz_Colaborador;
 
 /**
  *
  * @author Eisner López Acevedo <eisner.lopez at gmail.com>
  */
-public class Frm_BusquedaColaboradores extends javax.swing.JInternalFrame {
+public class Frm_BusquedaAgregarColaboradores extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmBusquedaClientes
      */
-    public Frm_BusquedaColaboradores() {
+    public Frm_BusquedaAgregarColaboradores() {
         initComponents();
-
         mostrar("");
     }
 
     private void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            Interfaz_Usuario func = new Interfaz_Usuario();
+            Interfaz_Colaborador func = new Interfaz_Colaborador();
             modelo = func.mostrarColaborador(buscar);
             tablalistado.setModel(modelo);
-            lbltotalregistros.setText("Total Registros " + Integer.toString(func.totalregistros));
+            ocultar_columnas();
+            lbltotalregistros.setText("Total Registros " + Integer.toString(func.totalRegistros));
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
+    }
+
+    void ocultar_columnas() {
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setPreferredWidth(0);
+        tablalistado.getColumnModel().getColumn(8).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(8).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(8).setPreferredWidth(0);
+        tablalistado.getColumnModel().getColumn(11).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(11).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(11).setPreferredWidth(0);
+
     }
 
     /**
@@ -54,6 +70,9 @@ public class Frm_BusquedaColaboradores extends javax.swing.JInternalFrame {
         lbltotalregistros = new javax.swing.JLabel();
 
         setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Busqueda Colaboradores");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -110,15 +129,13 @@ public class Frm_BusquedaColaboradores extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(lbltotalregistros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(97, 97, 97)
-                                .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(btnbuscar)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -139,7 +156,7 @@ public class Frm_BusquedaColaboradores extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,15 +173,52 @@ public class Frm_BusquedaColaboradores extends javax.swing.JInternalFrame {
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
-            int fila = tablalistado.getSelectedRow();
-            String cod;
-            String nombre;
-            cod = tablalistado.getValueAt(fila, 0).toString();
-            nombre = tablalistado.getValueAt(fila, 1).toString();
-            Frm_Agregar_Usuario.idColaborador.setText(cod);
-            Frm_Agregar_Usuario.nombreColaborador.setText(nombre);
-
             this.dispose();
+            int fila = tablalistado.getSelectedRow();
+            String idEmpleado;
+            String idPersona;
+            String Nombre;
+            String Cedula;
+            String Direccion;
+            String Telefono;
+            String FechaContrato;
+            String FechaInactivo;
+            String IDHorario;
+            String Notas;
+            String IDPuesto;
+            /*0*/
+            idEmpleado = tablalistado.getValueAt(fila, 0).toString();
+            Frm_Agregar_Colaborador.lbl_idColaborador.setText(idEmpleado);
+            /*1*/
+            idPersona = tablalistado.getValueAt(fila, 1).toString();
+            Frm_Agregar_Colaborador.lbl_IDPersona.setText(idPersona);
+            /*2*/
+            Nombre = tablalistado.getValueAt(fila, 2).toString();
+            Frm_Agregar_Colaborador.txtNombre_Apellidos.setText(Nombre);
+            /*2*/
+            Cedula = tablalistado.getValueAt(fila, 3).toString();
+            Frm_Agregar_Colaborador.txtCedula.setText(Cedula);
+            /*3*/
+            Direccion = tablalistado.getValueAt(fila, 4).toString();
+            Frm_Agregar_Colaborador.txtDireccion.setText(Direccion);
+            /*4*/
+            Telefono = tablalistado.getValueAt(fila, 5).toString();
+            Frm_Agregar_Colaborador.txtPhone.setText(Telefono);
+            /*5*/
+            FechaContrato = tablalistado.getValueAt(fila, 6).toString();
+            Frm_Agregar_Colaborador.txtFechaContrato.setText(FechaContrato);
+            /*6*/
+            FechaInactivo = tablalistado.getValueAt(fila, 7).toString();
+            Frm_Agregar_Colaborador.txtFechaDespido.setText(FechaInactivo);
+            /*7*/
+            IDHorario = tablalistado.getValueAt(fila, 8).toString();
+            Frm_Agregar_Colaborador.lbl_idHorario.setText(IDHorario);
+            /*9*/
+            Notas = tablalistado.getValueAt(fila, 12).toString();
+            Frm_Agregar_Colaborador.txtObservarciones.setText(Notas);
+            /*10*/
+            IDPuesto = tablalistado.getValueAt(fila, 11).toString();
+            Frm_Agregar_Colaborador.lbl_idPuesto.setText(IDPuesto);
         }
     }//GEN-LAST:event_tablalistadoMousePressed
 
