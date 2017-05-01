@@ -84,7 +84,6 @@ public class Frm_Inicio extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         itemAcerca = new javax.swing.JMenuItem();
-        itemAyuda = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -348,15 +347,6 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         mnuAyuda.add(itemAcerca);
 
-        itemAyuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
-        itemAyuda.setText("Ayuda");
-        itemAyuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemAyudaActionPerformed(evt);
-            }
-        });
-        mnuAyuda.add(itemAyuda);
-
         menuBar.add(mnuAyuda);
 
         mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Salir.png"))); // NOI18N
@@ -383,14 +373,6 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void itemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAyudaActionPerformed
-        // TODO add your handling code here:
-        Frm_BusquedaClientes_Switch form = new Frm_BusquedaClientes_Switch();
-        escritorio.add(form);
-        form.toFront();
-        form.setVisible(true);
-    }//GEN-LAST:event_itemAyudaActionPerformed
 
     private void itemAgregarCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAgregarCabinaActionPerformed
         Frm_Agregar_Cabina form = new Frm_Agregar_Cabina();
@@ -649,7 +631,6 @@ public class Frm_Inicio extends javax.swing.JFrame {
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem itemAcerca;
     private javax.swing.JMenuItem itemAgregarCabina;
-    private javax.swing.JMenuItem itemAyuda;
     private javax.swing.JMenuItem itemDisponibles;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
