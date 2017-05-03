@@ -124,7 +124,7 @@ public class Frm_Login extends javax.swing.JFrame {
         setType(java.awt.Window.Type.UTILITY);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_User.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
+        txt_User.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         txt_User.setBorder(null);
         txt_User.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -133,7 +133,7 @@ public class Frm_Login extends javax.swing.JFrame {
         });
         getContentPane().add(txt_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 220, 40));
 
-        txt_Pass.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
+        txt_Pass.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         txt_Pass.setBorder(null);
         txt_Pass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -142,7 +142,7 @@ public class Frm_Login extends javax.swing.JFrame {
         });
         getContentPane().add(txt_Pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 220, 40));
 
-        c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/c1.png"))); // NOI18N
+        c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/c1.png"))); // NOI18N
         c1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 c1MouseClicked(evt);
@@ -156,17 +156,17 @@ public class Frm_Login extends javax.swing.JFrame {
         });
         getContentPane().add(c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, -1));
 
-        lbl_idUsuario.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
+        lbl_idUsuario.setFont(new java.awt.Font("Roboto Black", 1, 18)); // NOI18N
         lbl_idUsuario.setText("Usuario:");
         getContentPane().add(lbl_idUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 120, -1));
         getContentPane().add(lbl_colaborador_empleado_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
-        lbl_Entrar.setFont(new java.awt.Font("Laksaman", 1, 16)); // NOI18N
+        lbl_Entrar.setFont(new java.awt.Font("Roboto Black", 1, 18)); // NOI18N
         lbl_Entrar.setText("Contraseña:");
-        getContentPane().add(lbl_Entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, 60));
+        getContentPane().add(lbl_Entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 30));
 
-        btnEntrar.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
-        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/login.png"))); // NOI18N
+        btnEntrar.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/login.png"))); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,12 +185,12 @@ public class Frm_Login extends javax.swing.JFrame {
 
     private void c1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c1MouseEntered
         // TODO add your handling code here:
-        c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/c2.png")));
+        c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/c2.png")));
     }//GEN-LAST:event_c1MouseEntered
 
     private void c1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c1MouseExited
         // TODO add your handling code here:
-        c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/c1.png")));
+        c1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/c1.png")));
     }//GEN-LAST:event_c1MouseExited
 
     private void txt_PassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PassKeyPressed

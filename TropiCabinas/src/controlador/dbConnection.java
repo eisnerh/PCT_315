@@ -32,7 +32,7 @@ public class dbConnection {
                 JOptionPane.showMessageDialog(null, "Archivo de propiedades para conexi\u00F3n no existe", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(1);
             } else if (data1.exists()) {
-                fis1 = new FileInputStream("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
+                fis1 = new FileInputStream(data1);
                 props.load(fis1);
                 //Cargar la Tipo de Controlador
                 Class.forName(props.getProperty("DB_DRIVER_CLASS"));

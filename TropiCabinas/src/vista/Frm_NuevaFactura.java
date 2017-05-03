@@ -13,13 +13,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
@@ -296,7 +293,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
         nombreEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreEmpleado.setBorder(javax.swing.BorderFactory.createTitledBorder("Colaborador"));
 
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/compose_64px.png"))); // NOI18N
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/store-new-badges.png"))); // NOI18N
         btnLimpiar.setToolTipText("Vaciar los Campos");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,7 +301,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
             }
         });
 
-        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book_64px.png"))); // NOI18N
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/browser_64px.png"))); // NOI18N
         guardar.setToolTipText("Imprimir Factura");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,7 +455,7 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 + "'" + numeroFactura.getText() + "', "
                 + "'" + lbl_IdClienteEmpresa.getText() + "')";
         try {
-            int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmaci\u00F3n", JOptionPane.YES_NO_OPTION);
             if (P == 0) {
                 con = dbConnection.getConnection();
 

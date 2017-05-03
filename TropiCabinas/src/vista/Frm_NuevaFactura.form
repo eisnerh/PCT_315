@@ -443,7 +443,7 @@
     <Component class="javax.swing.JButton" name="btnLimpiar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/compose_64px.png"/>
+          <Image iconType="3" name="/Files/store-new-badges.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Vaciar los Campos"/>
       </Properties>
@@ -454,7 +454,7 @@
     <Component class="javax.swing.JButton" name="guardar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/book_64px.png"/>
+          <Image iconType="3" name="/Files/browser_64px.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Imprimir Factura"/>
       </Properties>

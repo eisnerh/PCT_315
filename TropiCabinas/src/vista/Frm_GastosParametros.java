@@ -81,6 +81,7 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Desde");
 
+        btnImprimirReporteGastos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/creditcard_64px.png"))); // NOI18N
         btnImprimirReporteGastos.setText("Imprimir Reporte");
         btnImprimirReporteGastos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

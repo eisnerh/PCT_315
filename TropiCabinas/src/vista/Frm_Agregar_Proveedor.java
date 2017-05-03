@@ -164,46 +164,46 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(667, 423));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txtNombre_Apellidos.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
         txtNombre_Apellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 360, 40));
 
-        cedula.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        cedula.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         cedula.setForeground(java.awt.Color.darkGray);
         cedula.setText("Cedula");
         getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 82, -1, -1));
 
-        direccion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        direccion.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         direccion.setForeground(java.awt.Color.darkGray);
         direccion.setText("Direccion");
         getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 172, -1, -1));
 
-        telefono.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        telefono.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         telefono.setForeground(java.awt.Color.darkGray);
         telefono.setText("Télefono o Celular");
         getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
-        txtDireccion.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
         txtDireccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 440, 40));
 
-        txtClasificación.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txtClasificación.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
         txtClasificación.setToolTipText("");
         txtClasificación.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtClasificación, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 20, 40));
 
-        nombreApellidos.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        nombreApellidos.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         nombreApellidos.setForeground(java.awt.Color.darkGray);
         nombreApellidos.setText("Nombre y Apellidos");
         getContentPane().add(nombreApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 82, -1, -1));
 
         Persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Persona.setForeground(java.awt.Color.darkGray);
-        Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Market-Research.png"))); // NOI18N
+        Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/rsz_proveedores.png"))); // NOI18N
         getContentPane().add(Persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 110, 110));
 
         nuevo.setBackground(new java.awt.Color(204, 204, 204));
-        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/multiple_accounts.png"))); // NOI18N
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/multiple_accounts.png"))); // NOI18N
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoActionPerformed(evt);
@@ -211,7 +211,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         });
 
         guardar.setBackground(new java.awt.Color(204, 204, 204));
-        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/document_save.png"))); // NOI18N
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/document_save.png"))); // NOI18N
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
@@ -219,7 +219,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         });
 
         editar.setBackground(new java.awt.Color(204, 204, 204));
-        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/edit.png"))); // NOI18N
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/edit.png"))); // NOI18N
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
@@ -227,7 +227,7 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
         });
 
         buscar.setBackground(new java.awt.Color(204, 204, 204));
-        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/edit.png"))); // NOI18N
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
@@ -268,29 +268,31 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        lbl_idPersona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        lbl_idPersona.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         lbl_idPersona.setForeground(java.awt.Color.darkGray);
         lbl_idPersona.setText("jLabel1");
         getContentPane().add(lbl_idPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
-        lbl_id_persona.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        lbl_id_persona.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         lbl_id_persona.setForeground(java.awt.Color.darkGray);
         lbl_id_persona.setText("lblIdPersona");
         getContentPane().add(lbl_id_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, -1, -1));
 
-        nombreUsuario1.setFont(new java.awt.Font("Roboto Black", 1, 16)); // NOI18N
+        nombreUsuario1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         nombreUsuario1.setForeground(java.awt.Color.darkGray);
         nombreUsuario1.setText("Nombre empresa proveedor");
         getContentPane().add(nombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
-        txtCodigoCliente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        txtCodigoCliente.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
         txtCodigoCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 440, 40));
 
         txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtCedula.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 220, 40));
 
         txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtPhone.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 220, 40));
 
         pack();

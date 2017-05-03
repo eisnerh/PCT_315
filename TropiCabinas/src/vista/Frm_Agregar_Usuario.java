@@ -47,21 +47,21 @@ public class Frm_Agregar_Usuario extends javax.swing.JInternalFrame {
         nombreColaborador = new javax.swing.JLabel();
         btnBuscarColaborador = new javax.swing.JButton();
 
-        btnGuardarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/document_save.png"))); // NOI18N
+        btnGuardarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/save-icon-silhouette.png"))); // NOI18N
         btnGuardarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarColaboradorActionPerformed(evt);
             }
         });
 
-        btnEditarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/edit.png"))); // NOI18N
+        btnEditarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/edit.png"))); // NOI18N
         btnEditarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarColaboradorActionPerformed(evt);
             }
         });
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/exit.png"))); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/exit.png"))); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -79,7 +79,7 @@ public class Frm_Agregar_Usuario extends javax.swing.JInternalFrame {
                 .addComponent(btnEditarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(121, 121, 121)
                 .addComponent(btnSalir)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,15 +92,23 @@ public class Frm_Agregar_Usuario extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel1.setText("Usuario:");
 
+        jLabel2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel2.setText("Contraseña:");
 
+        idColaborador.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         idColaborador.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Colaborador"));
 
+        txtUsuario.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+
+        txtContraseña.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+
+        nombreColaborador.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         nombreColaborador.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre Colaborador"));
 
-        btnBuscarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/searching-magnifying-glass.png"))); // NOI18N
+        btnBuscarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/searching-magnifying-glass.png"))); // NOI18N
         btnBuscarColaborador.setToolTipText("Busqueda de Colaborador");
         btnBuscarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +137,7 @@ public class Frm_Agregar_Usuario extends javax.swing.JInternalFrame {
                                 .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscarColaborador)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +153,7 @@ public class Frm_Agregar_Usuario extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnBuscarColaborador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(idColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(nombreColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)

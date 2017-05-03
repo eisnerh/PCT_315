@@ -120,9 +120,9 @@ public class Frm_BusquedaProveedor extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(97, 97, 97)
-                                .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)))
+                                .addGap(76, 76, 76)
+                                .addComponent(btnbuscar)
+                                .addGap(33, 33, 33)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );

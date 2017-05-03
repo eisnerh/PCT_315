@@ -203,7 +203,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
     }
 
     private void limpiar() {
-        txtFechaDespido.setText("0000-00-00");
+        txtFechaDespido.setText("");
         txtNombre_Apellidos.setText("");
         txtCedula.setText("");
         txtPhone.setText("");
@@ -215,8 +215,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
     private void agregarPersona() {
         
             obtenerFechaContrato();
-            int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmaci\u00F3n", JOptionPane.YES_NO_OPTION);
-            if (P == 1) {
+            
                 this.dispose();
                 if (txtNombre_Apellidos.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -258,9 +257,7 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
 
                 JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Proveedor", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
-            } else {
-                limpiar();
-            }
+            
     }
 
     /**
@@ -309,22 +306,22 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         setTitle("Agregar Colaborador");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cedula.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cedula.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         cedula.setForeground(java.awt.Color.darkGray);
         cedula.setText("Cedula");
-        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
-        direccion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        direccion.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         direccion.setForeground(java.awt.Color.darkGray);
         direccion.setText("Direccion");
         getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
-        telefono.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        telefono.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         telefono.setForeground(java.awt.Color.darkGray);
         telefono.setText("Télefono o Celular");
         getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
 
-        txtDireccion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         txtDireccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 440, 40));
 
@@ -400,21 +397,21 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 110));
 
-        lblFechaContrato.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblFechaContrato.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         lblFechaContrato.setForeground(java.awt.Color.darkGray);
         lblFechaContrato.setText("Fecha Contrato");
         getContentPane().add(lblFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, -1));
 
-        txtObservarciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtObservarciones.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         txtObservarciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txtObservarciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 440, 40));
 
-        direccion1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        direccion1.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         direccion1.setForeground(java.awt.Color.darkGray);
         direccion1.setText("Observaciones");
         getContentPane().add(direccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
-        cmbPuesto.setFont(new java.awt.Font("Dialog", 1, 14));
+        cmbPuesto.setFont(new java.awt.Font("Roboto Black", 1, 14));
         cmbPuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbPuesto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         cmbPuesto.addActionListener(new java.awt.event.ActionListener() {
@@ -424,17 +421,17 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         });
         getContentPane().add(cmbPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 200, 40));
 
-        lblPuesto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblPuesto.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         lblPuesto.setForeground(java.awt.Color.darkGray);
         lblPuesto.setText("Puesto");
         getContentPane().add(lblPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
 
-        lblHorario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblHorario.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         lblHorario.setForeground(java.awt.Color.darkGray);
         lblHorario.setText("Horario");
         getContentPane().add(lblHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, -1, -1));
 
-        cmbHorario.setFont(new java.awt.Font("Dialog", 1, 14));
+        cmbHorario.setFont(new java.awt.Font("Roboto Black", 1, 14));
         cmbHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbHorario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         cmbHorario.addActionListener(new java.awt.event.ActionListener() {
@@ -445,35 +442,35 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         getContentPane().add(cmbHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 200, 40));
 
         lbl_idHorario.setBackground(new java.awt.Color(0, 0, 0));
-        lbl_idHorario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbl_idHorario.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         lbl_idHorario.setForeground(new java.awt.Color(0, 0, 0));
         lbl_idHorario.setText("Horario: ");
         getContentPane().add(lbl_idHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, -1));
 
         lbl_idPuesto.setBackground(new java.awt.Color(0, 0, 0));
-        lbl_idPuesto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbl_idPuesto.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         lbl_idPuesto.setForeground(new java.awt.Color(0, 0, 0));
         lbl_idPuesto.setText("Puesto: ");
         getContentPane().add(lbl_idPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
 
-        txtContrato.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txtContrato.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         getContentPane().add(txtContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 200, 40));
 
         txtCedula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        txtCedula.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 260, 40));
+        txtCedula.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        getContentPane().add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 260, 40));
 
         txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        txtPhone.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtPhone.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 190, 40));
 
         lbl_IDPersona.setBackground(new java.awt.Color(0, 0, 0));
-        lbl_IDPersona.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbl_IDPersona.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         lbl_IDPersona.setForeground(new java.awt.Color(0, 0, 0));
         lbl_IDPersona.setText("Persona:");
         getContentPane().add(lbl_IDPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
 
-        optDespedido.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        optDespedido.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         optDespedido.setText("Despedido");
         optDespedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,28 +479,28 @@ public class Frm_Agregar_Colaborador extends javax.swing.JInternalFrame {
         });
         getContentPane().add(optDespedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 190, 50));
 
-        txtFechaDespido.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txtFechaDespido.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         txtFechaDespido.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Despido"));
         getContentPane().add(txtFechaDespido, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, 190, 60));
 
-        txtFechaContrato.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txtFechaContrato.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         txtFechaContrato.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha Contrato"));
         getContentPane().add(txtFechaContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 190, 60));
 
         lbl_idColaborador.setBackground(new java.awt.Color(0, 0, 0));
-        lbl_idColaborador.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbl_idColaborador.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         lbl_idColaborador.setForeground(new java.awt.Color(0, 0, 0));
         lbl_idColaborador.setText("Colaborador:");
         getContentPane().add(lbl_idColaborador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
-        txtNombre_Apellidos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtNombre_Apellidos.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         txtNombre_Apellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 360, 40));
+        getContentPane().add(txtNombre_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 360, 40));
 
-        nombreApellidos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        nombreApellidos.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         nombreApellidos.setForeground(java.awt.Color.darkGray);
         nombreApellidos.setText("Nombre y Apellidos");
-        getContentPane().add(nombreApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        getContentPane().add(nombreApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

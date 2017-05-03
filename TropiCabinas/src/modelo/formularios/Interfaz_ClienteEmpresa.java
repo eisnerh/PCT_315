@@ -94,38 +94,65 @@ public class Interfaz_ClienteEmpresa {
 
     }
     
-
-    public DefaultTableModel mostrarvista(String buscar) {
+    public DefaultTableModel mostrarCedulaCliente(String buscar) {
         DefaultTableModel tableModel;
         //creación de un array para definir las columnas
-        String[] columnas = {"id", "descripcion_cabina", "estado_cabina", "precio", "tipo_cabina"};
+        String[] columnas = {
+            "ID Persona",
+            "Nombre Cliente",
+            "C\u00E9dula",
+            "Tel\u00E9fono",
+            "Direcci\u00F3n",
+            "ID Empresa",
+            "Empresa",
+            "Estado"
+        };
         //creación de un array para definir los registros que se incluiran por medio del codigo
-        String[] registro = new String[5];
+        String[] registro = new String[8];
 
         totalRegistros = 0;
+
         tableModel = new DefaultTableModel(null, columnas);
-
-        querySQL = "SELECT `descripcion_cabina`, `estado_cabina`, `precio`, `tipo_cabina` FROM `cabina` WHERE `descripcion_cabina` = " + buscar + "'ORDER BY `descripcion_cabina`";
-
+        querySQL = "SELECT \n"
+                + "    persona.idpersona,\n"
+                + "    persona.nombre,\n"
+                + "    persona.cedula,\n"
+                + "    persona.telefono,\n"
+                + "    persona.direccion,\n"
+                + "    cliente_empresa.empresa_id,\n"
+                + "    cliente_empresa.codigo_cliente,\n"
+                + "    IF(cliente_empresa.estado_cliente = 0,\n"
+                + "        'Activo',\n"
+                + "        'Betado') AS estado\n"
+                + "FROM\n"
+                + "    pct3.persona\n"
+                + "        INNER JOIN\n"
+                + "    pct3.cliente_empresa ON persona.idpersona = cliente_empresa.persona_idpersona\n"
+                + "WHERE\n"
+                + "    persona.cedula = '" + buscar + "' and cliente_empresa.estado_cliente = '0' "
+                + "ORDER BY cliente_empresa.codigo_cliente;";
         try {
             Statement st = conexion.createStatement();
-            ResultSet resultS = st.executeQuery(querySQL);
+            rs = st.executeQuery(querySQL);
 
-            while (resultS.next()) {
-                registro[0] = resultS.getString("descripcion_cabina");
-                registro[1] = resultS.getString("estado_cabina");
-                registro[2] = resultS.getString("precio");
-                registro[3] = resultS.getString("tipo_cabina");
+            while (rs.next()) {
+                registro[0] = rs.getString("idpersona");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("cedula");
+                registro[3] = rs.getString("telefono");
+                registro[4] = rs.getString("direccion");
+                registro[5] = rs.getString("empresa_id");
+                registro[6] = rs.getString("codigo_cliente");
+                registro[7] = rs.getString("estado");
                 totalRegistros++;
                 tableModel.addRow(registro);
-
             }
             return tableModel;
-
-        } catch (SQLException e) {
-            JOptionPane.showConfirmDialog(null, e);
+        } catch (SQLException sqle) {
+            JOptionPane.showConfirmDialog(null, sqle);
             return null;
         }
+
     }
 
     public boolean insertarCliente(Modelo_ClienteEmpresa dts) {
@@ -143,9 +170,7 @@ public class Interfaz_ClienteEmpresa {
 
             PreparedStatement preparedst = conexion.prepareStatement(querySQL);
             preparedst.setString(1, dts.getCodigo_cliente());
-
             int n = preparedst.executeUpdate();
-
             return n != 0;
 
         } catch (SQLException e) {
@@ -159,17 +184,12 @@ public class Interfaz_ClienteEmpresa {
                 + "SET\n"
                 + "`codigo_cliente` = ?,\n"
                 + "WHERE `empresa_id` = ?";
-
         try {
             PreparedStatement preparedST = conexion.prepareStatement(querySQL);
             preparedST.setString(1, dts.getCodigo_cliente());
-
             preparedST.setString(2, dts.getEmpresa_id());
-
             int n = preparedST.executeUpdate();
-
             return n != 0;
-
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
             return false;
@@ -184,13 +204,10 @@ public class Interfaz_ClienteEmpresa {
 
         try {
             PreparedStatement preparedST = conexion.prepareStatement(querySQL);
-
             preparedST.setString(1, dts.getId_cabina());
             preparedST.setString(2, dts.getId_cabina());
             int n = preparedST.executeUpdate();
-
             return n != 0;
-
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
             return false;
@@ -198,11 +215,13 @@ public class Interfaz_ClienteEmpresa {
     }
 
     public boolean betado(Modelo_ClienteEmpresa dts) {
-        querySQL = "UPDATE `pct3`.`cliente_empresa` SET `estado_cliente`='1' WHERE `empresa_id`=?;";
+        querySQL = "UPDATE `pct3`.`cliente_empresa` "
+                + "SET "
+                + "`estado_cliente`=? "
+                + "WHERE `empresa_id`=?;";
 
         try {
             PreparedStatement preparedST = conexion.prepareStatement(querySQL);
-
             preparedST.setString(1, dts.getEstado_cliente());
             preparedST.setString(2, dts.getEmpresa_id());
             int n = preparedST.executeUpdate();

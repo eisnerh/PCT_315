@@ -55,6 +55,8 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
         NombreEmpleado.setText(Frm_Login.ps_NombreEmpleado);
         IdEmpleado.setText(Frm_Login.ps_idEmpleado);
+        NombreEmpleado.setVisible(false);
+        IdEmpleado.setVisible(false);
     }
 
     private void Get_Data() {
@@ -76,7 +78,7 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(2).equals("Ocupado")) {
                     btn.setBackground(Color.red);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/racing.png"))); // NOI18N
                     btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -116,17 +118,17 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
                 //cambia los iconos especifico dependiendo de el estado de la cabina.
                 if (rs.getString(2).equals("Libre")) {
                     btn.setBackground(Color.green);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/house.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/house.png"))); // NOI18N
                 }
                 //cambia los iconos especifico dependiendo de el estado de la cabina.
                 if (rs.getString(2).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/wiping.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/wiping.png"))); // NOI18N
                 }
                 //cambia los iconos especifico dependiendo de el estado de la cabina.
                 if (rs.getString(2).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/blocked.png"))); // NOI18N
                 }
 
             }
@@ -165,19 +167,19 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(2).equals("Ocupado")) {
                     btn.setBackground(Color.red);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/racing.png"))); // NOI18N
                 }
                 if (rs.getString(2).equals("Libre")) {
                     btn.setBackground(Color.green);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/house.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/house.png"))); // NOI18N
                 }
                 if (rs.getString(2).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/wiping.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/wiping.png"))); // NOI18N
                 }
                 if (rs.getString(2).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/blocked.png"))); // NOI18N
                     btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -250,11 +252,11 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(2).equals("Ocupado")) {
                     btn.setBackground(Color.red);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/racing.png"))); // NOI18N
                 }
                 if (rs.getString(2).equals("Libre")) {
                     btn.setBackground(Color.green);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/house.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/house.png"))); // NOI18N
                     btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
 
                         @Override
@@ -274,11 +276,11 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
                 }
                 if (rs.getString(2).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/wiping.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/wiping.png"))); // NOI18N
                 }
                 if (rs.getString(2).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/blocked.png"))); // NOI18N
                 }
 
                 totalRegistros++;
@@ -316,7 +318,7 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(2).equals("Ocupado")) {
                     btn.setBackground(Color.red);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/racing.png"))); // NOI18N
                     btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -344,15 +346,15 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
                 }
                 if (rs.getString(2).equals("Libre")) {
                     btn.setBackground(Color.CYAN);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/house.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/house.png"))); // NOI18N
                 }
                 if (rs.getString(2).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/wiping.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/wiping.png"))); // NOI18N
                 }
                 if (rs.getString(2).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/blocked.png"))); // NOI18N
                 }
                 btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
 
@@ -398,15 +400,15 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(2).equals("Ocupado")) {
                     btn.setBackground(Color.red);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/racing.png"))); // NOI18N
                 }
                 if (rs.getString(2).equals("Libre")) {
                     btn.setBackground(Color.green);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/house.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/house.png"))); // NOI18N
                 }
                 if (rs.getString(2).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/wiping.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/wiping.png"))); // NOI18N
                     btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -433,7 +435,7 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
                 }
                 if (rs.getString(2).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/blocked.png"))); // NOI18N
                 }
 
                 totalRegistros++;
@@ -472,12 +474,12 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(2).equals("Doble")) {
                     btn.setBackground(Color.green);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/queen.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/queen.png"))); // NOI18N
 
                 }
                 if (rs.getString(2).equals("Sencilla")) {
                     btn.setBackground(Color.green);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/single.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/single.png"))); // NOI18N
                     btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
 
                         @Override
@@ -498,7 +500,7 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(3).equals("Ocupado")) {
                     btn.setBackground(Color.red);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/racing.png"))); // NOI18N
                     btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -525,11 +527,11 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(3).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/wiping.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/wiping.png"))); // NOI18N
                 }
                 if (rs.getString(3).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/blocked.png"))); // NOI18N
                 }
                 btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
 
@@ -574,7 +576,7 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(2).equals("Doble")) {
                     btn.setBackground(Color.green);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/queen.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/queen.png"))); // NOI18N
                     btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
 
                         @Override
@@ -594,13 +596,13 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
                 }
                 if (rs.getString(2).equals("Sencilla")) {
                     btn.setBackground(Color.green);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/single.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/single.png"))); // NOI18N
 
                 }
 
                 if (rs.getString(3).equals("Ocupado")) {
                     btn.setBackground(Color.red);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/racing.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/racing.png"))); // NOI18N
                     btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
                         @Override
                         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -627,11 +629,11 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
 
                 if (rs.getString(3).equals("Limpieza")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/wiping.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/wiping.png"))); // NOI18N
                 }
                 if (rs.getString(3).equals("Bloqueo")) {
                     btn.setBackground(Color.yellow);
-                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cabina/blocked.png"))); // NOI18N
+                    btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/blocked.png"))); // NOI18N
                 }
                 btn.addActionListener(new Frm_Seleccionar_Cabina.ActionListener() {
 
@@ -674,7 +676,6 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
         Dobles = new javax.swing.JRadioButton();
         Vacio = new javax.swing.JRadioButton();
         Sencillas = new javax.swing.JRadioButton();
-        Salir = new javax.swing.JRadioButton();
         NombreEmpleado = new javax.swing.JLabel();
         IdEmpleado = new javax.swing.JLabel();
         agregarCabinas = new javax.swing.JPanel();
@@ -741,49 +742,34 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
             }
         });
 
-        Salir.setBackground(new java.awt.Color(204, 204, 255));
-        buttonGroup1.add(Salir);
-        Salir.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        Salir.setForeground(new java.awt.Color(0, 0, 0));
-        Salir.setText("Salir");
-        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Salir.png"))); // NOI18N
-        Salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
         opciones.setLayout(opcionesLayout);
         opcionesLayout.setHorizontalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Salir)
                     .addComponent(Dobles)
                     .addComponent(Sencillas)
                     .addComponent(Ocupado)
                     .addComponent(Vacio)
                     .addComponent(Todos))
-                .addContainerGap(541, Short.MAX_VALUE))
+                .addContainerGap(384, Short.MAX_VALUE))
         );
         opcionesLayout.setVerticalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
+                .addComponent(Vacio)
+                .addGap(18, 18, 18)
                 .addComponent(Todos)
                 .addGap(18, 18, 18)
                 .addComponent(Ocupado)
-                .addGap(18, 18, 18)
-                .addComponent(Vacio)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(Sencillas)
                 .addGap(18, 18, 18)
                 .addComponent(Dobles)
-                .addGap(18, 18, 18)
-                .addComponent(Salir)
-                .addGap(0, 223, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
 
         agregarCabinas.setLayout(new java.awt.GridLayout(0, 3));
@@ -792,39 +778,38 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(236, 236, 236)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(694, Short.MAX_VALUE)
                 .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(470, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addContainerGap(166, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(180, 180, 180)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(IdEmpleado)
-                                .addComponent(NombreEmpleado))))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(IdEmpleado)
+                        .addComponent(NombreEmpleado)
+                        .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
+                .addContainerGap()
                 .addComponent(agregarCabinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(439, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(50, 50, 50)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(IdEmpleado))
-                        .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(NombreEmpleado)))
+                    .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(8, 8, 8)
+                    .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -862,17 +847,11 @@ public class Frm_Seleccionar_Cabina extends javax.swing.JInternalFrame {
         Get_Sencilla();
     }//GEN-LAST:event_SencillasActionPerformed
 
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_SalirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Dobles;
     public static javax.swing.JLabel IdEmpleado;
     public static javax.swing.JLabel NombreEmpleado;
     private javax.swing.JRadioButton Ocupado;
-    private javax.swing.JRadioButton Salir;
     private javax.swing.JRadioButton Sencillas;
     private javax.swing.JRadioButton Todos;
     private javax.swing.JRadioButton Vacio;

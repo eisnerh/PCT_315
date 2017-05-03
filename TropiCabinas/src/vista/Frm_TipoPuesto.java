@@ -88,7 +88,7 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/save-icon-silhouette.png"))); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/save-icon-silhouette.png"))); // NOI18N
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -101,7 +101,7 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(14, 14, 24, 0);
         jPanel1.add(btnGuardar, gridBagConstraints);
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/edit.png"))); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/edit.png"))); // NOI18N
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -114,7 +114,7 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(14, 12, 24, 0);
         jPanel1.add(btnEditar, gridBagConstraints);
 
-        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/CRUD/dustbin.png"))); // NOI18N
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/dustbin.png"))); // NOI18N
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
@@ -127,10 +127,10 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(14, 12, 24, 25);
         jPanel1.add(btnBorrar, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("HP Simplified Light", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         jLabel1.setText("Puesto");
 
-        txt_MontoHS.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        txt_MontoHS.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         txt_MontoHS.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_MontoHSFocusLost(evt);
@@ -142,6 +142,7 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
             }
         });
 
+        comboTipoPersona.setFont(new java.awt.Font("Roboto Black", 1, 18)); // NOI18N
         comboTipoPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboTipoPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,10 +150,10 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("HP Simplified Light", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         jLabel2.setText("Monto Hora Sencilla");
 
-        txt_MontoHE.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        txt_MontoHE.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         txt_MontoHE.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_MontoHEFocusLost(evt);
@@ -164,10 +165,10 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("HP Simplified Light", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
         jLabel3.setText("Monto Hora Doble");
 
-        txt_Puesto.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        txt_Puesto.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         txt_Puesto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_PuestoFocusLost(evt);
@@ -221,7 +222,7 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_MontoHS, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_MontoHE, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -336,18 +337,29 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         try {
-            String sql = "SELECT puesto_id, descripcion_puesto FROM puesto where descripcion_puesto = '" + comboTipoPersona.getSelectedItem().toString() + "'";
+            String sql = "SELECT "
+                    + "puesto_id, "
+                    + "descripcion_puesto, "
+                    + "pago_hora_sencilla, "
+                    + "pago_hora_extra "
+                    + "FROM puesto where descripcion_puesto = '" + comboTipoPersona.getSelectedItem().toString() + "'";
             pst = conexion.prepareStatement(sql);
             rs = pst.executeQuery();
             if (rs.next()) {
                 String add1 = rs.getString("puesto_id");
                 String add2 = rs.getString("descripcion_puesto");
+                String add3 = rs.getString("pago_hora_sencilla");
+                String add4 = rs.getString("pago_hora_extra");
                 var1 = add1;
                 txt_Puesto.setText(add2);
+                txt_MontoHS.setText(add3);
+                txt_MontoHE.setText(add4);
             } else {
                 var1 = "";
+                txt_Puesto.setText("");
+                txt_MontoHS.setText("");
+                txt_MontoHE.setText("");
             }
-            txt_Puesto.setText("");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
