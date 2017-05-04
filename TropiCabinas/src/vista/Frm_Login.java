@@ -7,6 +7,7 @@ package vista;
 
 import com.sun.glass.events.KeyEvent;
 import controlador.dbConnection;
+import java.awt.HeadlessException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.Connection;
@@ -78,11 +79,20 @@ public class Frm_Login extends javax.swing.JFrame {
                     Frm_Inicio.IdEmpleado.setText(ps_idEmpleado);
                     Frm_Inicio.lblacceso.setText((modelo.getValueAt(0, 4)).toString());
                     Frm_Inicio.lblPuesto.setText(ps_descripcion_puesto);
-                    if (Frm_Inicio.lblPuesto.getText().equals("Administrador")) {
-                    } else {
-                        Frm_Inicio.mnuConfiguraciones.setEnabled(false);
-                        Frm_Inicio.mnuHerramientas.setEnabled(false);
+                    switch (Frm_Inicio.lblPuesto.getText()) {
+                        case "Administrador":
+                            Frm_Inicio.mnuHerramientas.setEnabled(false);
+                            break;
+                        case "Supervisor":
+                            break;
+                        case "Empleado":
+                            Frm_Inicio.mnuConfiguraciones.setEnabled(false);
+                            Frm_Inicio.mnuHerramientas.setEnabled(false);
+                            break;
+                        default:
+                            break;
                     }
+                        
                 } else {
                     int opcion = JOptionPane.showConfirmDialog(this, "Usuario o Contrase\u00F1a Incorrecta", "Desea Salir", JOptionPane.YES_NO_OPTION);
                     if (opcion == 1) { //The ISSUE is here
@@ -93,7 +103,7 @@ public class Frm_Login extends javax.swing.JFrame {
                     }
                 }
             }
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }

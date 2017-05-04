@@ -61,19 +61,21 @@ public class Frm_Inicio extends javax.swing.JFrame {
         itemClientes = new javax.swing.JMenuItem();
         itemAgregarCabina = new javax.swing.JMenuItem();
         itemGastosPlanilla = new javax.swing.JMenuItem();
+        itemProductos = new javax.swing.JMenuItem();
         mnureservas = new javax.swing.JMenu();
         itemDisponibles = new javax.swing.JMenuItem();
-        itemProductos = new javax.swing.JMenuItem();
         mnuconsultas = new javax.swing.JMenu();
-        itmListaGastosDiarios = new javax.swing.JMenuItem();
         itemListaCabina = new javax.swing.JMenuItem();
         itemCabina = new javax.swing.JMenuItem();
         itemListaClientes = new javax.swing.JMenuItem();
-        itemGastosRangoFechas = new javax.swing.JMenuItem();
         itemRImprimirFactura = new javax.swing.JMenuItem();
         itemFacturasxCliente = new javax.swing.JMenuItem();
         itemProductosxProveedor = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        itmListaGastosDiarios = new javax.swing.JMenuItem();
+        itemGastosRangoFechas = new javax.swing.JMenuItem();
+        itemListaProductos = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         itemUsuarios = new javax.swing.JMenuItem();
         itemColaborador = new javax.swing.JMenuItem();
@@ -100,7 +102,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         Nombre_Empleado.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Nombre_Empleado.setForeground(new java.awt.Color(255, 255, 255));
         Nombre_Empleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Nombre_Empleado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        Nombre_Empleado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         escritorio.add(Nombre_Empleado);
         Nombre_Empleado.setBounds(20, 60, 200, 60);
 
@@ -114,7 +116,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         lblPuesto.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         lblPuesto.setForeground(new java.awt.Color(255, 255, 255));
         lblPuesto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPuesto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        lblPuesto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         escritorio.add(lblPuesto);
         lblPuesto.setBounds(240, 60, 200, 60);
 
@@ -155,15 +157,27 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         mnuarchivo.add(itemAgregarCabina);
 
+        itemGastosPlanilla.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         itemGastosPlanilla.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        itemGastosPlanilla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/wallet_64px.png"))); // NOI18N
-        itemGastosPlanilla.setText("Gastos Operativos");
+        itemGastosPlanilla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/empeados_icono.png"))); // NOI18N
+        itemGastosPlanilla.setText("Planilla");
         itemGastosPlanilla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemGastosPlanillaActionPerformed(evt);
             }
         });
         mnuarchivo.add(itemGastosPlanilla);
+
+        itemProductos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        itemProductos.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        itemProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/pagos.png"))); // NOI18N
+        itemProductos.setText("Gastos por Productos");
+        itemProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemProductosActionPerformed(evt);
+            }
+        });
+        mnuarchivo.add(itemProductos);
 
         menuBar.add(mnuarchivo);
 
@@ -184,33 +198,13 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         mnureservas.add(itemDisponibles);
 
-        itemProductos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        itemProductos.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        itemProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/pagos.png"))); // NOI18N
-        itemProductos.setText("Productos");
-        itemProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemProductosActionPerformed(evt);
-            }
-        });
-        mnureservas.add(itemProductos);
-
         menuBar.add(mnureservas);
 
         mnuconsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Consultas.png"))); // NOI18N
         mnuconsultas.setText("Consultas");
         mnuconsultas.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
 
-        itmListaGastosDiarios.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        itmListaGastosDiarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/bookshelf_64px.png"))); // NOI18N
-        itmListaGastosDiarios.setText("Lista de Gastos Diarios");
-        itmListaGastosDiarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itmListaGastosDiariosActionPerformed(evt);
-            }
-        });
-        mnuconsultas.add(itmListaGastosDiarios);
-
+        itemListaCabina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_MASK));
         itemListaCabina.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         itemListaCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/rsz_town-512.png"))); // NOI18N
         itemListaCabina.setText("Lista de Cabinas");
@@ -221,6 +215,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         mnuconsultas.add(itemListaCabina);
 
+        itemCabina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
         itemCabina.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         itemCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/1-39-128.png"))); // NOI18N
         itemCabina.setText("Cabina");
@@ -231,6 +226,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         mnuconsultas.add(itemCabina);
 
+        itemListaClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.ALT_MASK));
         itemListaClientes.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         itemListaClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Market-Research_icon.png"))); // NOI18N
         itemListaClientes.setText("Clientes");
@@ -240,16 +236,6 @@ public class Frm_Inicio extends javax.swing.JFrame {
             }
         });
         mnuconsultas.add(itemListaClientes);
-
-        itemGastosRangoFechas.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        itemGastosRangoFechas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/layers_64px.png"))); // NOI18N
-        itemGastosRangoFechas.setText("Gastos por Fechas");
-        itemGastosRangoFechas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemGastosRangoFechasActionPerformed(evt);
-            }
-        });
-        mnuconsultas.add(itemGastosRangoFechas);
 
         itemRImprimirFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK));
         itemRImprimirFactura.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -284,14 +270,53 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         mnuconsultas.add(itemProductosxProveedor);
 
-        jMenuItem13.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jMenuItem13.setText("jMenuItem13");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/wallet_64px.png"))); // NOI18N
+        jMenu1.setText("Menu Gastos");
+        jMenu1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+
+        itmListaGastosDiarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
+        itmListaGastosDiarios.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        itmListaGastosDiarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/bookshelf_64px.png"))); // NOI18N
+        itmListaGastosDiarios.setText("Lista de Gastos Diarios");
+        itmListaGastosDiarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
+                itmListaGastosDiariosActionPerformed(evt);
             }
         });
-        mnuconsultas.add(jMenuItem13);
+        jMenu1.add(itmListaGastosDiarios);
+
+        itemGastosRangoFechas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
+        itemGastosRangoFechas.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        itemGastosRangoFechas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/layers_64px.png"))); // NOI18N
+        itemGastosRangoFechas.setText("Gastos por Fechas");
+        itemGastosRangoFechas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemGastosRangoFechasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(itemGastosRangoFechas);
+
+        itemListaProductos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
+        itemListaProductos.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        itemListaProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/rsz_productos.png"))); // NOI18N
+        itemListaProductos.setText("Productos");
+        itemListaProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemListaProductosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(itemListaProductos);
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Market-Research_icon.png"))); // NOI18N
+        jMenuItem1.setText("Planillas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        mnuconsultas.add(jMenu1);
 
         menuBar.add(mnuconsultas);
 
@@ -349,6 +374,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         mnuHerramientas.add(itemTipoPersona);
 
+        itemHorarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.ALT_MASK));
         itemHorarios.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         itemHorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/horario.png"))); // NOI18N
         itemHorarios.setText("Horarios");
@@ -359,6 +385,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         mnuHerramientas.add(itemHorarios);
 
+        itemPuesto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
         itemPuesto.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         itemPuesto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/position.png"))); // NOI18N
         itemPuesto.setText("Puesto");
@@ -603,13 +630,13 @@ public class Frm_Inicio extends javax.swing.JFrame {
         Busqueda.setVisible(true);
     }//GEN-LAST:event_itmListaGastosDiariosActionPerformed
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    private void itemListaProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemListaProductosActionPerformed
         // TODO add your handling code here:
         JasperReport report;
         JasperPrint print;
         try {
             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/vista/reportes/Betados.jrxml");
+                    + "/src/vista/reportes/ListaProdutos.jrxml");
             print = JasperFillManager.fillReport(report, null, con);
             JasperViewer view = new JasperViewer(print, false);
             view.setTitle("Lista de Productos por Proveedor");
@@ -618,7 +645,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
+    }//GEN-LAST:event_itemListaProductosActionPerformed
 
     private void itemAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAcercaActionPerformed
         // TODO add your handling code here:
@@ -627,6 +654,14 @@ public class Frm_Inicio extends javax.swing.JFrame {
         frmAcerca.toFront();
         frmAcerca.setVisible(true);
     }//GEN-LAST:event_itemAcercaActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        Frm_GastosPlanillas frm_GastosPlanillas = new Frm_GastosPlanillas();
+        escritorio.add(frm_GastosPlanillas);
+        frm_GastosPlanillas.toFront();
+        frm_GastosPlanillas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -679,6 +714,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemHorarios;
     private javax.swing.JMenuItem itemListaCabina;
     private javax.swing.JMenuItem itemListaClientes;
+    private javax.swing.JMenuItem itemListaProductos;
     private javax.swing.JMenuItem itemProductos;
     private javax.swing.JMenuItem itemProductosxProveedor;
     private javax.swing.JMenuItem itemProveedor;
@@ -687,7 +723,8 @@ public class Frm_Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemTipoPersona;
     private javax.swing.JMenuItem itemUsuarios;
     private javax.swing.JMenuItem itmListaGastosDiarios;
-    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     public static javax.swing.JLabel lblPuesto;
     public static javax.swing.JLabel lblacceso;
     private javax.swing.JMenuBar menuBar;

@@ -27,7 +27,9 @@ public class dbConnection {
         FileInputStream fis1;
         Connection con = null;
         try {
-            File data1 = new File("/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties");
+            // "C:\Users\eisne\OneDrive\Documentos\NetBeansProjects\PCT_315\TropiCabinas\src\dbConfig.properties"
+            // "/home/ace/PCT_315/TropiCabinas/src/dbConfig.properties"
+            File data1 = new File("C:\\Users\\eisne\\OneDrive\\Documentos\\NetBeansProjects\\PCT_315\\TropiCabinas\\src\\dbConfig.properties");
             if (!data1.exists()) {
                 JOptionPane.showMessageDialog(null, "Archivo de propiedades para conexi\u00F3n no existe", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(1);
