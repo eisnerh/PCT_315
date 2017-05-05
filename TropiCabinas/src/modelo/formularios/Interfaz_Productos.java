@@ -96,7 +96,7 @@ public class Interfaz_Productos {
                 + "INNER JOIN "
                 + "pct3.gasto_operativo ON productos.gasto_operativo_gasto_id = gasto_operativo.gasto_id "
                 + "WHERE "
-                + "gasto_operativo.factura_gasto LIKE '%" + buscar + "%' "
+                + "gasto_operativo.factura_gasto Like '%" + buscar + "%' "
                 + "AND gasto_operativo.fecha_gasto LIKE '%" + fecha + "%' "
                 + "AND productos.cant > 0 "
                 + "ORDER BY nombre_producto";

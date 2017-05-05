@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -230,6 +232,7 @@ public class Frm_TipoPuesto extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
+            this.dispose();
             if (txt_Puesto.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Favor ingresa un tipo de puesto", "Error", JOptionPane.ERROR_MESSAGE);
                 txt_Puesto.setText("Aqui");

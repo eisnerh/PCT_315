@@ -120,10 +120,10 @@ public class Frm_TipoPersona extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setFont(new java.awt.Font("HP Simplified Light", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel1.setText("Tipo Persona");
 
-        txt_Tipo_Persona.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        txt_Tipo_Persona.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         txt_Tipo_Persona.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_Tipo_PersonaFocusLost(evt);
@@ -162,6 +162,7 @@ public class Frm_TipoPersona extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
+        comboTipoPersona.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         comboTipoPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboTipoPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +195,7 @@ public class Frm_TipoPersona extends javax.swing.JInternalFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         try {
+            this.dispose();
             if (txt_Tipo_Persona.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Favor ingresa un tipo de persona", "Error", JOptionPane.ERROR_MESSAGE);
                 return;

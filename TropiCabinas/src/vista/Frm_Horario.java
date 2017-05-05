@@ -146,10 +146,10 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setFont(new java.awt.Font("HP Simplified Light", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel1.setText("Turnos:");
 
-        txtDescripcionHorario.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        txtDescripcionHorario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         txtDescripcionHorario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtDescripcionHorarioFocusLost(evt);
@@ -184,6 +184,7 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        Combo_turno.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         Combo_turno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         Combo_turno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +254,7 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
             return;
         }
         try {
+            this.dispose();
             if (txtDescripcionHorario.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Favor ingresa un turno", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -276,7 +278,7 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
         Interfaz_Horario func = new Interfaz_Horario();
         dts.setDescripcionHorario(txtDescripcionHorario.getText());
         if (func.insertar(dts)) {
-            JOptionPane.showMessageDialog(rootPane, "el cliente fue registrado satisfactoriamente");
+            JOptionPane.showMessageDialog(rootPane, "el dato fue registrado satisfactoriamente");
         }
         txtDescripcionHorario.setText("");
         comboTurno();

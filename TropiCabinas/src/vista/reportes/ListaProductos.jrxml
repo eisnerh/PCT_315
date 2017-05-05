@@ -30,24 +30,53 @@ ORDER BY
 	<group name="Proveedor">
 		<groupExpression><![CDATA[$F{Proveedor}]]></groupExpression>
 		<groupHeader>
-			<band height="33">
+			<band height="108">
 				<staticText>
-					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="2cfa326c-f604-4d75-82de-e78d1429ed1d"/>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="36" forecolor="#666666" backcolor="#E6E6E6" uuid="2cfa326c-f604-4d75-82de-e78d1429ed1d"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Proveedor]]></text>
 				</staticText>
 				<textField>
-					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="ea45a8d7-831b-408d-a4c8-e92c36c5187b"/>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="36" forecolor="#006699" backcolor="#E6E6E6" uuid="ea45a8d7-831b-408d-a4c8-e92c36c5187b"/>
 					<textElement>
 						<font size="24" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Proveedor}]]></textFieldExpression>
 				</textField>
-				<line>
-					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="753d88a2-0cf3-4eca-86a8-aaff5ac49ac8"/>
-				</line>
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+					<reportElement mode="Opaque" x="100" y="36" width="455" height="36" forecolor="#006699" backcolor="#E6E6E6" uuid="3aa73f83-92f7-4dab-953a-45845f6f7333"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="SansSerif" size="24" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Contacto}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="36" width="100" height="36" forecolor="#666666" backcolor="#E6E6E6" uuid="2363a14e-225c-45bb-b434-e6ec6aeddd52"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Contacto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="72" width="100" height="36" forecolor="#666666" backcolor="#E6E6E6" uuid="78caf350-d87b-4f14-b95c-5eaf2c84af4c"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Teléfono]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+					<reportElement mode="Opaque" x="100" y="72" width="455" height="36" forecolor="#006699" backcolor="#E6E6E6" uuid="90ca3880-ba55-402b-b4c0-f78e05d8b9c5"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="SansSerif" size="24" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Teléfono}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
@@ -100,20 +129,6 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[Total_Actual]]></text>
 			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2363a14e-225c-45bb-b434-e6ec6aeddd52"/>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Contacto]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="78caf350-d87b-4f14-b95c-5eaf2c84af4c"/>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Teléfono]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -134,20 +149,6 @@ ORDER BY
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Total_Actual}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="276" y="0" width="138" height="20" uuid="3aa73f83-92f7-4dab-953a-45845f6f7333"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Contacto}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="414" y="0" width="138" height="20" uuid="90ca3880-ba55-402b-b4c0-f78e05d8b9c5"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Teléfono}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -265,6 +265,11 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción Productos"));
 
         txtNombreProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Producto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        txtNombreProducto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreProductoFocusLost(evt);
+            }
+        });
 
         txtCantidadProductos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -349,6 +354,7 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        mostrar("","");
         Calendar cal;
         int d, m, a;
         cal = fechaGasto.getCalendar();
@@ -390,7 +396,6 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         ObtenerFecha();
         mostrar(txtFacturaN.getText(), GuardarFecha);
-
         Modelo_Productos dts = new Modelo_Productos();
         Interfaz_Productos func = new Interfaz_Productos();
         dts.setIdProductos(null);
@@ -401,6 +406,8 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
         if (func.insertar(dts)) {
             JOptionPane.showMessageDialog(rootPane, "Producto Creado Exitosamente");
         }
+        txtNombreProducto.setText("");
+        txtCantidadProductos.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tblListadoProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListadoProductosMousePressed
@@ -409,9 +416,9 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
             int fila = tblListadoProductos.getSelectedRow();
             String idProductos;
             int Cantidad = Integer.parseInt(tblListadoProductos.getValueAt(fila, 2).toString());
-            
+            String NombreProducto = tblListadoProductos.getValueAt(fila, 1).toString();
             idProductos = tblListadoProductos.getValueAt(fila, 0).toString();
-            JOptionPane.showMessageDialog(null, String.format("%s - %s", idProductos, String.valueOf(Cantidad)));
+            JOptionPane.showMessageDialog(null, "Cantidad Actualizada", NombreProducto, JOptionPane.INFORMATION_MESSAGE);
         //Editar Cantidad de Productos
         Modelo_Productos dtsProductos = new Modelo_Productos();
         Interfaz_Productos funProductos = new Interfaz_Productos();
@@ -425,6 +432,10 @@ public class Frm_Agregar_Productos extends javax.swing.JInternalFrame {
         mostrar("", "");
         }
     }//GEN-LAST:event_tblListadoProductosMousePressed
+
+    private void txtNombreProductoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreProductoFocusLost
+        // TODO add your handling code here:z
+    }//GEN-LAST:event_txtNombreProductoFocusLost
 
     public void nuevoNFactura() {
         Calendar cal;

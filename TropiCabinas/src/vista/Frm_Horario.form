@@ -167,7 +167,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="HP Simplified Light" size="14" style="1"/>
+              <Font name="Roboto" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Turnos:"/>
           </Properties>
@@ -175,7 +175,7 @@
         <Component class="javax.swing.JTextField" name="txtDescripcionHorario">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Hack" size="14" style="0"/>
+              <Font name="Roboto" size="14" style="1"/>
             </Property>
           </Properties>
           <Events>
@@ -210,6 +210,9 @@
       <SubComponents>
         <Component class="javax.swing.JComboBox" name="Combo_turno">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Roboto" size="18" style="1"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
                 <StringItem index="0" value="Item 1"/>

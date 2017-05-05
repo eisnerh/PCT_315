@@ -78,8 +78,6 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
     }
 
     private void agregarPersona() {
-        int P = JOptionPane.showConfirmDialog(null, " Quiere agregar otro dato ?", "Confirmaci\u00F3n", JOptionPane.YES_NO_OPTION);
-        if (P == 1) {
             this.dispose();
             if (txtNombre_Apellidos.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Favor ingresa el Nombre y Apellidos ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -121,9 +119,9 @@ public class Frm_Agregar_Proveedor extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(this, "Guardado con Exito saved", "Proveedor", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-        } else {
+        
             limpiar();
-        }
+        
     }
 
     /**

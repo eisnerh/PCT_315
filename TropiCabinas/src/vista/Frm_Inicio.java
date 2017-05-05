@@ -65,17 +65,18 @@ public class Frm_Inicio extends javax.swing.JFrame {
         mnureservas = new javax.swing.JMenu();
         itemDisponibles = new javax.swing.JMenuItem();
         mnuconsultas = new javax.swing.JMenu();
-        itemListaCabina = new javax.swing.JMenuItem();
-        itemCabina = new javax.swing.JMenuItem();
-        itemListaClientes = new javax.swing.JMenuItem();
         itemRImprimirFactura = new javax.swing.JMenuItem();
         itemFacturasxCliente = new javax.swing.JMenuItem();
+        itemListaClientes = new javax.swing.JMenuItem();
         itemProductosxProveedor = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         itmListaGastosDiarios = new javax.swing.JMenuItem();
         itemGastosRangoFechas = new javax.swing.JMenuItem();
         itemListaProductos = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        itemCabina = new javax.swing.JMenuItem();
+        itemListaCabina = new javax.swing.JMenuItem();
         mnuConfiguraciones = new javax.swing.JMenu();
         itemUsuarios = new javax.swing.JMenuItem();
         itemColaborador = new javax.swing.JMenuItem();
@@ -204,39 +205,6 @@ public class Frm_Inicio extends javax.swing.JFrame {
         mnuconsultas.setText("Consultas");
         mnuconsultas.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
 
-        itemListaCabina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_MASK));
-        itemListaCabina.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        itemListaCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/rsz_town-512.png"))); // NOI18N
-        itemListaCabina.setText("Lista de Cabinas");
-        itemListaCabina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemListaCabinaActionPerformed(evt);
-            }
-        });
-        mnuconsultas.add(itemListaCabina);
-
-        itemCabina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
-        itemCabina.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        itemCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/1-39-128.png"))); // NOI18N
-        itemCabina.setText("Cabina");
-        itemCabina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemCabinaActionPerformed(evt);
-            }
-        });
-        mnuconsultas.add(itemCabina);
-
-        itemListaClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.ALT_MASK));
-        itemListaClientes.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        itemListaClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Market-Research_icon.png"))); // NOI18N
-        itemListaClientes.setText("Clientes");
-        itemListaClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemListaClientesActionPerformed(evt);
-            }
-        });
-        mnuconsultas.add(itemListaClientes);
-
         itemRImprimirFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK));
         itemRImprimirFactura.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         itemRImprimirFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/browser_64px.png"))); // NOI18N
@@ -258,6 +226,17 @@ public class Frm_Inicio extends javax.swing.JFrame {
             }
         });
         mnuconsultas.add(itemFacturasxCliente);
+
+        itemListaClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.ALT_MASK));
+        itemListaClientes.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        itemListaClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Market-Research_icon.png"))); // NOI18N
+        itemListaClientes.setText("Clientes");
+        itemListaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemListaClientesActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(itemListaClientes);
 
         itemProductosxProveedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
         itemProductosxProveedor.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -307,6 +286,8 @@ public class Frm_Inicio extends javax.swing.JFrame {
         });
         jMenu1.add(itemListaProductos);
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Market-Research_icon.png"))); // NOI18N
         jMenuItem1.setText("Planillas");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -317,6 +298,34 @@ public class Frm_Inicio extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         mnuconsultas.add(jMenu1);
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Home-50.png"))); // NOI18N
+        jMenu2.setText("Consultas Cabinas");
+        jMenu2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+
+        itemCabina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
+        itemCabina.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        itemCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/1-39-128.png"))); // NOI18N
+        itemCabina.setText("Cabina");
+        itemCabina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCabinaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(itemCabina);
+
+        itemListaCabina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_MASK));
+        itemListaCabina.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        itemListaCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/rsz_town-512.png"))); // NOI18N
+        itemListaCabina.setText("Lista de Cabinas");
+        itemListaCabina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemListaCabinaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(itemListaCabina);
+
+        mnuconsultas.add(jMenu2);
 
         menuBar.add(mnuconsultas);
 
@@ -404,6 +413,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
 
         itemAcerca.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         itemAcerca.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        itemAcerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/lightbulb_64px.png"))); // NOI18N
         itemAcerca.setText("Acerca de...");
         itemAcerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -636,7 +646,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         JasperPrint print;
         try {
             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/vista/reportes/ListaProdutos.jrxml");
+                    + "/src/vista/reportes/ListaProductos.jrxml");
             print = JasperFillManager.fillReport(report, null, con);
             JasperViewer view = new JasperViewer(print, false);
             view.setTitle("Lista de Productos por Proveedor");
@@ -724,6 +734,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemUsuarios;
     private javax.swing.JMenuItem itmListaGastosDiarios;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     public static javax.swing.JLabel lblPuesto;
     public static javax.swing.JLabel lblacceso;
