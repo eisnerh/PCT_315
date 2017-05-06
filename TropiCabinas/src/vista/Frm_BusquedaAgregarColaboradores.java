@@ -78,6 +78,7 @@ public class Frm_BusquedaAgregarColaboradores extends javax.swing.JInternalFrame
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Colaboradores"));
 
+        tablalistado.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

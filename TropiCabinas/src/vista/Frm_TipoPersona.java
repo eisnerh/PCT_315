@@ -242,7 +242,7 @@ public class Frm_TipoPersona extends javax.swing.JInternalFrame {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-        initComponents();
+        
         if (!txt_Tipo_Persona.getText().equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el dato?", "Confirmar", JOptionPane.YES_NO_OPTION, 2);
 

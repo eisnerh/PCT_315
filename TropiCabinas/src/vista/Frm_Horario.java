@@ -286,6 +286,7 @@ public class Frm_Horario extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
+        
         if (txtDescripcionHorario.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un Turno para el Horario");
             txtDescripcionHorario.requestFocus();
