@@ -411,6 +411,7 @@ public class Frm_Agregar_Cliente extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
+      optBetar.setVisible(true);
         Frm_BusquedaAgregarClientes form;
         form = new Frm_BusquedaAgregarClientes();
         escritorio.add(form);

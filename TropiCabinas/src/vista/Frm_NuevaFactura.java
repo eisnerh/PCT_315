@@ -455,10 +455,8 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 + "'" + numeroFactura.getText() + "', "
                 + "'" + lbl_IdClienteEmpresa.getText() + "')";
         try {
-            int P = JOptionPane.showConfirmDialog(null, " Quiere Facturar esta Cabina ?", "Confirmaci\u00F3n", JOptionPane.YES_NO_OPTION);
-            if (P == 0) {
+            JOptionPane.showMessageDialog(null, " Quiere Facturar esta Cabina ?", "Confirmaci\u00F3n", JOptionPane.INFORMATION_MESSAGE);
                 con = dbConnection.getConnection();
-
                 if (CantidadDias.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "Favor ingresa el número de días a hospedarse ", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -471,14 +469,12 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                 stmt = con.createStatement();
                 pst = con.prepareStatement(queryFacturar);
                 pst.execute();
-
                 if (!numeroFactura.getText().equals("") && !idEmpleado.getText().equals("")) {
                     Map p = new HashMap();
                     p.put("facturaNumero", numeroFactura.getText());
                     p.put("idEmpleado", idEmpleado.getText());
                     JasperReport report;
                     JasperPrint print;
-
                     try {
                         report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
                                 + "/src/vista/reportes/N_Factura.jrxml");
@@ -486,18 +482,14 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                         JasperViewer view = new JasperViewer(print, false);
                         view.setTitle("Reporte por Cábina");
                         view.setVisible(true);
-
                     } catch (JRException e) {
                         JOptionPane.showMessageDialog(this, e);
                     }
-
                     Precio.setText("");
                     CantidadDias.setText("");
-
                     Frm_Seleccionar_Cabina cabina_frm = new Frm_Seleccionar_Cabina();
                     this.hide();
                     cabina_frm.setVisible(true);
-
                     try {
                         con = dbConnection.getConnection();
                         Statement statement;
@@ -506,17 +498,11 @@ public final class Frm_NuevaFactura extends javax.swing.JInternalFrame {
                         pst = con.prepareStatement(Pru);
                         pst.execute();
                         JOptionPane.showMessageDialog(null, "Guardado con Exito saved", "Tipo de Usuario", JOptionPane.INFORMATION_MESSAGE);
-
                     } catch (HeadlessException | SQLException ex) {
                         JOptionPane.showMessageDialog(null, ex);
                     }
                 }
-                if (P == 1) {
-                    Frm_Seleccionar_Cabina cabina_frm = new Frm_Seleccionar_Cabina();
-                    this.hide();
-                    cabina_frm.setVisible(true);
-                }
-            }
+        
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
 

@@ -46,7 +46,6 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
         a = cal.get(Calendar.YEAR) - 1900;
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         fecha1 = formatter.format(Fecha1.getDate());
-        JOptionPane.showMessageDialog(this, fecha1);
         Calendar cal2;
         int d2, m2, a2;
         cal = Fecha2.getCalendar();
@@ -55,7 +54,6 @@ public class Frm_GastosParametros extends javax.swing.JInternalFrame {
         a2 = cal.get(Calendar.YEAR) - 1900;
         Format formatter2 = new SimpleDateFormat("yyyy-MM-dd");
         fecha2 = formatter2.format(Fecha2.getDate());
-        JOptionPane.showMessageDialog(this, fecha2);
     }
 
     /**
